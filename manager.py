@@ -10,6 +10,7 @@ from flask.ext.assets import ManageAssets
 from call_server.app import create_app
 from call_server.extensions import assets, db, cache
 from call_server import political_data
+from call_server import sync
 from call_server.user import User, USER_ADMIN, USER_ACTIVE
 
 app = create_app()
@@ -65,6 +66,17 @@ def loadpoliticaldata():
     if app.config.get('ENVIRONMENT') is "Heroku":
         print "don't worry about the KeyError"
         # http://stackoverflow.com/questions/8774958/keyerror-in-module-threading-after-a-successful-py-test-run/12639040#12639040
+
+@manager.command
+def crmsync(campaigns='all'):
+    print "Sync to CRM"
+    if campaigns == 'all':
+        campaigns_list = 'all'
+    elif ',' in campaigns:
+        campaigns_list = campaigns.split(',')
+    else:
+        campaigns_list = (campaigns,)
+    sync.jobs.CRMSync(campaigns_list)
 
 @manager.command
 def redis_clear():

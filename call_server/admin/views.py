@@ -9,6 +9,7 @@ from sqlalchemy.sql import func, desc
 
 from ..campaign.models import TwilioPhoneNumber, Campaign
 from ..call.models import Call
+from ..sync.models import SyncCampaign
 from ..campaign.constants import STATUS_PAUSED
 from ..api.constants import API_TIMESPANS
 from ..utils import get_one_or_create
@@ -79,11 +80,14 @@ def system():
     twilio_numbers = TwilioPhoneNumber.query.all()
     admin_api_key = current_app.config.get('ADMIN_API_KEY')
     twilio_account = current_app.config.get('TWILIO_CLIENT').auth[0]
+    crm_sync_campaigns = SyncCampaign.query.all()
+
     return render_template('admin/system.html',
                            message_defaults=current_app.config.CAMPAIGN_MESSAGE_DEFAULTS,
                            twilio_numbers=twilio_numbers,
                            twilio_account=twilio_account,
-                           admin_api_key=admin_api_key)
+                           admin_api_key=admin_api_key,
+                           crm_sync_campaigns=crm_sync_campaigns)
 
 
 @admin.route('/twilio/resync', methods=['POST'])

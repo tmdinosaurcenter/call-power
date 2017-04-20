@@ -55,6 +55,12 @@ class DefaultConfig(object):
 
     MAIL_SERVER = 'localhost'
 
+    CRM_INTEGRATION = os.environ.get('CRM_INTEGRATION')
+    if CRM_INTEGRATION == 'ActionKit':
+        ACTIONKIT_DOMAIN = os.environ.get('ACTIONKIT_DOMAIN')
+        ACTIONKIT_USER = os.environ.get('ACTIONKIT_USER')
+        ACTIONKIT_API_KEY = os.environ.get('ACTIONKIT_API_KEY')
+        ACTIONKIT_PASSWORD = os.environ.get('ACTIONKIT_PASSWORD')
 
 class ProductionConfig(DefaultConfig):
     DEBUG = False

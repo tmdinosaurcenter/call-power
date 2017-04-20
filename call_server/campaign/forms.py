@@ -143,6 +143,10 @@ class CampaignLaunchForm(Form):
     embed_redirect = TextField(_('Redirect URL'), description=True)
     embed_custom_js = TextField(_('Custom JS Code'), description=True)
 
+    # CRM sync fields
+    crm_sync = BooleanField(_('Sync calls to CRM'), [Optional()], default=False, description=True)
+    crm_id = TextField(_('CRM Campaign'), description=True)
+
     submit = SubmitField(_('Launch'))
 
 

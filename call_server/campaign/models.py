@@ -29,6 +29,7 @@ class Campaign(db.Model):
 
     segment_by = db.Column(db.String(STRING_LEN))
     locate_by = db.Column(db.String(STRING_LEN))
+    include_custom = db.Column(db.String(STRING_LEN))
     target_set = db.relationship('Target', secondary='campaign_target_sets',
                                  order_by='campaign_target_sets.c.order',
                                  backref=db.backref('campaigns'))
@@ -219,7 +220,7 @@ class Target(db.Model):
         return self.number.e164
 
     @classmethod
-    def get_or_cache_key(cls, uid, prefix=None):
+    def get_or_cache_key(cls, uid, prefix=None, cache=cache):
         if prefix:
             key = '%s:%s' % (prefix, uid)
         else:
@@ -239,12 +240,17 @@ class Target(db.Model):
                 data = adapter.target(cached_obj)
                 offices = adapter.offices(cached_obj)
             else:
+                current_app.logger.error('Target.get_or_cache_key got unknown cached_obj type %s' % type(cached_obj))
                 # do it live
                 data = cached_obj
-                offices = cached_obj.get('offices', [])
+                try:
+                    offices = cached_obj.get('offices', [])
+                except AttributeError:
+                    offices = []
 
             # create target object
             t = Target(**data)
+            t.uid = adapted_key
             db.session.add(t)
             # create office objects, link to target
             for office in offices:

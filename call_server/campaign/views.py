@@ -37,7 +37,7 @@ def before_request():
 
 @campaign.route('/')
 def index():
-    campaigns = Campaign.query.order_by(desc(Campaign.status_code)).all()
+    campaigns = Campaign.query.order_by(desc(Campaign.status_code), desc(Campaign.id)).all()
     calls = (db.session.query(Campaign.id, func.count(Call.id))
             .filter(Call.status == 'completed')
             .join(Call).group_by(Campaign.id))
@@ -389,6 +389,7 @@ def launch(campaign_id):
                 'location_sel': form.embed_location_sel.data,
                 'custom_css': form.embed_custom_css.data,
                 'custom_js': form.embed_custom_js.data,
+                'custom_onload': form.embed_custom_onload.data,
                 'script_display': form.embed_script_display.data,
                 'redirect': form.embed_redirect.data
             }
@@ -423,6 +424,7 @@ def launch(campaign_id):
                 form.embed_location_sel.data = campaign.embed.get('location_sel')
                 form.embed_custom_css.data = campaign.embed.get('custom_css')
                 form.embed_custom_js.data = campaign.embed.get('custom_js')
+                form.embed_custom_onload.data = campaign.embed.get('custom_onload')
                 form.embed_script_display.data = campaign.embed.get('script_display')
                 form.embed_redirect.data = campaign.embed.get('redirect')
 

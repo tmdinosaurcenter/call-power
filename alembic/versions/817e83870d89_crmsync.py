@@ -1,14 +1,14 @@
 """CRMSync
 
 Revision ID: 817e83870d89
-Revises: 560a7b8ee1b1
+Revises: 0c500511ff19
 Create Date: 2017-04-22 14:04:23.304971
 
 """
 
 # revision identifiers, used by Alembic.
 revision = '817e83870d89'
-down_revision = '560a7b8ee1b1'
+down_revision = '0c500511ff19'
 branch_labels = None
 depends_on = None
 

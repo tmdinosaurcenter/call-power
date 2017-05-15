@@ -421,6 +421,7 @@ $(document).ready(function () {
       'change select#campaign_type':  'changeCampaignType',
       'change select#campaign_subtype':  'changeCampaignSubtype',
       'change input[name="segment_by"]': 'changeSegmentBy',
+      'change input[name="include_custom"]': 'changeIncludeCustom',
 
       // call limit
       'change input[name="call_limit"]': 'changeCallLimit',
@@ -515,7 +516,7 @@ $(document).ready(function () {
           // hide target_offices
           $('.form-group.target_offices').hide();
         } else {
-          // congress
+          // legislative, show segmenting and search
           $('.form-group.segment_by').show();
           $('.form-group.locate_by').show();
           $('.form-group.target_offices').show();
@@ -603,8 +604,32 @@ $(document).ready(function () {
 
       if (segment_by === 'custom') {
         $('#set-targets').show();
+        $('.form-group.include_custom input[name="include_custom"][value="only"]').click();
+        $('.form-group.include_custom').hide();
       } else {
         $('#set-targets').hide();
+        $('input[name="include_custom"]').attr('checked', false);
+        $('.form-group.include_custom input[name="include_custom"][value=""]').click();
+        $('.form-group.include_custom').show();
+      }
+    },
+
+    changeIncludeCustom: function() {
+      var include_custom = $('input[name="include_custom"]:checked').val();
+      if (include_custom) {
+         $('#set-targets').show();
+      } else {
+        $('#set-targets').hide();
+      }
+
+      if (include_custom === 'only') {
+        // target_ordering can only be 'in order' or 'shuffle'
+        $('input[name="target_ordering"][value="upper-first"]').parent('label').hide();
+        $('input[name="target_ordering"][value="lower-first"]').parent('label').hide();
+      } else {
+        // target_ordering can be chamber dependent
+        $('input[name="target_ordering"][value="upper-first"]').parent('label').show();
+        $('input[name="target_ordering"][value="lower-first"]').parent('label').show();
       }
     },
 
@@ -694,7 +719,7 @@ $(document).ready(function () {
 
     validateField: function(formGroup, validator, message) {
       // first check to see if formGroup is present
-      if (!!formGroup) {
+      if (!formGroup.length) {
         return true;
       }
 
@@ -1599,7 +1624,7 @@ $(document).ready(function () {
             office.title = person.title;
             office.first_name = person.first_name;
             office.last_name = person.last_name;
-            office.uid = uid_prefix+office.id;
+            office.uid = person.uid+(office.id || '');
             office.phone = office.phone || office.tel;
             office.office_name = office.name || office.city || office.type;
             var li = renderTemplate("#search-results-item-tmpl", office);
@@ -1664,7 +1689,6 @@ $(document).ready(function () {
       this.$el.on('changeDate', _.debounce(this.renderChart, this));
 
       this.chartOpts = {
-        stacked: true,
         discrete: true,
         library: {
           canvasDimensions:{ height:250},
@@ -1677,14 +1701,21 @@ $(document).ready(function () {
           yAxis: { allowDecimals: false, min: null },
         }
       };
-      this.campaignDataTemplate = _.template($('#campaign-data-tmpl').html(), { 'variable': 'data' });
+      this.summaryDataTemplate = _.template($('#summary-data-tmpl').html(), { 'variable': 'data' });
       this.targetDataTemplate = _.template($('#target-data-tmpl').html(), { 'variable': 'targets'});
+
+      this.renderChart();
     },
 
     changeCampaign: function(event) {
       var self = this;
 
       this.campaignId = $('select[name="campaigns"]').val();
+      if (!this.campaignId) {
+        self.renderChart();
+        $('#summary_data').hide();
+        return;
+      }
       $.getJSON('/api/campaign/'+this.campaignId+'/stats.json',
         function(data) {
           if (data.sessions_completed && data.sessions_started) {
@@ -1697,8 +1728,8 @@ $(document).ready(function () {
           if (!data.sessions_completed) {
             data.calls_per_session = 'n/a';
           }
-          $('#campaign_data').html(
-            self.campaignDataTemplate(data)
+          $('#summary_data').html(
+            self.summaryDataTemplate(data)
           ).show();
 
           if (data.date_start && data.date_end) {
@@ -1712,10 +1743,6 @@ $(document).ready(function () {
     renderChart: function(event) {
       var self = this;
 
-      if (!this.campaignId) {
-        return false;
-      }
-
       var timespan = $('select[name="timespan"]').val();
       var start = new Date($('input[name="start"]').datepicker('getDate')).toISOString();
       var end = new Date($('input[name="end"]').datepicker('getDate')).toISOString();
@@ -1727,7 +1754,11 @@ $(document).ready(function () {
         $('.input-daterange input').removeClass('error');
       }
 
-      var chartDataUrl = '/api/campaign/'+this.campaignId+'/date_calls.json?timespan='+timespan;
+      if (this.campaignId) {
+        var chartDataUrl = '/api/campaign/'+this.campaignId+'/date_calls.json?timespan='+timespan;
+      } else {
+        var chartDataUrl = '/api/campaign/date_calls.json?timespan='+timespan;
+      }
       if (start) {
         chartDataUrl += ('&start='+start);
       }
@@ -1735,33 +1766,74 @@ $(document).ready(function () {
         chartDataUrl += ('&end='+end);
       }
 
-      $('#calls_for_campaign').html('loading');
+      $('#chart_display').html('loading');
       $.getJSON(chartDataUrl, function(data) {
-        // api data is by date, map to series by status
-        var DISPLAY_STATUS = ['completed', 'busy', 'failed', 'no-answer', 'canceled', 'unknown'];
-        series = _.map(DISPLAY_STATUS, function(status) { 
-          var s = _.map(data, function(value, date) {
-            return [date, value[status]];
+        if (self.campaignId) {
+          // calls for this campaign by date, map to series by status
+          var DISPLAY_STATUS = ['completed', 'busy', 'failed', 'no-answer', 'canceled', 'unknown'];
+          series = _.map(DISPLAY_STATUS, function(status) { 
+            var s = _.map(data.objects, function(value, date) {
+              return [date, value[status]];
+            });
+            return {'name': status, 'data': s };
           });
-          return {'name': status, 'data': s };
+          // chart as stacked columns
+          var chartOpts = _.extend(self.chartOpts, {stacked: true});
+          self.chart = new Chartkick.ColumnChart('chart_display', series, chartOpts);
+        } else {
+          // all calls for timespan
+          // get campaigns.json to match series labels
+          $.getJSON('/api/campaigns.json', function(campaigns) {
+            series = _.map(campaigns.objects, function(campaign_name, campaign_id) {
+              var s = _.map(data.objects, function(value, date) {
+                if (value[campaign_id]) {
+                  return [date, value[campaign_id]];
+                }
+              });
+              // compact to remove falsy values
+              return {'name': campaign_name, 'data': _.compact(s) };
+            });
+            // filter out series that have no data
+            var seriesFiltered = _.filter(series, function(line) {
+              return line.data.length
+            })
+
+            if (seriesFiltered.length) {
+              // chart as curved lines
+              var chartOpts = _.extend(self.chartOpts, {curve: true});
+              self.chart = new Chartkick.LineChart('chart_display', seriesFiltered, chartOpts);
+            } else {
+              $('#chart_display').html('no data to display. adjust dates or campaigns');
+            }
+
+            if (data.meta) {
+              $('#summary_data').html(
+                self.summaryDataTemplate(data.meta)
+              ).show();
+            }
+          });
+        }
+      });
+
+      if (this.campaignId) {
+        // table data for calls per target
+        var tableDataUrl = '/api/campaign/'+this.campaignId+'/target_calls.json?';
+        if (start) {
+          tableDataUrl += ('&start='+start);
+        }
+        if (end) {
+          tableDataUrl += ('&end='+end);
+        }
+
+        $('table#table_data').html('loading');
+        $.getJSON(tableDataUrl, function(data) {
+          var content = self.targetDataTemplate(data.objects);
+          $('table#table_data').html(content);
+          $('#table_display').show();
         });
-        self.chart = new Chartkick.ColumnChart('calls_for_campaign', series, self.chartOpts);
-      });
-
-      var tableDataUrl = '/api/campaign/'+this.campaignId+'/target_calls.json?';
-      if (start) {
-        tableDataUrl += ('&start='+start);
+      } else {
+        $('#table_display').hide()
       }
-      if (end) {
-        tableDataUrl += ('&end='+end);
-      }
-
-      $('table#target_data').html('loading');
-      $.getJSON(tableDataUrl, function(data) {
-        var content = self.targetDataTemplate(data);
-        $('table#target_data').html(content);
-        $('#target_counts').show();
-      });
     }
 
   });

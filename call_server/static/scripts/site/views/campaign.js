@@ -327,6 +327,13 @@
       return !!$('select option:selected', formGroup).length;
     },
 
+    validateCampaignName: function(formGroup) {
+      // trim whitespace
+      var campaignName = $('input[type=text]', formGroup).val().trim();
+      $('input[type=text]', formGroup).val(campaignName);
+      return !campaignName.endsWith('(copy)');
+    },
+
     validateField: function(formGroup, validator, message) {
       // first check to see if formGroup is present
       if (!formGroup.length) {
@@ -355,6 +362,9 @@
       // campaign country and type
       isValid = this.validateField($('.form-group.campaign_country'), this.validateSelected, 'Select a country') && isValid;
       isValid = this.validateField($('.form-group.campaign_type'), this.validateNestedSelect, 'Select a type') && isValid;
+
+      // campaign name
+      isValid = this.validateField($('.form-group.name'), this.validateCampaignName, 'Please update the campaign name') && isValid;
 
       // campaign sub-type
       isValid = this.validateField($('.form-group.campaign_subtype'), this.validateState, 'Select a sub-type') && isValid;

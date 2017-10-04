@@ -138,6 +138,7 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
     if campaign.include_special:
         form.show_special.data = True
 
+    form._obj = campaign # needed for uniqueness validator
     if form.validate_on_submit():
         # can't use populate_obj with nested forms, iterate over fields manually
         for field in form:
@@ -208,7 +209,6 @@ def copy(campaign_id):
     # duplicate_object skips sets
     # recreate m2m objects manually
     if orig_campaign.target_set:
-
         for target in orig_campaign.target_set:
             # update or create CampaignTarget membership
             try:
@@ -222,6 +222,16 @@ def copy(campaign_id):
         new_campaign.target_set = orig_campaign.target_set
         db.session.add(new_campaign)
         db.session.commit()
+
+    # loop over selected audio recordings for the original campaign
+    for audio_recording in orig_campaign._audio_query():
+        # create new ones for the new campaign
+        new_audio_recording = CampaignAudioRecording()
+        new_audio_recording.campaign = new_campaign
+        new_audio_recording.recording = audio_recording.recording
+        new_audio_recording.selected = True
+        db.session.add(new_audio_recording)
+    db.session.commit()
 
     flash('Campaign copied.', 'success')
     return redirect(url_for('campaign.form', campaign_id=new_campaign.id))

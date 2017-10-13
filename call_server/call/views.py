@@ -335,6 +335,7 @@ def create():
         userLocation (zipcode)
         targetIds
         record (boolean)
+        ref (string)
     """
     # parse the info needed to make the call
     params, campaign = parse_params(request)
@@ -399,6 +400,8 @@ def create():
             # but some installations may not want to log at all
 
         call_session = Session(**call_session_data)
+        if 'ref' in request.values:
+            call_session.referral_code = request.values.get('ref')
         db.session.add(call_session)
         db.session.commit()
 

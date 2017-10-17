@@ -401,7 +401,7 @@ def create():
 
         call_session = Session(**call_session_data)
         if 'ref' in request.values:
-            call_session.referral_code = request.values.get('ref')
+            call_session.referral_code = request.values.get('ref')[:64]
         db.session.add(call_session)
         db.session.commit()
 

@@ -34,12 +34,12 @@ from flask_talisman import Talisman
 CALLPOWER_CSP = {
     'default-src':'\'self\'',
     'script-src':['\'self\'', '\'unsafe-inline\'', '\'unsafe-eval\'', # for local scripts
-        'cdnjs.cloudflare.com', 'media.twiliocdn.com',  # required for jquery, twilio
-        'js-agent.newrelic.com', '*.hotjar.com', 'cdn.heapanalytics.com'], # additional analytics platforms
+        'cdnjs.cloudflare.com', 'ajax.cloudflare.com', 'media.twiliocdn.com',  # required for jquery, twilio
+        'js-agent.newrelic.com', '*.nr-data.net'], # additional analytics platforms
     'style-src': ['\'self\'', '\'unsafe-inline\'', 'fonts.googleapis.com'], 
     'font-src': ['\'self\'', 'data:', 'fonts.gstatic.com'],
     'media-src': ['\'self\'', 'blob:', 'media.twiliocdn.com'],
-    'connect-src': ['\'self\'', 'https://*.twilio.com', 'wss://*.twilio.com', 'openstates.org'],
+    'connect-src': ['\'self\'', 'https://*.twilio.com', 'wss://*.twilio.com', 'media.twiliocdn.com', 'openstates.org'],
     'object-src': ['\'self\'', 'blob:'],
     'image-src': ['\'self\'', 'data:']
 }

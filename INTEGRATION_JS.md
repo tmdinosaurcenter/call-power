@@ -29,6 +29,7 @@ You can also trigger a phone call by hitting the `/call/create` endpoint directl
 * campaignId (required)
 * userLocation (optional)
 * userCountry (optional)
+* ref (optional, limited to 64 characters)
 
 The response will be a JSON object with the following fields:
 

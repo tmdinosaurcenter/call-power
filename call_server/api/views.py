@@ -495,10 +495,25 @@ def campaign_count(campaign_id):
     ).filter_by(
         campaign_id=campaign.id,
         status='completed'
-    ).scalar()
+    )
 
-    return jsonify({'completed': calls_completed})
+    # list of sessions with at least two completed calls
+    # grouped by referral_code, include count
+    referrers = db.session.query(
+        Session.referral_code,
+        func.Count(Call.id)
+    ).join(Call).filter(
+        Call.campaign_id==campaign.id,
+        Call.status=='completed'
+    ).group_by(Session.referral_code)\
+    .having(func.count(Call.id) > 2)
 
+    return jsonify({
+        'completed': calls_completed.scalar(),
+        'last_24h': calls_completed.filter(Call.timestamp >= datetime.now() - timedelta(hours=24)).scalar(),
+        'last_week': calls_completed.filter(Call.timestamp >= datetime.now() - timedelta(days=7)).scalar(),
+        'referral_codes': dict(referrers)
+    })
 
 # route for twilio to get twiml response
 # must be publicly accessible to post

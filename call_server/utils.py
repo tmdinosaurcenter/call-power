@@ -4,6 +4,7 @@ from flask import current_app, flash
 import itertools
 import json
 import pytz
+import unicodedata
 import yaml
 import yaml.constructor
 
@@ -94,6 +95,16 @@ def utc_now():
     naive = datetime.utcnow()
     aware = naive.replace(tzinfo=pytz.utc)
     return aware
+
+
+def ignore_accents(string):
+    if type(string) == str:
+        string = unicode(string, 'utf-8')
+    elif type(string) == unicode:
+        string = string
+    else:
+        raise ValueError('not a string or unicode')
+    return unicodedata.normalize('NFD', string).encode('ascii', 'ignore')
 
 
 class OrderedDictYAMLLoader(yaml.Loader):

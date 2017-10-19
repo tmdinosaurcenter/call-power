@@ -444,8 +444,18 @@ def launch(campaign_id):
             if campaign.embed.get('script'):
                 form.embed_script.data = campaign.embed.get('script')
 
+    if campaign.prompt_schedule:
+        campaign_scheduled = {
+            'subscribers': campaign.scheduled_calls_subscribers().count(),
+            'calls': campaign.scheduled_calls_subscribers().with_entities(func.sum(ScheduleCall.num_calls)).scalar() or 0
+        }
+    else:
+        campaign_scheduled = None
+
     return render_template('campaign/launch.html', campaign=campaign,
-        campaign_data=campaign.get_campaign_data(), form=form,
+        campaign_data=campaign.get_campaign_data(),
+        campaign_scheduled=campaign_scheduled,
+        form=form,
         descriptions=current_app.config.CAMPAIGN_FIELD_DESCRIPTIONS)
 
 

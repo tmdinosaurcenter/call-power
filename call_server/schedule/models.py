@@ -18,7 +18,7 @@ class ScheduleCall(db.Model):
     num_calls = db.Column(db.Integer, default=0)
 
     campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'))
-    campaign = db.relationship('Campaign')
+    campaign = db.relationship('Campaign', backref=db.backref('scheduled_call_subscribed', lazy='dynamic'))
 
     phone_number = db.Column(db.String(16))  # number to call, e164
 

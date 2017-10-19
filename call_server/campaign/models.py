@@ -172,6 +172,10 @@ class Campaign(db.Model):
         val = dict(TARGET_OFFICE_CHOICES).get(self.target_offices, '')
         return val
 
+    def scheduled_calls_subscribers(self):
+        "Number of scheduled calls for this campaign where subscribed = True"
+        return self.scheduled_call_subscribed.filter_by(subscribed=True)
+
     @staticmethod
     def get_campaign_type_choices(country_code, cache=cache):
         country_data = get_country_data(country_code, cache=cache, api_cache='localmem')

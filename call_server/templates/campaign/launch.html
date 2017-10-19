@@ -34,7 +34,7 @@
             {% endif %}
             <tr><td>Allow Call In</td><td>{{campaign.allow_call_in}}</td></tr>
             {% if campaign.prompt_schedule %}
-            <tr><td>Prompt to Schedule Recurring Calls</td><td>{{campaign.prompt_schedule}}</td></tr>
+            <tr><td>Prompt to Schedule Recurring Calls</td><td>{{campaign_scheduled.subscribers}} Subscribers, {{campaign_scheduled.calls}} Calls</td></tr>
             {% endif %}
             <tr><td>Phone Numbers</td><td>{% for num in campaign.phone_number_set %}{{num}}{%if not loop.last%},{%endif%}{%endfor%}</td></tr>
 

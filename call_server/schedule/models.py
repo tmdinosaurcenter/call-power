@@ -64,7 +64,9 @@ def create_call(campaign_id, phone, location):
         'userPhone': phone,
         'userLocation': location
     }
-    scheduled_call = ScheduleCall.query.filter_by(campaign_id=campaign_id, phone_number=phone).first()
+    scheduled_call = ScheduleCall.query.filter_by(campaign_id=campaign_id, phone_number=phone, subscribed=True).first()
+    if not scheduled_call:
+        return None
     resp = requests.get(url_for('call.create', _external=True, **params))
     if resp.status_code == 200:
         scheduled_call.num_calls += 1

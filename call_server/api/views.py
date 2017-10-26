@@ -331,63 +331,64 @@ def campaign_target_calls(campaign_id):
     targets = defaultdict(dict)
     political_data = campaign.get_campaign_data().data_provider
 
-    for status in TWILIO_CALL_STATUS:
-        # combine calls status for each target
-        for (target_title, target_name, target_uid, call_status, count) in query_targets.all():
-            # get more target_data from political_data cache
-            try:
-                target_data = political_data.cache_get(target_uid)[0]
-            except (KeyError,IndexError):
-                target_data = political_data.cache_get(target_uid)
+    for (target_title, target_name, target_uid, call_status, count) in query_targets:
+        # get more target_data from political_data cache
+        try:
+            target_data = political_data.cache_get(target_uid)[0]
+        except (KeyError,IndexError):
+            target_data = political_data.cache_get(target_uid)
+        except Exception, e:
+            current_app.logger.error('unable to cache_get for %s: %s' % (target_uid, e))
+            continue
 
-            # use adapter to get title, name and district 
-            if ':' in target_uid:
-                data_adapter = adapt_by_key(target_uid)
+        # use adapter to get title, name and district 
+        if ':' in target_uid:
+            data_adapter = adapt_by_key(target_uid)
+            try:
+                if target_data:
+                    adapted_data = data_adapter.target(target_data)
+                else:
+                    adapted_data = data_adapter.target({'title': target_title, 'name': target_name, 'uid': target_uid})
+            except AttributeError:
+                current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
+                adapted_data = target_data
+
+        elif political_data.country_code.lower() == 'us' and campaign.campaign_type == 'congress':
+            # fall back to USData, which uses bioguide
+            if not target_data:
                 try:
-                    if target_data:
-                        adapted_data = data_adapter.target(target_data)
-                    else:
-                        adapted_data = data_adapter.target({'title': target_title, 'name': target_name, 'uid': target_uid})
+                    target_data = political_data.get_bioguide(target_uid)[0]
+                except Exception, e:
+                    current_app.logger.error('unable to get_bioguide for %s: %s' % (target_uid, e))
+                    continue
+
+            if target_data:
+                try:
+                    data_adapter = UnitedStatesData()
+                    adapted_data = data_adapter.target(target_data)
                 except AttributeError:
                     current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
-                    adapted_data = target_data
-
-            elif political_data.country_code.lower() == 'us' and campaign.campaign_type == 'congress':
-                # fall back to USData, which uses bioguide
-                if not target_data:
-                    try:
-                        target_data = political_data.get_bioguide(target_uid)[0]
-                    except Exception, e:
-                        current_app.logger.error('unable to get_bioguide for %s: %s' % (target_uid, e))
-                        continue
-
-                if target_data:
-                    try:
-                        data_adapter = UnitedStatesData()
-                        adapted_data = data_adapter.target(target_data)
-                    except AttributeError:
-                        current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
-                        continue
-                else:
-                    current_app.logger.error('no target_data for %s: %s' % (target_uid, e))
                     continue
             else:
-                # no need to adapt
-                adapted_data = target_data
-            
-            targets[target_uid]['title'] = adapted_data.get('title')
-            targets[target_uid]['name'] = adapted_data.get('name')
-            targets[target_uid]['district'] = adapted_data.get('district')
+                current_app.logger.error('no target_data for %s: %s' % (target_uid, e))
+                continue
+        else:
+            # no need to adapt
+            adapted_data = target_data
+        
+        targets[target_uid]['title'] = adapted_data.get('title')
+        targets[target_uid]['name'] = adapted_data.get('name')
+        targets[target_uid]['district'] = adapted_data.get('district')
 
-            if call_status == status:
-                targets[target_uid][call_status] = targets.get(target_uid, {}).get(call_status, 0) + count
-        try:
-            for (target_title, target_name, target_uid, call_status, count) in calls_wo_targets.all():
-                if call_status == status:
+        if call_status in TWILIO_CALL_STATUS:
+            # combine calls status for each target
+            targets[target_uid][call_status] = targets.get(target_uid, {}).get(call_status, 0) + count
+            try:
+                for (target_title, target_name, target_uid, call_status, count) in calls_wo_targets.all():
                     targets['Unknown'][call_status] = targets.get('Unknown', {}).get(call_status, 0) + count
-        except ValueError:
-            # can be triggered if there are calls without target id
-            targets['Unknown'][status] = ''
+            except ValueError:
+                # can be triggered if there are calls without target id
+                targets['Unknown'][call_status] = ''
 
     return jsonify({'objects': targets})
 

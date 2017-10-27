@@ -283,15 +283,12 @@ def campaign_target_calls(campaign_id):
 
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
 
-    query_calls = (
+    query_call_targets = (
         db.session.query(
-            Call.target_id,
-            Call.status,
-            func.count(distinct(Call.id)).label('calls_count')
-        )
+            Target.uid
+        ).join(Call)
         .filter(Call.campaign_id == int(campaign.id))
-        .group_by(Call.target_id)
-        .group_by(Call.status)
+        .group_by(Target.uid)
     )
 
     if start:
@@ -299,7 +296,7 @@ def campaign_target_calls(campaign_id):
             startDate = dateutil.parser.parse(start)
         except ValueError:
             abort(400, 'start should be in isostring format')
-        query_calls = query_calls.filter(Call.timestamp >= startDate)
+        query_call_targets = query_call_targets.filter(Call.timestamp >= startDate)
 
     if end:
         try:
@@ -310,28 +307,12 @@ def campaign_target_calls(campaign_id):
                 endDate = startDate + timedelta(days=1)
         except ValueError:
             abort(400, 'end should be in isostring format')
-        query_calls = query_calls.filter(Call.timestamp <= endDate)
-
-    # join with targets for name
-    subquery = query_calls.subquery('query_calls')
-    query_targets = (
-        db.session.query(
-            Target.title,
-            Target.name,
-            Target.uid,
-            subquery.c.status,
-            subquery.c.calls_count
-        )
-        .join(subquery, subquery.c.target_id == Target.id)
-    )
-    # in case some calls don't get matched directly to targets
-    # they are filtered out by join, so hold on to them
-    calls_wo_targets = query_calls.filter(Call.target_id == None)
+        query_call_targets = query_call_targets.filter(Call.timestamp <= endDate)
 
     targets = defaultdict(dict)
     political_data = campaign.get_campaign_data().data_provider
 
-    for (target_title, target_name, target_uid, call_status, count) in query_targets:
+    for (target_uid,) in query_call_targets:
         # get more target_data from political_data cache
         try:
             target_data = political_data.cache_get(target_uid)[0]
@@ -380,15 +361,13 @@ def campaign_target_calls(campaign_id):
         targets[target_uid]['name'] = adapted_data.get('name')
         targets[target_uid]['district'] = adapted_data.get('district')
 
+    # query calls to count status
+    query_target_status = query_call_targets.group_by(Call.status).with_entities(Call.status, Target.uid, func.Count(Call.id))
+
+    for (call_status, target_uid, count) in query_target_status:
         if call_status in TWILIO_CALL_STATUS:
             # combine calls status for each target
             targets[target_uid][call_status] = targets.get(target_uid, {}).get(call_status, 0) + count
-            try:
-                for (target_title, target_name, target_uid, call_status, count) in calls_wo_targets.all():
-                    targets['Unknown'][call_status] = targets.get('Unknown', {}).get(call_status, 0) + count
-            except ValueError:
-                # can be triggered if there are calls without target id
-                targets['Unknown'][call_status] = ''
 
     return jsonify({'objects': targets})
 

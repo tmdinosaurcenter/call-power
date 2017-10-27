@@ -188,7 +188,7 @@
                 sorter:'lastname'
               }
             },
-            sortList: [[3,1]],
+            sortList: [[3,1], [1, 0]],
             sortInitialOrder: "asc",
             widgets: [ "uitheme", "columns", "zebra", "output"],
             widgetOptions: {

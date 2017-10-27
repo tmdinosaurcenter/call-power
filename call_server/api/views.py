@@ -285,9 +285,13 @@ def campaign_target_calls(campaign_id):
 
     query_call_targets = (
         db.session.query(
+            Target.title,
+            Target.name,
             Target.uid
         ).join(Call)
         .filter(Call.campaign_id == int(campaign.id))
+        .group_by(Target.title)
+        .group_by(Target.name)
         .group_by(Target.uid)
     )
 
@@ -312,7 +316,7 @@ def campaign_target_calls(campaign_id):
     targets = defaultdict(dict)
     political_data = campaign.get_campaign_data().data_provider
 
-    for (target_uid,) in query_call_targets:
+    for (target_title, target_name, target_uid) in query_call_targets:
         # get more target_data from political_data cache
         try:
             target_data = political_data.cache_get(target_uid)[0]
@@ -320,7 +324,7 @@ def campaign_target_calls(campaign_id):
             target_data = political_data.cache_get(target_uid)
         except Exception, e:
             current_app.logger.error('unable to cache_get for %s: %s' % (target_uid, e))
-            continue
+            target_data = None
 
         # use adapter to get title, name and district 
         if ':' in target_uid:
@@ -332,7 +336,7 @@ def campaign_target_calls(campaign_id):
                     adapted_data = data_adapter.target({'title': target_title, 'name': target_name, 'uid': target_uid})
             except AttributeError:
                 current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
-                adapted_data = target_data
+                adapted_data = None
 
         elif political_data.country_code.lower() == 'us' and campaign.campaign_type == 'congress':
             # fall back to USData, which uses bioguide
@@ -341,25 +345,26 @@ def campaign_target_calls(campaign_id):
                     target_data = political_data.get_bioguide(target_uid)[0]
                 except Exception, e:
                     current_app.logger.error('unable to get_bioguide for %s: %s' % (target_uid, e))
-                    continue
-
+                    adapted_data = None
             if target_data:
                 try:
                     data_adapter = UnitedStatesData()
                     adapted_data = data_adapter.target(target_data)
                 except AttributeError:
                     current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
-                    continue
+                    adapted_data = None
             else:
                 current_app.logger.error('no target_data for %s: %s' % (target_uid, e))
-                continue
+                adapted_data = None
+
+        if adapted_data:    
+            targets[target_uid]['title'] = adapted_data.get('title')
+            targets[target_uid]['name'] = adapted_data.get('name')
+            targets[target_uid]['district'] = adapted_data.get('district')
         else:
-            # no need to adapt
-            adapted_data = target_data
-        
-        targets[target_uid]['title'] = adapted_data.get('title')
-        targets[target_uid]['name'] = adapted_data.get('name')
-        targets[target_uid]['district'] = adapted_data.get('district')
+            targets[target_uid]['title'] = target_title
+            targets[target_uid]['name'] = target_name
+            targets[target_uid]['district'] = target_uid
 
     # query calls to count status
     query_target_status = query_call_targets.group_by(Call.status).with_entities(Call.status, Target.uid, func.Count(Call.id))

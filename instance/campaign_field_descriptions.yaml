@@ -1,4 +1,4 @@
-campaign_type: This campaign targets which type of decision-makers?msg_schedule_stop
+campaign_type: This campaign targets which type of decision-makers?
 segment_by: Segment callers to targets by which attribute?
 include_custom: Include custom targets in addition to location-segmented ones?
 locate_by: Determine location by which attribute?
@@ -6,6 +6,9 @@ target_set: Search for target phone numbers, or add them directly.
 target_ordering: |
     Calls will be placed as ordered above. Shuffle is re-done for every caller.
 target_offices: Which office should callers be connected to?
+phone_number_set: |
+  Campaign connection phone numbers for users. Targets will see individual caller IDs.
+  You may need more than one if you are expecting very high volumes. Each number can place one outgoing call per second.
 
 msg_intro: Introduce yourself and the campaign briefly. First thing the caller hears when they start the call.
 msg_intro_confirm: Ask the caller to get started by pressing the star key. Used to screen out voicemails.

@@ -66,7 +66,7 @@ class CampaignForm(FlaskForm):
 
     phone_number_set = QuerySelectMultipleField(_('Select Phone Numbers'),
                                                 query_factory=TwilioPhoneNumber.available_numbers,
-                                                validators=[Required()])
+                                                description=True, validators=[Required()])
     allow_call_in = BooleanField(_('Allow Call In'))
     allow_intl_calls = BooleanField(_('Allow International Calls'))
     prompt_schedule = BooleanField(_('Prompt to Schedule Recurring Calls'))

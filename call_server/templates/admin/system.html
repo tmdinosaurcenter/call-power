@@ -112,8 +112,8 @@
             <tr>
                 <td>{{c.campaign}}</td>
                 <td>{{c.crm_id}}</td>
-                <td>{{c.last_sync_time}}
-                    <form class="form-inline pull-right" method="POST" action="{{url_for('sync.manual_job', campaign_id=c.campaign.id)}}">
+                <td><span class="last_sync_time">{{c.last_sync_time}}</span>
+                    <form class="crm-sync form-inline pull-right" method="POST" action="{{url_for('sync.manual_job', campaign_id=c.campaign.id)}}">
                         <input id="csrf_token" name="csrf_token" type="hidden" value="{{csrf_token()}}">
                         <div class="form-group"><button type="submit" class="btn btn-warning">Run</button></div>
                     </form>

@@ -1,14 +1,14 @@
 import os
 import twilio.rest
-import sunlight
+import pyopenstates
 
 
 class DefaultConfig(object):
     PROJECT = 'CallPower'
     DEBUG = False
     TESTING = False
-    ENVIRONMENT = "Default"
-    VERSION = "1.2.6"
+    VERSION = "1.3.10"
+    ENVIRONMENT = os.environ.get('APP_ENVIRONMENT', "Default")
 
     APP_NAME = "call_server"
     APPLICATION_ROOT = None  # the path where the application is configured
@@ -16,6 +16,7 @@ class DefaultConfig(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI',
         'sqlite:////%s/dev.db' % os.path.abspath(os.curdir))
     SQLALCHEMY_ECHO = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -34,7 +35,7 @@ class DefaultConfig(object):
     STORE_PROVIDER = 'flask_store.providers.local.LocalProvider'
     STORE_DOMAIN = 'http://localhost:5000' # requires url scheme for Flask-store.absolute_url to work
 
-    TWILIO_CLIENT = twilio.rest.TwilioRestClient(
+    TWILIO_CLIENT = twilio.rest.Client(
         os.environ.get('TWILIO_ACCOUNT_SID'),
         os.environ.get('TWILIO_AUTH_TOKEN'))
     TWILIO_PLAYBACK_APP = os.environ.get('TWILIO_PLAYBACK_APP')
@@ -46,10 +47,10 @@ class DefaultConfig(object):
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
     GEOCODE_API_KEY = os.environ.get('GEOCODE_API_KEY')
-    SUNLIGHT_API_KEY = os.environ.get('SUNLIGHT_API_KEY')
-    if not SUNLIGHT_API_KEY:
-        SUNLIGHT_API_KEY = os.environ.get('SUNLIGHT_KEY')
-    sunlight.config.API_KEY = SUNLIGHT_API_KEY
+    OPENSTATES_API_KEY = os.environ.get('OPENSTATES_API_KEY')
+    if not OPENSTATES_API_KEY:
+        OPENSTATES_API_KEY = os.environ.get('OPENSTATES_API_KEY')
+    pyopenstates.set_api_key(OPENSTATES_API_KEY)
 
     LOG_PHONE_NUMBERS = True
 
@@ -70,10 +71,13 @@ class ProductionConfig(DefaultConfig):
     SERVER_NAME = os.environ.get('SERVER_NAME')
     APPLICATION_ROOT = os.environ.get('APPLICATION_ROOT', None)
     ADMIN_API_KEY = os.environ.get('ADMIN_API_KEY', None)
+    PREFERRED_URL_SCHEME = 'https'
 
     CACHE_TYPE = 'redis'
     CACHE_REDIS_URL = os.environ.get('REDIS_URL')
     CACHE_KEY_PREFIX = 'call-power'
+    RQ_REDIS_URL = os.environ.get('REDIS_URL')
+    RATELIMIT_STORAGE_URL = os.environ.get('REDIS_URL')
 
     LOG_PHONE_NUMBERS = os.environ.get('LOG_PHONE_NUMBERS', False)
     OUTPUT_LOG = os.environ.get('OUTPUT_LOG', False)
@@ -84,6 +88,9 @@ class ProductionConfig(DefaultConfig):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', True)
+
+    SESSION_COOKIE_SECURE = True
+    SENTRY_DSN = os.environ.get('SENTRY_DSN', None)
 
     SQLALCHEMY_POOL_SIZE = int(os.environ.get('SQLALCHEMY_POOL_SIZE', 5))
     SQLALCHEMY_POOL_RECYCLE = os.environ.get('SQLALCHEMY_POOL_RECYCLE', 60 * 60)  # default 1 hour
@@ -102,7 +109,7 @@ class ProductionConfig(DefaultConfig):
         # http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
         # use path-style urls, in case bucket name is DNS incompatible (uses periods, or mixed case
         # http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html
-        if STORE_S3_REGION is 'us-east-1':
+        if STORE_S3_REGION == 'us-east-1':
             STORE_DOMAIN = 'https://s3.amazonaws.com/%s/' % (STORE_S3_BUCKET)
         else:
             STORE_DOMAIN = 'https://s3-%s.amazonaws.com/%s/' % (STORE_S3_REGION, STORE_S3_BUCKET)
@@ -111,7 +118,7 @@ class ProductionConfig(DefaultConfig):
 class HerokuConfig(ProductionConfig):
     # Heroku addons use a few different environment variable names
 
-    ENVIRONMENT = "Heroku"
+    ENVIRONMENT = "Production"
 
     # db via heroku postgres
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
@@ -130,15 +137,15 @@ class HerokuConfig(ProductionConfig):
 
 
 class DevelopmentConfig(DefaultConfig):
-    DEBUG = True
-    DEBUG_INFO = True
+    DEBUG = os.environ.get('APP_DEBUG', True)
+    DEBUG_MORE = True
     TESTING = False
 
     CACHE_TYPE = 'redis'
     CACHE_REDIS_URL = 'redis://localhost:6379'
     CACHE_KEY_PREFIX = 'call-power:'
 
-    ENVIRONMENT = "Development"
+    ENVIRONMENT = os.environ.get('APP_ENVIRONMENT', "Development")
 
     ADMIN_API_KEY = os.environ.get('ADMIN_API_KEY', 'ThisIsATestAdminAPIKey!')
 

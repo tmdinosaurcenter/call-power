@@ -13,9 +13,12 @@
       'change select#campaign_type':  'changeCampaignType',
       'change select#campaign_subtype':  'changeCampaignSubtype',
       'change input[name="segment_by"]': 'changeSegmentBy',
-      'change input[name="include_custom"]': 'changeIncludeCustom',
 
-      // call limit
+      // include special
+      'change input[name="show_special"]': 'showSpecial',
+      'change select[name="include_special"]': 'changeIncludeSpecial',
+
+      // call limits
       'change input[name="call_limit"]': 'changeCallLimit',
 
       // phone numbers
@@ -39,6 +42,7 @@
       this.changeCampaignCountry();
       this.changeCampaignType();
       this.changeSegmentBy();
+      this.changeIncludeSpecial();
 
       if ($('input[name="call_maximum"]').val()) {
         $('input[name="call_limit"]').attr('checked', 'checked');
@@ -48,7 +52,7 @@
       this.targetListView.loadExistingItems();
 
       $("#phone_number_set").parents(".controls").after(
-        $('<div id="call_in_collisions" class="panel alert-warning col-sm-4 hidden">').append(
+        $('<div id="call_in_collisions" class="alert alert-warning col-sm-4 hidden">').append(
           "<p>This will override call in settings for these campaigns:</p>",
           $("<ul>")
         )
@@ -196,25 +200,30 @@
 
       if (segment_by === 'custom') {
         $('#set-targets').show();
-        $('.form-group.include_custom input[name="include_custom"][value="only"]').click();
-        $('.form-group.include_custom').hide();
+        $('.form-group.special_targets').hide();
       } else {
         $('#set-targets').hide();
-        $('input[name="include_custom"]').attr('checked', false);
-        $('.form-group.include_custom input[name="include_custom"][value=""]').click();
-        $('.form-group.include_custom').show();
+        $('.form-group.special_targets').show();
+        this.showSpecial();
       }
     },
 
-    changeIncludeCustom: function() {
-      var include_custom = $('input[name="include_custom"]:checked').val();
-      if (include_custom) {
-         $('#set-targets').show();
+    showSpecial: function(event) {
+      var specialGroup = $('select[name="include_special"]').parents('.input-group');
+      if ($('input[name="show_special"]').prop('checked')) {
+        specialGroup.show();
+        $('#set-targets').show();
       } else {
+        specialGroup.hide();
         $('#set-targets').hide();
+        $('select[name="include_special"]').val('').trigger('change');
       }
+    },
 
-      if (include_custom === 'only') {
+    changeIncludeSpecial: function() {
+      var include_special = $('select[name="include_special"]').val();
+
+      if (include_special === 'only') {
         // target_ordering can only be 'in order' or 'shuffle'
         $('input[name="target_ordering"][value="upper-first"]').parent('label').hide();
         $('input[name="target_ordering"][value="lower-first"]').parent('label').hide();
@@ -305,8 +314,24 @@
       }
     },
 
+    validateSpecialTargets: function(f) {
+      // if show_special checked, ensure we also have include_special set
+      if ($('input#show_special:checked').val()) {
+        return !!$('select#include_special').val();
+      } else {
+        return true;
+      }
+    },
+
     validateSelected: function(formGroup) {
       return !!$('select option:selected', formGroup).length;
+    },
+
+    validateCampaignName: function(formGroup) {
+      // trim whitespace
+      var campaignName = $('input[type=text]', formGroup).val().trim();
+      $('input[type=text]', formGroup).val(campaignName);
+      return !campaignName.endsWith('(copy)');
     },
 
     validateField: function(formGroup, validator, message) {
@@ -338,6 +363,9 @@
       isValid = this.validateField($('.form-group.campaign_country'), this.validateSelected, 'Select a country') && isValid;
       isValid = this.validateField($('.form-group.campaign_type'), this.validateNestedSelect, 'Select a type') && isValid;
 
+      // campaign name
+      isValid = this.validateField($('.form-group.name'), this.validateCampaignName, 'Please update the campaign name') && isValid;
+
       // campaign sub-type
       isValid = this.validateField($('.form-group.campaign_subtype'), this.validateState, 'Select a sub-type') && isValid;
 
@@ -347,6 +375,7 @@
       
       // campaign targets
       isValid = this.validateField($('.form-group#set-targets'), this.validateTargetList, 'Add a custom target') && isValid;
+      isValid = this.validateField($('.form-group.special_targets'), this.validateSpecialTargets, 'Please pick an order for Special Targets') && isValid;
 
       // phone numbers
       isValid = this.validateField($('.form-group.phone_number_set'), this.validateSelected, 'Select a phone number') && isValid;

@@ -21,6 +21,6 @@ def manual_job(campaign_id):
         sync_campaign.run(integration)
 
     # TODO run jobs out of band
-    # with some sort of scheduler
+    # with scheduler
 
     return render_template('admin/sync_campaign.html', campaign=campaign, start=start, end=end)

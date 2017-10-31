@@ -1,15 +1,16 @@
-from flask.ext.wtf import Form
-from flask.ext.babel import gettext as _
+from flask_wtf import FlaskForm
+from flask_babel import gettext as _
 from wtforms import (HiddenField, SubmitField, TextField,
                      SelectField, SelectMultipleField,
-                     BooleanField, RadioField, IntegerField,
+                     BooleanField, RadioField,
                      FileField, FieldList, FormField)
 from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
-from wtforms_components import PhoneNumberField, read_only
-from wtforms.widgets import TextArea
+from wtforms_components import PhoneNumberField, IntegerField, read_only
+from wtforms.widgets import TextArea, Input
 from wtforms.validators import Required, Optional, AnyOf, NumberRange, ValidationError
+from wtforms_components.validators import Unique
 
-from .constants import (SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_CUSTOM_CHOCIES, TARGET_OFFICE_CHOICES, LANGUAGE_CHOICES,
+from .constants import (SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CHOCIES, TARGET_OFFICE_CHOICES, LANGUAGE_CHOICES,
                         CAMPAIGN_STATUS, EMBED_FORM_CHOICES, EMBED_SCRIPT_DISPLAY)
 
 from .models import Campaign, TwilioPhoneNumber
@@ -24,14 +25,14 @@ class DisabledSelectField(SelectField):
     return super(DisabledSelectField, self).__call__(*args, **kwargs)
 
 
-class CountryTypeForm(Form):
+class CountryTypeForm(FlaskForm):
     campaign_country = SelectField(_('Country'), validators=[Required()])
     campaign_type = SelectField(_('Type'), validators=[Required()])
     campaign_language = SelectField(_('Language'), [Required()], choices=LANGUAGE_CHOICES)
     submit = SubmitField(_('Next'))
 
 
-class TargetForm(Form):
+class TargetForm(FlaskForm):
     order = IntegerField(_('Order'),)
     title = TextField(_('Title'), [Optional()])
     name = TextField(_('Name'), [Required()])
@@ -39,9 +40,9 @@ class TargetForm(Form):
     uid = TextField(_('Unique ID'), [Optional()])
 
 
-class CampaignForm(Form):
+class CampaignForm(FlaskForm):
     next = HiddenField()
-    name = TextField(_('Campaign Name'), [Required()])
+    name = TextField(_('Campaign Name'), [Required(), Unique(Campaign.name, message="Campaign with that name already exists")])
     campaign_country = DisabledSelectField(_('Country'), [Optional()], choices=COUNTRY_CHOICES)
     campaign_type = DisabledSelectField(_('Type'), [Optional()])
     campaign_state = SelectField(_('State'), [Optional()])
@@ -52,8 +53,9 @@ class CampaignForm(Form):
                             description=True, default=SEGMENT_BY_CHOICES[0][0])
     locate_by = RadioField(_('Locate By'), [Optional()], choices=choice_items(LOCATION_CHOICES),
                            description=True, default=None)
-    include_custom = RadioField(_('Custom Targets'), [Optional()], choices=choice_items(INCLUDE_CUSTOM_CHOCIES),
-                           description=True, default=INCLUDE_CUSTOM_CHOCIES[0][0])
+    show_special = BooleanField(_('Include Special Targets'), [Optional()], default=False)
+    include_special = SelectField(_('User\'s Representatives'), [Optional()], choices=choice_items(INCLUDE_SPECIAL_CHOCIES),
+                           description=True, default=INCLUDE_SPECIAL_CHOCIES[0][0])
     target_set = FieldList(FormField(TargetForm, _('Choose Targets')), validators=[Optional()])
     target_ordering = RadioField(_('Target Order'), [Optional()], description=True)
     target_offices = RadioField(_('Target Offices'), [Optional()], choices=choice_items(TARGET_OFFICE_CHOICES),
@@ -64,8 +66,10 @@ class CampaignForm(Form):
 
     phone_number_set = QuerySelectMultipleField(_('Select Phone Numbers'),
                                                 query_factory=TwilioPhoneNumber.available_numbers,
-                                                validators=[Required()])
+                                                description=True, validators=[Required()])
     allow_call_in = BooleanField(_('Allow Call In'))
+    allow_intl_calls = BooleanField(_('Allow International Calls'))
+    prompt_schedule = BooleanField(_('Prompt to Schedule Recurring Calls'))
 
     submit = SubmitField(_('Edit Audio'))
     submit_skip_audio = SubmitField(_('Save and Test'))
@@ -83,7 +87,7 @@ class CampaignForm(Form):
 
     def validate(self):
         # check default validation
-        if not Form.validate(self):
+        if not FlaskForm.validate(self):
             return False
 
         # check nested forms
@@ -96,7 +100,7 @@ class CampaignForm(Form):
         return True
 
 
-class CampaignAudioForm(Form):
+class CampaignAudioForm(FlaskForm):
     next = HiddenField()
     msg_intro = TextField(_('Introduction'))
     msg_intro_confirm = TextField(_('Start Confirmation'))
@@ -105,16 +109,21 @@ class CampaignAudioForm(Form):
     msg_invalid_location = TextField(_('Invalid Location'))
     msg_unparsed_location = TextField(_('Unparsed Location'))
     msg_choose_target = TextField(_('Choose Target'))
+    msg_prompt_schedule = TextField(_('Prompt to Schedule'))
+    msg_alter_schedule = TextField(_('Alter Existing Schedule'))
+    msg_schedule_start = TextField(_('Schedule Started'))
+    msg_schedule_stop = TextField(_('Schedule Stopped'))
     msg_call_block_intro = TextField(_('Call Block Introduction'))
     msg_target_intro = TextField(_('Target Introduction'))
     msg_target_busy = TextField(_('Target Busy'))
     msg_between_calls = TextField(_('Between Calls'))
     msg_final_thanks = TextField(_('Final Thanks'))
+    msg_campaign_complete = TextField(_('Campaign Complete'))
 
     submit = SubmitField(_('Save and Test'))
 
 
-class AudioRecordingForm(Form):
+class AudioRecordingForm(FlaskForm):
     key = TextField(_('Key'), [Required()])
     file_storage = FileField(_('File'), [Optional()])
     file_type = TextField(_('Type'), [Optional()])
@@ -122,7 +131,7 @@ class AudioRecordingForm(Form):
     description = TextField(_('Description'), [Optional()])
 
 
-class CampaignLaunchForm(Form):
+class CampaignLaunchForm(FlaskForm):
     next = HiddenField()
 
     test_call_number = TextField(_('Call Me'))
@@ -142,6 +151,7 @@ class CampaignLaunchForm(Form):
     embed_custom_css = TextField(_('Custom CSS URL'))
     embed_script_display = SelectField(_('Script Display'), [Optional()], choices=choice_items(EMBED_SCRIPT_DISPLAY),
         description=True, default=EMBED_SCRIPT_DISPLAY[0][0])
+    embed_phone_display = TextField(_('Phone Display'), description=True)
     embed_redirect = TextField(_('Redirect URL'), description=True)
     embed_custom_js = TextField(_('Custom JS Success'), description=True)
     embed_custom_onload = TextField(_('Custom JS Onload'), widget=TextArea(), description=True)
@@ -153,7 +163,7 @@ class CampaignLaunchForm(Form):
     submit = SubmitField(_('Launch'))
 
 
-class CampaignStatusForm(Form):
+class CampaignStatusForm(FlaskForm):
     status_code = RadioField(_("Status"), [AnyOf([str(val) for val in CAMPAIGN_STATUS.keys()])],
                              choices=[(str(val), label) for val, label in CAMPAIGN_STATUS.items()])
     submit = SubmitField(_('Save'))

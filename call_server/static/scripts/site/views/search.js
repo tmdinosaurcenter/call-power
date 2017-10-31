@@ -101,9 +101,9 @@
             searchData['key'] = 'us_state:governor:'+query;
           } else {
             // hit OpenStates
-            searchURL = CallPower.Config.SUNLIGHT_STATES_URL;
+            searchURL = CallPower.Config.OPENSTATES_URL;
             searchData = {
-              apikey: CallPower.Config.SUNLIGHT_API_KEY,
+              apikey: CallPower.Config.OPENSTATES_API_KEY,
               state: campaign_state,
             }
             if (chamber === 'upper' || chamber === 'lower') {
@@ -152,16 +152,14 @@
       });
 
       // start spinner
-      $('.btn.search .spin').css('display', 'inline-block');
-      $('.btn.search .text').hide();
+      $('.btn.search .glyphicon').removeClass('glyphicon-search').addClass('glyphicon-repeat spin');
       $('.btn.search').attr('disabled','disabled');
       return true;
     },
 
     renderSearchResults: function(response) {
       // stop spinner
-      $('#target-search .glyphicon.spin').hide();
-      $('.btn.search .text').show();
+      $('.btn.search .glyphicon').removeClass('glyphicon-repeat spin').addClass('glyphicon-search');
       $('.btn.search').removeAttr('disabled');
 
       // clear existing results, errors
@@ -221,7 +219,10 @@
             office.last_name = person.last_name;
             office.uid = person.uid+(office.id || '');
             office.phone = office.phone || office.tel;
-            office.office_name = office.name || office.city || office.type;
+            var office_name = office.office_name || office.name || office.city || office.type;
+
+            // remove "office" from office_name, we append that in the template
+            office.office_name = office_name.replace(/office/i,'');
             var li = renderTemplate("#search-results-item-tmpl", office);
             dropdownMenu.append(li);
           }

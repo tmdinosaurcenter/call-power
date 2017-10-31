@@ -188,7 +188,7 @@ $(document).ready(function () {
     setupTwilioClient: function(capability) {
       //connect twilio API to read text-to-speech
       try {
-        this.twilio = Twilio.Device.setup(capability, {"debug":false});
+        this.twilio = Twilio.Device.setup(capability, {"debug":CallPower.Config.DEBUG | false});
       } catch (e) {
         console.error(e);
         msg = 'Sorry, your browser does not support WebRTC, Text-to-Speech playback may not work.<br/>' +
@@ -199,20 +199,17 @@ $(document).ready(function () {
 
       this.twilio.incoming(function(connection) {
         connection.accept();
-        // do awesome ui stuff here
-        // $('#call-status').text("you're on a call!");
       });
       this.twilio.error(function(error) {
         console.error(error);
-        var msg = 'Twilio error';
-        var level = 'warning'
-        if (error.info) {
-          msg = msg+': '+error.info.code+' '+error.info.message;
-        } else if (error.message) {
-          msg = msg + ': ' + error.message;
-          level = 'info'; // yes, this is very counterintuitive
+        var message = error.info ? error.info.message : error.message;
+        if (message == "Invalid application SID") {
+          message = message + "<br> Ensure TwiML Application $TWILIO_PLAYBACK_APP will POST to /api/twilio/text-to-speech";
         }
-        window.flashMessage(msg, level);
+        if (error.info) {
+          message = 'Twilio error: '+error.info.code+' '+message;
+        }
+        window.flashMessage(message, 'info');
       });
       this.twilio.connect(function(conn) {
         console.log('Twilio connection', conn.status());
@@ -280,31 +277,60 @@ $(document).ready(function () {
   });
 
 
-  CallPower.Collections.CallList = Backbone.Collection.extend({
+  CallPower.Collections.CallList = Backbone.PageableCollection.extend({
     model: CallPower.Models.Call,
     url: '/api/call',
+    // turn off PageableCollection queryParams by setting to null
+    // per https://github.com/backbone-paginator/backbone.paginator/issues/240
+    queryParams: {
+      pageSize: null,
+      currentPage: "page",
+      totalRecords: null,
+      totalPages: null,
+    },
+    state: {
+      firstPage: 1,
+      pageSize: 10,
+      sortKey: "timestamp",
+      direction: -1,
+    },
 
     initialize: function(campaign_id) {
       this.campaign_id = campaign_id;
     },
 
-    parse: function(response) {
+    parseRecords: function(response) {
       return response.objects;
     },
 
-    fetch: function(options) {
-      // transform filters to flask-restless style
+    parseState: function (resp, queryParams, state, options) {
+      return {
+        currentPage: resp.page,
+        totalRecords: resp.num_results
+      };
+    },
+
+    fetch: function() {
+      // transform filters and pagination to flask-restless style
       // always include campaign_id filter
       var filters = [{name: 'campaign_id', op: 'eq', val: this.campaign_id}];
-      if (options.filters) {
-        Array.prototype.push.apply(filters, options.filters);
+      if (this.filters) {
+        Array.prototype.push.apply(filters, this.filters);
       }
+      // calculate offset from currentPage * pageSize, accounting for 1-base
+      var currentOffset = Math.max(this.state.currentPage*-1, 0) * this.state.pageSize;
       var flaskQuery = {
-        q: JSON.stringify({ filters: filters })
+        filters: filters,
+        offset: currentOffset,
+        order_by: [{
+          field: this.state.sortKey,
+          direction: this.state.direction == -1 ? "asc" : "desc"
+        }]
       };
-
-      var fetchOptions = _.extend({ data: flaskQuery }, options);
-      return Backbone.Collection.prototype.fetch.call(this, fetchOptions);
+      var fetchOptions = _.extend({ data: {
+        q: JSON.stringify(flaskQuery)
+      }});
+      return Backbone.PageableCollection.prototype.fetch.call(this, fetchOptions);
     }
   });
 
@@ -325,10 +351,14 @@ $(document).ready(function () {
 
   CallPower.Views.CallLog = Backbone.View.extend({
     el: $('#call_log'),
+    el_paginator: $('#calls-list-paginator'),
 
     events: {
       'change .filters input': 'updateFilters',
       'change .filters select': 'updateFilters',
+      'click .filters button.search': 'searchCallIds',
+      'blur input[name="call-search"]': 'searchCallIds',
+      'click a.info-modal': 'showInfoModal',
     },
 
 
@@ -347,10 +377,15 @@ $(document).ready(function () {
       this.updateFilters();
     },
 
+    pagingatorPage: function(event, num){
+      this.collection.getPage(num);
+    },
+
     updateFilters: function(event) {
       var status = $('select[name="status"]').val();
       var start = new Date($('input[name="start"]').datepicker('getDate'));
       var end = new Date($('input[name="end"]').datepicker('getDate'));
+      var call_sids = JSON.parse($('input[name="call_sids"]').val());
 
       if (start > end) {
         $('.input-daterange input[name="start"]').addClass('error');
@@ -369,8 +404,35 @@ $(document).ready(function () {
       if (end) {
         filters.push({'name': 'timestamp', 'op': 'lt', 'val': end.toISOString()});
       }
+      if(call_sids) {
+        filters.push({'name': 'call_id', 'op': 'in', 'val': call_sids});
+      }
+      this.collection.filters = filters;
 
-      this.collection.fetch({filters: filters});
+      var self = this;
+      this.collection.fetch().then(function() {
+        // reset paginator with new results
+        self.el_paginator.bootpag({
+          total: self.collection.state.totalPages,
+          page: self.collection.state.currentPage,
+          maxVisible: 5,
+        }).on('page', _.bind(self.pagingatorPage, self));
+      });
+    },
+
+    searchCallIds: function() {
+      var self = this;
+
+      var search_phone = $('input[name="call-search"]').val();
+      if (!search_phone)
+        return false;
+
+      $.getJSON('/api/twilio/calls/to/'+search_phone+'/',
+          function(data) {
+            $('input[name="call_sids"]').val(JSON.stringify(data.objects));
+        }).then(function() {
+          self.updateFilters();
+        });
     },
 
     renderCollection: function() {
@@ -403,7 +465,45 @@ $(document).ready(function () {
       return new CallPower.Views.CallItemView({ model: model });
     },
 
+    showInfoModal: function (event) {
+      var sid = $(event.target).data('sid');
+      $.getJSON('/api/twilio/calls/info/'+sid+'/',
+          function(data) {
+            data.sid = sid;
+            return (new CallPower.Views.CallInfoView(data)).render();
+        });
+    },
+
   });
+  
+  CallPower.Views.CallInfoView = Backbone.View.extend({
+    tagName: 'div',
+    className: 'microphone modal fade',
+
+    initialize: function(data) {
+      this.data = data;
+      this.template = _.template($('#call-info-tmpl').html(), { 'variable': 'data' });
+    },
+
+    render: function() {
+      var html = this.template(this.data);
+      this.$el.html(html);
+
+      this.$el.on('hidden.bs.modal', this.destroy);
+      this.$el.modal('show');
+
+      return this;
+    },
+
+    destroy: function() {
+      this.undelegateEvents();
+      this.$el.removeData().unbind();
+
+      this.remove();
+      Backbone.View.prototype.remove.call(this);
+    },
+  });
+
 
 })();
 /*global CallPower, Backbone */
@@ -421,9 +521,12 @@ $(document).ready(function () {
       'change select#campaign_type':  'changeCampaignType',
       'change select#campaign_subtype':  'changeCampaignSubtype',
       'change input[name="segment_by"]': 'changeSegmentBy',
-      'change input[name="include_custom"]': 'changeIncludeCustom',
 
-      // call limit
+      // include special
+      'change input[name="show_special"]': 'showSpecial',
+      'change select[name="include_special"]': 'changeIncludeSpecial',
+
+      // call limits
       'change input[name="call_limit"]': 'changeCallLimit',
 
       // phone numbers
@@ -447,6 +550,7 @@ $(document).ready(function () {
       this.changeCampaignCountry();
       this.changeCampaignType();
       this.changeSegmentBy();
+      this.changeIncludeSpecial();
 
       if ($('input[name="call_maximum"]').val()) {
         $('input[name="call_limit"]').attr('checked', 'checked');
@@ -456,7 +560,7 @@ $(document).ready(function () {
       this.targetListView.loadExistingItems();
 
       $("#phone_number_set").parents(".controls").after(
-        $('<div id="call_in_collisions" class="panel alert-warning col-sm-4 hidden">').append(
+        $('<div id="call_in_collisions" class="alert alert-warning col-sm-4 hidden">').append(
           "<p>This will override call in settings for these campaigns:</p>",
           $("<ul>")
         )
@@ -604,25 +708,30 @@ $(document).ready(function () {
 
       if (segment_by === 'custom') {
         $('#set-targets').show();
-        $('.form-group.include_custom input[name="include_custom"][value="only"]').click();
-        $('.form-group.include_custom').hide();
+        $('.form-group.special_targets').hide();
       } else {
         $('#set-targets').hide();
-        $('input[name="include_custom"]').attr('checked', false);
-        $('.form-group.include_custom input[name="include_custom"][value=""]').click();
-        $('.form-group.include_custom').show();
+        $('.form-group.special_targets').show();
+        this.showSpecial();
       }
     },
 
-    changeIncludeCustom: function() {
-      var include_custom = $('input[name="include_custom"]:checked').val();
-      if (include_custom) {
-         $('#set-targets').show();
+    showSpecial: function(event) {
+      var specialGroup = $('select[name="include_special"]').parents('.input-group');
+      if ($('input[name="show_special"]').prop('checked')) {
+        specialGroup.show();
+        $('#set-targets').show();
       } else {
+        specialGroup.hide();
         $('#set-targets').hide();
+        $('select[name="include_special"]').val('').trigger('change');
       }
+    },
 
-      if (include_custom === 'only') {
+    changeIncludeSpecial: function() {
+      var include_special = $('select[name="include_special"]').val();
+
+      if (include_special === 'only') {
         // target_ordering can only be 'in order' or 'shuffle'
         $('input[name="target_ordering"][value="upper-first"]').parent('label').hide();
         $('input[name="target_ordering"][value="lower-first"]').parent('label').hide();
@@ -713,8 +822,24 @@ $(document).ready(function () {
       }
     },
 
+    validateSpecialTargets: function(f) {
+      // if show_special checked, ensure we also have include_special set
+      if ($('input#show_special:checked').val()) {
+        return !!$('select#include_special').val();
+      } else {
+        return true;
+      }
+    },
+
     validateSelected: function(formGroup) {
       return !!$('select option:selected', formGroup).length;
+    },
+
+    validateCampaignName: function(formGroup) {
+      // trim whitespace
+      var campaignName = $('input[type=text]', formGroup).val().trim();
+      $('input[type=text]', formGroup).val(campaignName);
+      return !campaignName.endsWith('(copy)');
     },
 
     validateField: function(formGroup, validator, message) {
@@ -746,6 +871,9 @@ $(document).ready(function () {
       isValid = this.validateField($('.form-group.campaign_country'), this.validateSelected, 'Select a country') && isValid;
       isValid = this.validateField($('.form-group.campaign_type'), this.validateNestedSelect, 'Select a type') && isValid;
 
+      // campaign name
+      isValid = this.validateField($('.form-group.name'), this.validateCampaignName, 'Please update the campaign name') && isValid;
+
       // campaign sub-type
       isValid = this.validateField($('.form-group.campaign_subtype'), this.validateState, 'Select a sub-type') && isValid;
 
@@ -755,6 +883,7 @@ $(document).ready(function () {
       
       // campaign targets
       isValid = this.validateField($('.form-group#set-targets'), this.validateTargetList, 'Add a custom target') && isValid;
+      isValid = this.validateField($('.form-group.special_targets'), this.validateSpecialTargets, 'Please pick an order for Special Targets') && isValid;
 
       // phone numbers
       isValid = this.validateField($('.form-group.phone_number_set'), this.validateSelected, 'Select a phone number') && isValid;
@@ -827,7 +956,7 @@ $(document).ready(function () {
 
       var location = $('#test_call_location').val();
       var country = $('#test_call_country').val() || $('#test_call_country_other').val();
-      var record = $('#test_call_record').val();
+      var record = $('#test_call_record:checked').val();
 
       $.ajax({
         url: '/call/create',
@@ -838,14 +967,18 @@ $(document).ready(function () {
           record: record
         },
         success: function(data) {
-          alert('Calling you at '+$('#test_call_number').val()+' now!');
           if (data.call == 'queued') {
+            alert('Calling you at '+$('#test_call_number').val()+' now!');
             statusIcon.removeClass('active').addClass('success');
             $('.form-group.test_call .controls .help-block').removeClass('has-error').text('');
           } else {
             console.error(data);
-            statusIcon.addClass('error');
-            $('.form-group.test_call .controls .help-block').addClass('has-error').text(data.responseText);
+            statusIcon.removeClass('active').addClass('error');
+            var message = "Unable to place call";
+            if (data.campaign == 'archived') {
+              message += ': campaign is archived.'
+            }
+            $('.form-group.test_call .controls .help-block').addClass('has-error').text(message);
           }
         },
         error: function(err) {
@@ -1279,6 +1412,10 @@ $(document).ready(function () {
         return !!self.filename;
       }, 'Please select a file to upload') && isValid;
 
+      isValid = this.validateField($('.tab-pane.active#upload'), function() {
+        return _.includes(['mp3','wav','aif','aiff','gsm','ulaw'], self.filetype.toLowerCase());
+      }, 'Uploaded file must be an MP3 or WAV. M4A or iPhone Voice Memos will not play back.') && isValid;
+
       isValid = this.validateField($('.tab-pane.active#text-to-speech'), function() {
         return !!self.textToSpeech;
       }, 'Please enter text to read') && isValid;
@@ -1317,6 +1454,7 @@ $(document).ready(function () {
         
         var fileType = fileData.name.split('.').pop(-1);
         formData.append('file_type', fileType);
+        this.filetype = fileType;
       }
 
       var self = this;
@@ -1506,9 +1644,9 @@ $(document).ready(function () {
             searchData['key'] = 'us_state:governor:'+query;
           } else {
             // hit OpenStates
-            searchURL = CallPower.Config.SUNLIGHT_STATES_URL;
+            searchURL = CallPower.Config.OPENSTATES_URL;
             searchData = {
-              apikey: CallPower.Config.SUNLIGHT_API_KEY,
+              apikey: CallPower.Config.OPENSTATES_API_KEY,
               state: campaign_state,
             }
             if (chamber === 'upper' || chamber === 'lower') {
@@ -1557,16 +1695,14 @@ $(document).ready(function () {
       });
 
       // start spinner
-      $('.btn.search .spin').css('display', 'inline-block');
-      $('.btn.search .text').hide();
+      $('.btn.search .glyphicon').removeClass('glyphicon-search').addClass('glyphicon-repeat spin');
       $('.btn.search').attr('disabled','disabled');
       return true;
     },
 
     renderSearchResults: function(response) {
       // stop spinner
-      $('#target-search .glyphicon.spin').hide();
-      $('.btn.search .text').show();
+      $('.btn.search .glyphicon').removeClass('glyphicon-repeat spin').addClass('glyphicon-search');
       $('.btn.search').removeAttr('disabled');
 
       // clear existing results, errors
@@ -1626,7 +1762,10 @@ $(document).ready(function () {
             office.last_name = person.last_name;
             office.uid = person.uid+(office.id || '');
             office.phone = office.phone || office.tel;
-            office.office_name = office.name || office.city || office.type;
+            var office_name = office.office_name || office.name || office.city || office.type;
+
+            // remove "office" from office_name, we append that in the template
+            office.office_name = office_name.replace(/office/i,'');
             var li = renderTemplate("#search-results-item-tmpl", office);
             dropdownMenu.append(li);
           }
@@ -1676,6 +1815,7 @@ $(document).ready(function () {
     events: {
       'change select[name="campaigns"]': 'changeCampaign',
       'change select[name="timespan"]': 'renderChart',
+      'click .btn.download': 'downloadTable',
     },
 
     initialize: function() {
@@ -1689,20 +1829,34 @@ $(document).ready(function () {
       this.$el.on('changeDate', _.debounce(this.renderChart, this));
 
       this.chartOpts = {
-        discrete: true,
         library: {
           canvasDimensions:{ height:250},
           xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: {
-                day: '%e. %b'
-            }
+                day: '%b %e',
+                week: '%b %e',
+                month: '%b %y',
+                year: '%Y',
+            },
           },
           yAxis: { allowDecimals: false, min: null },
         }
       };
       this.summaryDataTemplate = _.template($('#summary-data-tmpl').html(), { 'variable': 'data' });
       this.targetDataTemplate = _.template($('#target-data-tmpl').html(), { 'variable': 'targets'});
+
+      $.tablesorter.addParser({
+        id: 'lastname',
+        is: function(s) {
+          return false;
+        },
+        format: function(s) {
+          var parts = s.split(" ");
+          return parts[1];
+        },
+        type: 'text'
+      });
 
       this.renderChart();
     },
@@ -1766,7 +1920,7 @@ $(document).ready(function () {
         chartDataUrl += ('&end='+end);
       }
 
-      $('#chart_display').html('loading');
+      $('#chart_display').html('<span class="glyphicon glyphicon-refresh spin"></span> Loading...');
       $.getJSON(chartDataUrl, function(data) {
         if (self.campaignId) {
           // calls for this campaign by date, map to series by status
@@ -1796,7 +1950,7 @@ $(document).ready(function () {
             // filter out series that have no data
             var seriesFiltered = _.filter(series, function(line) {
               return line.data.length
-            })
+            });
 
             if (seriesFiltered.length) {
               // chart as curved lines
@@ -1825,19 +1979,47 @@ $(document).ready(function () {
           tableDataUrl += ('&end='+end);
         }
 
-        $('table#table_data').html('loading');
-        $.getJSON(tableDataUrl, function(data) {
+        $('table#table_data').html('<span class="glyphicon glyphicon-refresh spin"></span> Loading...');
+        $('#table_display').show();
+        $.getJSON(tableDataUrl).success(function(data) {
           var content = self.targetDataTemplate(data.objects);
-          $('table#table_data').html(content);
-          $('#table_display').show();
+          return $('table#table_data').html(content).promise();
+        }).error(function() {
+          $('table#table_data').html('<span class="glyphicon glyphicon-exclamation-sign error"></span> Error loading table');
+        }).then(function() {
+          return $('table#table_data').tablesorter({
+            theme: "bootstrap",
+            headerTemplate: '{content} {icon}',
+            headers: {
+              1: {
+                sorter:'lastname'
+              }
+            },
+            sortList: [[3,1], [1, 0]],
+            sortInitialOrder: "asc",
+            widgets: [ "uitheme", "columns", "zebra", "output"],
+            widgetOptions: {
+              zebra : ["even", "odd"],
+              output_delivery: 'download',
+              output_saveFileName: 'callpower-export.csv'
+            }
+          }).promise();
+        }).then(function() {
+          $('.btn.download').show();
+          // don't know why this is necessary, but it appears to be
+          setTimeout(function() {
+            $('table#table_data').trigger("updateAll");
+          }, 10);
         });
       } else {
-        $('#table_display').hide()
+        $('#table_display').hide();
       }
-    }
+    },
 
+    downloadTable: function(event) {
+      $('table#table_data').trigger('outputTable');
+    },
   });
-
 })();
 /*global CallPower, Backbone */
 
@@ -1878,7 +2060,10 @@ $(document).ready(function () {
 
   CallPower.Collections.TargetList = Backbone.Collection.extend({
     model: CallPower.Models.Target,
-    comparator: 'order'
+    comparator: function( model ) {
+      // have to coerce to integer, because otherwise it will sort lexicographically
+      return parseInt(model.get('order'));
+    }
   });
 
   CallPower.Views.TargetItemView = Backbone.View.extend({
@@ -1898,16 +2083,16 @@ $(document).ready(function () {
 
     events: {
       'keydown [contenteditable]': 'onEdit',
+      'paste [contenteditable]': 'onEdit',
       'blur [contenteditable]': 'onSave',
       'click .remove': 'onRemove',
     },
 
     onEdit: function(event) {
       var target = $(event.target);
-      var esc = event.which == 27,
-          nl = event.which == 13,
-          tab = event.which == 9;
-
+      var esc = (event.which === 27),
+          nl = (event.which === 13),
+          tab = (event.which === 9);
 
       if (esc) {
         document.execCommand('undo');
@@ -1921,6 +2106,11 @@ $(document).ready(function () {
       } else if (target.text() === target.attr('placeholder')) {
         target.text(''); // overwrite placeholder text
         target.removeClass('placeholder');
+      } else if (event.type==='paste') {
+        setTimeout(function() {
+          // on paste, convert html to plain text
+          target.html(target.text());
+        },10);
       }
     },
 
@@ -2308,6 +2498,12 @@ $(document).ready(function () {
               var msg = response.message + ': '+ fieldDescription + ' version ' + response.version;
               // and display to user
               window.flashMessage(msg, 'success');
+
+              // update parent form-group status and description
+              var parentFormGroup = $('.form-group.'+response.key);
+              parentFormGroup.addClass('valid');
+              parentFormGroup.find('.input-group .help-block').text('');
+              parentFormGroup.find('.description .status').addClass('glyphicon-check');
 
               // close the modal, and cleanup subviews
               if (hideOnComplete) {

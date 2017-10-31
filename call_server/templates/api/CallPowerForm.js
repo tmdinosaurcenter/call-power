@@ -140,12 +140,17 @@ CallPowerForm.prototype = function() {
     if (response.call !== 'queued') { return onError(this.form, 'Could not start call.'); }
     if (response.script === undefined) { return false; }
 
+    if (this.phoneDisplay) {
+      $(this.phoneDisplay).html(response.fromNumber);
+    }
+
     if (this.scriptDisplay === 'overlay') {
       // display simple overlay with script content
       var scriptOverlay = this.$('<div class="overlay"><div class="modal">'+response.script+'</div></div>');
       this.$('body').append(scriptOverlay);
       scriptOverlay.overlay();
-      scriptOverlay.trigger('show');
+      scriptOverlay.css('visibility', 'visible');
+      scriptOverlay.addClass('shown');
     }
 
     if (this.scriptDisplay === 'replace') {
@@ -195,7 +200,10 @@ CallPowerForm.prototype = function() {
 
   var makeCall = function(event, options) {
     // stop default form submit event
-    if (event !== undefined) { event.preventDefault(); }
+    if (event !== undefined) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
 
     if (this.locationField.length && !this.location()) {
       return this.onError(this.locationField, 'Invalid location');
@@ -222,8 +230,13 @@ CallPowerForm.prototype = function() {
       // redirect after original form submission is complete
       
       if (this.scriptDisplay === 'overlay') {
+        var scriptOverlay = this.$('.overlay');
         // bind overlay hide to original form submit
-        this.$('.overlay').on('hide', this.$.proxy(this.formSubmit, this));
+        scriptOverlay.on('hide', this.$.proxy(this.formSubmit, this));
+        scriptOverlay.on('click', this.$.proxy(function(e) {
+          if (e.target.className === scriptOverlay.attr('class')) return scriptOverlay.trigger('hide');
+          // only trigger hide when clicking overlay background, not modal
+        }, this));
       } else if (this.scriptDisplay === 'replace') {
         // original form still exists, but is hidden
         // do nothing
@@ -235,6 +248,9 @@ CallPowerForm.prototype = function() {
       }
     }, this))
     .fail(this.$.proxy(this.onError, this, this.form, 'Sorry, there was an error making the call'));
+
+    return false;
+    // just in case, to stop initial event propagation
   };
 
   var formSubmit = function() {

@@ -50,7 +50,7 @@
 
       var location = $('#test_call_location').val();
       var country = $('#test_call_country').val() || $('#test_call_country_other').val();
-      var record = $('#test_call_record').val();
+      var record = $('#test_call_record:checked').val();
 
       $.ajax({
         url: '/call/create',
@@ -61,14 +61,18 @@
           record: record
         },
         success: function(data) {
-          alert('Calling you at '+$('#test_call_number').val()+' now!');
           if (data.call == 'queued') {
+            alert('Calling you at '+$('#test_call_number').val()+' now!');
             statusIcon.removeClass('active').addClass('success');
             $('.form-group.test_call .controls .help-block').removeClass('has-error').text('');
           } else {
             console.error(data);
-            statusIcon.addClass('error');
-            $('.form-group.test_call .controls .help-block').addClass('has-error').text(data.responseText);
+            statusIcon.removeClass('active').addClass('error');
+            var message = "Unable to place call";
+            if (data.campaign == 'archived') {
+              message += ': campaign is archived.'
+            }
+            $('.form-group.test_call .controls .help-block').addClass('has-error').text(message);
           }
         },
         error: function(err) {

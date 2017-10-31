@@ -1,9 +1,10 @@
 from flask import (Blueprint, render_template, current_app, request,
                    flash, url_for, redirect, session, abort, jsonify)
 from flask.ext.login import login_required
+from datetime import datetime, timedelta
 
+from .jobs import sync_campaigns
 
-from .models import (SyncCampaign, SyncCall)
 sync = Blueprint('sync', __name__, url_prefix='/admin/crmsync')
 
 
@@ -16,11 +17,8 @@ def before_request():
 
 @sync.route('/<int:campaign_id>/', methods=['POST'])
 def manual_job(campaign_id):
-    campaigns_to_sync = SyncCampaign.query.filter_by(campaign_id=campaign_id).all()
-    for sync_campaign in campaigns_to_sync:
-        sync_campaign.run(integration)
+    # start sync job out of band with rq scheduler
+    start_time = datetime.now() + timedelta(seconds=1)
+    sync_campaigns.schedule(start_time, campaign_id)
 
-    # TODO run jobs out of band
-    # with scheduler
-
-    return render_template('admin/sync_campaign.html', campaign=campaign, start=start, end=end)
+    return jsonify({'scheduled_start_time': start_time})

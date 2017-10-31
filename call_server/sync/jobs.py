@@ -1,11 +1,11 @@
 from flask import current_app
 
-from ..extensions import db
+from ..extensions import db, rq
 
 from .models import SyncCampaign
 from .integrations import CRMIntegrationError
 
-def CRMSync(campaign_id_list='all'):
+def get_crm_integration():
     # setup integration from config values
     if current_app.config['CRM_INTEGRATION'] == 'ActionKit':
         from .integrations.actionkit_crm import ActionKitIntegration
@@ -21,13 +21,18 @@ def CRMSync(campaign_id_list='all'):
     else:
         raise CRMIntegrationError('no CRM_INTEGRATION configured')
         return False
+    return crm_integration
 
-    print "campaign_id_list",campaign_id_list
+
+@rq.job
+def sync_campaigns(campaign_id='all'):
+    crm_integration = get_crm_integration()
+
     if campaign_id_list == 'all':
         campaigns_to_sync = SyncCampaign.query.all()
     else:
-        campaigns_to_sync = SyncCampaign.query.filter(SyncCampaign.campaign_id.in_(campaign_id_list)).all()
+        campaigns_to_sync = SyncCampaign.query.filter_by(campaign_id=campaign_id)
 
     for sync_campaign in campaigns_to_sync:
         current_app.logger.info('sync campaign ID: %s' % sync_campaign.campaign_id)
-        sync_campaign.run(crm_integration)
+        sync_campaign.sync_calls(crm_integration)

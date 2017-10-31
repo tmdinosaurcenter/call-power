@@ -77,7 +77,7 @@ def crmsync(campaigns='all'):
         campaigns_list = campaigns.split(',')
     else:
         campaigns_list = (campaigns,)
-    sync.jobs.CRMSync(campaigns_list)
+    sync.jobs.sync_campaigns(campaigns_list)
 
 @manager.command
 def redis_clear():

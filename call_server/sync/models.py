@@ -2,16 +2,16 @@ from datetime import datetime
 
 from flask import current_app
 
-from ..extensions import db
+from ..extensions import db, rq
 
 from ..call.models import Call
 from ..campaign.models import Campaign
-
 
 class SyncCampaign(db.Model):
     __tablename__ = 'sync_campaign'
 
     id = db.Column(db.Integer, primary_key=True)
+    job_id = db.Column(db.String(36)) # UUID4
     created_time = db.Column(db.DateTime, default=datetime.utcnow)
     last_sync_time = db.Column(db.DateTime)
 
@@ -23,18 +23,34 @@ class SyncCampaign(db.Model):
     def __init__(self, campaign_id, crm_id):
         self.campaign_id = campaign_id
         self.crm_id = crm_id
+        self.start()
+        db.session.add(self)    
+        db.session.commit()
 
-    def run(self, integration):
+    def start(self, location=None):
+        crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(
+            minute=0,
+            hour='*',
+            day_of_month='*',
+            month='*',
+            days_of_week='*')
+        from jobs import sync_campaigns
+        cron_job = sync_campaigns.cron(crontab, 'sync:sync_campaigns:{}'.format(self.campaign_id), self.campaign_id)
+        self.job_id = cron_job.id
+
+    def stop(self):
+        rq.get_scheduler().cancel(self.job_id)
+
+    def sync_calls(self, integration):
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
         for call in unsynced_calls:
             sync_call = SyncCall(call.id)
-            result = sync_call.run(self, integration)
+            result = sync_call.save_to_crm(self, integration)
             if result:
                 db.session.add(sync_call)
         self.last_sync_time = datetime.utcnow()
         db.session.add(self)    
         db.session.commit()
-
 
 
 class SyncCall(db.Model):
@@ -46,13 +62,13 @@ class SyncCall(db.Model):
     call_id = db.Column(db.ForeignKey('calls.id'))
     call = db.relationship('Call', backref=db.backref('sync_call', lazy='dynamic'))
 
-    synced = db.Column(db.Boolean, default=False)
+    saved = db.Column(db.Boolean, default=False)
 
     def __init__(self, call_id):
         self.call_id = call_id
         self.call = Call.query.get(self.call_id)
 
-    def run(self, sync_campaign, integration):
+    def save_to_crm(self, sync_campaign, integration):
         # we only keep a hash of the phone locally, for privacy
         # so hit twilio to get the actual phone to match to the CRM
         
@@ -73,6 +89,6 @@ class SyncCall(db.Model):
             current_app.logger.warning('unable to get crm user for phone: %s' % user_phone)
             return False
 
-        self.synced = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
+        self.saved = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
         current_app.logger.info('synced %s->%s' % (crm_user['id'], self.call.id))
         return True

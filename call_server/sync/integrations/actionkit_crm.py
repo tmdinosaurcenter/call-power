@@ -122,3 +122,24 @@ class ActionKitIntegration(CRMIntegration):
         current_app.logger.info("creating action: %s" % call_action) 
         ak_callaction = self.ak_client.action.create(call_action)
         return True
+
+
+    def save_campaign_meta(self, crm_campaign_id, meta={}):
+        """Given a page name (crm_campaign_id) 
+        Save meta values to pagefields
+        Returns a boolean status"""
+
+        for (key, value) in meta:
+            name = 'callpower_{}'.format(field)
+            pagefield = {
+                'name': field_name
+                'page': crm_campaign_id,
+                'value': value,
+            }
+            response = self.client.post('/rest/v1/pagefield/', json=pagefield)
+            if response.get('status') == 'complete':
+                continue
+            else:
+                current_app.logger.info("unable to update pagefield: {} for {}".format(name, crm_campaign_id)) 
+                return False
+        return True

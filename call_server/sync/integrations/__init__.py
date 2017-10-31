@@ -22,6 +22,12 @@ class CRMIntegration(object):
         Returns a boolean status"""
         raise NotImplementedError()
 
+    def save_campaign_meta(self, crm_campaign_id, meta):
+        """Given a crm_campaign
+        Save aggregate call counts to the CRM
+        Returns a boolean status"""
+        raise NotImplementedError()
+
 class CRMIntegrationError(Exception):
     def __init__(self, message):
         self.message = message

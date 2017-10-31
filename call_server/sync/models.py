@@ -48,6 +48,9 @@ class SyncCampaign(db.Model):
             result = sync_call.save_to_crm(self, integration)
             if result:
                 db.session.add(sync_call)
+
+        completed_calls = Call.query.filter_by(campaign=self, status='completed')
+        integration.save_campaign_meta(self.crm_id, {'count': completed_calls.count()})
         self.last_sync_time = datetime.utcnow()
         db.session.add(self)    
         db.session.commit()

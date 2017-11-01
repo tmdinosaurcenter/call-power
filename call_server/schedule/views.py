@@ -1,4 +1,5 @@
 from flask import (Blueprint, current_app, request, url_for, jsonify, make_response)
+from flask_login import login_required
 from blinker import Namespace
 
 from .models import ScheduleCall
@@ -13,6 +14,12 @@ csrf.exempt(schedule)
 namespace = Namespace()
 schedule_created = namespace.signal('schedule_created')
 schedule_deleted = namespace.signal('schedule_deleted')
+
+@schedule.before_request
+@login_required
+def before_request():
+    # all schedule routes require login
+    pass
 
 ####
 # CRUD

@@ -3,6 +3,7 @@ from flask import current_app
 import requests
 from . import CRMIntegration
 from actionkit.rest import ActionKit
+from actionkit.xmlrpc import ActionKitXML
 import phonenumbers
 
 class ActionKitIntegration(CRMIntegration):
@@ -11,8 +12,10 @@ class ActionKitIntegration(CRMIntegration):
         super(ActionKitIntegration, self).__init__()
         if api_key:
             self.ak_client = ActionKit(instance=domain, username=username, api_key=api_key)
+            self.ak_rpc = ActionKitXML(instance=domain, username=username, api_key=api_key)
         elif password:
             self.ak_client = ActionKit(instance=domain, username=username, password=password)
+            self.ak_rpc = ActionKitXML(instance=domain, username=username, password=password)
         else:
             raise Exception('unable to authenticate to ActionKit')
 
@@ -129,17 +132,23 @@ class ActionKitIntegration(CRMIntegration):
         Save meta values to pagefields
         Returns a boolean status"""
 
-        for (key, value) in meta:
-            name = 'callpower_{}'.format(field)
-            pagefield = {
-                'name': field_name
-                'page': crm_campaign_id,
-                'value': value,
-            }
-            response = self.client.post('/rest/v1/pagefield/', json=pagefield)
-            if response.get('status') == 'complete':
-                continue
-            else:
-                current_app.logger.info("unable to update pagefield: {} for {}".format(name, crm_campaign_id)) 
-                return False
+        # get page id via REST API
+        response = self.ak_client.get('/rest/v1/page/', params={'name': crm_campaign_id})
+        campaign_page = response['objects'][0]
+
+        page_custom_fields = {}
+        # and set custom fields via XMLRPC
+        for (key, value) in meta.items():
+            name = 'callpower_{}'.format(key) # namespace custom field name
+            page_custom_fields[name] = value
+        page_custom_fields['id'] = campaign_page['id']            
+
+        xml_response = self.ak_rpc.Page.set_custom_fields(page_custom_fields)
+
+        # check at least the last custom page field got set
+        if xml_response.get(name) == value:
+            return True
+        else:
+            current_app.logger.info("unable to update pagefield: {} for {}".format(name, crm_campaign_id)) 
+            return False
         return True

@@ -24,6 +24,8 @@ rest = APIManager()
 from flask_wtf.csrf import CSRFProtect
 csrf = CSRFProtect()
 
+from flask_cors import CORS as cors
+
 from flask_store import Store
 store = Store()
 

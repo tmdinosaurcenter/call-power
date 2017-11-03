@@ -8,12 +8,11 @@ from flask import Blueprint, Response, current_app, render_template, abort, requ
 from sqlalchemy.sql import func, extract, distinct, cast, join
 
 from decorators import api_key_or_auth_required, restless_api_auth
-from ..call.decorators import crossdomain
 
 from constants import API_TIMESPANS
 from flask_talisman import ALLOW_FROM
 
-from ..extensions import csrf, rest, db, cache, talisman, CALLPOWER_CSP
+from ..extensions import csrf, cors, rest, db, cache, talisman, CALLPOWER_CSP
 from ..campaign.models import Campaign, Target, AudioRecording
 from ..political_data.adapters import adapt_by_key, UnitedStatesData
 from ..call.models import Call, Session
@@ -23,6 +22,7 @@ from ..call.constants import TWILIO_CALL_STATUS
 
 api = Blueprint('api', __name__, url_prefix='/api')
 csrf.exempt(api)
+cors(api)
 
 restless_preprocessors = {'GET_SINGLE':   [restless_api_auth],
                           'GET_MANY':     [restless_api_auth],
@@ -423,7 +423,6 @@ def call_info(sid):
 # embed js campaign routes, should be public
 # make accessible crossdomain, and cache for 10 min
 @api.route('/campaign/<int:campaign_id>/embed.js', methods=['GET'])
-@crossdomain(origin='*')
 @cache.cached(timeout=600)
 def campaign_embed_js(campaign_id):
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
@@ -431,7 +430,6 @@ def campaign_embed_js(campaign_id):
 
 
 @api.route('/campaign/<int:campaign_id>/CallPowerForm.js', methods=['GET'])
-@crossdomain(origin='*')
 @talisman(content_security_policy=CALLPOWER_CSP.copy().update({'script-src':['\'self\'', '\'unsafe-eval\'']}))
 # add unsafe-eval, to execute campaign.embed.custom_js
 @cache.cached(timeout=600)
@@ -473,7 +471,6 @@ def campaign_embed_code(campaign_id):
 # simple call count per campaign as json
 # make accessible crossdomain, and cache for 10 min
 @api.route('/campaign/<int:campaign_id>/count.json', methods=['GET'])
-@crossdomain(origin='*')
 @cache.cached(timeout=600)
 def campaign_count(campaign_id):
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()

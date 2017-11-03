@@ -3,6 +3,7 @@ Flask==0.12
 Flask-Assets==0.12
 Flask-Babel==0.11.2
 Flask-Caching==1.2.0
+Flask-Cors==3.0.3
 Flask-Jsonpify==1.1
 Flask-Limiter==0.9.5.1
 Flask-Login==0.2.11

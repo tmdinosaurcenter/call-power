@@ -10,7 +10,7 @@ from sqlalchemy.sql import desc
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime
 
-from ..extensions import csrf, db, limiter
+from ..extensions import csrf, cors, db, limiter
 
 from .models import Call, Session
 from .constants import TWILIO_TTS_LANGUAGES
@@ -25,9 +25,10 @@ from ..schedule.views import schedule_created, schedule_deleted
 from ..admin.models import Blocklist
 from ..admin.views import admin_phone
 
-from .decorators import crossdomain, abortJSON, stripANSI
+from .decorators import abortJSON, stripANSI
 
 call = Blueprint('call', __name__, url_prefix='/call')
+cors(call)
 call_methods = ['GET', 'POST']
 csrf.exempt(call)
 call.errorhandler(400)(abortJSON)
@@ -318,10 +319,10 @@ def incoming():
 
 
 @call.route('/create', methods=call_methods)
-@crossdomain(origin='*')
 @limiter.limit("2/hour",
     key_func = lambda : request.values.get('userPhone'),
-    exempt_when=admin_phone
+    exempt_when=admin_phone,
+    methods=['GET', 'POST']
 )
 def create():
     """
@@ -434,7 +435,6 @@ def create():
 
 
 @call.route('/connection', methods=call_methods)
-@crossdomain(origin='*')
 def connection():
     """
     Call handler to connect a user with the targets for a given campaign.

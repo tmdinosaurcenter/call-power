@@ -38,7 +38,7 @@ def dashboard():
             .filter(Call.status == 'completed')
             .join(Call).group_by(Campaign.id))
 
-    today = datetime.today()
+    today = datetime.today().replace(hour=0, minute=0, second=0)
     this_month_start = today.replace(day=1)  # first day of the current month
     last_month = this_month_start - timedelta(days=28) # a day in last month
     next_month = today.replace(day=28) + timedelta(days=4)  # a day in next month (for months with 28,29,30,31)
@@ -79,7 +79,7 @@ def dashboard():
 @admin.route('/statistics')
 def statistics():
     campaigns = Campaign.query.order_by(desc(Campaign.status_code), desc(Campaign.id)).all()
-    today = datetime.today()
+    today = datetime.today().replace(hour=0, minute=0, second=0)
     this_month_start = today.replace(day=1)  # first day of the current month
 
     last_month = this_month_start - timedelta(days=28) # a day in last month

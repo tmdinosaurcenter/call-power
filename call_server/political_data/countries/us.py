@@ -208,9 +208,12 @@ class USDataProvider(DataProvider):
         self._cache = cache
         self._geocoder = Geocoder(country='US')
 
-    def get_location(self, locate_by, raw):
+    def get_location(self, locate_by, raw, ignore_local_cache=False):
         if locate_by == LOCATION_POSTAL:
-            return self._geocoder.postal(raw, provider=self)
+            if ignore_local_cache:
+                return self._geocoder.postal(raw, provider=None)
+            else:
+                return self._geocoder.postal(raw, provider=self)
         elif locate_by == LOCATION_ADDRESS:
             return self._geocoder.geocode(raw)
         elif locate_by == LOCATION_LATLON:
@@ -389,9 +392,12 @@ class USDataProvider(DataProvider):
         return self.cache_get(key)
 
     def get_state_legislators(self, location):
-        if not location.latitude and location.longitude:
-            raise LocationError('USDataProvider.get_state_legislators requires location with lat/lon')
-            
+        if not (location.latitude and location.longitude):
+            location = self.get_location(LOCATION_POSTAL, location.raw, ignore_local_cache=True)
+        
+        if not (location.latitude and location.longitude):
+            raise LocationError('USDataProvider.get_state_legislators requires location with lat/lon')    
+
         legislators = pyopenstates.locate_legislators(location.latitude, location.longitude)
 
         # save results individually in local cache

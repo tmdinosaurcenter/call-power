@@ -5,6 +5,10 @@ import random
 from ..extensions import cache
 from ..campaign.constants import INCLUDE_SPECIAL_FIRST, INCLUDE_SPECIAL_LAST, INCLUDE_SPECIAL_ONLY, SEGMENT_BY_LOCATION
 
+def validate_location(location, campaign, cache=cache):
+    campaign_data = campaign.get_campaign_data(cache)
+    validated_location = campaign_data.data_provider.get_location(campaign.locate_by, location)
+    return validated_location
 
 def locate_targets(location, campaign, skip_special=False, cache=cache):
     """

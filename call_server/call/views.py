@@ -18,7 +18,7 @@ from ..campaign.constants import (LOCATION_POSTAL, LOCATION_DISTRICT,
     SEGMENT_BY_LOCATION, SEGMENT_BY_CUSTOM,
     TARGET_OFFICE_DISTRICT, TARGET_OFFICE_BUSY)
 from ..campaign.models import Campaign, Target
-from ..political_data.lookup import locate_targets
+from ..political_data.lookup import locate_targets, validate_location
 from ..political_data.geocode import LocationError
 from ..schedule.models import ScheduleCall
 from ..schedule.views import schedule_created, schedule_deleted
@@ -209,6 +209,7 @@ def make_calls(params, campaign):
         elif campaign.segment_by == SEGMENT_BY_LOCATION:
             # lookup targets for campaign type by segment, put in desired order
             try:
+                current_app.logger.info('locate_targets for %(userLocation)s in %(userCountry)s' % params)
                 params['targetIds'] = locate_targets(params['userLocation'], campaign=campaign)
                 # locate_targets will include from special target_set if specified in campaign.include_special
             except LocationError, e:
@@ -467,18 +468,16 @@ def location_parse():
     if not params or not campaign:
         abort(400)
 
-    location = request.values.get('Digits', '')
-
-    # Override locate_by attribute so locate_targets knows we're passing a zip
-    # This allows call-ins to be made for campaigns which otherwise use district locate_by
-    campaign.locate_by = LOCATION_POSTAL
-    # Skip special, because at this point we just want to know if the zipcode is valid
-    located_target_ids = locate_targets(location, campaign, skip_special=True)
-
+    location = request.values.get('Digits', '')[:5]
     if current_app.debug:
         current_app.logger.debug(u'entered = {}'.format(location))
 
-    if not located_target_ids:
+    # validate zipcode by checking against local data cache
+    valid_location = validate_location(location, campaign)
+    if current_app.debug:
+        current_app.logger.debug(u'validated = {}'.format(valid_location))
+
+    if not valid_location:
         resp = VoiceResponse()
         play_or_say(resp, campaign.audio('msg_invalid_location'),
             lang=campaign.language_code)

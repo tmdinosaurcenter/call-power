@@ -185,6 +185,10 @@ class Geocoder(object):
     def geocode(self, address, postal_only=False):
         service = self.get_service_name()
 
+        if not address:
+            raise LocationError('empty string passed to geocoder')
+            return None
+
         try:
             if service == GOOGLE_SERVICE:
                 response = self.client.geocode(address, region=self.country)

@@ -43,7 +43,7 @@ CALLPOWER_CSP = {
     'media-src': ['\'self\'', 'blob:', 'media.twiliocdn.com'],
     'connect-src': ['\'self\'', 'https://*.twilio.com', 'wss://*.twilio.com', 'media.twiliocdn.com', 'openstates.org'],
     'object-src': ['\'self\'', 'blob:'],
-    'image-src': ['\'self\'', 'data:']
+    'img-src': ['\'self\'', 'data:']
 }
 # unsafe-inline needed to render <script> tags without nonce
 # unsafe-eval needed to run bootstrap templates

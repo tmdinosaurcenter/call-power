@@ -62,7 +62,8 @@ def create_call(campaign_id, phone, location):
     params = {
         'campaignId': campaign_id,
         'userPhone': phone,
-        'userLocation': location
+        'userLocation': location,
+        'scheduled': True
     }
     scheduled_call = ScheduleCall.query.filter_by(campaign_id=campaign_id, phone_number=phone, subscribed=True).first()
     if not scheduled_call:

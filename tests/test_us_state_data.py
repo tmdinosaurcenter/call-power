@@ -118,19 +118,21 @@ class TestUSStateData(BaseTestCase):
 
     def test_50_governors(self):
         NO_GOV = ['AS', 'GU', 'MP', 'PR', 'VI', 'DC', '']
-        for (abbr, state) in US_STATES:
+        for (abbr, state_name) in US_STATES:
             gov = self.us_data.get_state_governor(abbr)
             if not gov:
                 self.assertIn(abbr, NO_GOV)
                 continue
-            self.assertEqual(len(gov[0].keys()), 5)
             self.assertEqual(gov[0]['title'], 'Governor')
+            self.assertEqual(gov[0]['state'], abbr)
+            self.assertEqual(gov[0]['state_name'], state_name)
 
     def test_ca_governor(self):
         gov = self.us_data.get_state_governor('CA')[0]
         self.assertEqual(gov['first_name'], 'Jerry')
         self.assertEqual(gov['last_name'], 'Brown')
         self.assertEqual(gov['state'], 'CA')
+        self.assertEqual(gov['state_name'], 'California')
         self.assertEqual(gov['phone'], '916-445-2841')
 
     def test_locate_targets_gov(self):
@@ -139,5 +141,6 @@ class TestUSStateData(BaseTestCase):
         self.assertEqual(len(gov), 1)
 
         self.assertEqual(gov[0]['state'], 'CA')
+        self.assertEqual(gov[0]['state_name'], 'California')
         self.assertEqual(gov[0]['title'], 'Governor')
 

@@ -328,7 +328,7 @@ class USDataProvider(DataProvider):
         Load US state governor data from saved file
         Returns a dictionary keyed by state to cache for fast lookup
 
-        eg us_state:governor:CA = [{'title':'Governor', 'name':'Jerry Brown Jr.', 'phone': '18008076755', 'state': 'California'}]
+        eg us_state:governor:CA = [{'title':'Governor', 'name':'Jerry Brown Jr.', 'phone': '18008076755', 'state': 'CA', 'state_name': 'California'}]
         """
         governors = collections.defaultdict(list)
 
@@ -342,7 +342,8 @@ class USDataProvider(DataProvider):
                     'first_name': l.get('first_name'),
                     'last_name': l.get('last_name'),
                     'phone': l.get('phone'),
-                    'state': l.get('state_name')
+                    'state': l.get('state_abbr'),
+                    'state_name': l.get('state_name')
                 }
                 governors[direct_key] = [d, ]
         return governors

@@ -598,11 +598,17 @@ def make_single():
     else:
         office = None
         target_phone = current_target.number
+
+    if office:
+        location = office.name
+    else:
+        location = current_target.location or ''
         
     play_or_say(resp, campaign.audio('msg_target_intro'),
         title=current_target.title,
         name=current_target.name,
-        office_type = office.name if office else '',
+        location=location,
+        office_type=location, # alias for old syntax
         lang=campaign.language_code)
 
     if current_app.debug:

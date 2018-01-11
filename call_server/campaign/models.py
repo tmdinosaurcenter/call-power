@@ -218,6 +218,7 @@ class Target(db.Model):
     name = db.Column(db.String(STRING_LEN), nullable=False, unique=False)
     district = db.Column(db.String(STRING_LEN), nullable=True)
     number = db.Column(phone_number.PhoneNumberType())
+    location = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
     offices = db.relationship('TargetOffice', backref="target")
 
     def __unicode__(self):

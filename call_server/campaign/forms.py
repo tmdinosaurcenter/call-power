@@ -37,6 +37,7 @@ class TargetForm(FlaskForm):
     title = TextField(_('Title'), [Optional()])
     name = TextField(_('Name'), [Required()])
     number = PhoneNumberField(_('Phone Number'), [Required()])
+    location = TextField(_('Location'), [Optional()])
     uid = TextField(_('Unique ID'), [Optional()])
 
 

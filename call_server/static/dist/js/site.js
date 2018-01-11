@@ -2002,12 +2002,17 @@ $(document).ready(function () {
             office.title = person.title;
             office.first_name = person.first_name;
             office.last_name = person.last_name;
-            office.uid = person.uid+(office.id || '');
+            if (person.bioguide_id) {
+              // us_congress office.id have bioguide prefix
+              office.uid =uid_prefix + office.id;
+            } else {
+              office.uid = person.uid+(office.id || '');
+            }
             office.phone = office.phone || office.tel;
-            var office_name = office.office_name || office.name || office.city || office.type;
+            var office_location = office.office_name || office.name || office.city || office.type;
 
-            // remove "office" from office_name, we append that in the template
-            office.office_name = office_name.replace(/office/i,'');
+            // remove "office" from office_location
+            office.location = office_location.replace(/office/i,'');
             var li = renderTemplate("#search-results-item-tmpl", office);
             dropdownMenu.append(li);
           }
@@ -2461,7 +2466,7 @@ $(document).ready(function () {
 
       this.collection.each(function(model, index) {
         // create new hidden inputs named target_set-N-FIELD
-        var fields = ['order','title','name','number','uid'];
+        var fields = ['order','title','name','number','location','uid'];
         _.each(fields, function(field) {
           var input = $('<input name="target_set-'+index+'-'+field+'" type="hidden" />');
           input.val(model.get(field));
@@ -2486,7 +2491,7 @@ $(document).ready(function () {
       var items = [];
       _(target_set_length).times(function(n) {
         var model = new CallPower.Models.Target();
-        var fields = ['order','title','name','number','uid'];
+        var fields = ['order','title','name','number','location','uid'];
         _.each(fields, function(field) {
           // pull field values out of each input
           var sel = 'input[name="target_set-'+n+'-'+field+'"]';

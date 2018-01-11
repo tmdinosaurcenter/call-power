@@ -59,6 +59,7 @@ class CampaignForm(FlaskForm):
                            description=True, default=INCLUDE_SPECIAL_CHOCIES[0][0])
     target_set = FieldList(FormField(TargetForm, _('Choose Targets')), validators=[Optional()])
     target_ordering = RadioField(_('Target Order'), [Optional()], description=True)
+    target_shuffle_chamber = BooleanField(_('Shuffle within Chamber'), [Optional()], default=True, description=True)
     target_offices = RadioField(_('Target Offices'), [Optional()], choices=choice_items(TARGET_OFFICE_CHOICES),
                             description=True, default=TARGET_OFFICE_CHOICES[0][0])
 

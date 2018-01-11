@@ -8,6 +8,7 @@ from ..geocode import Geocoder, LocationError
 from ..constants import US_STATES
 from ...campaign.constants import (LOCATION_POSTAL, LOCATION_ADDRESS, LOCATION_LATLON)
 
+import random
 import csv
 import yaml
 import collections
@@ -74,22 +75,26 @@ class USCampaignType_Congress(USCampaignType):
             'lower': self._get_congress_lower(location)
         }
 
-    def sort_targets(self, targets, subtype, order):
-        result = []
+    def sort_targets(self, targets, subtype, order, shuffle_chamber=True):
+        upper_targets = list(targets.get('upper'))
+        lower_targets = list(targets.get('lower'))
+
+        # by default, shuffle target ordering within chamber
+        if shuffle_chamber:
+            random.shuffle(upper_targets)
+            random.shuffle(lower_targets)
 
         if subtype == 'both':
             if order == 'upper-first':
-                result.extend(targets.get('upper'))
-                result.extend(targets.get('lower'))
+                return upper_targets + lower_targets
             else:
-                result.extend(targets.get('lower'))
-                result.extend(targets.get('upper'))
+                return lower_targets + upper_targets
         elif subtype == 'upper':
-            result.extend(targets.get('upper'))
+            return upper_targets
         elif subtype == 'lower':
-            result.extend(targets.get('lower'))
-
-        return result
+            return lower_targts
+        elif subtype == 'exec':
+            return exec_targets
 
     def _get_congress_upper(self, location):
         districts = self.data_provider.get_districts(location.postal)
@@ -142,24 +147,27 @@ class USCampaignType_State(USCampaignType):
             'lower': self._get_state_lower(location, campaign_region)
         }
 
-    def sort_targets(self, targets, subtype, order):
-        result = []
+    def sort_targets(self, targets, subtype, order, shuffle_chamber=True):
+        upper_targets = list(targets.get('upper'))
+        lower_targets = list(targets.get('lower'))
+        exec_targets = list(targets.get('exec'))
+
+        # by default, shuffle target ordering within chamber
+        if shuffle_chamber:
+            random.shuffle(upper_targets)
+            random.shuffle(lower_targets)
 
         if subtype == 'both':
             if order == 'upper-first':
-                result.extend(targets.get('upper'))
-                result.extend(targets.get('lower'))
+                return upper_targets + lower_targets
             else:
-                result.extend(targets.get('lower'))
-                result.extend(targets.get('upper'))
+                return lower_targets + upper_targets
         elif subtype == 'upper':
-            result.extend(targets.get('upper'))
+            return upper_targets
         elif subtype == 'lower':
-            result.extend(targets.get('lower'))
+            return lower_targts
         elif subtype == 'exec':
-            result.extend(targets.get('exec'))
-
-        return result
+            return exec_targets
 
     def _get_state_governor(self, location, campaign_region=None):
         return self.data_provider.get_state_governor(location.state)

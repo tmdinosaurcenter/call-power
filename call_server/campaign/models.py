@@ -34,6 +34,7 @@ class Campaign(db.Model):
                                  order_by='campaign_target_sets.c.order',
                                  backref=db.backref('campaigns'))
     target_ordering = db.Column(db.String(STRING_LEN))
+    target_shuffle_chamber = db.Column(db.Boolean, default=True)
     target_offices = db.Column(db.String(STRING_LEN))
     call_maximum = db.Column(db.SmallInteger, nullable=True)
     allow_call_in = db.Column(db.Boolean, default=False)

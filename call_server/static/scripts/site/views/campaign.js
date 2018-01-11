@@ -149,7 +149,7 @@
           }
         }
 
-        // congress: show/hide target_ordering values upper_first and lower_first
+        // congress: show/hide target_ordering fields
         if ((type === 'congress' && subtype === 'both') ||
             (type === 'state' && subtype === 'both')) {
           $('input[name="target_ordering"][value="upper-first"]').parent('label').show();
@@ -185,6 +185,9 @@
         $('input[name="target_ordering"][value="upper-first"]').parent('label').show();
         $('input[name="target_ordering"][value="lower-first"]').parent('label').show();
 
+        // targets can be shuffled within chamber
+        $('.form-group.target_shuffle_chamber').show();
+
         // target_offices can use districts
         $('.form-group.target_offices').show();
       } else {
@@ -193,6 +196,8 @@
         // target_ordering can only be 'in order' or 'shuffle'
         $('input[name="target_ordering"][value="upper-first"]').parent('label').hide();
         $('input[name="target_ordering"][value="lower-first"]').parent('label').hide();
+
+        $('.form-group.target_shuffle_chamber').hide();
 
         // target_offices will be default
         $('.form-group.target_offices').hide();

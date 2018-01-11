@@ -164,7 +164,13 @@ class Campaign(db.Model):
     def targets_display(self):
         "Display method for this campaign's target list if specified, or subtype (like Congress - Senate)"
         if self.target_set:
-            return ", ".join(["%s" % t.name for t in self.target_set])
+            target_strings = []
+            for t in self.target_set:
+                if t.location:
+                    target_strings.append("%s (%s)" % (t.name, t.location))
+                else:
+                    target_strings.append("%s" % t.name)
+            return ", ".join(target_strings)
         else:
             return self.campaign_subtype_display()
 

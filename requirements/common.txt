@@ -37,6 +37,7 @@ mimerender==0.5.5
 phonenumbers==7.0.4
 -e git://github.com/ncadou/pyrepresent.git#egg=pyrepresent
 pystache==0.5.3
+-e git://github.com/MoveOnOrg/python-actionkit.git#egg=python-actionkit
 python-dateutil==2.2
 python-mimeparse==0.1.4
 pytz==2017.2

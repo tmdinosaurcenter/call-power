@@ -38,3 +38,6 @@ embed_code: Copy and paste this javascript into your action page.
 embed_custom_js: Javascript that will run after the success callback. Eval'ed directly, so be careful.
 embed_custom_onload: Javascript that will run after the callPowerForm is attached. Eval'ed directly, so be careful.
 embed_redirect: After making call, redirect the page to this URL using Javascript.
+
+crm_sync: Automatically sync actions for this campaign to the configured CRM
+crm_id: Unique descriptor of the CRM campaign page. For ActionKit, this is the page name.

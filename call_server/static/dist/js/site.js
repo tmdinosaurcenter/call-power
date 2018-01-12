@@ -922,6 +922,9 @@ $(document).ready(function () {
       'blur #custom_embed_options input': 'updateEmbedCode',
       'change #custom_embed_options select': 'updateEmbedCode',
       'change #embed_script_display': 'updateEmbedScriptDisplay',
+
+      'change input[name="crm_sync"]': 'toggleSyncPanel',
+
     },
 
     initialize: function() {
@@ -1001,9 +1004,9 @@ $(document).ready(function () {
       }
 
       if (formType === 'custom' || formType === 'iframe') {
-        $('#embed_options').collapse('show');
+        $('.panel#embed_options').collapse('show');
       } else {
-        $('#embed_options').collapse('hide');
+        $('.panel#embed_options').collapse('hide');
       }
       if (formType === 'iframe') {
         $('#embed_options h3').text('iFrame Embed Options');
@@ -1015,6 +1018,14 @@ $(document).ready(function () {
 
       this.updateEmbedCode();
       this.updateEmbedScriptDisplay();
+    },
+
+    toggleSyncPanel: function(event) {
+      if ($('input#crm_sync').is(':checked')) {
+        $('.panel#sync_options').collapse('show');
+      } else {
+        $('.panel#sync_options').collapse('hide');
+      }
     },
 
     updateEmbedCode: function(event) {
@@ -2281,6 +2292,7 @@ $(document).ready(function () {
 
     events: {
       'click .reveal': 'toggleSecret',
+      'submit form.crm-sync': 'syncSubmit',
     },
 
     toggleSecret: function(event) {
@@ -2290,8 +2302,29 @@ $(document).ready(function () {
         } else {
             input.prop('type','password');
         }
-    }
+    },
 
+    syncSubmit: function(event) {
+      event.preventDefault();
+      var form = $(event.target);
+      if (form.hasClass('disabled')) {
+        return false;
+      }
+
+      $.ajax({
+        url: form.attr('action'),
+        method: 'POST',
+        success: function(response) {
+          if (response.scheduled_start_time) {
+            console.log('starting at', response.scheduled_start_time);
+            // put it in the right table cell, disable the button
+            $(form).siblings('.last_sync_time').text(response.scheduled_start_time);
+            $(form).addClass('disabled');
+            $(form).find('button[type="submit"]').addClass('disabled');
+          };
+        }
+      });
+    }
   });
 
 })();

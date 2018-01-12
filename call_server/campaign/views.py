@@ -20,7 +20,10 @@ from .models import (Campaign, Target, CampaignTarget,
                      AudioRecording, CampaignAudioRecording,
                      TwilioPhoneNumber)
 from ..call.models import Call
+from ..sync.models import SyncCampaign
 from ..schedule.models import ScheduleCall
+
+
 from .forms import (CountryTypeForm, CampaignForm, CampaignAudioForm,
                     AudioRecordingForm, CampaignLaunchForm,
                     CampaignStatusForm, TargetForm)
@@ -419,8 +422,12 @@ def launch(campaign_id):
             campaign.embed = {}
 
         campaign.embed['script'] = form.embed_script.data
-
         db.session.add(campaign)
+
+        if form.crm_sync.data and form.crm_id.data:
+            sync_campaign = SyncCampaign(campaign.id, form.crm_id.data)
+            db.session.add(sync_campaign)
+        
         db.session.commit()
 
         flash('Campaign launched!', 'success')

@@ -88,6 +88,23 @@
 
     </fieldset>
 
+    <fieldset class="border">
+        <legend>CRM Sync</legend>
+
+        {{ render_field_default(form.crm_sync, control_class='col-sm-8 col-xs-12', field_class='tall') }}
+
+        <div class="panel panel-info collapse {% if form.crm_sync.data == True %}in{%else%}out{%endif%}" id="sync_options">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sync Options</h3>
+            </div>
+
+            <div class="panel-body">
+                {{ render_field_default(form.crm_id) }}
+            </div>
+        </div>
+
+    </fieldset>
+
     <div class="form-group container">
         <div class="form-actions">
             

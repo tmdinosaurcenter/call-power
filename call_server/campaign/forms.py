@@ -158,6 +158,10 @@ class CampaignLaunchForm(FlaskForm):
     embed_custom_js = TextField(_('Custom JS Success'), description=True)
     embed_custom_onload = TextField(_('Custom JS Onload'), widget=TextArea(), description=True)
 
+    # CRM sync fields
+    crm_sync = BooleanField(_('Sync calls to CRM'), [Optional()], default=False, description=True)
+    crm_id = TextField(_('CRM Campaign'), description=True)
+
     submit = SubmitField(_('Launch'))
 
 

@@ -12,6 +12,7 @@ from flask_rq2.script import RQManager
 from call_server.app import create_app
 from call_server.extensions import assets, db, cache
 from call_server import political_data
+from call_server import sync
 from call_server.user import User, USER_ADMIN, USER_ACTIVE
 
 log = logging.getLogger(__name__)
@@ -86,6 +87,17 @@ def stop_scheduled_calls(campaign_id, date):
         print "done"
     else:
         print "exit"
+
+@manager.command
+def crmsync(campaigns='all'):
+    print "Sync to CRM"
+    if campaigns == 'all':
+        campaigns_list = 'all'
+    elif ',' in campaigns:
+        campaigns_list = campaigns.split(',')
+    else:
+        campaigns_list = (campaigns,)
+    sync.jobs.sync_campaigns(campaigns_list)
 
 @manager.command
 def redis_clear():

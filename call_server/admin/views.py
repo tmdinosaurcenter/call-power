@@ -12,6 +12,7 @@ from .forms import BlocklistForm
 
 from ..campaign.models import TwilioPhoneNumber, Campaign
 from ..call.models import Call
+from ..sync.models import SyncCampaign
 from ..campaign.constants import STATUS_PAUSED
 from ..api.constants import API_TIMESPANS
 from ..utils import get_one_or_create
@@ -98,6 +99,8 @@ def system():
     twilio_numbers = TwilioPhoneNumber.query.all()
     admin_api_key = current_app.config.get('ADMIN_API_KEY')
     twilio_account = current_app.config.get('TWILIO_CLIENT').auth[0]
+    crm_sync_campaigns = SyncCampaign.query.all()
+
     political_data_cache = {'US': cache.get('political_data:us'),
                             'CA': cache.get('political_data:ca')}
     blocked = Blocklist.query.order_by(Blocklist.timestamp.desc()).all()
@@ -108,6 +111,7 @@ def system():
                            twilio_numbers=twilio_numbers,
                            twilio_account=twilio_account,
                            admin_api_key=admin_api_key,
+                           crm_sync_campaigns=crm_sync_campaigns,
                            political_data_cache=political_data_cache,
                            blocked=blocked)
 

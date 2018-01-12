@@ -15,6 +15,7 @@ import config
 
 from .site import site
 from .admin import admin
+from .sync import sync
 from .user import User, user
 from .call import call
 from .campaign import campaign
@@ -28,6 +29,7 @@ from extensions import (cache, db, babel, assets, login_manager,
 DEFAULT_BLUEPRINTS = (
     site,
     admin,
+    sync,
     user,
     call,
     campaign,

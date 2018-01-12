@@ -50,9 +50,8 @@
 
       // load existing items from hidden inputs
       this.targetListView.loadExistingItems();
-
-      // trigger focusout to cause placeholder text to display
-      $('span.display-parens').trigger('focusout')
+      // and insert default location
+      this.targetListView.loadDefaultLocations();
 
       $("#phone_number_set").parents(".controls").after(
         $('<div id="call_in_collisions" class="alert alert-warning col-sm-4 hidden">').append(

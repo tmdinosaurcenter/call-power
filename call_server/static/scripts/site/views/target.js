@@ -125,6 +125,25 @@
       }
     },
 
+    loadDefaultLocations: function() {
+      // trigger focusout to cause placeholder text to display
+      $('span.display-parens').trigger('focusout');
+
+      // set default to capital, based on country and type
+      var country = $('select#campaign_country').val();
+      var type = $('select#campaign_type').val();
+      if (country == 'us' && type == 'congress') {
+        $('span[data-field="location"]').each(function() {
+          var item = $(this);
+          var phone = item.next('span[data-field="number"]').text();
+          // check to see that location still has placeholder, and phone number is in DC area code
+          if (item.text() === item.attr('placeholder') && phone.indexOf('+1 202-') >= 0) {
+            item.text('DC').removeClass('placeholder');
+          }
+        })
+      }
+    },
+
     render: function() {
       var $list = this.$('ol.target-list').empty().show();
 

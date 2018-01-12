@@ -558,9 +558,8 @@ $(document).ready(function () {
 
       // load existing items from hidden inputs
       this.targetListView.loadExistingItems();
-
-      // trigger focusout to cause placeholder text to display
-      $('span.display-parens').trigger('focusout')
+      // and insert default location
+      this.targetListView.loadDefaultLocations();
 
       $("#phone_number_set").parents(".controls").after(
         $('<div id="call_in_collisions" class="alert alert-warning col-sm-4 hidden">').append(
@@ -2455,6 +2454,25 @@ $(document).ready(function () {
       if(this.$el.find('input[name="target_set_length"]').val()) {
         this.deserialize();
         this.recalculateOrder(this);
+      }
+    },
+
+    loadDefaultLocations: function() {
+      // trigger focusout to cause placeholder text to display
+      $('span.display-parens').trigger('focusout');
+
+      // set default to capital, based on country and type
+      var country = $('select#campaign_country').val();
+      var type = $('select#campaign_type').val();
+      if (country == 'us' && type == 'congress') {
+        $('span[data-field="location"]').each(function() {
+          var item = $(this);
+          var phone = item.next('span[data-field="number"]').text();
+          console.log(phone);
+          if (item.text() === item.attr('placeholder') && phone.indexOf('+1 202-') >= 0) {
+            item.text('DC').removeClass('placeholder');
+          }
+        })
       }
     },
 

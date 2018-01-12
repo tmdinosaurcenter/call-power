@@ -194,7 +194,7 @@
                           "uid": "<%= data.uid %>"
                         }'>
             <span class="text"><%= data.title %> <%= data.first_name %> <%= data.last_name %></span>
-             <% if (data.location){ %><span class="text"><%= data.location %></span><% } %>
+             <% if (data.location){ %><span class="text">(<%= data.location %>)</span><% } %>
             <span class="phone"><%= data.phone %></span>
         </a>
     </li>
@@ -203,7 +203,7 @@
 <script type="text/template" id="target-item-tmpl">
     <span data-field="title" contenteditable="plaintext-only" placeholder="Title"><%= data.title %></span>
     <span data-field="name" contenteditable="plaintext-only" placeholder="Name"><%= data.name %></span>
-    <span data-field="location" contenteditable="plaintext-only" placeholder="Location"><%= data.location %></span>
+    <span data-field="location" contenteditable="plaintext-only" placeholder="Location" class="display-parens"><%= data.location %></span>
     <span data-field="number" contenteditable="plaintext-only" placeholder="Phone"><%= data.number %></span>
 
     <div class="pull-right">

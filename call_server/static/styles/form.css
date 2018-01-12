@@ -139,6 +139,13 @@ span.info:hover + span.help-inline {
     color: gray;
 }
 
+span.display-parens:before {
+    content: '(';
+}
+span.display-parens:after {
+    content: ')';
+}
+
 /* Field status indicators */
 span.status {
     display: block;

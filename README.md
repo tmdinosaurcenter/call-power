@@ -44,6 +44,8 @@ For most uses, you can just place the `<script>` tag provided in the launch page
 
 For more complex integrations, Call Power provides [javascript embeds](INTEGRATION_JS.md) and a full [json API](INTEGRATION_API.md).
 
+Individual actions can also be synced to CRMs, via a [batch process](INTEGRATION_CRM.md).
+
 Installation Instructions
 -------------------
 This application should be easy to host on Heroku, with Docker, or directly on any WSGI-compatible server. Requires Python, flask, a SQL database (we recommend Postgres, but Mysql should work), Redis or Memcache, and an SMTP server.

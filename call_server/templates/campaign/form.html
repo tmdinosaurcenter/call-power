@@ -116,7 +116,7 @@
                     <input type="hidden" name="target_set-{{loop.index0}}-order" value="{{loop.index0}}" />
                     <input type="hidden" name="target_set-{{loop.index0}}-title" value="{{t.title}}" />
                     <input type="hidden" name="target_set-{{loop.index0}}-name" value="{{t.name}}" />
-                    <input type="hidden" name="target_set-{{loop.index0}}-location" value="{{t.location}}" />
+                    <input type="hidden" name="target_set-{{loop.index0}}-location" value="{{t.location or ''}}" />
                     <input type="hidden" name="target_set-{{loop.index0}}-number" value="{{t.number.international}}" />
                     <input type="hidden" name="target_set-{{loop.index0}}-uid" value="{{t.uid}}" />
                     {% endfor %}

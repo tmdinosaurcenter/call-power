@@ -1996,6 +1996,7 @@ $(document).ready(function () {
         if (person.bioguide_id) {
           uid_prefix = 'us:bioguide:';
           person.uid = uid_prefix+person.bioguide_id;
+          person.location = 'DC';
         } else if (person.leg_id) {
           uid_prefix = 'us_state:openstates:';
           person.uid = uid_prefix+person.leg_id;
@@ -2468,8 +2469,9 @@ $(document).ready(function () {
         $('span[data-field="location"]').each(function() {
           var item = $(this);
           var phone = item.next('span[data-field="number"]').text();
-          console.log(phone);
-          if (item.text() === item.attr('placeholder') && phone.indexOf('+1 202-') >= 0) {
+          var phoneInDC = phone.indexOf('202-') == 0 // when rendered by search
+                     || phone.indexOf('202-') == 3 //when rendered by load
+          if (item.text() === item.attr('placeholder') && phoneInDC) {
             item.text('DC').removeClass('placeholder');
           }
         })
@@ -2512,6 +2514,7 @@ $(document).ready(function () {
       });
 
       $('.target-list.sortable').sortable('update');
+      this.loadDefaultLocations();
 
       return this;
     },

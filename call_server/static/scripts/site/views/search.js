@@ -193,6 +193,7 @@
         if (person.bioguide_id) {
           uid_prefix = 'us:bioguide:';
           person.uid = uid_prefix+person.bioguide_id;
+          person.location = 'DC';
         } else if (person.leg_id) {
           uid_prefix = 'us_state:openstates:';
           person.uid = uid_prefix+person.leg_id;

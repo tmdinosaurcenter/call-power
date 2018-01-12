@@ -136,8 +136,9 @@
         $('span[data-field="location"]').each(function() {
           var item = $(this);
           var phone = item.next('span[data-field="number"]').text();
-          // check to see that location still has placeholder, and phone number is in DC area code
-          if (item.text() === item.attr('placeholder') && phone.indexOf('+1 202-') >= 0) {
+          var phoneInDC = phone.indexOf('202-') == 0 // when rendered by search
+                     || phone.indexOf('202-') == 3 //when rendered by load
+          if (item.text() === item.attr('placeholder') && phoneInDC) {
             item.text('DC').removeClass('placeholder');
           }
         })
@@ -180,6 +181,7 @@
       });
 
       $('.target-list.sortable').sortable('update');
+      this.loadDefaultLocations();
 
       return this;
     },

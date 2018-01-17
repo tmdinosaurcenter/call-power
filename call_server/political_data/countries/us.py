@@ -92,7 +92,7 @@ class USCampaignType_Congress(USCampaignType):
         elif subtype == 'upper':
             return upper_targets
         elif subtype == 'lower':
-            return lower_targts
+            return lower_targets
         elif subtype == 'exec':
             return exec_targets
 

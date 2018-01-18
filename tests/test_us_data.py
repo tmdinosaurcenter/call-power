@@ -278,6 +278,21 @@ class TestUSData(BaseTestCase):
         self.assertEqual(first['last_name'], 'Warren')
         self.assertEqual(first['state'], 'MA')
 
+    def test_locate_targets_special_only_in_location_district_office(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
+
+        (special_target, cached) = Target.get_or_cache_key('us:bioguide:W000817-woburn', cache=self.mock_cache) # Warren
+        self.CONGRESS_CAMPAIGN.target_set = [special_target,]
+        self.CONGRESS_CAMPAIGN.include_special = 'only'
+
+        uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['chamber'], 'senate')
+        self.assertEqual(first['last_name'], 'Warren')
+        self.assertEqual(first['state'], 'MA')
+
     def test_locate_targets_special_only_outside_location(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 

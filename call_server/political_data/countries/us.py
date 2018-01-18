@@ -380,9 +380,11 @@ class USDataProvider(DataProvider):
 
     # convenience methods for easy house, senate, district access
     def get_executive(self):
-        # return Whitehouse comment line
-        return [{'office': 'Whitehouse Comment Line',
-                'number': '12024561111'}]
+        # Whitehouse comment line is disconnected
+        # return [{'office': 'Whitehouse Comment Line',
+        #        'number': '12024561111'}]
+        return [{'office': 'Whitehouse Switchboard',
+                'number': '12024561414'}]
 
     def get_house_members(self, state, district):
         key = self.KEY_HOUSE.format(state=state, district=district)

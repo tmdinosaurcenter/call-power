@@ -42,12 +42,14 @@ def locate_targets(location, campaign, skip_special=False, cache=cache):
         elif campaign.include_special == INCLUDE_SPECIAL_ONLY:
             # find overlap between special_targets and location_targets
             # use nested loops instead of set intersections, so we can match string startswith
-            overlap = set()
+            # and maintain ordering
+            overlap_list = list()
             for t in special_targets:
                 for l in location_targets:
                     if t.startswith(l):
-                        overlap.add(t)
-            overlap_list = list(overlap)
+                        if t not in overlap_list:
+                            overlap_list.append(t)
+
             if campaign.target_ordering == 'shuffle':
                 random.shuffle(overlap_list)
             return overlap_list

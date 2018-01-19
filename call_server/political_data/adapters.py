@@ -82,7 +82,7 @@ class UnitedStatesData(DataAdapter):
         # district office numbers
         office_list = []
         for office in data.get('offices', []):
-            if not office['phone']:
+            if not 'phone' in office:
                 continue
             office_data = {
                 'name': office.get('city', ''),
@@ -144,10 +144,10 @@ class OpenStatesData(DataAdapter):
     def offices(self, data):
         office_list = []
         for office in data.get('offices', []):
-            if office['type'] == 'capitol':
+            if office.get('type') == 'capitol':
                 # capitol office is captured in target.number
                 continue
-            if not office['phone']:
+            if not 'phone' in office:
                 continue
             office_list.append({
                 'name': office.get('name', ''),
@@ -210,10 +210,10 @@ class OpenNorthAdapter(DataAdapter):
     def offices(self, data):
         office_list = []
         for office in data.get('offices', []):
-            if office['type'] == 'legislature':
+            if office.get('type') == 'legislature':
                 # legislature office is captured in target.number
                 continue
-            if not office['tel']:
+            if not 'tel' in office:
                 continue
             office_list.append({
                 'name': office.get('type', ''),

@@ -2,7 +2,7 @@
 REST API
 ===========
 
-A read-only REST API is available for integrating with external services. Access is allowed by passing an api_key parameter, or through flask user authentication. Results can be filtered by any field, using a [flask-restless](http://flask-restless.readthedocs.org/en/latest/searchformat.html) formatted parameter.
+A read-only REST API is available for integrating with external services. Access is allowed by passing an api_key parameter that is equal to the `ADMIN_API_KEY` environment variable, or through flask user authentication. Results can be filtered by any field, using a [flask-restless](http://flask-restless.readthedocs.org/en/latest/searchformat.html) formatted parameter.
 
 `GET /api/calls` returns a paginated list of Call objects. Fields include:
 

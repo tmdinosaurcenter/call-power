@@ -221,6 +221,7 @@ CallPowerForm.prototype = function() {
       return this.onError(this.phoneField, 'Invalid phone number');
     }
 
+    var self = this;
     this.$.ajax(createCallURL, {
       method: 'GET',
       data: {
@@ -228,6 +229,11 @@ CallPowerForm.prototype = function() {
         userLocation: this.location(),
         userPhone: this.phone(),
         userCountry: this.country()
+      },
+      statusCode: {
+        429: function() {
+          return self.onError(self.form, 'Sorry, you have made too many requests');
+        }
       }
     })
     .done(this.$.proxy(this.onSuccess, this))

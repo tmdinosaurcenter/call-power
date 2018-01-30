@@ -232,12 +232,11 @@ CallPowerForm.prototype = function() {
       },
       statusCode: {
         429: function() {
-          return self.onError(self.form, 'Sorry, you have made too many requests');
+          alert('Sorry, you have made too many requests in the last hour. Please try again later.');
         }
       }
     })
     .done(this.$.proxy(this.onSuccess, this))
-    .fail(this.$.proxy(this.onError, this, this.form, 'Please fill out the form completely'))
     .then(this.$.proxy(function() {
       // turn off our submit event
       this.form.off('submit.CallPower');

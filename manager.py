@@ -49,6 +49,11 @@ def runserver(external=None):
         political_data.load_data(cache)
 
     host = (os.environ.get('APP_HOST') or '127.0.0.1')
+    
+    app.jinja_env.cache = None
+    app.jinja_env.auto_reload = True
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+
     app.run(debug=True, use_reloader=True, host=host)
 
 

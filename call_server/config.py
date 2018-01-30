@@ -166,6 +166,8 @@ class DevelopmentConfig(DefaultConfig):
     MAIL_PORT = 1025
     MAIL_DEFAULT_SENDER = 'debug'
 
+    TEMPLATES_AUTO_RELOAD = True
+
 
 class TestingConfig(DefaultConfig):
     ENVIRONMENT = "Testing"

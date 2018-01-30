@@ -10,6 +10,9 @@ Additional parameters can be specified on the `CallPowerOptions` object before i
 * form: form id to attach, defaults to 'call_form'
 * phoneField: input id with the user phone number, defaults to 'phone_id'
 * locationField: input id with the user location, defaults to 'location_id'
+* scriptDisplay: one of 'replace', 'redirect', or 'overlay'
+* if scriptDisplay is 'redirect', redirectAfter will set the new URL
+* if scriptDisplay is 'overlay', overlayCloseText: will add a link below the responseText
 
 To render a complete form, include `<iframe src="/api/campaign/ID/embed_iframe.html"></iframe>">` to create a form ready to be filled out.
 

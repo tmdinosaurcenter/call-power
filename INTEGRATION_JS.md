@@ -13,6 +13,7 @@ Additional parameters can be specified on the `CallPowerOptions` object before i
 * scriptDisplay: one of 'replace', 'redirect', or 'overlay'
 * if scriptDisplay is 'redirect', redirectAfter will set the new URL
 * if scriptDisplay is 'overlay', overlayCloseText: will add a link below the responseText
+* if errorTracking is defined, errors will be reported to the SENTRY_DSN public endpoint via Raven.js
 
 To render a complete form, include `<iframe src="/api/campaign/ID/embed_iframe.html"></iframe>">` to create a form ready to be filled out.
 

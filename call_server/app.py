@@ -69,6 +69,10 @@ def create_app(configuration=None, app_name=None, blueprints=None):
             sentry.client.remote.project, sentry.client.remote.public_key
         )
         talisman.content_security_policy_report_uri = sentry_report_uri
+        sentry_public_dsn = 'https://%s@sentry.io/%s' % (
+            sentry.client.remote.public_key, sentry.client.remote.project
+        )
+        app.config['SENTRY_DSN_PUBLIC'] = sentry_public_dsn
 
     # init extensions once we have app context
     init_extensions(app)

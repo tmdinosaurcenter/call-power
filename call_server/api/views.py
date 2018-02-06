@@ -426,7 +426,10 @@ def call_info(sid):
 @cache.cached(timeout=600)
 def campaign_embed_js(campaign_id):
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
-    return Response(render_template('api/embed.js', campaign=campaign), content_type='application/javascript')
+    dsn_public = current_app.config.get('SENTRY_DSN_PUBLIC', '')
+    return Response(render_template('api/embed.js',
+        campaign=campaign, DSN_PUBLIC=dsn_public
+    ), content_type='application/javascript')
 
 
 @api.route('/campaign/<int:campaign_id>/CallPowerForm.js', methods=['GET'])

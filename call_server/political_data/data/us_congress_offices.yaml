@@ -5002,50 +5002,6 @@
     fax: 216-522-4908
     phone: 216-522-4900
 - id:
-    bioguide: F000457
-    govtrack: 412378
-    thomas: '01969'
-  offices:
-  - id: F000457-duluth
-    address: 515 W. 1st St.
-    suite: Suite 104
-    city: Duluth
-    state: MN
-    zip: '55802'
-    latitude: 46.7825784
-    longitude: -92.10688909999999
-    fax: 218-722-4131
-    phone: 218-722-2390
-  - id: F000457-moorhead
-    address: 819 Center Ave.
-    suite: Suite 2A
-    city: Moorhead
-    state: MN
-    zip: '56560'
-    latitude: 46.8750559
-    longitude: -96.7677958
-    phone: 218-284-8721
-  - id: F000457-rochester
-    address: 1202-1/2 7th Street NW
-    suite: Suite 213
-    city: Rochester
-    state: MN
-    zip: '55901'
-    latitude: 44.0316171
-    longitude: -92.4806419
-    fax: 507-288-2217
-    phone: 507-288-2003
-  - id: F000457-saint_paul
-    address: 60 Plato Blvd. East
-    suite: Suite 220
-    city: Saint Paul
-    state: MN
-    zip: '55107'
-    latitude: 44.9373985
-    longitude: -93.08430109999999
-    fax: 651-221-1078
-    phone: 651-221-1016
-- id:
     bioguide: F000459
     govtrack: 412476
     thomas: '02061'
@@ -14732,21 +14688,6 @@
     fax: 814-266-5973
     phone: 814-266-5970
 - id:
-    bioguide: T000462
-    govtrack: 400406
-    thomas: '01664'
-  offices:
-  - id: T000462-worthington
-    address: 250 E. Wilson Bridge Rd.
-    suite: Suite 100
-    city: Worthington
-    state: OH
-    zip: '43085'
-    latitude: 40.1107173
-    longitude: -83.00746439999999
-    fax: 614-818-0887
-    phone: 614-523-2555
-- id:
     bioguide: T000463
     govtrack: 400411
     thomas: '01741'
@@ -16808,61 +16749,6 @@
     longitude: -97.24667099999999
     fax: 316-262-5309
     phone: 316-262-8992
-- id:
-    bioguide: S001202
-    govtrack: 412734
-  offices:
-  - id: S001202-montgomery
-    address: 1 Church Street
-    suite: Suite 500B
-    city: Montgomery
-    state: AL
-    zip: '36104'
-    latitude: 32.374321
-    longitude: -86.30993869999999
-    fax: 334-293-9349
-    phone: 334-230-0698
-  - id: S001202-dothan
-    address: 100 W Troy Street
-    suite: Room 302
-    city: Dothan
-    state: AL
-    zip: '36303'
-    latitude: 31.2254045
-    longitude: -85.3925445
-    fax: 334-792-4928
-    phone: 334-792-4924
-  - id: S001202-birmingham
-    address: 1800 5th Avenue N
-    building: Vance Federal Building
-    city: Birmingham
-    state: AL
-    zip: 35203-2171
-    latitude: 33.517386
-    longitude: -86.81048799999999
-    fax: 205-731-0221
-    phone: 205-731-1500
-  - id: S001202-huntsville
-    address: 200 Clinton Avenue, NW
-    suite: Suite 802
-    city: Huntsville
-    state: AL
-    zip: 35801-4932
-    latitude: 34.7307434
-    longitude: -86.5882087
-    fax: 256-533-0745
-    phone: 256-533-0979
-  - id: S001202-mobile
-    address: 41 West I-65 Service Road N
-    suite: Suite 2300-A
-    building: BB&T Centre
-    city: Mobile
-    state: AL
-    zip: 36608-1291
-    latitude: 30.690756
-    longitude: -88.12684589999999
-    fax: 251-414-5845
-    phone: 251-414-3083
 - id:
     bioguide: G000584
     govtrack: 412736

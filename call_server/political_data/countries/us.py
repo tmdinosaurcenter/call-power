@@ -219,7 +219,10 @@ class USDataProvider(DataProvider):
     def get_location(self, locate_by, raw, ignore_local_cache=False):
         if locate_by == LOCATION_POSTAL:
             if ignore_local_cache:
-                return self._geocoder.postal(raw, provider=None)
+                if type(raw) == dict:
+                    return self._geocoder.postal(raw.get('zipcode'), provider=None)
+                else:
+                    return self._geocoder.postal(raw, provider=None)
             else:
                 return self._geocoder.postal(raw, provider=self)
         elif locate_by == LOCATION_ADDRESS:

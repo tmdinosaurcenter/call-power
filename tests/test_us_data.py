@@ -6,6 +6,10 @@ from call_server.political_data.lookup import locate_targets
 from call_server.political_data.countries.us import USDataProvider
 from call_server.political_data.geocode import Location
 from call_server.campaign.models import Campaign, Target
+from call_server.campaign.constants import (
+    INCLUDE_SPECIAL_BEFORE, INCLUDE_SPECIAL_AFTER,
+    INCLUDE_SPECIAL_ONLY, INCLUDE_SPECIAL_FIRST
+)
 
 
 class TestUSData(BaseTestCase):
@@ -217,12 +221,12 @@ class TestUSData(BaseTestCase):
         self.assertEqual(third['chamber'], 'senate')
         self.assertEqual(fourth['state'], 'WI')
 
-    def test_locate_targets_special_first(self):
+    def test_locate_targets_special_before(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
         (special_target, cached) = Target.get_or_cache_key('us:bioguide:S000033', cache=self.mock_cache) # Bernie
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
-        self.CONGRESS_CAMPAIGN.include_special = 'first'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_BEFORE
 
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 3)
@@ -240,12 +244,12 @@ class TestUSData(BaseTestCase):
         self.assertEqual(third['chamber'], 'senate')
         self.assertEqual(third['state'], 'MA')
 
-    def test_locate_targets_special_last(self):
+    def test_locate_targets_special_after(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
         (special_target, cached) = Target.get_or_cache_key('us:bioguide:S000033', cache=self.mock_cache) # Bernie
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
-        self.CONGRESS_CAMPAIGN.include_special = 'last'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_AFTER
 
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 3)
@@ -268,7 +272,7 @@ class TestUSData(BaseTestCase):
 
         (special_target, cached) = Target.get_or_cache_key('us:bioguide:W000817', cache=self.mock_cache) # Warren
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
-        self.CONGRESS_CAMPAIGN.include_special = 'only'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 1)
@@ -283,7 +287,7 @@ class TestUSData(BaseTestCase):
 
         (special_target, cached) = Target.get_or_cache_key('us:bioguide:W000817-woburn', cache=self.mock_cache) # Warren
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
-        self.CONGRESS_CAMPAIGN.include_special = 'only'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 1)
@@ -298,19 +302,19 @@ class TestUSData(BaseTestCase):
 
         (special_target, cached) = Target.get_or_cache_key('us:bioguide:S000033', cache=self.mock_cache) # Bernie
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
-        self.CONGRESS_CAMPAIGN.include_special = 'only'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
         # mock_location is outside of special targets
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 0)
 
-    def test_locate_targets_special_multiple_first(self):
+    def test_locate_targets_special_multiple_before(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
 
         (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
         (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two]
-        self.CONGRESS_CAMPAIGN.include_special = 'first'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_BEFORE
 
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 3)
@@ -329,13 +333,13 @@ class TestUSData(BaseTestCase):
         self.assertEqual(third['chamber'], 'house')
         self.assertEqual(third['state'], 'MA')
  
-    def test_locate_targets_special_multiple_last(self):
+    def test_locate_targets_special_multiple_after(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
 
         (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
         (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two]
-        self.CONGRESS_CAMPAIGN.include_special = 'last'
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_AFTER
 
         uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 3)
@@ -354,3 +358,47 @@ class TestUSData(BaseTestCase):
         self.assertEqual(third['last_name'], 'Ryan')
         self.assertEqual(third['state'], 'WI')
 
+    def test_locate_targets_special_multiple_only(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
+
+        (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_three, cached_three) = Target.get_or_cache_key('us:bioguide:C001037', cache=self.mock_cache) # Capuano
+        self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
+
+        uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        # should only get overlap between special and location
+        # in this case, just Capuano
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['chamber'], 'house')
+        self.assertEqual(first['state'], 'MA')
+
+    def test_locate_targets_special_multiple_first(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
+
+        (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_three, cached_three) = Target.get_or_cache_key('us:bioguide:C001037', cache=self.mock_cache) # Capuano
+        self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_FIRST
+
+        uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 3)
+
+        # should get targets in order, with location match first
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['chamber'], 'house')
+        self.assertEqual(first['state'], 'MA')
+
+        second = self.us_data.get_uid(uids[1])[0]
+        self.assertEqual(second['chamber'], 'house')
+        self.assertEqual(second['state'], 'CA')
+
+        third = self.us_data.get_uid(uids[2])[0]
+        self.assertEqual(third['chamber'], 'house')
+        self.assertEqual(third['state'], 'WI')

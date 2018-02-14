@@ -35,6 +35,10 @@ call.errorhandler(400)(abortJSON)
 call.errorhandler(429)(abortJSON)
 
 
+def rate_limit_from_config():
+    return current_app.config.get("CALL_RATE_LIMIT")
+
+
 def play_or_say(r, audio, voice='alice', lang='en-US', **kwargs):
     """
     Take twilio response and play or say message from an AudioRecording
@@ -320,7 +324,7 @@ def incoming():
 
 
 @call.route('/create', methods=call_methods)
-@limiter.limit("2/hour",
+@limiter.limit(rate_limit_from_config,
     key_func = lambda : request.values.get('userPhone'),
     exempt_when=admin_phone,
     methods=['GET', 'POST']

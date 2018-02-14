@@ -20,7 +20,6 @@ from ..user.models import User
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
-
 # all admin routes require login
 @admin.before_request
 @login_required
@@ -150,7 +149,7 @@ def admin_phone():
 
     # if calling from embedded website, check list of admin users
     phone = request.values.get('userPhone')
-    return User.query.filter_by(phone=phone).count()
+    return phone in current_app.ADMIN_PHONES_LIST
 
 @admin.route('/twilio/resync', methods=['POST'])
 def twilio_resync():

@@ -44,6 +44,12 @@ class DefaultConfig(object):
     # limit on the amount of time to ring before giving up
     TWILIO_TIMEOUT = os.environ.get('TWILIO_TIMEOUT', 60)  # seconds
 
+    # maximum number of outbound calls to the same phone number, from the same campaign
+    # admin phones numbers are exempt, for testing
+    CALL_RATE_LIMIT = os.environ.get('CALL_RATE_LIMIT', '2/hour')
+    # limit string must match notation like "[count] [per|/] [n (optional)] [second|minute|hour|day|month|year]""
+    # from https://flask-limiter.readthedocs.io/en/stable/#rate-limit-string-notation
+
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
     GEOCODE_API_KEY = os.environ.get('GEOCODE_API_KEY')

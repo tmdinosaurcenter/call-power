@@ -170,7 +170,7 @@ class USCampaignType_State(USCampaignType):
             return exec_targets
 
     def _get_state_governor(self, location, campaign_region=None):
-        return self.data_provider.get_state_governor(location.state)
+        return [self.data_provider.KEY_GOVERNOR.format(state=location.state)]
 
     def _get_state_upper(self, location, campaign_region=None):
         legislators = self.data_provider.get_state_legislators(location)

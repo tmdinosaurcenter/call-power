@@ -160,7 +160,6 @@ class OpenStatesData(DataAdapter):
 class GovernorAdapter(DataAdapter):
     def target(self, data):
         adapted = {
-            'name': u'{first_name} {last_name}'.format(**data),
             'title': data.get('title', ''),
             'number': data.get('phone', ''),
             'uid': data.get('state', ''),
@@ -172,7 +171,11 @@ class GovernorAdapter(DataAdapter):
             adapted['name'] = data['full_name']
         else:
             adapted['name'] = 'Unknown'
+
         return adapted
+
+    def offices(self, data):
+        return []
 
 
 class OpenNorthAdapter(DataAdapter):

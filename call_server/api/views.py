@@ -331,6 +331,7 @@ def campaign_target_calls(campaign_id):
             target_data = None
 
         # use adapter to get title, name and district 
+        adapted_data = None
         if ':' in target_uid:
             data_adapter = adapt_by_key(target_uid)
             try:
@@ -340,7 +341,6 @@ def campaign_target_calls(campaign_id):
                     adapted_data = data_adapter.target({'title': target_title, 'name': target_name, 'uid': target_uid})
             except AttributeError:
                 current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
-                adapted_data = None
 
         elif political_data.country_code.lower() == 'us' and campaign.campaign_type == 'congress':
             # fall back to USData, which uses bioguide
@@ -349,17 +349,14 @@ def campaign_target_calls(campaign_id):
                     target_data = political_data.get_bioguide(target_uid)[0]
                 except Exception, e:
                     current_app.logger.error('unable to get_bioguide for %s: %s' % (target_uid, e))
-                    adapted_data = None
             if target_data:
                 try:
                     data_adapter = UnitedStatesData()
                     adapted_data = data_adapter.target(target_data)
                 except AttributeError:
                     current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
-                    adapted_data = None
             else:
                 current_app.logger.error('no target_data for %s: %s' % (target_uid, e))
-                adapted_data = None
 
         if adapted_data:    
             targets[target_uid]['title'] = adapted_data.get('title')

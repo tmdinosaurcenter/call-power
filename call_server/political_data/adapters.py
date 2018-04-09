@@ -137,7 +137,11 @@ class OpenStatesData(DataAdapter):
             adapted['number'] = data.get('offices',[{}])[0].get('phone', '')
             # fallback to none
 
-        adapted['district'] = data.get('district', '')
+        try:
+            district_num = int(data.get('district')[3:])
+            adapted['district'] = district_num
+        except ValueError:
+            adapted['district'] = data.get('district', '')
 
         return adapted
 

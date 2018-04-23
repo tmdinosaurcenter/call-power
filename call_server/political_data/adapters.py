@@ -87,7 +87,8 @@ class UnitedStatesData(DataAdapter):
             office_data = {
                 'name': office.get('city', ''),
                 'number': office.get('phone', ''),
-                'uid': office.get('id', '')
+                'uid': office.get('id', ''),
+                'type': 'district'
             }
             if 'city' in office and 'state' in office:
                 if 'address' in office and 'building' in office:
@@ -156,7 +157,8 @@ class OpenStatesData(DataAdapter):
             office_list.append({
                 'name': office.get('name', ''),
                 'address': office.get('address', ''),
-                'number': office.get('phone', '')
+                'number': office.get('phone', ''),
+                'type': office.get('type', '')
             })
         return office_list
 
@@ -225,7 +227,8 @@ class OpenNorthAdapter(DataAdapter):
             office_list.append({
                 'name': office.get('type', ''),
                 'address': office.get('postal', ''),
-                'number': office.get('tel', '')
+                'number': office.get('tel', ''),
+                'type': office.get('type', '')
             })
         return office_list
 

@@ -604,15 +604,17 @@ def make_single():
         target_phone = current_target.number
 
     if office:
-        location = office.name
+        location = office.get('name', '')
+        office_type = office.get('type', '')
     else:
         location = current_target.location or ''
+        office_type = ''
         
     play_or_say(resp, campaign.audio('msg_target_intro'),
         title=current_target.title,
         name=current_target.name,
         location=location,
-        office_type=location, # alias for old syntax
+        office_type=office_type,
         lang=campaign.language_code)
 
     if current_app.debug:

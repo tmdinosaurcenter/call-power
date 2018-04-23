@@ -20,7 +20,9 @@ class TestUSStateData(BaseTestCase):
         cls.us_data = USDataProvider(cls.mock_cache, 'localmem')
         cls.us_data.load_data()
 
-    def setUp(self):
+    def setUp(self, **kwargs):
+        super(TestUSStateData, self).setUp(**kwargs)
+
         self.STATE_CAMPAIGN = Campaign(
             country_code='us',
             campaign_type='state',

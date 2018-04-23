@@ -145,9 +145,13 @@ def init_extensions(app):
         limiter.logger.addHandler(handler)
 
     # stable list of admin phone numbers, cached in memory to avoid db hit for each call
-    app.ADMIN_PHONES_LIST = filter(bool, 
-        [str(u.phone.national_number) if u.phone else None for u in User.query.all()]
-    )
+    # disable in testing
+    if app.config.get('TESTING', False):
+        app.ADMIN_PHONES_LIST = []
+    else:
+        app.ADMIN_PHONES_LIST = filter(bool, 
+            [str(u.phone.national_number) if u.phone else None for u in User.query.all()]
+        )
 
     if app.config.get('DEBUG'):
         from flask_debugtoolbar import DebugToolbarExtension

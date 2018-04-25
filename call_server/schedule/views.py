@@ -35,7 +35,8 @@ def create(campaign_id, phone, location=None):
     if request.form.get('time'):
         # time is specified as UTC, enforce it
         try:
-            set_time = datetime.strptime(request.form.get('time')+' UTC', '%H:%M %Z')
+            parsed_time = datetime.strptime(request.form.get('time')+' UTC', '%H:%M %Z')
+            set_time = parsed_time.time()
         except ValueError:
              return make_response(jsonify({'error': 'time format must be %H:%M:%S'}), 400) 
 
@@ -55,7 +56,7 @@ def _create(cls, campaign_id, phone, location=None, time=None):
         # existing schedule, stop it before re-scheduling
         schedule_call.stop_job()
 
-    current_app.logger.info('%s at %s' % (schedule_call, schedule_call.time_to_call))
+    current_app.logger.info('%s at %s UTC' % (schedule_call, schedule_call.time_to_call))
     schedule_call.start_job(location=location)
     db.session.add(schedule_call)
     db.session.commit()

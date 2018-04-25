@@ -1,5 +1,6 @@
 from flask import url_for
 import requests
+import logging
 
 from ..utils import utc_now
 from ..extensions import db, rq
@@ -85,5 +86,7 @@ def create_call(campaign_id, phone, location):
         db.session.commit()
         return True
     else:
-        current_app.logger.error('unable to execute scheduled create_call: %s "%s"' % (resp.url, resp.content))
+        # this happens outside application context, so can't get the logger from current_app
+        logger = logging.getLogger("rq.worker")
+        logger.error('unable to execute scheduled create_call: %s "%s"' % (resp.url, resp.content))
         return False

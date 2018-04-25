@@ -164,7 +164,7 @@ class DevelopmentConfig(DefaultConfig):
     # four slashes for an absolute path
     # per http://docs.sqlalchemy.org/en/latest/core/engines.html#sqlite
 
-    SERVER_NAME = 'localhost:5000'
+    SERVER_NAME = os.environ.get('SERVER_NAME', 'localhost:5000')
     STORE_PATH = '%s/instance/uploads/' % os.path.abspath(os.curdir)
     STORE_DOMAIN = 'http://localhost:5000'
 

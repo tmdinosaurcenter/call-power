@@ -82,6 +82,7 @@ def parse_params(r, inbound=False):
     params = {
         'campaignId': r.values.get('campaignId', None),
         'scheduled': r.values.get('scheduled', None),
+        'scheduleSkip': r.values.get('scheduleSkip', None),
         'sessionId': r.values.get('sessionId', None),
         'targetIds': r.values.getlist('targetIds'),
         'userPhone': r.values.get('userPhone', None),
@@ -521,7 +522,6 @@ def schedule_parse():
         # schedule a call at this time every day
         play_or_say(resp, campaign.audio('msg_schedule_start'),
             lang=campaign.language_code)
-        scheduled = True
         schedule_created.send(ScheduleCall,
             campaign_id=campaign.id,
             phone=params['userPhone'],
@@ -530,15 +530,15 @@ def schedule_parse():
         # user wishes to opt out
         play_or_say(resp, campaign.audio('msg_schedule_stop'),
             lang=campaign.language_code)
-        scheduled = False
         schedule_deleted.send(ScheduleCall,
             campaign_id=campaign.id,
             phone=params['userPhone'])
     else:
         # because of the timeout, we may not have a digit
-        scheduled = False
+        pass
 
-    params['scheduled'] = scheduled
+    # skip the schedule prompt as we start to make calls
+    params['scheduleSkip'] = 1
     resp.redirect(url_for('call._make_calls', **params))
     return str(resp)
 
@@ -553,7 +553,7 @@ def _make_calls():
     if not params or not campaign:
         abort(400)
 
-    if campaign.prompt_schedule and not params.get('scheduled'):
+    if campaign.prompt_schedule and not params.get('scheduleSkip'):
         return schedule_prompt(params, campaign)
     else:
         return make_calls(params, campaign)

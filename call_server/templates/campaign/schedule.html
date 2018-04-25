@@ -75,13 +75,13 @@
 {% block scripts %}
 <script type="text/template" id="schedule-log-tmpl">
     <td><%= new Date(data.created_at).toDateString() %> </td>
-    <td><%= new Date(data.last_called).toDateString() %></td>
-    <td><%= data.phone_number %></td>
+    <td><%= data.last_called ? (new Date(data.last_called).toDateString()) : 'never' %></td>
+    <td><%= data.user_phone %></td>
     <td><%= data.time_to_call %></td>
     <td><%= data.num_calls %></td>
     <td><span class="glyphicon <%= data.subscribed ? 'glyphicon-ok' : 'glyphicon-remove' %>"></span></td>
     <% if (data.subscribed) { %>
-        <td><form class="schedule-delete form-inline pull-right" method="DELETE" action="/schedule/<%=data.campaign_id%>/<%=data.phone_number%>">
+        <td><form class="schedule-delete form-inline pull-right" method="DELETE" action="/schedule/<%=data.campaign_id%>/<%=data.user_phone%>">
             <input id="csrf_token" name="csrf_token" type="hidden" value="{{csrf_token()}}">
             <div class="form-group"><button type="submit" class="btn btn-danger">Unsubscribe</button>
         </form></td>

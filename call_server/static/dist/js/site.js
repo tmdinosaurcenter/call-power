@@ -1561,7 +1561,7 @@ $(document).ready(function () {
     defaults: {
       id: null,
       created_at: null,
-      phone_number: null,
+      user_phone: null,
       time_to_call: null,
       last_called: null,
       num_calls: null
@@ -1672,10 +1672,13 @@ $(document).ready(function () {
 
     updateFilters: function(event) {
       var subscribed = $('select[name="subscribed"]').val();
-      var start = new Date($('input[name="start"]').datepicker('getDate'));
-      var end = new Date($('input[name="end"]').datepicker('getDate'));
+      var start = $('input[name="start"]').datepicker('getDate');
+      var end = $('input[name="end"]').datepicker('getDate');
 
-      if (start > end) {
+      var start_date = new Date(start);
+      var end_date = new Date(end);
+
+      if (start_date > end_date) {
         $('.input-daterange input[name="start"]').addClass('error');
         return false;
       } else {
@@ -1687,15 +1690,15 @@ $(document).ready(function () {
         filters.push({'name': 'subscribed', 'op': 'eq', 'val': subscribed});
       }
       if (start) {
-        filters.push({'name': 'last_called', 'op': 'gt', 'val': start.toISOString()});
+        filters.push({'name': 'last_called', 'op': 'gt', 'val': start_date.toISOString()});
       }
       if (end) {
-        filters.push({'name': 'last_called', 'op': 'lt', 'val': end.toISOString()});
+        filters.push({'name': 'last_called', 'op': 'lt', 'val': end_date.toISOString()});
       }
 
       var search_phone = $('input[name="call-search"]').val().replace('-','');
       if (search_phone) {
-        filters.push({'name': 'phone_number', 'op': 'eq', 'val': search_phone});
+        filters.push({'name': 'user_phone', 'op': 'eq', 'val': search_phone});
       }
 
       this.collection.filters = filters;

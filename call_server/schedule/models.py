@@ -3,6 +3,7 @@ import requests
 
 from ..utils import utc_now
 from ..extensions import db, rq
+from sqlalchemy_utils.types import phone_number
 
 
 class ScheduleCall(db.Model):
@@ -20,7 +21,7 @@ class ScheduleCall(db.Model):
     campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'))
     campaign = db.relationship('Campaign', backref=db.backref('scheduled_call_subscribed', lazy='dynamic'))
 
-    phone_number = db.Column(db.String(16))  # number to call, e164
+    phone_number = db.Column(phone_number.PhoneNumberType())
 
     job_id = db.Column(db.String(36)) # UUID4
 
@@ -37,6 +38,8 @@ class ScheduleCall(db.Model):
     def _function_name(self):
         return 'create_call:{campaign_id}:{phone}'.format(campaign_id=self.campaign_id, phone=self.phone_number)
 
+    def user_phone(self):
+        return self.phone_number.e164
 
     def start_job(self, location=None):
         self.subscribed = True
@@ -68,6 +71,11 @@ def create_call(campaign_id, phone, location):
     scheduled_call = ScheduleCall.query.filter_by(campaign_id=campaign_id, phone_number=phone, subscribed=True).first()
     if not scheduled_call:
         return None
+
+    from ..admin import Blocklist
+    if Blocklist.user_blocked(phone):
+        return False
+
     resp = requests.get(url_for('call.create', _external=True, **params))
     if resp.status_code == 200:
         scheduled_call.num_calls += 1

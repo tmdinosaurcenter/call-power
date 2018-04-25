@@ -53,7 +53,7 @@ class ScheduleCall(db.Model):
             day_of_month='*',
             month='*',
             days_of_week=weekdays)
-        cron_job = create_call.cron(crontab, self._function_name, self.campaign_id, self.phone_number, location)
+        cron_job = create_call.cron(crontab, self._function_name, self.campaign_id, self.phone_number.e164, location)
         self.job_id = cron_job.id
 
     def stop_job(self):
@@ -72,8 +72,9 @@ def create_call(campaign_id, phone, location):
     if not scheduled_call:
         return None
 
-    from ..admin import Blocklist
-    if Blocklist.user_blocked(phone):
+    from ..admin.models import Blocklist
+    if Blocklist.user_blocked(phone, user_ip=None):
+        # the calls are coming from inside the building...
         return False
 
     resp = requests.get(url_for('call.create', _external=True, **params))

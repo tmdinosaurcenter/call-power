@@ -91,6 +91,8 @@
     events: {
       'change .filters input': 'updateFilters',
       'change .filters select': 'updateFilters',
+      'click .edit-inline': 'showEditForm',
+      'submit form.schedule-edit': 'editSchedule',
       'submit form.schedule-delete': 'unsubscribeSchedule',
     },
 
@@ -188,6 +190,48 @@
       return new CallPower.Views.ScheduleItemView({ model: model });
     },
 
+    showEditForm: function(event) {
+      var target = $(event.target)
+      var form = target.parent('form.schedule-edit');
+      var input = $('<input type="text" name="time" />').val(target.text()).width(target.width()+10);
+      form.prepend(input);
+      target.hide();
+      var button = form.children('button[type=submit]').removeClass('hide').show();
+    },
+
+    editSchedule: function(event) {
+      event.preventDefault();
+      var form = $(event.target);
+      var input = $(form).children('input');
+      if (form.hasClass('disabled')) {
+        return false;
+      }
+
+      $.ajax({
+        url: form.attr('action'),
+        method: form.attr('method'),
+        data: form.serializeArray(),
+        success: function(response) {
+          if (response.status === 'ok') {
+            //hide the form elements
+            var link = $(form).children('a.edit-inline');
+            link.text(input.val());
+
+            // redisplay the static elements
+            input.remove();
+            link.show();
+            var button = form.children('button[type=submit]');
+            button.fadeOut(500);
+          };
+        },
+        error: function(xhr) {
+          var error = JSON.parse(xhr.responseText);
+          input.addClass('has-error');
+          console.error('unable to edit schedule', error);
+        }
+      });
+    },
+
     unsubscribeSchedule: function(event) {
       event.preventDefault();
       var form = $(event.target);
@@ -214,37 +258,6 @@
       });
     }
 
-
   });
-
-/*  
-  CallPower.Views.ScheduleInfoView = Backbone.View.extend({
-    tagName: 'div',
-    className: 'microphone modal fade',
-
-    initialize: function(data) {
-      this.data = data;
-      this.template = _.template($('#schedule-info-tmpl').html(), { 'variable': 'data' });
-    },
-
-    render: function() {
-      var html = this.template(this.data);
-      this.$el.html(html);
-
-      this.$el.on('hidden.bs.modal', this.destroy);
-      this.$el.modal('show');
-
-      return this;
-    },
-
-    destroy: function() {
-      this.undelegateEvents();
-      this.$el.removeData().unbind();
-
-      this.remove();
-      Backbone.View.prototype.remove.call(this);
-    },
-  });
-*/
 
 })();

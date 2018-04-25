@@ -32,11 +32,11 @@ class ScheduleCall(db.Model):
         self.time_to_call = time
 
     def __repr__(self):
-        return u'<ScheduleCall for {} to {}>'.format(self.campaign.name, self.phone_number)
+        return u'<ScheduleCall for {} to {}>'.format(self.campaign.name, self.phone_number.e164)
 
     @property
     def _function_name(self):
-        return 'create_call:{campaign_id}:{phone}'.format(campaign_id=self.campaign_id, phone=self.phone_number)
+        return 'create_call:{campaign_id}:{phone}'.format(campaign_id=self.campaign_id, phone=self.phone_number.e164)
 
     def user_phone(self):
         return self.phone_number.e164

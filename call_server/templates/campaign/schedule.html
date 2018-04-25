@@ -59,7 +59,7 @@
                 <th>Created</th>
                 <th>Last Called</th>
                 <th>Phone Number</th>
-                <th>Time to Call</th>
+                <th>Time to Call (UTC)</th>
                 <th>Calls Placed</th>
                 <th>Active</th>
                 <th></th>
@@ -77,55 +77,22 @@
     <td><%= new Date(data.created_at).toDateString() %> </td>
     <td><%= data.last_called ? (new Date(data.last_called).toDateString()) : 'never' %></td>
     <td><%= data.user_phone %></td>
-    <td><%= data.time_to_call %></td>
+    <td><form class="schedule-edit form-inline pull-left" method="POST" action="/schedule/<%=data.campaign_id%>/<%=data.user_phone%>">
+            <a class="edit-inline" href="#"><%= (data.time_to_call).split('.')[0].split(':').slice(0,2).join(':') %></a>
+            <input id="csrf_token" name="csrf_token" type="hidden" value="{{csrf_token()}}">
+            <button type="submit" class="btn btn-success hide">Save</button>
+        </form>
+    </td>
     <td><%= data.num_calls %></td>
     <td><span class="glyphicon <%= data.subscribed ? 'glyphicon-ok' : 'glyphicon-remove' %>"></span></td>
     <% if (data.subscribed) { %>
         <td><form class="schedule-delete form-inline pull-right" method="DELETE" action="/schedule/<%=data.campaign_id%>/<%=data.user_phone%>">
             <input id="csrf_token" name="csrf_token" type="hidden" value="{{csrf_token()}}">
-            <div class="form-group"><button type="submit" class="btn btn-danger">Unsubscribe</button>
+            <button type="submit" class="btn btn-danger btn-small">Unsubscribe</button>
         </form></td>
     <% } else { %>
         <td></td>
     <% } %>
 </script>
 
-{# 
-<script type="text/template" id="schedule-info-tmpl">
-<div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <table class="table">
-                    <thead>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Duration</th>
-                        <th>Status</th>
-                    </thead>
-                    <tbody>
-                    <% _.each(data.objects, function(call) { %> 
-                    <tr>
-                        <td><%= (new Date(call.start_time)).toUTCString() %> </td>
-                        <td><%= (new Date(call.end_time)).toUTCString() %></td>
-                        <td><%= call.from_ %></td>
-                        <td><%= call.to %></td>
-                        <td><%= call.duration %></td>
-                        <td><%= call.status %></td>
-                    </tr>
-                    <% }); %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-</script> #}
 {% endblock %}

@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import (Blueprint, current_app, request, url_for, jsonify, make_response)
 from flask_login import login_required
 from blinker import Namespace
@@ -29,8 +30,17 @@ def before_request():
 @schedule.route("/<int:campaign_id>/<phone>", methods=['POST'])
 def create(campaign_id, phone, location=None):
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
-    if _create(ScheduleCall, campaign.id, phone, location, time=request.args.get('time')):
-        return jsonify('ok')
+    
+    set_time = None
+    if request.form.get('time'):
+        # time is specified as UTC, enforce it
+        try:
+            set_time = datetime.strptime(request.form.get('time')+' UTC', '%H:%M %Z')
+        except ValueError:
+             return make_response(jsonify({'error': 'time format must be %H:%M:%S'}), 400) 
+
+    if _create(ScheduleCall, campaign.id, phone, location, time=set_time):
+        return make_response(jsonify({'status': 'ok'}), 200)
 
 def _create(cls, campaign_id, phone, location=None, time=None):
     schedule_call, created = get_one_or_create(db.session, ScheduleCall,
@@ -40,6 +50,11 @@ def _create(cls, campaign_id, phone, location=None, time=None):
     else:
         # reset to now
         schedule_call.time_to_call = utc_now().time()
+
+    if schedule_call.job_id:
+        # existing schedule, stop it before re-scheduling
+        schedule_call.stop_job()
+
     current_app.logger.info('%s at %s' % (schedule_call, schedule_call.time_to_call))
     schedule_call.start_job(location=location)
     db.session.add(schedule_call)

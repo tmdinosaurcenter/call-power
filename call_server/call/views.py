@@ -581,6 +581,10 @@ def make_single():
     if not current_target.number:
         play_or_say(resp, campaign.audio('msg_invalid_location'),
             lang=campaign.language_code)
+        current_app.logger.error("No number found for target %s" % current_target)
+        # weird, but move on to the next call
+        params['call_index'] = i + 1
+        resp.redirect(url_for('call.make_single', **params))
         return str(resp)
 
     if current_target.offices:

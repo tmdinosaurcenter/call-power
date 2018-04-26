@@ -293,7 +293,8 @@ class TargetOffice(db.Model):
     uid = db.Column(db.String(STRING_LEN), index=True, nullable=True)  # for US, this is bioguide_id-location_name
     name = db.Column(db.String(STRING_LEN), nullable=True)
     address = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
-    location = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
+    latlon = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
+    type = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
     number = db.Column(phone_number.PhoneNumberType())
     target_id = db.Column(db.Integer, db.ForeignKey('campaign_target.id'))
 

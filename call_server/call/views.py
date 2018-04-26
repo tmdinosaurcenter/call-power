@@ -604,8 +604,8 @@ def make_single():
         target_phone = current_target.number
 
     if office:
-        location = office.get('name', '')
-        office_type = office.get('type', '')
+        location = office.location
+        office_type = office.name
     else:
         location = current_target.location or ''
         office_type = ''

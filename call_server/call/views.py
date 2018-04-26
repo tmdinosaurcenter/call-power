@@ -383,7 +383,7 @@ def create():
             params['targetIds'] = [t.uid for t in targets_list]
         target_response = {
             'segment': 'custom',
-            'objects': [{'name': t.name, 'title': t.title, 'phone': t.number.e164} for t in targets_list]
+            'objects': [{'name': t.name, 'title': t.title, 'phone': t.number.e164} for t in targets_list if t.number]
         }
     else:
         target_response = {

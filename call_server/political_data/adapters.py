@@ -109,6 +109,7 @@ class UnitedStatesData(DataAdapter):
 
 class OpenStatesData(DataAdapter):
     def target(self, data):
+
         adapted = {
             'uid': data.get('leg_id', '')
         }
@@ -155,8 +156,14 @@ class OpenStatesData(DataAdapter):
                 continue
             if not 'phone' in office:
                 continue
+
+            office_name = office.get('name', '')
+            office_name = office_name.replace('Office', '').replace('office', '')
+            if '#' in office_name:
+                office_name = office_name.split('#')[0]
+
             office_list.append({
-                'name': office.get('name', ''),
+                'name': office_name,
                 'address': office.get('address', ''),
                 'number': office.get('phone', ''),
                 'type': office.get('type', '')

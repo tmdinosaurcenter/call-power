@@ -6,9 +6,7 @@ from flask_store.sqla import FlaskStoreType
 from sqlalchemy import UniqueConstraint
 
 from ..extensions import db, cache
-from ..utils import convert_to_dict
-from ..political_data.adapters import adapt_by_key
-from ..political_data import get_country_data
+from ..political_data import get_country_data, check_political_data_cache
 from .constants import (STRING_LEN, TWILIO_SID_LENGTH, LANGUAGE_CHOICES,
                         CAMPAIGN_STATUS, STATUS_PAUSED,
                         SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CHOCIES, TARGET_OFFICE_CHOICES)
@@ -237,53 +235,57 @@ class Target(db.Model):
     def phone_number(self):
         return self.number.e164
 
-
     @classmethod
-    def get_or_cache_key(cls, uid, prefix=None, cache=cache):
+    def get_or_create(cls, uid, prefix=None, cache=cache):
         if prefix:
             key = '%s:%s' % (prefix, uid)
         else:
             key = uid
         t = Target.query.filter(Target.uid == key) \
-            .order_by(Target.id.desc()).first()  # return most recently cached target
-        cached = False
+            .order_by(Target.id.desc()).first()
+        created = False
+
+        data = check_political_data_cache(key, cache)
+        offices = data.pop('offices')
 
         if not t:
-            adapter = adapt_by_key(key)
-            adapted_key, adapter_suffix = adapter.key(key)
-            cached_obj = cache.get(adapted_key)
-            if type(cached_obj) is list:
-                data = adapter.target(cached_obj[0])
-                offices = adapter.offices(cached_obj[0])
-            elif type(cached_obj) is dict:
-                data = adapter.target(cached_obj)
-                offices = adapter.offices(cached_obj)
-            else:
-                current_app.logger.error('Target.get_or_cache_key got unknown cached_obj type %s' % type(cached_obj))
-                # do it live
-                data = cached_obj
-                try:
-                    offices = cached_obj.get('offices', [])
-                except AttributeError:
-                    offices = []
-
             # create target object
             t = Target(**data)
-            t.uid = adapted_key
             db.session.add(t)
-            # create office objects, link to target
-            for office in offices:
-                if adapter_suffix:
-                    if not office['uid'] == adapter_suffix:
-                        continue
+            created = True
+        else:
+            # check for updated data
+            check_attrs = ['location', 'number']
+            for a in check_attrs:
+                if str(getattr(t, a)) != data.get(a):
+                    setattr(t, a, data.get(a))
+                    created = True
+        
+        if offices:
+            existing_target_office_uids = [o.uid for o in t.offices]
+            # need to check against existing offices, because the underlying data may have been updated
 
-                o = TargetOffice(**office)
-                o.target = t
-                db.session.add(o)
+            for office in offices:
+                if office.get('uid') in existing_target_office_uids:
+                    # existing office, check to update the location and type
+                    o = TargetOffice.query.filter_by(target_id=t.id, uid=office.get('uid')).first()
+                    check_attrs = ['name', 'type', 'address', 'number']
+                    for a in check_attrs:
+                        if str(getattr(o, a)) != office.get(a):
+                            setattr(o, a, office.get(a))
+                            created = True
+                else:
+                     # create new office object, link to target
+                    o = TargetOffice(**office)
+                    o.target = t
+                    db.session.add(o)
+                    created = True
+
+        if created:
             # save to db
             db.session.commit()
-            cached = True
-        return t, cached
+
+        return t, created
 
 
 class TargetOffice(db.Model):

@@ -139,9 +139,10 @@ class TestUSStateData(BaseTestCase):
 
     def test_locate_targets_gov(self):
         self.STATE_CAMPAIGN.campaign_subtype = 'exec'
-        gov = locate_targets(self.mock_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
-        self.assertEqual(len(gov), 1)
-
+        uids = locate_targets(self.mock_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+        
+        gov = self.us_data.get_uid(uids[0])
         self.assertEqual(gov[0]['state'], 'CA')
         self.assertEqual(gov[0]['state_name'], 'California')
         self.assertEqual(gov[0]['title'], 'Governor')

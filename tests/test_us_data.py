@@ -224,7 +224,7 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_before(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
-        (special_target, cached) = Target.get_or_cache_key('us:bioguide:S000033', cache=self.mock_cache) # Bernie
+        (special_target, created) = Target.get_or_create('us:bioguide:S000033', cache=self.mock_cache) # Bernie
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_BEFORE
 
@@ -247,7 +247,7 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_after(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
-        (special_target, cached) = Target.get_or_cache_key('us:bioguide:S000033', cache=self.mock_cache) # Bernie
+        (special_target, created) = Target.get_or_create('us:bioguide:S000033', cache=self.mock_cache) # Bernie
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_AFTER
 
@@ -270,7 +270,7 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_only_in_location(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
-        (special_target, cached) = Target.get_or_cache_key('us:bioguide:W000817', cache=self.mock_cache) # Warren
+        (special_target, created) = Target.get_or_create('us:bioguide:W000817', cache=self.mock_cache) # Warren
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
@@ -285,7 +285,7 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_only_in_location_district_office(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
-        (special_target, cached) = Target.get_or_cache_key('us:bioguide:W000817-woburn', cache=self.mock_cache) # Warren
+        (special_target, created) = Target.get_or_create('us:bioguide:W000817-woburn', cache=self.mock_cache) # Warren
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
@@ -300,7 +300,7 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_only_outside_location(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
-        (special_target, cached) = Target.get_or_cache_key('us:bioguide:S000033', cache=self.mock_cache) # Bernie
+        (special_target, created) = Target.get_or_create('us:bioguide:S000033', cache=self.mock_cache) # Bernie
         self.CONGRESS_CAMPAIGN.target_set = [special_target,]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
@@ -311,8 +311,8 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_multiple_before(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
 
-        (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
-        (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_BEFORE
 
@@ -336,8 +336,8 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_multiple_after(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
 
-        (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
-        (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_AFTER
 
@@ -361,9 +361,9 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_multiple_only(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
 
-        (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
-        (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
-        (special_target_three, cached_three) = Target.get_or_cache_key('us:bioguide:C001037', cache=self.mock_cache) # Capuano
+        (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_three, created_three) = Target.get_or_create('us:bioguide:C001037', cache=self.mock_cache) # Capuano
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
@@ -380,9 +380,9 @@ class TestUSData(BaseTestCase):
     def test_locate_targets_special_multiple_first(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
 
-        (special_target_one, cached_one) = Target.get_or_cache_key('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
-        (special_target_two, cached_two) = Target.get_or_cache_key('us:bioguide:R000570', cache=self.mock_cache) # Ryan
-        (special_target_three, cached_three) = Target.get_or_cache_key('us:bioguide:C001037', cache=self.mock_cache) # Capuano
+        (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_three, created_three) = Target.get_or_create('us:bioguide:C001037', cache=self.mock_cache) # Capuano
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_FIRST
 

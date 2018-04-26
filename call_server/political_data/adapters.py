@@ -64,7 +64,8 @@ class UnitedStatesData(DataAdapter):
         adapted = {
             'number': data.get('phone', ''), # DC office number
             'title': data.get('title', ''),
-            'uid': data.get('bioguide_id', '')
+            'uid': data.get('bioguide_id', ''),
+            'location': 'DC', # don't parse whole address here
         }
         if 'first_name' in data and 'last_name' in data:
             adapted['name'] = u'{first_name} {last_name}'.format(**data)
@@ -101,7 +102,7 @@ class UnitedStatesData(DataAdapter):
                 office_data['address'] = ''
 
             if 'latitude' in office and 'longitude' in office:
-                office_data['location'] = 'POINT({latitude}, {longitude})'.format(**office)
+                office_data['latlon'] = 'POINT({latitude}, {longitude})'.format(**office)
             office_list.append(office_data)
         return office_list
 

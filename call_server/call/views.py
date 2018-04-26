@@ -570,8 +570,8 @@ def make_single():
     params['call_index'] = i
 
     (uid, prefix) = parse_target(params['targetIds'][i])
-    (current_target, cached) = Target.get_or_cache_key(uid, prefix)
-    if cached:
+    (current_target, created) = Target.get_or_create(uid, prefix)
+    if created:
         # save Target to database
         db.session.add(current_target)
         db.session.commit()
@@ -604,16 +604,17 @@ def make_single():
         target_phone = current_target.number
 
     if office:
-        location = office.location
-        office_type = office.name
+        office_location = office.name
+        # use voice-readable short name instead of full address
+        office_type = office.type
     else:
-        location = current_target.location or ''
-        office_type = ''
+        office_location = current_target.location or 'capitol'
+        office_type = 'main'
         
     play_or_say(resp, campaign.audio('msg_target_intro'),
         title=current_target.title,
         name=current_target.name,
-        location=location,
+        location=office_location,
         office_type=office_type,
         lang=campaign.language_code)
 
@@ -650,7 +651,7 @@ def complete():
         abort(400)
 
     (uid, prefix) = parse_target(params['targetIds'][i])
-    (current_target, cached) = Target.get_or_cache_key(uid, prefix)
+    (current_target, created) = Target.get_or_create(uid, prefix)
     call_data = {
         'session_id': params['sessionId'],
         'campaign_id': campaign.id,

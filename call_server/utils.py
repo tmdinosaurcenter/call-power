@@ -43,12 +43,12 @@ def get_one_or_create(session,
             return session.query(model).filter_by(**kwargs).one(), False
 
 
-def duplicate_object(orig):
+def duplicate_object(orig, skip=None):
     """ duplicate a sqlalchemy-backed object, skipping pk, unique fields, or sets """
     mapper = sqlalchemy.inspect(type(orig))
     arguments = dict()
     for name, column in mapper.columns.items():
-        if not (column.primary_key or column.unique or name.endswith('set')):
+        if not (column.primary_key or column.unique or name.endswith('set') or (name in skip)):
             arguments[name] = getattr(orig, name)
         if name == "created_time":
             arguments[name] = datetime.utcnow()

@@ -204,7 +204,7 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
 @campaign.route('/<int:campaign_id>/copy', methods=['GET', 'POST'])
 def copy(campaign_id):
     orig_campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
-    new_campaign = duplicate_object(orig_campaign)
+    new_campaign = duplicate_object(orig_campaign, skip=['scheduled_call_subscribed'])
     new_campaign.name = orig_campaign.name + " (copy)"
     db.session.add(new_campaign)
     db.session.commit()

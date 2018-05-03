@@ -267,7 +267,7 @@ def schedule_prompt(params, campaign):
     resp.append(g)
 
     # in case the timeout occurs, we need a redirect verb to ensure that the call doesn't drop
-    params['scheduled'] = False
+    params['scheduleSkip'] = 1
     resp.redirect(url_for('call._make_calls', **params))
 
     return str(resp)

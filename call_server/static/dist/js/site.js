@@ -668,6 +668,16 @@ $(document).ready(function () {
           $('input[name="target_ordering"][value="upper-first"]').parent('label').hide();
           $('input[name="target_ordering"][value="lower-first"]').parent('label').hide();
         }
+
+        // only show party first for multi-representative subtypes
+        if ((type === 'congress' && subtype === 'both') ||
+          (type === 'congress' && subtype === 'upper')) {
+          $('input[name="target_ordering"][value="democrats-first"]').parent('label').show();
+          $('input[name="target_ordering"][value="republicans-first"]').parent('label').show();
+        } else {
+          $('input[name="target_ordering"][value="democrats-first"]').parent('label').hide();
+          $('input[name="target_ordering"][value="republicans-first"]').parent('label').hide();
+        }
       }
 
       if (country === 'ca') {

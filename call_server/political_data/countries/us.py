@@ -62,7 +62,9 @@ class USCampaignType_Congress(USCampaignType):
     target_orders = [
         ('shuffle', _("Shuffle")),
         ('upper-first', _("Senate First")),
-        ('lower-first', _("House First"))
+        ('lower-first', _("House First")),
+        ('democrats-first', _("Democrats First")),
+        ('republicans-first', _("Republicans First")),
     ]
 
     @property
@@ -71,13 +73,17 @@ class USCampaignType_Congress(USCampaignType):
 
     def all_targets(self, location, campaign_region=None):
         return {
-            'upper': self._get_congress_upper(location),
-            'lower': self._get_congress_lower(location)
+            'upper': self._get_senators(location),
+            'lower': self._get_representative(location),
+            'republicans': self._get_congress_party(location, 'Republican'),
+            'democrats': self._get_congress_party(location, 'Democrat'),
         }
 
     def sort_targets(self, targets, subtype, order, shuffle_chamber=True):
         upper_targets = list(targets.get('upper'))
         lower_targets = list(targets.get('lower'))
+        republican_targets = list(targets.get('republicans'))
+        democrat_targets = list(targets.get('democrats'))
 
         # by default, shuffle target ordering within chamber
         if shuffle_chamber:
@@ -87,6 +93,10 @@ class USCampaignType_Congress(USCampaignType):
         if subtype == 'both':
             if order == 'upper-first':
                 return upper_targets + lower_targets
+            elif order == 'democrats-first':
+                return democrat_targets + republican_targets
+            elif order == 'republicans-first':
+                return republican_targets + democrat_targets
             else:
                 return lower_targets + upper_targets
         elif subtype == 'upper':
@@ -96,7 +106,7 @@ class USCampaignType_Congress(USCampaignType):
         elif subtype == 'exec':
             return exec_targets
 
-    def _get_congress_upper(self, location):
+    def _get_senators(self, location):
         districts = self.data_provider.get_districts(location.postal)
         # This is a set because zipcodes may cross states
         states = set(d['state'] for d in districts)
@@ -105,13 +115,31 @@ class USCampaignType_Congress(USCampaignType):
             for senator in self.data_provider.get_senators(state):
                 yield self.data_provider.KEY_BIOGUIDE.format(**senator)
 
-    def _get_congress_lower(self, location):
+    def _get_representative(self, location):
         districts = self.data_provider.get_districts(location.postal)
 
         for district in districts:
             rep = self.data_provider.get_house_members(district['state'], district['house_district'])
             if rep:
                 yield self.data_provider.KEY_BIOGUIDE.format(**rep[0])
+
+    def _get_congress_party(self, location, party):
+        districts = self.data_provider.get_districts(location.postal)
+        # This is a set because zipcodes may cross states
+        states = set(d['state'] for d in districts)
+
+        matched_party = []
+
+        for state in states:
+            for senator in self.data_provider.get_senators(state):
+                if senator.get('party') == party:
+                    matched_party.append(self.data_provider.KEY_BIOGUIDE.format(**senator))
+
+        for district in districts:
+            rep = self.data_provider.get_house_members(district['state'], district['house_district'])
+            if rep and rep[0].get('party') == party:
+                matched_party.append(self.data_provider.KEY_BIOGUIDE.format(**rep[0]))
+        return matched_party
 
 
 class USCampaignType_State(USCampaignType):
@@ -285,6 +313,7 @@ class USDataProvider(DataProvider):
                     'district':    district,
                     'offices':     offices.get(info['id']['bioguide'], []),
                     'current':     term['current'],
+                    'party':       term['party'],
                 }
 
                 direct_key = self.KEY_BIOGUIDE.format(**record)

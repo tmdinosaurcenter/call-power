@@ -39,6 +39,9 @@ class TestUSData(BaseTestCase):
         self.mock_location = Location('Boston, MA', (42.355662,-71.065483),
             {'state':'MA','zipcode':'02111'})
 
+        self.mock_location_split_parties = Location('Bakersfield, CA', (35.375960, -119.020865),
+            {'state':'MA','zipcode':'93301'})
+
        # this zipcode pretty evenly split between KY-2 & TN-7
         self.mock_location_multiple_states = Location('Fort Campbell, KY', (36.647207, -87.451635),
             {'state':'KY','zipcode':'42223'})
@@ -163,6 +166,39 @@ class TestUSData(BaseTestCase):
 
         third = self.us_data.get_uid(uids[2])[0]
         self.assertEqual(third['chamber'], 'house')
+
+    def test_locate_targets_both_ordered_democrats_first(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'
+        self.CONGRESS_CAMPAIGN.target_ordering = 'democrats-first'
+
+        uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 3)
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['party'], 'Democrat')
+
+        second = self.us_data.get_uid(uids[1])[0]
+        self.assertEqual(second['party'], 'Democrat')
+
+        third = self.us_data.get_uid(uids[2])[0]
+        self.assertEqual(third['party'], 'Republican')
+
+    def test_locate_targets_both_ordered_republicans_first(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'
+        self.CONGRESS_CAMPAIGN.target_ordering = 'republicans-first'
+
+        uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 3)
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['party'], 'Republican')
+
+        second = self.us_data.get_uid(uids[1])[0]
+        self.assertEqual(second['party'], 'Democrat')
+
+        third = self.us_data.get_uid(uids[2])[0]
+        self.assertEqual(third['party'], 'Democrat')
+
 
     def test_locate_targets_multiple_states(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'

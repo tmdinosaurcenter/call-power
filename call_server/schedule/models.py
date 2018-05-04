@@ -2,6 +2,7 @@ from flask import url_for
 import requests
 import logging
 
+from ..campaign.models import Campaign
 from ..utils import utc_now
 from ..extensions import db, rq
 from sqlalchemy_utils.types import phone_number
@@ -69,7 +70,12 @@ def create_call(campaign_id, phone, location):
         'userLocation': location,
         'scheduled': True
     }
-    scheduled_call = ScheduleCall.query.filter_by(campaign_id=campaign_id, phone_number=phone, subscribed=True).first()
+    campaign = Campaign.query.get(campaign_id)
+    if campaign.status != 'live':
+        # do not place scheduled calls for paused or archived campaigns
+        return None
+
+    scheduled_call = ScheduleCall.query.filter_by(campaign_id=campaign.id, phone_number=phone, subscribed=True).first()
     if not scheduled_call:
         return None
 

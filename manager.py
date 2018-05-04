@@ -96,10 +96,11 @@ def stop_scheduled_calls(campaign_id, date):
 def restart_scheduled_calls(campaign_id, accept_all=False):
     # rebind outgoing recurring calls
     from call_server.campaign import Campaign
+    from call_server.campaign.constants import STATUS_LIVE
     from call_server.schedule import ScheduleCall
 
     if campaign_id == 'all':
-        campaigns = Campaign.query.filter_by(prompt_schedule=True).all()
+        campaigns = Campaign.query.filter_by(prompt_schedule=True, status_code=STATUS_LIVE).all()
     else:
         campaigns = [Campaign.query.get(campaign_id),]
 

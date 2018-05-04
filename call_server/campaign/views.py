@@ -476,8 +476,8 @@ def status(campaign_id):
         db.session.add(campaign)
         db.session.commit()
 
-        if campaign.status == 'paused':
-            # unsubscribe outgoing recurring calls
+        if campaign.status in ['paused', 'archived']:
+            # stop recurring outgoing calls
             scheduled_calls = ScheduleCall.query.filter_by(campaign=campaign)
             for sc in scheduled_calls:
                 sc.stop_job()

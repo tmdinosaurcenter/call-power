@@ -10,7 +10,7 @@ from flask_assets import ManageAssets
 from flask_rq2.script import RQManager
 
 from call_server.app import create_app
-from call_server.extensions import assets, db, cache
+from call_server.extensions import assets, db, cache, rq
 from call_server import political_data
 from call_server import sync
 from call_server.user import User, USER_ADMIN, USER_ACTIVE
@@ -68,7 +68,6 @@ def loadpoliticaldata():
 
     log.info("loading political data")
     with app.app_context():
-        cache.clear()
         n = political_data.load_data(cache)
     log.info("done loading %d objects" % n)
 
@@ -92,6 +91,37 @@ def stop_scheduled_calls(campaign_id, date):
         print "done"
     else:
         print "exit"
+
+@manager.command
+def restart_scheduled_calls(campaign_id, accept_all=False):
+    # rebind outgoing recurring calls
+    from call_server.campaign import Campaign
+    from call_server.schedule import ScheduleCall
+
+    if campaign_id == 'all':
+        campaigns = Campaign.query.filter_by(prompt_schedule=True).all()
+    else:
+        campaigns = [Campaign.query.get(campaign_id),]
+
+    print 'This will restart all subscribed scheduled calls for campaign {}'.format(campaign_id)
+    if accept_all:
+        confirm = 'Y'
+    else:
+        confirm = raw_input('Confirm (Y/N): ')
+    if confirm == 'Y':
+        for campaign in campaigns:
+            scheduled_calls = ScheduleCall.query.filter_by(campaign=campaign, subscribed=True).all()
+            print 'Scheduled calls for {}: {}'.format(campaign.name, len(scheduled_calls))
+            rq_scheduler = rq.get_scheduler()
+            for sc in scheduled_calls:
+                if not sc.job_id in rq_scheduler:
+                    print "resetting job", sc.job_id
+                    sc.start_job()
+                    db.session.add(sc)
+            db.session.commit()
+            print "done"
+        else:
+            print "exit"
 
 @manager.command
 def crmsync(campaigns='all'):

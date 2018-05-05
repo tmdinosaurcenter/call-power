@@ -257,7 +257,7 @@ class Target(db.Model):
             # check for updated data
             check_attrs = ['location', 'number']
             for a in check_attrs:
-                if str(getattr(t, a)) != data.get(a):
+                if getattr(t, a) != data.get(a):
                     setattr(t, a, data.get(a))
                     created = True
         
@@ -271,7 +271,7 @@ class Target(db.Model):
                     o = TargetOffice.query.filter_by(target_id=t.id, uid=office.get('uid')).first()
                     check_attrs = ['name', 'type', 'address', 'number']
                     for a in check_attrs:
-                        if str(getattr(o, a)) != office.get(a):
+                        if getattr(o, a) != office.get(a):
                             setattr(o, a, office.get(a))
                             created = True
                 else:

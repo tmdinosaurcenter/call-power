@@ -39,6 +39,7 @@ phonenumbers==7.0.4
 pystache==0.5.3
 -e git://github.com/MoveOnOrg/python-actionkit.git#egg=python-actionkit
 python-dateutil==2.2
+python-magic==0.4.15
 python-mimeparse==0.1.4
 pytz==2017.2
 requests==2.2.1

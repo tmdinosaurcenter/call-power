@@ -291,7 +291,12 @@ def upload_recording(campaign_id):
         file_storage = request.files.get('file_storage')
         file_type = form.data.get('file_type', 'mp3')
         if file_storage:
-            file_storage.filename = "campaign_{}_{}_{}.{}".format(campaign.id, message_key, recording.version, file_type)
+            original_extension = "." in file_storage.filename and \
+                    file_storage.filename.rsplit('.', 1)[1].lower()
+            extension = original_extension or "mp3" # default to mp3, eg for uploaded blobs
+            file_storage.filename = "campaign_{}_{}_{}.{}" \
+                .format(campaign.id, message_key, recording.version, extension)
+
             recording.file_storage = file_storage
             recording.text_to_speech = ''
         else:

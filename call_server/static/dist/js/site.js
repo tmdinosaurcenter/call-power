@@ -1402,7 +1402,7 @@ $(document).ready(function () {
       }
 
       var isValid = validator(parentGroup);
-      
+
       // put message in last help-block
       $('.help-block', parentGroup).last().text((!isValid) ? message : '');
 
@@ -1410,7 +1410,6 @@ $(document).ready(function () {
       parentGroup.toggleClass('has-error', !isValid);
       return isValid;
     },
-
 
     validateForm: function() {
       var isValid = true;
@@ -1453,7 +1452,7 @@ $(document).ready(function () {
       // submit file via ajax with html5 FormData
       // probably will not work in old IE
       var formData = new FormData();
-      
+
       // add inputs individually, so we can control how we add files
       var formItems = $('form.modal-body', this.$el).find('input[type!="file"], select, textarea');
       _.each(formItems, function(item) {
@@ -1501,8 +1500,10 @@ $(document).ready(function () {
               self.saved = true;
               self.$el.modal('hide');
             } else {
-              console.error(response);
-              window.flashMessage(response.errors, 'error', true);
+              Object.keys(response.errors).forEach(field => {
+                var msg = response.errors[field];
+                self.validateField($('.tab-pane.active'), () => { false; }, msg);
+              });
             }
           },
           error: function(xhr, status, error) {
@@ -1519,6 +1520,7 @@ $(document).ready(function () {
   });
 
 })();
+
 (function () {
   CallPower.Routers.Campaign = Backbone.Router.extend({
     routes: {

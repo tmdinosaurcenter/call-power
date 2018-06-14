@@ -1,3 +1,4 @@
+from flask import current_app
 from ..extensions import cache
 from ..political_data.adapters import adapt_by_key
 import pyopenstates

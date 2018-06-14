@@ -140,9 +140,9 @@ class AudioRecordingForm(FlaskForm):
 
         # Use Unix libmagic to check the file type.
         mime = magic.from_buffer(field.data.read(1024), mime=True)
-        if mime in ["audio/wav", "audio/x-wav"] and field.data.mimetype == "audio/wav":
+        if mime in ["audio/wav", "audio/x-wav"] and field.data.mimetype in ["audio/wav", "audio/x-wav"]:
             return True
-        if mime in ["audio/mp3", "audio/mpeg"] and field.data.mimetype == "audio/mp3":
+        if mime in ["audio/mp3", "audio/mpeg"] and field.data.mimetype in ["audio/mp3", "audio/mpeg"]:
             return True
         raise ValidationError("File type must be mp3 or wav, got {}.".format(mime))
 

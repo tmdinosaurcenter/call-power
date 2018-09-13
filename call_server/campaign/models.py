@@ -253,12 +253,13 @@ class Target(db.Model):
             t = Target(**data)
             db.session.add(t)
             created = True
-        else:
+        elif data:
             # check for updated data
             check_attrs = ['location', 'number']
             for a in check_attrs:
-                if getattr(t, a) != data.get(a):
-                    setattr(t, a, data.get(a))
+                new_val = data.get(a)
+                if new_val and getattr(t, a) != new_val:
+                    setattr(t, a, new_val)
                     created = True
         
         if offices:

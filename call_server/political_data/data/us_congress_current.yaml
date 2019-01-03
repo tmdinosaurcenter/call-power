@@ -3552,6 +3552,7 @@
     class: 1
     party: Republican
     state_rank: junior
+    phone: 202-224-3344
 - id:
     bioguide: B000574
     thomas: '00099'
@@ -28287,6 +28288,7 @@
     class: 1
     party: Democrat
     state_rank: senior
+    phone: 202-224-4521
 - id:
     govtrack: 412510
     bioguide: L000578
@@ -30517,6 +30519,7 @@
     class: 1
     party: Republican
     state_rank: junior
+    phone: 202-224-2043
 - id:
     bioguide: F000463
     thomas: '02179'
@@ -36734,6 +36737,7 @@
     class: 1
     party: Democrat
     state_rank: junior
+    phone: 202-224-6244
 - id:
     bioguide: S001201
     govtrack: 412717
@@ -39786,6 +39790,7 @@
     class: 1
     party: Republican
     state_rank: junior
+    phone: 202-224-4814
 - id:
     bioguide: H001089
     fec:
@@ -39808,6 +39813,7 @@
     class: 1
     party: Republican
     state_rank: junior
+    phone: 202-224-6154
 - id:
     bioguide: R000615
     fec:
@@ -39830,6 +39836,7 @@
     class: 1
     party: Republican
     state_rank: junior
+    phone: 202-224-5251
 - id:
     bioguide: M001197
     fec:
@@ -39883,3 +39890,4 @@
     class: 3
     party: Republican
     state_rank: junior
+    phone:  202-224-2235

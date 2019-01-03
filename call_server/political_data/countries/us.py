@@ -288,7 +288,7 @@ class USDataProvider(DataProvider):
 
             for info in current_leg+historical_leg:
                 term = info['terms'][-1]
-                if term['start'] < "2011-01-01":
+                if term['start'] < "2016-01-01":
                     continue # don't get too historical
 
                 term['current'] = (term['end'] >= datetime.now().strftime('%Y-%m-%d'))
@@ -296,7 +296,17 @@ class USDataProvider(DataProvider):
                 if term.get('phone') is None:
                     term['name'] = info['name']['last']
                     if term['current']:
-                        log.error(u"term {start} - {end} does not have field phone for {type} {name}".format(**term))
+                        # try to pull from previous term, for re-elected incumbents
+                        try:
+                            prev_term = info['terms'][-2]
+                            old_phone = prev_term.get('phone')
+                            if old_phone and prev_term['type'] == term['type']:
+                                term['phone'] = old_phone
+                                log.info(u"pulling phone number from previous {type} term for {name}".format(**term))
+                            else:
+                                log.warning(u"term {start} - {end} does not have field phone for {type} {name}".format(**term))
+                        except IndexError:
+                            log.warning(u"term {start} - {end} does not have field phone for {type} {name}".format(**term))
                     else:
                         continue
 
@@ -307,7 +317,7 @@ class USDataProvider(DataProvider):
                     'last_name':   info['name']['last'],
                     'bioguide_id': info['id']['bioguide'],
                     'title':       "Senator" if term['type'] == "sen" else "Representative",
-                    'phone':       term['phone'],
+                    'phone':       term.get('phone'),
                     'chamber':     "senate" if term['type'] == "sen" else "house",
                     'state':       term['state'],
                     'district':    district,

@@ -11,7 +11,7 @@ class DefaultConfig(object):
     ENVIRONMENT = os.environ.get('APP_ENVIRONMENT', "Default")
 
     APP_NAME = "call_server"
-    APPLICATION_ROOT = None  # the path where the application is configured
+    APPLICATION_ROOT = '/'  # the path where the application is configured
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI',
         'sqlite:////%s/dev.db' % os.path.abspath(os.curdir))
@@ -75,7 +75,7 @@ class ProductionConfig(DefaultConfig):
     ENVIRONMENT = "Production"
 
     SERVER_NAME = os.environ.get('SERVER_NAME')
-    APPLICATION_ROOT = os.environ.get('APPLICATION_ROOT', None)
+    APPLICATION_ROOT = os.environ.get('APPLICATION_ROOT', '/')
     ADMIN_API_KEY = os.environ.get('ADMIN_API_KEY', None)
     PREFERRED_URL_SCHEME = 'https'
 

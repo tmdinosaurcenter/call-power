@@ -32,7 +32,7 @@ For production, you will also need to set:
 * CALLPOWER_CONFIG='call_server.config:ProductionConfig', so that manager.py knows to use a real database for migrations
 * DATABASE_URI, a sqlalchemy [connection string](https://pythonhosted.org/Flask-SQLAlchemy/config.html#connection-uri-format) for a postgres or mysql database addresses
 * REDIS_URL, a URI for the Redis server
-* APPLICATION_ROOT to the path where the application will live. If you are using a whole domain or subdomain, this *SHOULD NOT* be defined. Otherwise, it will mess up cookie handling and cause CSRF 400 errors on login.
+* APPLICATION_ROOT to the path where the application will live. If you are using a whole domain or subdomain, this should be set to '/'.
 * SERVER_NAME to the domain or subdomain on which the application will live (if this is not set, external urls will default to localhost)
 * CALL_RATE_LIMIT, the maximum number of allowed calls to a phone number for each campaign, to limit abuse potential. Admin phone numbers and logged in users are exempt. Defaults to "2 / hour", and must be specified in [flask-limit notation](https://flask-limiter.readthedocs.io/en/stable/#rate-limit-string-notation).
 

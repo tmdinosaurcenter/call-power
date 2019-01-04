@@ -288,8 +288,9 @@ class USDataProvider(DataProvider):
 
             for info in current_leg+historical_leg:
                 term = info['terms'][-1]
-                if term['start'] < "2016-01-01":
-                    continue # don't get too historical
+                if term['start'] < "2015-01-01":
+                    continue # skip loading historical data
+                    # set this to be before the start date of the oldest currently seated Senate class
 
                 term['current'] = (term['end'] >= datetime.now().strftime('%Y-%m-%d'))
 

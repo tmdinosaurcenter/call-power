@@ -254,13 +254,14 @@ class Target(db.Model):
             db.session.add(t)
             created = True
         elif data:
-            # check for updated data
-            check_attrs = ['location', 'number']
-            for a in check_attrs:
-                new_val = data.get(a)
-                if new_val and getattr(t, a) != new_val:
-                    setattr(t, a, new_val)
-                    created = True
+            if t.uid == data.get('uid'):
+                # check for updated data, only on full cache key match
+                check_attrs = ['location', 'number']
+                for a in check_attrs:
+                    new_val = data.get(a)
+                    if new_val and getattr(t, a) != new_val:
+                        setattr(t, a, new_val)
+                        created = True
         
         if offices:
             existing_target_office_uids = [o.uid for o in t.offices]
@@ -274,6 +275,7 @@ class Target(db.Model):
                     for a in check_attrs:
                         if getattr(o, a) != office.get(a):
                             setattr(o, a, office.get(a))
+                            db.session.add(o)
                             created = True
                 else:
                      # create new office object, link to target

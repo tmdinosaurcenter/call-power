@@ -246,19 +246,19 @@ class TestUSData(BaseTestCase):
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['chamber'], 'house')
         self.assertEqual(first['state'], 'WI')
-        self.assertEqual(first['district'], '2')
+        self.assertEqual(first['district'], '3')
 
         second = self.us_data.get_uid(uids[1])[0]
         self.assertEqual(second['chamber'], 'house')
         self.assertEqual(second['state'], 'WI')
-        self.assertEqual(second['district'], '3')
+        self.assertEqual(second['district'], '2')
 
         third = self.us_data.get_uid(uids[2])[0]
         self.assertEqual(third['chamber'], 'senate')
         self.assertEqual(third['state'], 'WI')
 
         fourth = self.us_data.get_uid(uids[3])[0]
-        self.assertEqual(third['chamber'], 'senate')
+        self.assertEqual(fourth['chamber'], 'senate')
         self.assertEqual(fourth['state'], 'WI')
 
     def test_locate_targets_special_before(self):
@@ -350,7 +350,7 @@ class TestUSData(BaseTestCase):
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['chamber'], 'house')
         self.assertEqual(first['last_name'], 'Jeffries')
-        self.assertEqual(first['state'], 'MA')
+        self.assertEqual(first['state'], 'NY')
 
     def test_locate_targets_special_only_outside_location(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
@@ -418,7 +418,7 @@ class TestUSData(BaseTestCase):
 
         (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
         (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
-        (special_target_three, created_three) = Target.get_or_create('us:bioguide:C001037', cache=self.mock_cache) # Capuano
+        (special_target_three, created_three) = Target.get_or_create('us:bioguide:P000617', cache=self.mock_cache) # Pressley
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
 
@@ -437,7 +437,7 @@ class TestUSData(BaseTestCase):
 
         (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
         (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
-        (special_target_three, created_three) = Target.get_or_create('us:bioguide:C001037', cache=self.mock_cache) # Capuano
+        (special_target_three, created_three) = Target.get_or_create('us:bioguide:P000617', cache=self.mock_cache) # Pressley
         self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
         self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_FIRST
 

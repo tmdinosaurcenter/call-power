@@ -131,8 +131,8 @@ class TestUSStateData(BaseTestCase):
 
     def test_ca_governor(self):
         gov = self.us_data.get_state_governor('CA')[0]
-        self.assertEqual(gov['first_name'], 'Jerry')
-        self.assertEqual(gov['last_name'], 'Brown')
+        self.assertEqual(gov['first_name'], 'Gavin')
+        self.assertEqual(gov['last_name'], 'Newsom')
         self.assertEqual(gov['state'], 'CA')
         self.assertEqual(gov['state_name'], 'California')
         self.assertEqual(gov['phone'], '916-445-2841')

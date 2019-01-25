@@ -50,6 +50,10 @@ class TestUSData(BaseTestCase):
         self.mock_location_multiple_districts = Location('Hazel Green, WI', (42.532498, -90.436727),
             {'state':'WI','zipcode':'53811'})
 
+        # this zipcode in brooklyn has multiple district offices
+        self.mock_location_multiple_offices = Location('Brooklyn, NY', (40.6856283, -73.97577),
+            {'state':'NY', 'zipcode':'11217'})
+
     def test_cache(self):
         self.assertIsNotNone(self.mock_cache)
         self.assertIsNotNone(self.us_data)
@@ -318,7 +322,7 @@ class TestUSData(BaseTestCase):
         self.assertEqual(first['last_name'], 'Warren')
         self.assertEqual(first['state'], 'MA')
 
-    def test_locate_targets_special_only_in_location_district_office(self):
+    def test_locate_targets_special_only_in_location_senate_district_office(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'upper'
 
         (special_target, created) = Target.get_or_create('us:bioguide:W000817-woburn', cache=self.mock_cache) # Warren
@@ -331,6 +335,21 @@ class TestUSData(BaseTestCase):
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['chamber'], 'senate')
         self.assertEqual(first['last_name'], 'Warren')
+        self.assertEqual(first['state'], 'MA')
+
+    def test_locate_targets_special_only_in_location_house_district_offices_multiple(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
+
+        (special_target, created) = Target.get_or_create('us:bioguide:J000294-brooklyn-1', cache=self.mock_cache) # Hakeem Jeffries
+        self.CONGRESS_CAMPAIGN.target_set = [special_target,]
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_ONLY
+
+        uids = locate_targets(self.mock_location_multiple_offices, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['chamber'], 'house')
+        self.assertEqual(first['last_name'], 'Jeffries')
         self.assertEqual(first['state'], 'MA')
 
     def test_locate_targets_special_only_outside_location(self):

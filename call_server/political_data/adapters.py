@@ -23,10 +23,10 @@ class DataAdapter(object):
 
     def key(self, key, split_by='-'):
         """
-        @return a key and suffix, split by an optional delimiter
+        @return tuple of key and suffix, split by an optional delimiter
         """
         if split_by in key:
-            return key.split(split_by)
+            return key.split(split_by, 1)
         else:
             return (key, '')
 
@@ -56,7 +56,7 @@ class UnitedStatesData(DataAdapter):
     def key(self, key):
         # split district office id from rest of bioguide
         if '-' in key:
-            return key.split('-')
+            return key.split('-', 1)
         else:
             return (key, '')
 

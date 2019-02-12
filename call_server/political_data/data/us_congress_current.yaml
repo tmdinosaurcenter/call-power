@@ -23,7 +23,6 @@
   bio:
     birthday: '1952-11-09'
     gender: M
-    religion: Lutheran
   terms:
   - type: rep
     start: '1993-01-05'
@@ -105,8 +104,8 @@
     url: https://www.brown.senate.gov
     rss_url: http://www.brown.senate.gov/rss/feeds/?type=all&amp;
     contact_form: http://www.brown.senate.gov/contact/
-    address: 713 Hart Senate Office Building Washington DC 20510
-    office: 713 Hart Senate Office Building
+    address: 503 Hart Senate Office Building Washington DC 20510
+    office: 503 Hart Senate Office Building
     phone: 202-224-2315
 - id:
     bioguide: C000127
@@ -133,7 +132,6 @@
   bio:
     birthday: '1958-10-13'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1993-01-05'
@@ -213,7 +211,6 @@
   bio:
     birthday: '1943-10-05'
     gender: M
-    religion: Jewish
   terms:
   - type: rep
     start: '1987-01-06'
@@ -341,7 +338,6 @@
   bio:
     birthday: '1947-01-23'
     gender: M
-    religion: Presbyterian
   terms:
   - type: rep
     start: '1983-01-03'
@@ -509,7 +505,6 @@
   bio:
     birthday: '1933-06-22'
     gender: F
-    religion: Jewish
   terms:
   - type: sen
     start: '1992-11-10'
@@ -594,6 +589,10 @@
   bio:
     birthday: '1960-05-25'
     gender: F
+  leadership_roles:
+  - title: Senate Democratic Steering Committee Chair
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: sen
     start: '2007-01-04'
@@ -629,8 +628,8 @@
     state_rank: senior
     url: https://www.klobuchar.senate.gov
     contact_form: http://www.klobuchar.senate.gov/public/index.cfm/contact
-    address: 302 Hart Senate Office Building Washington DC 20510
-    office: 302 Hart Senate Office Building
+    address: 425 Dirksen Senate Office Building Washington DC 20510
+    office: 425 Dirksen Senate Office Building
     phone: 202-224-3244
 - id:
     bioguide: M000639
@@ -652,7 +651,7 @@
     google_entity_id: kg:/m/033d3p
   name:
     first: Robert
-    last: Menéndez
+    last: Menendez
     nickname: Bob
     official_full: Robert Menendez
   other_names:
@@ -660,7 +659,6 @@
   bio:
     birthday: '1954-01-01'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1993-01-05'
@@ -779,7 +777,6 @@
   bio:
     birthday: '1941-09-08'
     gender: M
-    religion: Jewish
   terms:
   - type: rep
     start: '1991-01-03'
@@ -907,7 +904,10 @@
   bio:
     birthday: '1950-04-29'
     gender: F
-    religion: United Methodist
+  leadership_roles:
+  - title: Senate Democratic Policy & Communications Committee Chair
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1997-01-07'
@@ -1117,6 +1117,10 @@
   bio:
     birthday: '1952-07-21'
     gender: M
+  leadership_roles:
+  - title: Senate Republican Conference Chair
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: sen
     start: '2007-06-25'
@@ -1184,7 +1188,6 @@
   bio:
     birthday: '1951-07-05'
     gender: M
-    religion: Southern Baptist
   terms:
   - type: rep
     start: '1995-01-04'
@@ -1293,7 +1296,6 @@
   bio:
     birthday: '1940-07-03'
     gender: M
-    religion: Presbyterian
   terms:
   - type: sen
     start: '2003-01-07'
@@ -1355,7 +1357,6 @@
   bio:
     birthday: '1952-12-07'
     gender: F
-    religion: Catholic
   terms:
   - type: sen
     start: '1997-01-07'
@@ -1421,17 +1422,16 @@
   bio:
     birthday: '1952-02-02'
     gender: M
-    religion: Church of Christ
   leadership_roles:
-  - title: Minority Whip
+  - title: Senate Minority Whip
     chamber: senate
     start: '2013-01-03'
     end: '2015-01-03'
-  - title: Majority Whip
+  - title: Senate Majority Whip
     chamber: senate
     start: '2015-01-03'
     end: '2017-01-03'
-  - title: Majority Whip
+  - title: Senate Majority Whip
     chamber: senate
     start: '2017-01-03'
     end: '2019-01-03'
@@ -1503,36 +1503,38 @@
   bio:
     birthday: '1944-11-21'
     gender: M
-    religion: Roman Catholic
   leadership_roles:
-  - title: Minority Whip
+  - title: Senate Minority Whip
     chamber: senate
     start: '2005-01-04'
     end: '2007-01-03'
-  - title: Majority Whip
+  - title: Senate Majority Whip
     chamber: senate
     start: '2007-01-04'
     end: '2009-01-06'
-  - title: Majority Whip
+  - title: Senate Majority Whip
     chamber: senate
     start: '2009-01-06'
     end: '2011-01-05'
-  - title: Majority Whip
+  - title: Senate Majority Whip
     chamber: senate
     start: '2011-01-05'
     end: '2013-01-03'
-  - title: Majority Whip
+  - title: Senate Majority Whip
     chamber: senate
     start: '2013-01-03'
     end: '2015-01-03'
-  - title: Minority Whip
+  - title: Senate Minority Whip
     chamber: senate
     start: '2015-01-03'
     end: '2017-01-03'
-  - title: Minority Whip
+  - title: Senate Minority Whip
     chamber: senate
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: Senate Minority Whip
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1983-01-03'
@@ -1641,7 +1643,6 @@
   bio:
     birthday: '1944-02-01'
     gender: M
-    religion: Presbyterian
   terms:
   - type: sen
     start: '1997-01-07'
@@ -1710,7 +1711,6 @@
   bio:
     birthday: '1955-07-09'
     gender: M
-    religion: Southern Baptist
   terms:
   - type: rep
     start: '1995-01-04'
@@ -1798,7 +1798,6 @@
   bio:
     birthday: '1934-11-17'
     gender: M
-    religion: Presbyterian
   terms:
   - type: rep
     start: '1987-01-06'
@@ -1894,32 +1893,34 @@
   bio:
     birthday: '1942-02-20'
     gender: M
-    religion: Baptist
   leadership_roles:
-  - title: Minority Leader
+  - title: Senate Minority Leader
     chamber: senate
     start: '2007-01-04'
     end: '2009-01-06'
-  - title: Minority Leader
+  - title: Senate Minority Leader
     chamber: senate
     start: '2009-01-06'
     end: '2011-01-05'
-  - title: Minority Leader
+  - title: Senate Minority Leader
     chamber: senate
     start: '2011-01-05'
     end: '2013-01-03'
-  - title: Minority Leader
+  - title: Senate Minority Leader
     chamber: senate
     start: '2013-01-03'
     end: '2015-01-03'
-  - title: Majority Leader
+  - title: Senate Majority Leader
     chamber: senate
     start: '2015-01-03'
     end: '2017-01-03'
-  - title: Majority Leader
+  - title: Senate Majority Leader
     chamber: senate
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: Senate Majority Leader
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: sen
     start: '1985-01-03'
@@ -2053,7 +2054,6 @@
   bio:
     birthday: '1949-11-12'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1991-01-03'
@@ -2189,7 +2189,6 @@
   bio:
     birthday: '1936-04-20'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1981-01-05'
@@ -2359,7 +2358,6 @@
   bio:
     birthday: '1948-05-18'
     gender: M
-    religion: Latter Day Saints
   terms:
   - type: rep
     start: '1999-01-06'
@@ -2705,7 +2703,6 @@
   bio:
     birthday: '1965-07-22'
     gender: M
-    religion: Protestant
   terms:
   - type: rep
     start: '1997-01-07'
@@ -3273,7 +3270,6 @@
   bio:
     birthday: '1951-07-13'
     gender: M
-    religion: Latter Day Saints
   terms:
   - type: rep
     start: '2003-01-07'
@@ -3388,7 +3384,6 @@
   bio:
     birthday: '1947-02-04'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1993-01-05'
@@ -3534,7 +3529,6 @@
   bio:
     birthday: '1952-06-06'
     gender: F
-    religion: Presbyterian
   terms:
   - type: rep
     start: '2003-01-07'
@@ -3625,6 +3619,7 @@
     address: B40B Dirksen Senate Office Building Washington DC 20510
     office: B40b Dirksen Senate Office Building
     phone: 202-224-3344
+    contact_form: https://www.blackburn.senate.gov/contact_marsha
 - id:
     bioguide: B000574
     thomas: '00099'
@@ -3839,7 +3834,10 @@
   bio:
     birthday: '1950-01-10'
     gender: M
-    religion: Baptist
+  leadership_roles:
+  - title: Senate Republican Policy Committee Chair
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1997-01-07'
@@ -4026,7 +4024,6 @@
   bio:
     birthday: '1955-04-11'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1997-01-07'
@@ -4425,7 +4422,6 @@
   bio:
     birthday: '1950-12-23'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '2003-01-07'
@@ -4542,7 +4538,6 @@
   bio:
     birthday: '1955-11-30'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1995-01-04'
@@ -4636,7 +4631,6 @@
   bio:
     birthday: '1947-04-27'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '2004-07-21'
@@ -4749,7 +4743,6 @@
   bio:
     birthday: '1953-06-08'
     gender: M
-    religion: Protestant
   terms:
   - type: rep
     start: '1993-01-05'
@@ -4896,7 +4889,6 @@
   bio:
     birthday: '1953-11-26'
     gender: F
-    religion: Presbyterian
   terms:
   - type: rep
     start: '2001-01-03'
@@ -5099,7 +5091,6 @@
   bio:
     birthday: '1941-11-06'
     gender: M
-    religion: Christian
   terms:
   - type: rep
     start: '2003-01-07'
@@ -5385,7 +5376,6 @@
   bio:
     birthday: '1953-01-22'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1995-01-04'
@@ -5795,7 +5785,6 @@
   bio:
     birthday: '1956-07-27'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2001-01-03'
@@ -6021,7 +6010,10 @@
   bio:
     birthday: '1940-07-21'
     gender: M
-    religion: African Methodist Episcopal
+  leadership_roles:
+  - title: House Majority Whip
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1993-01-05'
@@ -6266,7 +6258,6 @@
   bio:
     birthday: '1949-04-28'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '2003-01-07'
@@ -6382,7 +6373,6 @@
   bio:
     birthday: '1948-06-11'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '2005-01-04'
@@ -6578,7 +6568,6 @@
   bio:
     birthday: '1954-06-19'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '1983-01-03'
@@ -6934,7 +6923,6 @@
   bio:
     birthday: '1951-05-20'
     gender: M
-    religion: Latter Day Saints
   terms:
   - type: rep
     start: '1993-01-05'
@@ -7102,7 +7090,6 @@
   bio:
     birthday: '1955-09-19'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '2005-01-04'
@@ -7209,7 +7196,6 @@
   bio:
     birthday: '1951-01-18'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1996-04-16'
@@ -7348,7 +7334,6 @@
   bio:
     birthday: '1941-09-06'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1997-01-07'
@@ -7480,7 +7465,6 @@
   bio:
     birthday: '1944-04-13'
     gender: F
-    religion: Jewish
   terms:
   - type: rep
     start: '2001-01-03'
@@ -7598,7 +7582,6 @@
   bio:
     birthday: '1947-05-27'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1987-01-06'
@@ -7758,7 +7741,6 @@
   bio:
     birthday: '1957-07-29'
     gender: F
-    religion: Presbyterian
   terms:
   - type: rep
     start: '1997-01-07'
@@ -7891,7 +7873,6 @@
   bio:
     birthday: '1943-03-02'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1991-01-03'
@@ -8217,7 +8198,6 @@
   bio:
     birthday: '1961-09-25'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '2003-01-07'
@@ -8334,7 +8314,6 @@
   bio:
     birthday: '1946-10-06'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1995-01-04'
@@ -8475,7 +8454,6 @@
   bio:
     birthday: '1953-08-05'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1995-01-04'
@@ -8781,7 +8759,6 @@
   bio:
     birthday: '1947-02-18'
     gender: M
-    religion: Jewish
   terms:
   - type: rep
     start: '1989-01-03'
@@ -8933,7 +8910,6 @@
   bio:
     birthday: '1942-12-13'
     gender: F
-    religion: Catholic
   terms:
   - type: rep
     start: '1993-01-05'
@@ -9351,7 +9327,6 @@
   bio:
     birthday: '1943-06-29'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2005-01-04'
@@ -9796,7 +9771,6 @@
   bio:
     birthday: '1953-08-18'
     gender: M
-    religion: Unknown
   terms:
   - type: rep
     start: '2005-01-04'
@@ -9986,7 +9960,6 @@
   bio:
     birthday: '1943-01-18'
     gender: F
-    religion: Methodist
   terms:
   - type: rep
     start: '1997-01-07'
@@ -10118,10 +10091,13 @@
     last: Grassley
     nickname: Chuck
     official_full: Chuck Grassley
+  leadership_roles:
+  - title: President Pro Tempore of the Senate
+    chamber: senate
+    start: '2019-01-03'
   bio:
     birthday: '1933-09-17'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1975-01-14'
@@ -10224,7 +10200,6 @@
   bio:
     birthday: '1963-11-07'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '2001-01-03'
@@ -10436,7 +10411,6 @@
   bio:
     birthday: '1947-09-01'
     gender: M
-    religion: Unknown
   terms:
   - type: rep
     start: '2005-01-04'
@@ -10628,7 +10602,6 @@
   bio:
     birthday: '1948-02-19'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2003-01-07'
@@ -11002,7 +10975,6 @@
   bio:
     birthday: '1936-09-05'
     gender: M
-    religion: African Methodist Episcopal
   terms:
   - type: rep
     start: '1993-01-05'
@@ -11552,8 +11524,8 @@
     url: https://www.hirono.senate.gov
     rss_url: http://www.hirono.senate.gov/rss/feeds/?type=all
     contact_form: https://www.hirono.senate.gov/contact
-    address: 730 Hart Senate Office Building Washington DC 20510
-    office: 730 Hart Senate Office Building
+    address: 713 Hart Senate Office Building Washington DC 20510
+    office: 713 Hart Senate Office Building
     phone: 202-224-6361
 - id:
     bioguide: H001061
@@ -11631,32 +11603,34 @@
   bio:
     birthday: '1939-06-14'
     gender: M
-    religion: Baptist
   leadership_roles:
-  - title: Minority Whip
+  - title: House Minority Whip
     chamber: house
     start: '2003-01-07'
     end: '2005-01-03'
-  - title: Minority Whip
+  - title: House Minority Whip
     chamber: house
     start: '2005-01-04'
     end: '2007-01-03'
-  - title: Minority Whip
+  - title: House Minority Whip
     chamber: house
     start: '2011-01-05'
     end: '2013-01-03'
-  - title: Minority Whip
+  - title: House Minority Whip
     chamber: house
     start: '2013-01-03'
     end: '2015-01-03'
-  - title: Minority Whip
+  - title: House Minority Whip
     chamber: house
     start: '2015-01-06'
     end: '2017-01-03'
-  - title: Minority Whip
+  - title: House Minority Whip
     chamber: house
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: House Majority Leader
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1981-01-05'
@@ -12019,7 +11993,6 @@
   bio:
     birthday: '1944-12-28'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1999-01-06'
@@ -12097,7 +12070,6 @@
   bio:
     birthday: '1950-01-12'
     gender: F
-    religion: Seventh Day Adventist
   terms:
   - type: rep
     start: '1995-01-04'
@@ -12319,7 +12291,6 @@
   bio:
     birthday: '1935-12-03'
     gender: F
-    religion: Baptist
   terms:
   - type: rep
     start: '1993-01-05'
@@ -12595,149 +12566,6 @@
     contact_form: https://www.ronjohnson.senate.gov/public/index.cfm/email-the-senator
     fax: 920-230-7262
 - id:
-    bioguide: J000255
-    thomas: '00612'
-    govtrack: 400209
-    opensecrets: N00002299
-    votesmart: 21785
-    fec:
-    - H2NC01081
-    cspan: 36693
-    wikipedia: Walter B. Jones Jr.
-    house_history: 16015
-    ballotpedia: Walter B. Jones
-    maplight: 309
-    icpsr: 29546
-    wikidata: Q512537
-    google_entity_id: kg:/m/03g_r5
-  name:
-    first: Walter
-    middle: B.
-    last: Jones
-    suffix: Jr.
-    official_full: Walter B. Jones
-  bio:
-    birthday: '1943-02-10'
-    gender: M
-    religion: Catholic
-  terms:
-  - type: rep
-    start: '1995-01-04'
-    end: '1997-01-03'
-    state: NC
-    district: 3
-    party: Republican
-  - type: rep
-    start: '1997-01-07'
-    end: '1999-01-03'
-    state: NC
-    district: 3
-    party: Republican
-  - type: rep
-    start: '1999-01-06'
-    end: '2001-01-03'
-    state: NC
-    district: 3
-    party: Republican
-  - type: rep
-    start: '2001-01-03'
-    end: '2003-01-03'
-    state: NC
-    district: 3
-    party: Republican
-  - type: rep
-    start: '2003-01-07'
-    end: '2005-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    url: http://jones.house.gov
-  - type: rep
-    start: '2005-01-04'
-    end: '2007-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    url: http://jones.house.gov
-  - type: rep
-    start: '2007-01-04'
-    end: '2009-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    url: http://jones.house.gov
-  - type: rep
-    start: '2009-01-06'
-    end: '2011-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    url: http://jones.house.gov
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    url: http://jones.house.gov
-    address: 2333 Rayburn HOB; Washington DC 20515-3303
-    phone: 202-225-3415
-    fax: 202-225-3286
-    contact_form: http://jones.house.gov/contact_form_email.cfm
-    office: 2333 Rayburn House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: NC
-    party: Republican
-    district: 3
-    url: http://jones.house.gov
-    address: 2333 Rayburn HOB; Washington DC 20515-3303
-    phone: 202-225-3415
-    fax: 202-225-3286
-    contact_form: https://jones.house.gov/contact-me/email-me
-    office: 2333 Rayburn House Office Building
-    rss_url: http://jones.house.gov/rss.xml
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: NC
-    party: Republican
-    district: 3
-    url: http://jones.house.gov
-    address: 2333 Rayburn HOB; Washington DC 20515-3303
-    phone: 202-225-3415
-    fax: 202-225-3286
-    contact_form: https://jones.house.gov/contact-me/email-me
-    office: 2333 Rayburn House Office Building
-    rss_url: http://jones.house.gov/rss.xml
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    phone: 202-225-3415
-    url: https://jones.house.gov
-    rss_url: http://jones.house.gov/rss.xml
-    address: 2333 Rayburn House Office Building; Washington DC 20515-3303
-    office: 2333 Rayburn House Office Building
-    fax: 202-225-3286
-  - type: rep
-    start: '2019-01-04'
-    end: '2021-01-03'
-    state: NC
-    district: 3
-    party: Republican
-    phone: 202-225-3415
-    address: 2333 Rayburn House Office Building; Washington DC 20515-3303
-    office: 2333 Rayburn House Office Building
-    url: https://jones.house.gov
-    rss_url: http://jones.house.gov/rss.xml
-  family:
-  - name: Walter Beaman Jones Sr.
-    relation: son
-- id:
     bioguide: J000289
     thomas: '01868'
     govtrack: 412226
@@ -12858,7 +12686,6 @@
   bio:
     birthday: '1946-06-17'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1983-01-03'
@@ -13201,7 +13028,6 @@
   bio:
     birthday: '1963-03-16'
     gender: M
-    religion: Lutheran
   terms:
   - type: rep
     start: '1997-01-07'
@@ -13335,7 +13161,6 @@
   bio:
     birthday: '1944-04-05'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1993-01-05'
@@ -13480,7 +13305,6 @@
   bio:
     birthday: '1949-05-28'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2003-01-07'
@@ -14319,7 +14143,6 @@
   bio:
     birthday: '1940-03-31'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: sen
     start: '1975-01-14'
@@ -14409,7 +14232,6 @@
   bio:
     birthday: '1946-07-16'
     gender: F
-    religion: Baptist
   terms:
   - type: rep
     start: '1998-04-07'
@@ -14592,7 +14414,6 @@
   bio:
     birthday: '1940-02-21'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1987-01-06'
@@ -14962,7 +14783,6 @@
   bio:
     birthday: '1947-12-21'
     gender: F
-    religion: Lutheran
   terms:
   - type: rep
     start: '1995-01-04'
@@ -15184,7 +15004,6 @@
   bio:
     birthday: '1937-07-05'
     gender: F
-    religion: Jewish
   terms:
   - type: rep
     start: '1989-01-03'
@@ -15341,7 +15160,6 @@
   bio:
     birthday: '1960-01-06'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1993-05-10'
@@ -15576,6 +15394,10 @@
   bio:
     gender: M
     birthday: '1972-06-07'
+  leadership_roles:
+  - title: Assistant Speaker of the House
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '2009-01-06'
@@ -15790,7 +15612,6 @@
   bio:
     birthday: '1946-02-19'
     gender: F
-    religion: Presbyterian
   terms:
   - type: rep
     start: '1993-01-05'
@@ -15934,7 +15755,6 @@
   bio:
     birthday: '1951-02-23'
     gender: M
-    religion: Nazarene
   terms:
   - type: rep
     start: '2005-01-04'
@@ -16018,90 +15838,6 @@
     url: https://marchant.house.gov
     rss_url: http://marchant.house.gov/news/rss.aspx
 - id:
-    bioguide: M001179
-    thomas: '02053'
-    govtrack: 412468
-    opensecrets: N00031777
-    votesmart: 119478
-    fec:
-    - H0PA10078
-    cspan: 95129
-    wikipedia: Tom Marino
-    house_history: 18828
-    ballotpedia: Tom Marino
-    maplight: 1473
-    icpsr: 21170
-    wikidata: Q2439864
-    google_entity_id: kg:/m/02qv_mf
-  name:
-    first: Tom
-    last: Marino
-    official_full: Tom Marino
-  bio:
-    birthday: '1952-08-15'
-    gender: M
-  terms:
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: PA
-    district: 10
-    party: Republican
-    url: http://marino.house.gov/
-    address: 410 Cannon HOB; Washington DC 20515-3810
-    phone: 202-225-3731
-    fax: 202-225-9594
-    office: 410 Cannon House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: PA
-    party: Republican
-    district: 10
-    url: http://marino.house.gov
-    address: 410 Cannon HOB; Washington DC 20515-3810
-    phone: 202-225-3731
-    fax: 202-225-9594
-    office: 410 Cannon House Office Building
-    rss_url: http://marino.house.gov/rss.xml
-    contact_form: https://marino.house.gov/contact-me/email-me
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: PA
-    party: Republican
-    district: 10
-    url: http://marino.house.gov
-    address: 410 Cannon HOB; Washington DC 20515-3810
-    phone: 202-225-3731
-    fax: 202-225-9594
-    office: 410 Cannon House Office Building
-    rss_url: http://marino.house.gov/rss.xml
-    contact_form: https://marino.house.gov/contact-me/email-me
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: PA
-    district: 10
-    party: Republican
-    phone: 202-225-3731
-    url: https://marino.house.gov
-    rss_url: http://marino.house.gov/rss.xml
-    address: 2242 Rayburn House Office Building; Washington DC 20515-3810
-    office: 2242 Rayburn House Office Building
-    fax: 202-225-9594
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: PA
-    district: 12
-    party: Republican
-    phone: 202-225-3731
-    address: 1717 Longworth House Office Building; Washington DC 20515-3812
-    office: 1717 Longworth House Office Building
-    url: https://marino.house.gov
-    rss_url: http://marino.house.gov/rss.xml
-- id:
     bioguide: M000133
     thomas: '00735'
     lis: S369
@@ -16128,7 +15864,6 @@
   bio:
     birthday: '1946-07-11'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1975-01-14'
@@ -16424,26 +16159,29 @@
     birthday: '1965-01-26'
     gender: M
   leadership_roles:
-  - title: Majority Whip
+  - title: House Majority Whip
     chamber: house
     start: '2011-01-05'
     end: '2013-01-03'
-  - title: Majority Whip
+  - title: House Majority Whip
     chamber: house
     start: '2013-01-03'
     end: '2014-07-31'
-  - title: Majority Leader
+  - title: House Majority Leader
     chamber: house
     start: '2014-08-01'
     end: '2015-01-03'
-  - title: Majority Leader
+  - title: House Majority Leader
     chamber: house
     start: '2015-01-06'
     end: '2017-01-03'
-  - title: Majority Leader
+  - title: House Majority Leader
     chamber: house
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: House Minority Leader
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '2007-01-04'
@@ -16544,7 +16282,6 @@
   bio:
     birthday: '1962-01-14'
     gender: M
-    religion: Unknown
   terms:
   - type: rep
     start: '2005-01-04'
@@ -16739,7 +16476,6 @@
   bio:
     birthday: '1954-07-12'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2001-01-03'
@@ -16860,7 +16596,6 @@
   bio:
     birthday: '1959-11-20'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1997-01-07'
@@ -17386,7 +17121,6 @@
   bio:
     birthday: '1953-09-25'
     gender: M
-    religion: African Methodist Episcopal
   terms:
   - type: rep
     start: '1997-01-07'
@@ -17518,7 +17252,6 @@
   bio:
     birthday: '1951-04-18'
     gender: F
-    religion: Unknown
   terms:
   - type: rep
     start: '2005-01-04'
@@ -17626,7 +17359,6 @@
   bio:
     birthday: '1954-05-29'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1997-01-07'
@@ -17727,7 +17459,6 @@
   bio:
     birthday: '1957-05-22'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: sen
     start: '2003-01-07'
@@ -17879,7 +17610,10 @@
   bio:
     birthday: '1950-10-11'
     gender: F
-    religion: Roman Catholic
+  leadership_roles:
+  - title: Assistant Senate Minority Leader
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: sen
     start: '1993-01-05'
@@ -17952,7 +17686,6 @@
   bio:
     birthday: '1947-06-13'
     gender: M
-    religion: Jewish
   terms:
   - type: rep
     start: '1992-11-03'
@@ -18102,7 +17835,6 @@
   bio:
     birthday: '1936-12-04'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1999-01-06'
@@ -18228,7 +17960,6 @@
   bio:
     birthday: '1949-02-14'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1989-01-03'
@@ -18383,7 +18114,6 @@
   bio:
     birthday: '1937-06-13'
     gender: F
-    religion: Episcopalian
   terms:
   - type: rep
     start: '1991-01-03'
@@ -18534,7 +18264,6 @@
   bio:
     birthday: '1973-10-01'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2003-01-07'
@@ -18826,7 +18555,6 @@
   bio:
     birthday: '1951-10-30'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1987-01-06'
@@ -18989,7 +18717,6 @@
   bio:
     birthday: '1937-01-25'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1997-01-07'
@@ -19176,24 +18903,26 @@
   bio:
     birthday: '1940-03-26'
     gender: F
-    religion: Roman Catholic
   leadership_roles:
-  - title: Minority Leader
+  - title: House Minority Leader
     chamber: house
     start: '2011-01-05'
     end: '2013-01-03'
-  - title: Minority Leader
+  - title: House Minority Leader
     chamber: house
     start: '2013-01-03'
     end: '2015-01-03'
-  - title: Minority Leader
+  - title: House Minority Leader
     chamber: house
     start: '2015-01-06'
     end: '2017-01-03'
-  - title: Minority Leader
+  - title: House Minority Leader
     chamber: house
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: Speaker of the House
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1987-01-06'
@@ -19530,7 +19259,6 @@
   bio:
     birthday: '1944-06-29'
     gender: M
-    religion: Lutheran
   terms:
   - type: rep
     start: '1991-01-03'
@@ -19777,7 +19505,6 @@
   bio:
     birthday: '1955-12-19'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1993-05-04'
@@ -19966,7 +19693,6 @@
   bio:
     birthday: '1940-08-17'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1987-01-06'
@@ -20564,7 +20290,6 @@
   bio:
     birthday: '1937-12-31'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '1981-01-05'
@@ -20856,7 +20581,6 @@
   bio:
     birthday: '1941-06-12'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1993-01-05'
@@ -21055,7 +20779,6 @@
   bio:
     birthday: '1946-01-31'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '2003-01-07'
@@ -21170,7 +20893,6 @@
   bio:
     birthday: '1946-11-23'
     gender: M
-    religion: Protestant
   terms:
   - type: rep
     start: '1993-01-05'
@@ -21315,7 +21037,6 @@
   bio:
     birthday: '1973-07-16'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2003-01-07'
@@ -21632,18 +21353,21 @@
     birthday: '1965-10-06'
     gender: M
   leadership_roles:
-  - title: Majority Whip
+  - title: House Majority Whip
     chamber: house
     start: '2014-08-01'
     end: '2015-01-03'
-  - title: Majority Whip
+  - title: House Majority Whip
     chamber: house
     start: '2015-01-06'
     end: '2017-01-03'
-  - title: Majority Whip
+  - title: House Majority Whip
     chamber: house
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: House Minority Whip
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '2008-05-07'
@@ -21745,7 +21469,6 @@
   bio:
     birthday: '1944-05-26'
     gender: F
-    religion: Jewish
   terms:
   - type: rep
     start: '1999-01-06'
@@ -22087,12 +21810,14 @@
   bio:
     birthday: '1950-11-23'
     gender: M
-    religion: Jewish
   leadership_roles:
-  - title: Minority Leader
+  - title: Senate Minority Leader
     chamber: senate
     start: '2017-01-03'
     end: '2019-01-03'
+  - title: Senate Minority Leader
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1981-01-05'
@@ -22379,7 +22104,6 @@
   bio:
     birthday: '1945-06-27'
     gender: M
-    religion: Baptist
   terms:
   - type: rep
     start: '2003-01-07'
@@ -22495,7 +22219,6 @@
   bio:
     birthday: '1947-04-30'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '1993-01-05'
@@ -22691,8 +22414,8 @@
     party: Republican
     url: https://www.scott.senate.gov
     rss_url: http://www.scott.senate.gov/rss.xml
-    address: 717 Hart Senate Office Building Washington DC 20510
-    office: 717 Hart Senate Office Building
+    address: 104 Hart Senate Office Building Washington DC 20510
+    office: 104 Hart Senate Office Building
     phone: 202-224-6121
     contact_form: https://www.scott.senate.gov/contact/email-me
     fax: 202-225-3407
@@ -22721,7 +22444,6 @@
   bio:
     birthday: '1943-06-14'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '1979-01-15'
@@ -22908,7 +22630,6 @@
   bio:
     birthday: '1943-10-24'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1989-01-03'
@@ -23151,7 +22872,6 @@
   bio:
     birthday: '1934-05-06'
     gender: M
-    religion: Presbyterian
   terms:
   - type: rep
     start: '1979-01-15'
@@ -23261,7 +22981,6 @@
   bio:
     birthday: '1954-10-24'
     gender: M
-    religion: Jewish
   terms:
   - type: rep
     start: '1997-01-07'
@@ -23394,7 +23113,6 @@
   bio:
     birthday: '1958-02-21'
     gender: M
-    religion: Lutheran
   terms:
   - type: rep
     start: '1997-01-07'
@@ -23528,7 +23246,6 @@
   bio:
     birthday: '1950-09-08'
     gender: M
-    religion: Latter Day Saints
   terms:
   - type: rep
     start: '1999-01-06'
@@ -23759,7 +23476,6 @@
   bio:
     birthday: '1965-06-15'
     gender: M
-    religion: Christian
   terms:
   - type: rep
     start: '1997-01-07'
@@ -23991,7 +23707,6 @@
   bio:
     birthday: '1953-03-04'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1981-01-05'
@@ -24353,7 +24068,6 @@
   bio:
     birthday: '1969-01-28'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '2003-01-07'
@@ -24470,7 +24184,6 @@
   bio:
     birthday: '1948-01-28'
     gender: M
-    religion: Methodist
   terms:
   - type: rep
     start: '1993-04-13'
@@ -24614,7 +24327,6 @@
   bio:
     birthday: '1951-01-24'
     gender: M
-    religion: Catholic
   terms:
   - type: rep
     start: '1999-01-06'
@@ -24832,7 +24544,6 @@
   bio:
     birthday: '1958-07-15'
     gender: M
-    religion: Presbyterian
   terms:
   - type: rep
     start: '1995-01-04'
@@ -24968,6 +24679,10 @@
   bio:
     birthday: '1961-01-07'
     gender: M
+  leadership_roles:
+  - title: Assistant Senate Majority Leader
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '1997-01-07'
@@ -25412,7 +25127,6 @@
   bio:
     birthday: '1953-04-23'
     gender: M
-    religion: Protestant
   terms:
   - type: rep
     start: '1987-01-06'
@@ -25576,7 +25290,6 @@
   bio:
     birthday: '1959-01-10'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '2003-01-07'
@@ -25680,7 +25393,6 @@
   bio:
     birthday: '1953-03-28'
     gender: F
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1993-01-05'
@@ -25821,7 +25533,6 @@
   bio:
     birthday: '1949-08-13'
     gender: M
-    religion: Roman Catholic
   terms:
   - type: rep
     start: '1985-01-03'
@@ -26081,7 +25792,6 @@
   bio:
     birthday: '1957-01-10'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '1999-01-06'
@@ -26207,7 +25917,6 @@
   bio:
     birthday: '1966-09-27'
     gender: F
-    religion: Jewish
   terms:
   - type: rep
     start: '2005-01-04'
@@ -26313,7 +26022,6 @@
   bio:
     birthday: '1938-08-15'
     gender: F
-    religion: Christian
   terms:
   - type: rep
     start: '1991-01-03'
@@ -26649,7 +26357,6 @@
   bio:
     birthday: '1947-07-31'
     gender: M
-    religion: Presbyterian
   terms:
   - type: rep
     start: '2001-12-18'
@@ -26855,7 +26562,6 @@
   bio:
     birthday: '1959-02-03'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '2007-12-13'
@@ -27124,7 +26830,6 @@
   bio:
     birthday: '1949-05-03'
     gender: M
-    religion: Jewish
   terms:
   - type: rep
     start: '1981-01-05'
@@ -27342,7 +27047,6 @@
   bio:
     birthday: '1933-06-09'
     gender: M
-    religion: Episcopalian
   terms:
   - type: rep
     start: '1973-03-06'
@@ -28377,6 +28081,7 @@
     address: 825B&C Hart Senate Office Building Washington DC 20510
     office: 825b&c Hart Senate Office Building
     phone: 202-224-4521
+    contact_form: https://www.sinema.senate.gov/contact-kyrsten
 - id:
     govtrack: 412510
     bioguide: L000578
@@ -30616,10 +30321,11 @@
     class: 1
     party: Republican
     state_rank: junior
-    url: https://www.cramer.senate.gov
+    url: https://www.senate.gov/senators/116thCongress/CramerKevin.htm
     address: B40C Dirksen Senate Office Building Washington DC 20510
     office: B40c Dirksen Senate Office Building
     phone: 202-224-2043
+    contact_form: ''
 - id:
     bioguide: F000463
     thomas: '02179'
@@ -30841,6 +30547,10 @@
   bio:
     gender: M
     birthday: '1970-08-04'
+  leadership_roles:
+  - title: House Democratic Caucus Chair
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '2013-01-03'
@@ -32032,6 +31742,7 @@
     google_entity_id: kg:/m/053f8h
   name:
     first: Timothy
+    nickname: Tim
     last: Kaine
     official_full: Tim Kaine
   bio:
@@ -32768,6 +32479,10 @@
   bio:
     gender: M
     birthday: '1954-05-14'
+  leadership_roles:
+  - title: House Republican Policy Committee Chair
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '2015-01-06'
@@ -34844,6 +34559,10 @@
   bio:
     gender: F
     birthday: '1970-07-01'
+  leadership_roles:
+  - title: Senate Republican Conference Vice Chair
+    chamber: senate
+    start: '2019-01-03'
   terms:
   - type: sen
     start: '2015-01-06'
@@ -36856,6 +36575,7 @@
     address: G12 Dirksen Senate Office Building Washington DC 20510
     office: G12 Dirksen Senate Office Building
     phone: 202-224-6244
+    contact_form: https://www.rosen.senate.gov/contact_jacky
 - id:
     bioguide: S001201
     govtrack: 412717
@@ -37318,6 +37038,10 @@
   bio:
     gender: F
     birthday: '1966-07-28'
+  leadership_roles:
+  - title: House Republican Conference Chair
+    chamber: house
+    start: '2019-01-03'
   terms:
   - type: rep
     start: '2017-01-03'
@@ -38008,10 +37732,10 @@
   name:
     first: Ed
     last: Case
+    official_full: Ed Case
   bio:
     birthday: '1952-09-27'
     gender: M
-    religion: Protestant
   terms:
   - type: rep
     start: '2003-01-07'
@@ -38056,7 +37780,7 @@
     first: Steven
     last: Horsford
     middle: A.
-    official_full: Steven A. Horsford
+    official_full: Steven Horsford
   bio:
     gender: M
     birthday: '1973-04-29'
@@ -38164,6 +37888,7 @@
   name:
     first: Greg
     last: Stanton
+    official_full: Greg Stanton
   bio:
     gender: M
     birthday: '1970-03-08'
@@ -38190,6 +37915,7 @@
   name:
     first: Josh
     last: Harder
+    official_full: Josh Harder
   bio:
     gender: M
     birthday: '1986-08-01'
@@ -38216,6 +37942,7 @@
   name:
     first: TJ
     last: Cox
+    official_full: TJ Cox
   bio:
     gender: M
     birthday: '1963-07-18'
@@ -38241,6 +37968,7 @@
   name:
     first: Katie
     last: Hill
+    official_full: Katie Hill
   bio:
     gender: F
     birthday: '1987-08-25'
@@ -38267,6 +37995,7 @@
     first: Gilbert
     middle: Ray
     last: Cisneros
+    official_full: Gil Cisneros
   bio:
     gender: M
     birthday: '1971-02-12'
@@ -38292,6 +38021,7 @@
   name:
     first: Katie
     last: Porter
+    official_full: Katie Porter
   bio:
     gender: F
     birthday: '1974-01-03'
@@ -38317,6 +38047,7 @@
   name:
     first: Harley
     last: Rouda
+    official_full: Harley Rouda
   bio:
     gender: M
     birthday: '1961-12-10'
@@ -38342,6 +38073,7 @@
   name:
     first: Mike
     last: Levin
+    official_full: Mike Levin
   bio:
     gender: M
     birthday: '1978-10-28'
@@ -38367,6 +38099,7 @@
   name:
     first: Joe
     last: Neguse
+    official_full: Joe Neguse
   bio:
     gender: M
     birthday: '1984-05-13'
@@ -38392,6 +38125,7 @@
   name:
     first: Jason
     last: Crow
+    official_full: Jason Crow
   bio:
     gender: M
     birthday: '1979-03-15'
@@ -38417,6 +38151,7 @@
   name:
     first: Jahana
     last: Hayes
+    official_full: Jahana Hayes
   bio:
     gender: F
     birthday: '1973-03-08'
@@ -38441,6 +38176,7 @@
   name:
     first: Michael
     last: Waltz
+    official_full: Michael Waltz
   bio:
     gender: M
     birthday: '1974-01-31'
@@ -38467,6 +38203,7 @@
   name:
     first: Ross
     last: Spano
+    official_full: Ross Spano
   bio:
     gender: M
     birthday: '1966-07-16'
@@ -38494,6 +38231,7 @@
     first: W.
     middle: Gregory
     last: Steube
+    official_full: W. Gregory Steube
   bio:
     gender: M
     birthday: '1978-05-19'
@@ -38520,6 +38258,7 @@
   name:
     first: Debbie
     last: Mucarsel-Powell
+    official_full: Debbie Mucarsel-Powell
   bio:
     gender: F
     birthday: '1971-01-18'
@@ -38547,6 +38286,7 @@
     first: Donna
     middle: E.
     last: Shalala
+    official_full: Donna E. Shalala
   bio:
     gender: F
     birthday: '1941-02-14'
@@ -38573,6 +38313,7 @@
   name:
     first: Lucy
     last: McBath
+    official_full: Lucy McBath
   bio:
     gender: F
     birthday: '1960-06-01'
@@ -38599,6 +38340,7 @@
     first: Michael
     middle: F. Q.
     last: San Nicolas
+    official_full: Michael F. Q. San Nicolas
   bio:
     gender: M
     birthday: '1981-01-30'
@@ -38625,6 +38367,7 @@
   name:
     first: Abby
     last: Finkenauer
+    official_full: Abby Finkenauer
   bio:
     gender: F
     birthday: '1988-12-27'
@@ -38651,6 +38394,7 @@
   name:
     first: Cynthia
     last: Axne
+    official_full: Cynthia Axne
   bio:
     gender: F
     birthday: '1965-04-20'
@@ -38677,6 +38421,7 @@
   name:
     first: Russ
     last: Fulcher
+    official_full: Russ Fulcher
   bio:
     gender: M
     birthday: '1973-07-19'
@@ -38704,6 +38449,7 @@
     first: Jesús
     middle: G.
     last: García
+    official_full: Jesús G. García
   bio:
     gender: M
     birthday: '1956-04-12'
@@ -38728,6 +38474,7 @@
   name:
     first: Sean
     last: Casten
+    official_full: Sean Casten
   bio:
     gender: M
     birthday: '1971-11-23'
@@ -38753,6 +38500,7 @@
   name:
     first: Lauren
     last: Underwood
+    official_full: Lauren Underwood
   bio:
     gender: F
     birthday: '1986-10-04'
@@ -38779,6 +38527,7 @@
     first: James
     middle: R.
     last: Baird
+    official_full: James R. Baird
   bio:
     gender: M
     birthday: '1945-06-04'
@@ -38804,6 +38553,7 @@
   name:
     first: Greg
     last: Pence
+    official_full: Greg Pence
   bio:
     gender: M
     birthday: '1956-11-14'
@@ -38829,6 +38579,7 @@
     first: Steven
     middle: C.
     last: Watkins
+    official_full: Steven C. Watkins, Jr.
   bio:
     gender: M
     birthday: '1976-09-18'
@@ -38855,6 +38606,7 @@
   name:
     first: Sharice
     last: Davids
+    official_full: Sharice Davids
   bio:
     gender: F
     birthday: '1980-05-22'
@@ -38880,6 +38632,7 @@
   name:
     first: Lori
     last: Trahan
+    official_full: Lori Trahan
   bio:
     gender: F
     birthday: '1973-10-27'
@@ -38906,6 +38659,7 @@
   name:
     first: Ayanna
     last: Pressley
+    official_full: Ayanna Pressley
   bio:
     gender: F
     birthday: '1974-02-03'
@@ -38932,6 +38686,7 @@
     first: David
     middle: J.
     last: Trone
+    official_full: David J. Trone
   bio:
     gender: M
     birthday: '1955-09-21'
@@ -38958,6 +38713,7 @@
   name:
     first: Elissa
     last: Slotkin
+    official_full: Elissa Slotkin
   bio:
     gender: F
     birthday: '1976-07-10'
@@ -38983,6 +38739,7 @@
   name:
     first: Andy
     last: Levin
+    official_full: Andy Levin
   bio:
     gender: M
     birthday: '1960-08-01'
@@ -39010,6 +38767,7 @@
     first: Haley
     middle: M.
     last: Stevens
+    official_full: Haley M. Stevens
   bio:
     gender: F
     birthday: '1983-06-01'
@@ -39036,6 +38794,7 @@
   name:
     first: Rashida
     last: Tlaib
+    official_full: Rashida Tlaib
   bio:
     gender: F
     birthday: '1976-07-24'
@@ -39061,6 +38820,7 @@
   name:
     first: Jim
     last: Hagedorn
+    official_full: Jim Hagedorn
   bio:
     gender: M
     birthday: '1962-08-04'
@@ -39087,6 +38847,7 @@
   name:
     first: Angie
     last: Craig
+    official_full: Angie Craig
   bio:
     gender: F
     birthday: '1972-02-14'
@@ -39112,6 +38873,7 @@
   name:
     first: Dean
     last: Phillips
+    official_full: Dean Phillips
   bio:
     gender: M
     birthday: '1969-01-20'
@@ -39137,6 +38899,7 @@
   name:
     first: Ilhan
     last: Omar
+    official_full: Ilhan Omar
   bio:
     gender: F
     birthday: '1981-10-04'
@@ -39162,6 +38925,7 @@
   name:
     first: Pete
     last: Stauber
+    official_full: Pete Stauber
   bio:
     gender: M
     birthday: '1966-05-10'
@@ -39186,6 +38950,7 @@
   name:
     first: Michael
     last: Guest
+    official_full: Michael Guest
   bio:
     gender: M
     birthday: '1970-02-04'
@@ -39211,6 +38976,7 @@
   name:
     first: Kelly
     last: Armstrong
+    official_full: Kelly Armstrong
   bio:
     gender: M
     birthday: '1976-10-08'
@@ -39236,6 +39002,7 @@
   name:
     first: Chris
     last: Pappas
+    official_full: Chris Pappas
   bio:
     gender: M
     birthday: '1980-06-04'
@@ -39262,6 +39029,7 @@
   name:
     first: Jefferson
     last: Van Drew
+    official_full: Jefferson Van Drew
   bio:
     gender: M
     birthday: '1953-02-23'
@@ -39286,6 +39054,7 @@
   name:
     first: Andy
     last: Kim
+    official_full: Andy Kim
   bio:
     gender: M
     birthday: '1982-07-12'
@@ -39313,6 +39082,7 @@
   name:
     first: Tom
     last: Malinowski
+    official_full: Tom Malinowski
   bio:
     gender: M
     birthday: '1965-09-23'
@@ -39339,6 +39109,7 @@
   name:
     first: Mikie
     last: Sherrill
+    official_full: Mikie Sherrill
   bio:
     gender: F
     birthday: '1972-01-19'
@@ -39365,6 +39136,7 @@
     first: Debra
     middle: A.
     last: Haaland
+    official_full: Debra A. Haaland
   bio:
     gender: F
     birthday: '1960-12-02'
@@ -39390,6 +39162,7 @@
   name:
     first: Xochitl
     last: Torres Small
+    official_full: Xochitl Torres Small
   bio:
     gender: F
     birthday: '1984-11-15'
@@ -39415,6 +39188,7 @@
   name:
     first: Susie
     last: Lee
+    official_full: Susie Lee
   bio:
     gender: F
     birthday: '1966-11-07'
@@ -39439,6 +39213,7 @@
   name:
     first: Max
     last: Rose
+    official_full: Max Rose
   bio:
     gender: M
     birthday: '1986-11-28'
@@ -39465,6 +39240,7 @@
   name:
     first: Alexandria
     last: Ocasio-Cortez
+    official_full: Alexandria Ocasio-Cortez
   bio:
     gender: F
     birthday: '1989-10-13'
@@ -39489,6 +39265,7 @@
   name:
     first: Antonio
     last: Delgado
+    official_full: Antonio Delgado
   bio:
     gender: M
     birthday: '1977-01-19'
@@ -39516,6 +39293,7 @@
   name:
     first: Anthony
     last: Brindisi
+    official_full: Anthony Brindisi
   bio:
     gender: M
     birthday: '1978-11-22'
@@ -39541,6 +39319,7 @@
   name:
     first: Anthony
     last: Gonzalez
+    official_full: Anthony Gonzalez
   bio:
     gender: M
     birthday: '1984-09-19'
@@ -39567,6 +39346,7 @@
     first: Kendra
     middle: S.
     last: Horn
+    official_full: Kendra S. Horn
   bio:
     gender: F
     birthday: '1976-06-09'
@@ -39593,6 +39373,7 @@
   name:
     first: Madeleine
     last: Dean
+    official_full: Madeleine Dean
   bio:
     gender: F
     birthday: '1959-06-06'
@@ -39619,6 +39400,7 @@
   name:
     first: Chrissy
     last: Houlahan
+    official_full: Chrissy Houlahan
   bio:
     gender: F
     birthday: '1967-06-05'
@@ -39645,6 +39427,7 @@
   name:
     first: Daniel
     last: Meuser
+    official_full: Daniel Meuser
   bio:
     gender: M
     birthday: '1964-02-10'
@@ -39669,6 +39452,7 @@
   name:
     first: John
     last: Joyce
+    official_full: John Joyce
   bio:
     gender: M
     birthday: '1957-02-08'
@@ -39695,6 +39479,7 @@
   name:
     first: Guy
     last: Reschenthaler
+    official_full: Guy Reschenthaler
   bio:
     gender: M
     birthday: '1983-04-17'
@@ -39720,6 +39505,7 @@
   name:
     first: Joe
     last: Cunningham
+    official_full: Joe Cunningham
   bio:
     gender: M
     birthday: '1982-05-26'
@@ -39747,6 +39533,7 @@
     first: William
     middle: R.
     last: Timmons
+    official_full: William R. Timmons IV
   bio:
     gender: M
     birthday: '1984-04-30'
@@ -39772,6 +39559,7 @@
   name:
     first: Dusty
     last: Johnson
+    official_full: Dusty Johnson
   bio:
     gender: M
     birthday: '1976-09-30'
@@ -39798,6 +39586,7 @@
   name:
     first: Tim
     last: Burchett
+    official_full: Tim Burchett
   bio:
     gender: M
     birthday: '1964-08-25'
@@ -39824,6 +39613,7 @@
     first: John
     middle: W.
     last: Rose
+    official_full: John W. Rose
   bio:
     gender: M
     birthday: '1965-02-23'
@@ -39851,6 +39641,7 @@
     first: Mark
     middle: E.
     last: Green
+    official_full: Mark E. Green
   bio:
     gender: M
     birthday: '1964-11-08'
@@ -39877,6 +39668,7 @@
   name:
     first: Dan
     last: Crenshaw
+    official_full: Dan Crenshaw
   bio:
     gender: M
     birthday: '1984-03-14'
@@ -39902,6 +39694,7 @@
   name:
     first: Van
     last: Taylor
+    official_full: Van Taylor
   bio:
     gender: M
     birthday: '1972-08-01'
@@ -39928,6 +39721,7 @@
   name:
     first: Lance
     last: Gooden
+    official_full: Lance Gooden
   bio:
     gender: M
     birthday: '1982-12-01'
@@ -39952,6 +39746,7 @@
   name:
     first: Ron
     last: Wright
+    official_full: Ron Wright
   bio:
     gender: M
     birthday: '1953-04-08'
@@ -39978,6 +39773,7 @@
   name:
     first: Lizzie
     last: Fletcher
+    official_full: Lizzie Fletcher
   bio:
     gender: F
     birthday: '1975-02-13'
@@ -40003,6 +39799,7 @@
   name:
     first: Veronica
     last: Escobar
+    official_full: Veronica Escobar
   bio:
     gender: F
     birthday: '1969-09-15'
@@ -40028,6 +39825,7 @@
   name:
     first: Chip
     last: Roy
+    official_full: Chip Roy
   bio:
     gender: M
     birthday: '1972-08-07'
@@ -40055,6 +39853,7 @@
     first: Sylvia
     middle: R.
     last: Garcia
+    official_full: Sylvia R. Garcia
   bio:
     gender: F
     birthday: '1950-09-06'
@@ -40081,6 +39880,7 @@
     first: Colin
     middle: Z.
     last: Allred
+    official_full: Colin Z. Allred
   bio:
     gender: M
     birthday: '1983-04-15'
@@ -40107,6 +39907,7 @@
   name:
     first: Ben
     last: McAdams
+    official_full: Ben McAdams
   bio:
     gender: M
     birthday: '1974-12-05'
@@ -40134,6 +39935,7 @@
     first: Elaine
     middle: G.
     last: Luria
+    official_full: Elaine G. Luria
   bio:
     gender: F
     birthday: '1975-08-15'
@@ -40159,6 +39961,7 @@
   name:
     first: Denver
     last: Riggleman
+    official_full: Denver Riggleman
   bio:
     gender: M
     birthday: '1970-03-01'
@@ -40185,6 +39988,7 @@
   name:
     first: Ben
     last: Cline
+    official_full: Ben Cline
   bio:
     gender: M
     birthday: '1972-02-29'
@@ -40211,6 +40015,7 @@
     first: Abigail
     middle: Davis
     last: Spanberger
+    official_full: Abigail Davis Spanberger
   bio:
     gender: F
     birthday: '1979-08-07'
@@ -40237,6 +40042,7 @@
   name:
     first: Jennifer
     last: Wexton
+    official_full: Jennifer Wexton
   bio:
     gender: F
     birthday: '1968-05-27'
@@ -40262,6 +40068,7 @@
   name:
     first: Kim
     last: Schrier
+    official_full: Kim Schrier
   bio:
     gender: F
     birthday: '1968-08-23'
@@ -40286,6 +40093,7 @@
   name:
     first: Bryan
     last: Steil
+    official_full: Bryan Steil
   bio:
     gender: M
     birthday: '1981-03-30'
@@ -40313,6 +40121,7 @@
     first: Carol
     middle: D.
     last: Miller
+    official_full: Carol D. Miller
   bio:
     gender: F
     birthday: '1950-11-04'
@@ -40341,6 +40150,7 @@
   name:
     first: Rick
     last: Scott
+    official_full: Rick Scott
   bio:
     gender: M
     birthday: '1952-12-01'
@@ -40352,6 +40162,11 @@
     class: 1
     party: Republican
     state_rank: junior
+    url: https://www.senate.gov/senators/116thCongress/ScottRick.htm
+    address: 716 Hart Senate Office Building Washington DC 20510
+    office: 716 Hart Senate Office Building
+    phone: 202-224-5274
+    contact_form: mailto:help@rickscott.senate.gov
 - id:
     bioguide: B001310
     fec:
@@ -40382,6 +40197,7 @@
     address: B85 Russell Senate Office Building Washington DC 20510
     office: B85 Russell Senate Office Building
     phone: 202-224-4814
+    contact_form: http://www.braun.senate.gov/contact-mike
 - id:
     bioguide: H001089
     fec:
@@ -40408,10 +40224,11 @@
     class: 1
     party: Republican
     state_rank: junior
-    url: https://www.hawley.senate.gov
+    url: https://www.senate.gov/senators/116thCongress/HawleyJosh.htm
     address: B40A Dirksen Senate Office Building Washington DC 20510
     office: B40a Dirksen Senate Office Building
     phone: 202-224-6154
+    contact_form: mailto:senator@hawley.senate.gov
 - id:
     bioguide: R000615
     fec:
@@ -40442,6 +40259,7 @@
     address: B33 Russell Senate Office Building Washington DC 20510
     office: B33 Russell Senate Office Building
     phone: 202-224-5251
+    contact_form: https://www.romney.senate.gov/contact-senator-romney
 - id:
     bioguide: M001197
     fec:
@@ -40500,6 +40318,7 @@
     address: B40D Dirksen Senate Office Building Washington DC 20510
     office: B40d Dirksen Senate Office Building
     phone: 202-224-2235
+    contact_form: https://www.mcsally.senate.gov/contact_martha
 - id:
     bioguide: G000592
     fec:
@@ -40512,6 +40331,7 @@
     first: Jared
     middle: Forrest
     last: Golden
+    official_full: Jared F. Golden
   bio:
     gender: M
     birthday: '1982-07-25'

@@ -5994,40 +5994,6 @@
     hours: M-F 9-6pm
     phone: 214-922-8885
 - id:
-    bioguide: J000255
-    govtrack: 400209
-    thomas: '00612'
-  offices:
-  - id: J000255-greenville
-    address: 1105-C Corporate Drive
-    city: Greenville
-    state: NC
-    zip: '27858'
-    latitude: 35.580699
-    longitude: -77.356802
-    fax: 252-931-1002
-    hours: Mon-Fri 9am-5pm
-    phone: 252-931-1003
-  - id: J000255-havelock
-    address: 1 Governmental Ave.
-    city: Havelock
-    state: NC
-    zip: '28532'
-    latitude: 34.8760387
-    longitude: -76.9018802
-    hours: 2nd and 4th Tuesday of every month, 9:30-4:00
-    phone: 252-565-6846
-  - id: J000255-jacksonville
-    address: 234 NW. Corridor Blvd.
-    suite: Room 313B
-    city: Jacksonville
-    state: NC
-    zip: '28540'
-    latitude: 34.7806024
-    longitude: -77.4857495
-    hours: Open the 1st and 3rd Tuesday of every month, 9:30-4:00
-    phone: 252-565-6846
-- id:
     bioguide: J000288
     govtrack: 412199
     thomas: '01843'
@@ -8431,44 +8397,6 @@
     longitude: -121.2464852
     fax: 916-786-6364
     phone: 916-786-5560
-- id:
-    bioguide: M001179
-    govtrack: 412468
-    thomas: '02053'
-  offices:
-  - id: M001179-lake_ariel
-    address: 543 Easton Turnpike
-    suite: Suite 101
-    city: Lake Ariel
-    state: PA
-    zip: '18436'
-    latitude: 41.400944
-    longitude: -75.39838
-    fax: 570-689-6028
-    hours: Monday - Friday, 9:00 A.M. to 5:00 P.M
-    phone: 570-689-6024
-  - id: M001179-selinsgrove
-    address: 713 Bridge St.
-    suite: Room 29
-    city: Selinsgrove
-    state: PA
-    zip: '17870'
-    latitude: 40.8115979
-    longitude: -76.86333599999999
-    fax: 570-374-9589
-    hours: Monday - Friday, 9:00 A.M. to 5:00 P.M.
-    phone: 570-374-9469
-  - id: M001179-williamsport
-    address: 1020 Commerce Park Dr.
-    suite: Suite 1A
-    city: Williamsport
-    state: PA
-    zip: '17701'
-    latitude: 41.2471701
-    longitude: -76.98338179999999
-    fax: 570-322-3965
-    hours: Monday - Friday, 9:00 A.M. to 5:00 P.M.
-    phone: 570-322-3961
 - id:
     bioguide: M001180
     govtrack: 412487

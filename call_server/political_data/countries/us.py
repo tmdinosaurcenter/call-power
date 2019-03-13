@@ -555,6 +555,7 @@ class USDataProvider(DataProvider):
 
             chamber_classification = leg['chamber'][0]['organization']['classification']
             district_label = leg['chamber'][0]['post']['label']
+            post_division = leg['chamber'][0]['post']['division']['id']
             post_state = ocd_field(post_division, 'state').upper()
             role_title = leg['chamber'][0]['post']['role']
 

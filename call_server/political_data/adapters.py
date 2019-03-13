@@ -117,10 +117,10 @@ class OpenStatesData(DataAdapter):
             'uid': data.get('id')
         }
         if 'chamber' in data:
-            if type(data['chamber'] == dict):
+            if type(data['chamber']) == dict:
                 chamber = data['chamber'][0]['organization']['classification']
                 district = data['chamber'][0]['post']['label']
-            elif type(data['chamber'] == str):
+            elif type(data['chamber']) == str:
                 chamber = data['chamber']
                 district = data.get('district', '')
             else:
@@ -203,8 +203,8 @@ class OpenStatesData(DataAdapter):
         # so we can iterate more cleanly
         offices_dict = defaultdict(dict)
         for c in data.get('contactDetails', []):
-            offices[c['note']][c['type']] = c['value']
-            offices[c['note']]['name'] = c['note']
+            offices_dict[c['note']][c['type']] = c['value']
+            offices_dict[c['note']]['name'] = c['note']
 
         office_list = []
         for office in offices_dict.values():

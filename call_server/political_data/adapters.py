@@ -127,7 +127,9 @@ class OpenStatesData(DataAdapter):
                 chamber = None
                 district = None
 
-        if chamber == "upper":
+        if 'title' in data:
+            adapted['title'] = data['title']
+        elif chamber == "upper":
             adapted['title'] = 'Senator'
         else:
             adapted['title'] = 'Representative'

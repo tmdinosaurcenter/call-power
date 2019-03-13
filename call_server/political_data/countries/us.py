@@ -7,6 +7,7 @@ from . import DataProvider, CampaignType
 from ..geocode import Geocoder, LocationError
 from ..constants import US_STATES
 from ...campaign.constants import (LOCATION_POSTAL, LOCATION_ADDRESS, LOCATION_LATLON)
+from ...utils import ocd_field
 
 import os
 import random
@@ -467,6 +468,10 @@ class USDataProvider(DataProvider):
                     chamber: currentMemberships(classification:["upper", "lower"]) {
                       post {
                         label
+                        role
+                        division {
+                          id
+                        }
                       }
                       organization {
                         name
@@ -491,8 +496,14 @@ class USDataProvider(DataProvider):
 
             chamber_classification = leg['chamber'][0]['organization']['classification']
             district_label = leg['chamber'][0]['post']['label']
+            post_division = leg['chamber'][0]['post']['division']['id']
+            post_state = ocd_field(post_division, 'state').upper()
+            role_title = leg['chamber'][0]['post']['role']
+
             leg['chamber'] = chamber_classification
+            leg['state'] = post_state
             leg['district'] = district_label
+            leg['title'] = role_title
 
             key = self.KEY_OPENSTATES.format(id=leg['id'])
             leg['cache_key'] = key
@@ -522,6 +533,10 @@ class USDataProvider(DataProvider):
                   chamber: currentMemberships(classification:["upper", "lower"]) {
                       post {
                         label
+                        role
+                        division {
+                          id
+                        }
                       }
                       organization {
                         name
@@ -540,8 +555,14 @@ class USDataProvider(DataProvider):
 
             chamber_classification = leg['chamber'][0]['organization']['classification']
             district_label = leg['chamber'][0]['post']['label']
+            post_state = ocd_field(post_division, 'state').upper()
+            role_title = leg['chamber'][0]['post']['role']
+
             leg['chamber'] = chamber_classification
+            leg['state'] = post_state
             leg['district'] = district_label
+            leg['title'] = role_title
+
             leg['cache_key'] = key
             self.cache_set(key, leg)
         return leg

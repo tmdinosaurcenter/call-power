@@ -214,9 +214,8 @@ class USCampaignType_State(USCampaignType):
 
     def _filter_legislators(self, legislators, campaign_region=None):
         for legislator in legislators:
-            is_active = legislator['active']
             in_state = campaign_region is None or legislator['state'].upper() == campaign_region.upper()
-            if is_active and in_state:
+            if in_state:
                 yield legislator
 
 

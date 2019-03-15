@@ -121,6 +121,12 @@ To run in production, with compiled assets:
     
 Make sure your webserver can serve audio files out of `APPLICATION_ROOT/instance/uploads`. Or if you are using Amazon S3, ensure your buckets are configured for public access.
 
+Heroku setup
+------------------
+Heroku names some environment variables differently, particularly for the database and redis cache. To ensure the correct ones are pulled in, ensure that the Heroku config is enabled by setting `heroku config:set CALLPOWER_CONFIG=call_server.config:HerokuConfig`.
+
+You will also need to provision the Heroku Postgres and Heroku Redis addons for database and caching,. You can start with the Hobby tiers which are free to test, but for production use you'll want to upgrade to Standard. You will probably also want to add Sendgrid to send user invite and password resset emails; this can likely remain at the Starter level.
+
 Docker setup
 ------------------
 A Dockerfile is included for building a container environment suitable for both development and production. To begin, copy `docker-compose.yml.example` to `docker-compose.yml` and fill in the appropriate values. Consult [the first part of this guide](#configure-settings) to learn what the required variables are.

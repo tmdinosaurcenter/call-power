@@ -50,16 +50,6 @@ def create_app(configuration=None, app_name=None, blueprints=None):
     app = Flask(app_name)
     # configure app from object or environment
     configure_app(app, configuration)
-        
-    # set production security headers
-    if app.config['ENVIRONMENT'] == "Production":
-        # append media-src to include flask-store domain
-        store_domain = urlparse.urlparse(app.config['STORE_DOMAIN']).netloc,
-        CALLPOWER_CSP['media-src'].extend(store_domain)
-        talisman.init_app(app,
-            force_https=True,
-            content_security_policy=CALLPOWER_CSP
-        )
 
     if app.config.get('SENTRY_DSN'):
         from raven.contrib.flask import Sentry
@@ -81,6 +71,20 @@ def create_app(configuration=None, app_name=None, blueprints=None):
 
     configure_logging(app)
     configure_error_pages(app)
+
+    # store production assets
+    if app.config.get('STORE_DOMAIN'):
+        store_domain = urlparse.urlparse(app.config['STORE_DOMAIN']).netloc
+        # set production security headers
+        if app.config['ENVIRONMENT'] == "Production":
+            # append media-src to include flask-store domain
+            CALLPOWER_CSP['media-src'].extend(store_domain)
+            talisman.init_app(app,
+                force_https=True,
+                content_security_policy=CALLPOWER_CSP
+            )
+    else:
+        app.logger.error('Flask-store is not configured, you may not be able to serve audio recordings')
 
     # then extension specific configurations
     configure_babel(app)

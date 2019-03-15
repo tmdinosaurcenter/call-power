@@ -99,13 +99,18 @@ class ProductionConfig(DefaultConfig):
     SQLALCHEMY_POOL_RECYCLE = os.environ.get('SQLALCHEMY_POOL_RECYCLE', 60 * 60)  # default 1 hour
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
 
-    STORE_PROVIDER = 'flask_store.providers.s3.S3Provider'
-    # TODO, change to S3GeventProvider when we re-enable gevent
-    STORE_PATH = 'uploads'
-    STORE_S3_BUCKET = os.environ.get('STORE_S3_BUCKET')
-    STORE_S3_REGION = os.environ.get('STORE_S3_REGION')
-    STORE_S3_ACCESS_KEY = os.environ.get('S3_ACCESS_KEY')
-    STORE_S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY')
+    if 'STORE_S3_BUCKET' in os.environ:
+        STORE_PROVIDER = 'flask_store.providers.s3.S3Provider'
+        # TODO, change to S3GeventProvider when we re-enable gevent
+        STORE_PATH = 'uploads'
+        STORE_S3_BUCKET = os.environ.get('STORE_S3_BUCKET')
+        STORE_S3_REGION = os.environ.get('STORE_S3_REGION')
+        STORE_S3_ACCESS_KEY = os.environ.get('S3_ACCESS_KEY')
+        STORE_S3_SECRET_KEY = os.environ.get('S3_SECRET_KEY')
+    else:
+        STORE_PROVIDER = 'flask_store.providers.local.LocalProvider'
+        STORE_S3_REGION = ''
+
     STORE_DOMAIN = os.environ.get('STORE_DOMAIN')
     if not STORE_DOMAIN and STORE_S3_REGION:
         # set external store domain per AWS regions
@@ -116,7 +121,6 @@ class ProductionConfig(DefaultConfig):
             STORE_DOMAIN = 'https://s3.amazonaws.com/%s/' % (STORE_S3_BUCKET)
         else:
             STORE_DOMAIN = 'https://s3-%s.amazonaws.com/%s/' % (STORE_S3_REGION, STORE_S3_BUCKET)
-
 
 class HerokuConfig(ProductionConfig):
     # Heroku addons use a few different environment variable names

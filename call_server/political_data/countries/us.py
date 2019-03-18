@@ -172,10 +172,18 @@ class USCampaignType_State(USCampaignType):
             return display
 
     def all_targets(self, location, campaign_region=None):
+        UPPER = 'upper'
+        LOWER = 'lower'
+
+        if location.state == 'NE':
+            # unicameral, so there's only "legislature"
+            UPPER = None
+            LOWER = 'legislature'
+
         return {
             'exec': self._get_state_governor(location, campaign_region),
-            'upper': self._get_state_upper(location, campaign_region),
-            'lower': self._get_state_lower(location, campaign_region)
+            'upper': self._get_state_legislators(location, campaign_region, UPPER),
+            'lower': self._get_state_legislators(location, campaign_region, LOWER)
         }
 
     def sort_targets(self, targets, subtype, order, shuffle_chamber=True):
@@ -203,15 +211,10 @@ class USCampaignType_State(USCampaignType):
     def _get_state_governor(self, location, campaign_region=None):
         return [self.data_provider.KEY_GOVERNOR.format(state=location.state)]
 
-    def _get_state_upper(self, location, campaign_region=None):
+    def _get_state_legislators(self, location, campaign_region=None, chamber_name='upper'):
         legislators = self.data_provider.get_state_legislators(location)
         filtered = self._filter_legislators(legislators, campaign_region)
-        return (l['cache_key'] for l in filtered if l['chamber'] == 'upper')
-
-    def _get_state_lower(self, location, campaign_region=None):
-        legislators = self.data_provider.get_state_legislators(location)
-        filtered = self._filter_legislators(legislators, campaign_region)
-        return (l['cache_key'] for l in filtered if l['chamber'] == 'lower')
+        return (l['cache_key'] for l in filtered if l['chamber'] == chamber_name)
 
     def _filter_legislators(self, legislators, campaign_region=None):
         for legislator in legislators:
@@ -465,7 +468,7 @@ class USDataProvider(DataProvider):
                     name
                     givenName
                     familyName
-                    chamber: currentMemberships(classification:["upper", "lower"]) {
+                    chamber: currentMemberships(classification:["upper", "lower", "legislature"]) {
                       post {
                         label
                         role
@@ -530,7 +533,7 @@ class USDataProvider(DataProvider):
                   name
                   givenName
                   familyName
-                  chamber: currentMemberships(classification:["upper", "lower"]) {
+                  chamber: currentMemberships(classification:["upper", "lower", "legislature"]) {
                       post {
                         label
                         role

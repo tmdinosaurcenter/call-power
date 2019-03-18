@@ -236,7 +236,7 @@ class Target(db.Model):
         return self.number.e164
 
     @classmethod
-    def get_or_create(cls, uid, prefix=None, cache=cache):
+    def get_or_create(cls, uid, prefix=None, commit=True, cache=cache):
         if prefix:
             key = '%s:%s' % (prefix, uid)
         else:
@@ -286,7 +286,7 @@ class Target(db.Model):
                     db.session.add(o)
                     created = True
 
-        if created:
+        if created and commit:
             # save to db
             db.session.commit()
 

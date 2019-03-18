@@ -156,7 +156,7 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
             # split prefix:uid
             (uid, prefix) = parse_target(target_key)
             # get or create Target
-            (target, created) = Target.get_or_create(uid, prefix)
+            (target, created) = Target.get_or_create(uid, prefix, commit=False)
             # set other fields on it
             for (field, val) in target_data.items():
                 setattr(target, field, val)

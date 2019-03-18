@@ -136,6 +136,35 @@ def crmsync(campaigns='all'):
     sync.jobs.sync_campaigns(campaigns_list)
 
 @manager.command
+def fixtargets(campaign_id):
+    from call_server.campaign import Campaign, Target, CampaignTarget
+    from call_server.utils import parse_target
+
+    print "Fixing duplicate campaign targets"
+    campaign = Campaign.query.filter_by(id=campaign_id).one()
+    # create exclusive set of targets
+    target_set = set((t.key) for t in campaign.target_set)
+    print "Got %s targets, %s unique" % (len(campaign.target_set), len(target_set))
+
+    # delete exisiting CampaignTargets
+    CampaignTarget.query.filter_by(campaign=campaign).delete()
+
+    # recreate from set
+    target_list = []
+    for index,target_key in enumerate(list(target_set)):
+        # split prefix:uid
+        (uid, prefix) = parse_target(target_key)
+        print index,uid
+        # get or create Target
+        (target, created) = Target.get_or_create(uid, prefix, commit=False)
+        target_list.append(target)
+        db.session.add(target)
+        
+    setattr(campaign, 'target_set', target_list)
+    db.session.add(campaign)
+    db.session.commit()
+
+@manager.command
 def redis_clear():
     print "This will entirely clear the Redis cache"
     confirm = raw_input('Confirm (Y/N): ')

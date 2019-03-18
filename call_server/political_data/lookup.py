@@ -27,7 +27,7 @@ def locate_targets(location, campaign, skip_special=False, cache=cache):
 
     campaign_data = campaign.get_campaign_data(cache)
     location_targets = campaign_data.get_targets_for_campaign(location, campaign)
-    special_targets = [t.uid for t in campaign.target_set]
+    special_targets = [t.key for t in campaign.target_set]
 
     if skip_special:
         return location_targets

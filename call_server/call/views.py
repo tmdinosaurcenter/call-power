@@ -190,7 +190,7 @@ def make_calls(params, campaign):
     if not params['targetIds']:
         # check if campaign custom segmenting specified
         if campaign.segment_by == SEGMENT_BY_CUSTOM:
-            params['targetIds'] = [t.uid for t in campaign.target_set]
+            params['targetIds'] = [t.key for t in campaign.target_set]
             if campaign.target_ordering == 'shuffle':      
                 # reshuffle for each caller
                 random.shuffle(params['targetIds'])
@@ -363,7 +363,7 @@ def create():
             if campaign.call_maximum:
                 targets_list = targets_list[:campaign.call_maximum]
             # save to params so order persists for this caller
-            params['targetIds'] = [t.uid for t in targets_list]
+            params['targetIds'] = [t.key for t in targets_list]
         target_response = {
             'segment': 'custom',
             'objects': [{'name': t.name, 'title': t.title, 'phone': t.number.e164} for t in targets_list if t.number]

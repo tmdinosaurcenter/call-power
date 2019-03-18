@@ -247,6 +247,8 @@ class Target(db.Model):
 
         data = check_political_data_cache(key, cache)
         offices = data.pop('offices')
+        if 'uid' in data:
+            del data['uid']
 
         if not t:
             # create target object

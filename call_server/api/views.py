@@ -292,12 +292,12 @@ def campaign_target_calls(campaign_id):
         db.session.query(
             Target.title,
             Target.name,
-            Target.uid
+            Target.key
         ).join(Call)
         .filter(Call.campaign_id == int(campaign.id))
         .group_by(Target.title)
         .group_by(Target.name)
-        .group_by(Target.uid)
+        .group_by(Target.key)
     )
 
     if start:
@@ -369,7 +369,7 @@ def campaign_target_calls(campaign_id):
             targets[target_uid]['district'] = target_uid
 
     # query calls to count status
-    query_target_status = query_call_targets.group_by(Call.status).with_entities(Call.status, Target.uid, func.Count(Call.id))
+    query_target_status = query_call_targets.group_by(Call.status).with_entities(Call.status, Target.key, func.Count(Call.id))
 
     for (call_status, target_uid, count) in query_target_status:
         if call_status in TWILIO_CALL_STATUS:

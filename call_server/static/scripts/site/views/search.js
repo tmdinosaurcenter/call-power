@@ -222,7 +222,7 @@
               // us_congress office.id have bioguide prefix
               office.key = prefix + office.id;
             } else {
-              office.key = person.uid+(office.id || '');
+              office.key = person.key + (office.id || '');
             }
             office.phone = office.phone || office.tel;
             var office_location = office.office_name || office.name || office.city || office.type;

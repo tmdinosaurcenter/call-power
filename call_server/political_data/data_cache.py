@@ -36,6 +36,6 @@ def check_political_data_cache(key, cache=cache):
         except AttributeError:
             offices = []
 
-    data['uid'] = adapted_key
+    data['key'] = adapted_key
     data['offices'] = offices
     return data

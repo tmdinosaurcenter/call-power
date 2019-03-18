@@ -218,7 +218,7 @@ class Target(db.Model):
     __tablename__ = 'campaign_target'
 
     id = db.Column(db.Integer, primary_key=True)
-    uid = db.Column(db.String(STRING_LEN), index=True, nullable=True)  # for US, this is bioguide_id
+    key = db.Column(db.String(STRING_LEN), index=True, nullable=True)  # like us:bioguide:S000148
     title = db.Column(db.String(STRING_LEN), nullable=True)
     name = db.Column(db.String(STRING_LEN), nullable=False, unique=False)
     district = db.Column(db.String(STRING_LEN), nullable=True)
@@ -227,7 +227,7 @@ class Target(db.Model):
     offices = db.relationship('TargetOffice', backref="target")
 
     def __unicode__(self):
-        return self.uid
+        return self.key
 
     def full_name(self):
         return u'{} {}'.format(self.title, self.name)
@@ -241,7 +241,7 @@ class Target(db.Model):
             key = '%s:%s' % (prefix, uid)
         else:
             key = uid
-        t = Target.query.filter(Target.uid == key) \
+        t = Target.query.filter(Target.key == key) \
             .order_by(Target.id.desc()).first()
         created = False
 
@@ -254,7 +254,7 @@ class Target(db.Model):
             db.session.add(t)
             created = True
         elif data:
-            if t.uid == data.get('uid'):
+            if t.key == data.get('key'):
                 # check for updated data, only on full cache key match
                 check_attrs = ['location', 'number']
                 for a in check_attrs:

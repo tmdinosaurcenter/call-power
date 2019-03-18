@@ -118,7 +118,7 @@
                     <input type="hidden" name="target_set-{{loop.index0}}-name" value="{{t.name}}" />
                     <input type="hidden" name="target_set-{{loop.index0}}-location" value="{{t.location or ''}}" />
                     <input type="hidden" name="target_set-{{loop.index0}}-number" value="{{t.number.international}}" />
-                    <input type="hidden" name="target_set-{{loop.index0}}-uid" value="{{t.uid}}" />
+                    <input type="hidden" name="target_set-{{loop.index0}}-key" value="{{t.key}}" />
                     {% endfor %}
                 </div>
 
@@ -191,7 +191,7 @@
                           "name":"<%= data.first_name %> <%= data.last_name %>",
                           <% if (data.location){ %> "location": "<%= data.location %>", <% } %>
                           "number":"<%= data.phone %>",
-                          "uid": "<%= data.uid %>"
+                          "key": "<%= data.key %>"
                         }'>
             <span class="text"><%= data.title %> <%= data.first_name %> <%= data.last_name %></span>
              <% if (data.location){ %><span class="text">(<%= data.location %>)</span><% } %>

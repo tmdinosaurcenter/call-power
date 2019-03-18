@@ -189,20 +189,20 @@
         if (person.title === 'Rep')  { person.title = 'Representative'; }
         if (person.elected_office === 'MP')  { person.title = 'MP'; }
 
-        var uid_prefix = '';
+        var prefix = '';
         if (person.bioguide_id) {
-          uid_prefix = 'us:bioguide:';
-          person.uid = uid_prefix+person.bioguide_id;
+          prefix = 'us:bioguide:';
+          person.key = prefix+person.bioguide_id;
           person.location = 'DC';
         } else if (person.leg_id) {
-          uid_prefix = 'us_state:openstates:';
-          person.uid = uid_prefix+person.leg_id;
+          prefix = 'us_state:openstates:';
+          person.key = prefix+person.leg_id;
         } else if (person.title === 'Governor') {
-          uid_prefix = 'us_state:governor:';
-          person.uid = uid_prefix+person.state
+          prefix = 'us_state:governor:';
+          person.key = prefix+person.state
         } else if (person.related && person.related.boundary_url) {
           var boundary_url = person.related.boundary_url.replace('/boundaries/', '/');
-          person.uid = boundary_url;
+          person.key = boundary_url;
         }
 
         // render the main office
@@ -220,9 +220,9 @@
             office.last_name = person.last_name;
             if (person.bioguide_id) {
               // us_congress office.id have bioguide prefix
-              office.uid =uid_prefix + office.id;
+              office.key = prefix + office.id;
             } else {
-              office.uid = person.uid+(office.id || '');
+              office.key = person.uid+(office.id || '');
             }
             office.phone = office.phone || office.tel;
             var office_location = office.office_name || office.name || office.city || office.type;

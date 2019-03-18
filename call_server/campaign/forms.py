@@ -40,7 +40,7 @@ class TargetForm(FlaskForm):
     name = TextField(_('Name'), [Required()])
     number = PhoneNumberField(_('Phone Number'), [Required()])
     location = TextField(_('Location'), [Optional()])
-    uid = TextField(_('Unique ID'), [Optional()])
+    key = TextField(_('Unique Key'), [Optional()])
 
 
 class CampaignForm(FlaskForm):

@@ -24,6 +24,7 @@ from ..schedule.models import ScheduleCall
 from ..schedule.views import schedule_created, schedule_deleted
 from ..admin.models import Blocklist
 from ..admin.views import admin_phone
+from ..utils import parse_target
 
 from .decorators import abortJSON, stripANSI
 
@@ -121,24 +122,6 @@ def parse_params(r, inbound=False):
             params['userIPAddress'] = ips[0]
 
     return params, campaign
-
-
-def parse_target(key):
-    """
-    Split target key into (uid, prefix)
-
-    >>> parse_target("us:bioguide_id:ASDF")
-    ("ASDF", "us:bioguide_id")
-    """
-    try:
-        pieces = key.split(':')
-        uid = pieces[-1]
-        prefix = ':'.join(pieces[0:-1])
-    except ValueError:
-        current_app.logger.error('got malformed target key: "%s"' % key)
-        uid = key
-        prefix = None
-    return (uid, prefix)
 
 
 def intro_wait_human(params, campaign):

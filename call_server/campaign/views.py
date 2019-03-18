@@ -13,7 +13,7 @@ from twilio.jwt.client import ClientCapabilityToken
 
 from ..extensions import db
 from ..political_data import COUNTRY_CHOICES
-from ..utils import choice_items, choice_keys, choice_values_flat, duplicate_object
+from ..utils import choice_items, choice_keys, choice_values_flat, duplicate_object, parse_target
 
 from .constants import EMPTY_CHOICES, STATUS_LIVE
 from .models import (Campaign, Target, CampaignTarget,
@@ -150,9 +150,14 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
 
         # handle target_set nested data
         target_list = []
-        for target_data in form.target_set.data:
-            # create Target object
-            target = Target()
+        for target_data in form.target_set.data:        
+            # get key from the data fields
+            target_key = target_data.pop('key')
+            # split prefix:uid
+            (uid, prefix) = parse_target(target_key)
+            # get or create Target
+            (target, created) = Target.get_or_create(uid, prefix)
+            # set other fields on it
             for (field, val) in target_data.items():
                 setattr(target, field, val)
             db.session.add(target)

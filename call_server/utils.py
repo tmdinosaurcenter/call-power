@@ -118,6 +118,23 @@ def ocd_field(ocd_data, field):
     return ''
 
 
+def parse_target(key):
+    """
+    Split target cache key into (uid, prefix)
+
+    >>> parse_target("us:bioguide_id:ASDF")
+    ("ASDF", "us:bioguide_id")
+    """
+    try:
+        pieces = key.split(':')
+        uid = pieces[-1]
+        prefix = ':'.join(pieces[0:-1])
+    except ValueError:
+        current_app.logger.error('got malformed target key: "%s"' % key)
+        prefix = None
+    return (uid, prefix)
+
+
 class OrderedDictYAMLLoader(yaml.Loader):
     """
     A YAML loader that loads mappings into ordered dictionaries.

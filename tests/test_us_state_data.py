@@ -100,6 +100,20 @@ class TestUSStateData(BaseTestCase):
         uids = locate_targets(other_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 0)
 
+    def test_locate_targets_unicameral_state(self):
+        self.STATE_CAMPAIGN.campaign_state = 'NE'
+        self.STATE_CAMPAIGN.campaign_subtype = 'both'
+        self.STATE_CAMPAIGN.target_ordering = 'lower-first'
+
+        other_location = Location('Lincoln, NE', (40.80798, -96.69968),
+            {'components':{'state':'NE','zipcode':'68508'}})
+        
+        uids = locate_targets(other_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        first = self.us_data.get_uid(uids[0])
+        self.assertEqual(first['chamber'], 'legislature')
+
     def test_get_state_legid(self):
         # uses openstates api directly, not our locate_targets functions
         self.STATE_CAMPAIGN.campaign_state = 'CA'

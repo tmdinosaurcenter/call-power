@@ -465,7 +465,7 @@ class USDataProvider(DataProvider):
                     name
                     givenName
                     familyName
-                    chamber: currentMemberships(classification:["upper", "lower"]) {
+                    chamber: currentMemberships(classification:["upper", "lower", "legislature"]) {
                       post {
                         label
                         role

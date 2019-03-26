@@ -7,10 +7,11 @@ from wtforms import (HiddenField, SubmitField, TextField,
                      BooleanField, RadioField,
                      FileField, FieldList, FormField)
 from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
-from wtforms_components import PhoneNumberField, IntegerField, read_only
+from wtforms_components import IntegerField, read_only
+from wtforms_alchemy import PhoneNumberField
 from wtforms.widgets import TextArea, Input
 from wtforms.validators import Required, Optional, AnyOf, NumberRange, ValidationError
-from wtforms_components.validators import Unique
+from wtforms_alchemy.validators import Unique
 
 from .constants import (SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CHOCIES, TARGET_OFFICE_CHOICES, LANGUAGE_CHOICES,
                         CAMPAIGN_STATUS, EMBED_FORM_CHOICES, EMBED_SCRIPT_DISPLAY)

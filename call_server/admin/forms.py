@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_babel import gettext as _
 from wtforms import StringField, SubmitField
-from wtforms_components import PhoneNumberField, TimeField
+from wtforms_components import TimeField
+from wtforms_alchemy import PhoneNumberField
 from wtforms.validators import Optional, IPAddress
 
 

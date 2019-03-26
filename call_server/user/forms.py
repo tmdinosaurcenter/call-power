@@ -8,7 +8,7 @@ from wtforms import (HiddenField, BooleanField, TextField,
                      PasswordField, SubmitField,
                      RadioField, DateField)
 from wtforms.validators import ValidationError, Required, Length, EqualTo, Email, AnyOf
-from wtforms_components import PhoneNumberField
+from wtforms_alchemy import PhoneNumberField
 from wtforms.fields.html5 import EmailField
 
 from .models import User

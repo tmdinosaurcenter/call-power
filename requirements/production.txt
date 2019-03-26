@@ -1,9 +1,9 @@
 -r common.txt
-boto==2.38.0
-gevent==1.1.1
-psycogreen==1.0
-greenlet==0.4.10
+boto==2.49.0
+gevent==1.4.0
+psycogreen==1.0.1
+greenlet==0.4.15
 psycopg2==2.7.7
-redis==2.10.3
-uWSGI==2.0.15
-raven==6.1.0
+redis==3.2.1
+uWSGI==2.0.18
+raven==6.10.0

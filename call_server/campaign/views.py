@@ -150,13 +150,14 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
 
         # handle target_set nested data
         target_list = []
-        for target_data in form.target_set.data:        
+        for index, target_data in enumerate(form.target_set.data):        
             # get key from the data fields
             target_key = target_data.pop('key')
             # split prefix:uid
             (uid, prefix) = parse_target(target_key)
-            # get or create Target
-            (target, created) = Target.get_or_create(uid, prefix, commit=False)
+
+            # get or create Target, without commiting to session
+            (target, created) = Target.get_or_create(uid, prefix, update_offices=campaign.target_offices, commit=False)
             # set other fields on it
             for (field, val) in target_data.items():
                 setattr(target, field, val)
@@ -175,7 +176,10 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
             campaign_target.order = target_data['order']
 
             db.session.add(campaign_target)
-            db.session.commit()
+
+            # flush database intermittently, to avoid slow final commit
+            if index % 10:
+                db.session.flush()
 
         # save campaign.target_set
         setattr(campaign, 'target_set', target_list)

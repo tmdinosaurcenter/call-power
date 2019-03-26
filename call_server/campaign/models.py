@@ -202,8 +202,8 @@ class CampaignTarget(db.Model):
     target_id = db.Column(db.Integer, db.ForeignKey('campaign_target.id'))
     order = db.Column(db.Integer())
 
-    campaign = db.relationship('Campaign', backref='campaign_targets')
-    target = db.relationship('Target', backref='campaign_targets')
+    campaign = db.relationship('Campaign', backref='campaign_targets', lazy='joined')
+    target = db.relationship('Target', backref='campaign_targets', lazy='joined')
 
 
 class CampaignPhoneNumber(db.Model):
@@ -236,7 +236,7 @@ class Target(db.Model):
         return self.number.e164
 
     @classmethod
-    def get_or_create(cls, uid, prefix=None, commit=True, cache=cache):
+    def get_or_create(cls, uid, prefix=None, update_offices=True, commit=True, cache=cache):
         if prefix:
             key = '%s:%s' % (prefix, uid)
         else:
@@ -265,7 +265,7 @@ class Target(db.Model):
                         setattr(t, a, new_val)
                         created = True
         
-        if offices:
+        if offices and update_offices:
             existing_target_office_uids = [o.uid for o in t.offices]
             # need to check against existing offices, because the underlying data may have been updated
 

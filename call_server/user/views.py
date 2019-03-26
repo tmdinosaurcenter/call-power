@@ -28,7 +28,7 @@ def index():
 
 @user.route('/user/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for('admin.dashboard'))
 
     form = LoginForm(login=request.args.get('login', None),
@@ -124,7 +124,7 @@ def create_account():
 # not login_required, user auth'ed by activation_key
 def change_password():
     user = None
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         if not login_fresh():
             return login_manager.needs_refresh()
         user = current_user

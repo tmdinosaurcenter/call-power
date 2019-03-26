@@ -144,7 +144,7 @@ def blocklist(blocklist_id=None):
 # for flask-limit exempt-when
 # called with request context
 def admin_phone():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return True
 
     # if calling from embedded website, check list of admin users

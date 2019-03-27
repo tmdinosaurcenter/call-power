@@ -622,8 +622,8 @@ def make_single():
     d = Dial(None, caller_id=userPhone,
               time_limit=current_app.config['TWILIO_TIME_LIMIT'],
               timeout=current_app.config['TWILIO_TIMEOUT'], hangup_on_star=True,
-              action=url_for('call.complete', **params)) \
-        .number(target_phone.e164, sendDigits=target_phone.extension)
+              action=url_for('call.complete', **params))
+    d.number(target_phone.e164, sendDigits=target_phone.extension)
     resp.append(d)
 
     return str(resp)

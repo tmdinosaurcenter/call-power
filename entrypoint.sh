@@ -2,8 +2,8 @@
 #set -e
 
 if [ ! -e "/opt/dev.db" ]; then
-	python manager.py migrate up
-	python manager.py assets build
+	flask migrate up
+	flask assets build
 fi
 
 start_ngrok() {
@@ -22,7 +22,7 @@ start_ngrok() {
 
 case "$FLASK_ENV" in
     "production")
-        python manager.py loadpoliticaldata
+        flask loadpoliticaldata
         exec bash -l -c "uwsgi uwsgi.ini"
         ;;
 
@@ -30,10 +30,10 @@ case "$FLASK_ENV" in
         external_host="$(start_ngrok)"
         echo "External address is https://$external_host" >&2
 
-        exec bash -l -c "python manager.py runserver --external $external_host"
+        exec bash -l -c "flask run --host=$external_host"
         ;;
 
     "development" | "")
-        exec bash -l -c "python manager.py runserver"
+        exec bash -l -c "flask run"
         ;;
 esac

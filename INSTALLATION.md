@@ -24,7 +24,7 @@ To lookup individual representatives, you need:
 
 To test Twilio functionality in development, you will need your server to have a web-routable address. 
 
-* Twilio provides [ngrok](https://ngrok.com) to do this for free. When using the debug server you can use --external=SERVERID.ngrok.com to set SERVER_NAME and STORE_DOMAIN
+* Twilio provides [ngrok](https://ngrok.com) to do this for free. When using the debug server you can use `flask run --host=SERVERID.ngrok.com` to set SERVER_NAME and STORE_DOMAIN
 * To test text-to-speech playback in the browser, you will need to create a [TwiML app](https://www.twilio.com/user/account/apps) with the Voice request URL http://YOUR_HOSTNAME/api/twilio/text-to-speech. Place the resulting application SID in your environment as TWILIO_PLAYBACK_APP
 
 For production, you will also need to set:
@@ -78,12 +78,12 @@ To install locally and run in debug mode use:
     ngrok http 5000
  
     # run local server for debugging, pass external name from ngrok
-    python manager.py runserver --external=SERVERID.ngrok.io
+    flask run --host=SERVERID.ngrok.io
 
     # if testing scheduled calls, run broker, scheduler and workers in new tabs
     redis-server
-    python manager.py rq scheduler
-    python manager.py rq worker
+    flask rq scheduler
+    flask rq worker
 
 When the dev server is running, the front-end will be accessible at [http://localhost:5000/](http://localhost:5000/), and proxied to external routes at [http://ngrok.com](http://ngrok.com).
 
@@ -101,13 +101,13 @@ To run in production, with compiled assets:
     iptables -A INPUT -p tcp --dport 80 -j ACCEPT
     
     # initialize the database
-    python manager.py migrate up
+    flask migrate up
     
-    # create an admin user
-    python manager.py createadminuser
+    # create an admin user (with optional --username, --password, --email)
+    flask createadminuser
 
     # prime cache with political data
-    python manager.py loadpoliticaldata
+    flask loadpoliticaldata
 
     # if you are running a reverse proxy, you can start the application with foreman start
     foreman start
@@ -116,8 +116,8 @@ To run in production, with compiled assets:
     # to load the application directly
 
     # if you wish to enable recurring outbound calls, you need to run the scheduler and at least one worker
-    python manager.py rq scheduler
-    python manager.py rq worker
+    flask rq scheduler
+    flask rq worker
     
 Make sure your webserver can serve audio files out of `APPLICATION_ROOT/instance/uploads`. Or if you are using Amazon S3, ensure your buckets are configured for public access.
 

@@ -1,6 +1,5 @@
 from flask import current_app
 
-import requests
 from . import CRMIntegration
 from actionkit.rest import ActionKit
 from actionkit.xmlrpc import ActionKitXML

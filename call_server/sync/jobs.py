@@ -7,7 +7,7 @@ from .integrations import CRMIntegrationError
 
 def get_crm_integration():
     # setup integration from config values
-    if current_app.config['CRM_INTEGRATION'] == 'ActionKit':
+    if current_app.config['CRM_INTEGRATION'].lower() == 'actionkit':
         from .integrations.actionkit_crm import ActionKitIntegration
         ak_credentials = {'domain': current_app.config['ACTIONKIT_DOMAIN'],
                           'username': current_app.config['ACTIONKIT_USER']}

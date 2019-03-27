@@ -50,7 +50,10 @@ class SyncCampaign(db.Model):
                 db.session.add(sync_call)
 
         completed_calls = Call.query.filter_by(campaign=self, status='completed')
-        integration.save_campaign_meta(self.crm_id, {'count': completed_calls.count()})
+        try:
+            integration.save_campaign_meta(self.crm_id, {'count': completed_calls.count()})
+        except NotImplementedError:
+            current_app.logger.info('crm_integration.save_campaign_meta not implemented')
         self.last_sync_time = datetime.utcnow()
         db.session.add(self)    
         db.session.commit()

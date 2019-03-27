@@ -33,7 +33,7 @@ def get_crm_integration():
 def sync_campaigns(campaign_id='all'):
     crm_integration = get_crm_integration()
 
-    if campaign_id_list == 'all':
+    if campaign_id == 'all':
         campaigns_to_sync = SyncCampaign.query.all()
     else:
         campaigns_to_sync = SyncCampaign.query.filter_by(campaign_id=campaign_id)

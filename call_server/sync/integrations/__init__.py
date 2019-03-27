@@ -8,7 +8,7 @@ class CRMIntegration(object):
 
     def get_phone(self, twilio_sid):
         """Gets the dialed phone for a Session from Twilio in e164 format"""
-        twilio_call = self.twilio_client.calls.get(twilio_sid)
+        twilio_call = self.twilio_client.calls.get(twilio_sid).fetch()
         return twilio_call.to
 
     def get_user(self, phone_number):
@@ -16,8 +16,8 @@ class CRMIntegration(object):
         Returns a unique ID, implementation dependent"""
         raise NotImplementedError()
 
-    def save_action(self, sync_call, crm_campaign_id, crm_user_id):
-        """Given a sync_call, crm_campaign and crm_user
+    def save_action(self, call, crm_campaign_id, crm_user):
+        """Given a call, crm_campaign and crm_user
         Save the call attributes (target, duration and status) to the CRM
         Returns a boolean status"""
         raise NotImplementedError()

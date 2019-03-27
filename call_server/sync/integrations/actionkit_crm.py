@@ -103,7 +103,7 @@ class ActionKitIntegration(CRMIntegration):
 
 
     def save_action(self, call, crm_campaign_id, crm_user):
-        """Given a sync_call, crm_campaign and crm_user
+        """Given a call, crm_campaign and crm_user
         Save the call attributes (target, duration and status) to the CRM
         Returns a boolean status"""
         

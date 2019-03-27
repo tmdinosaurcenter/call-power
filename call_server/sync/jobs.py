@@ -18,6 +18,11 @@ def get_crm_integration():
         else:
             raise CRMIntegrationError('either ACTIONKIT_API_KEY or ACTIONKIT_PASSWORD must be configured')
         crm_integration = ActionKitIntegration(**ak_credentials)
+    elif current_app.config['CRM_INTEGRATION'].lower() == 'rogue':
+        from .integrations.rogue_crm import RogueIntegration
+        rogue_credentails = {'domain': current_app.config['ROGUE_DOMAIN'],
+                          'api_key': current_app.config['ROGUE_API_KEY']}
+        crm_integration = RogueIntegration(**rogue_credentails)
     else:
         raise CRMIntegrationError('no CRM_INTEGRATION configured')
         return False

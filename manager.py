@@ -1,13 +1,11 @@
 import os
 import sys
-import subprocess
 import logging
+from datetime import datetime
 
-from flask_script import Manager, Command
+import click
 import alembic
 import alembic.config, alembic.command
-from flask_assets import ManageAssets
-from flask_rq2.script import RQManager
 
 from call_server.app import create_app
 from call_server.extensions import assets, db, cache, rq
@@ -19,15 +17,11 @@ log = logging.getLogger(__name__)
 
 app = create_app()
 app.db = db
-manager = Manager(app)
-manager.add_command('rq', RQManager(app.rq))
 
 alembic_config = alembic.config.Config(os.path.realpath(os.path.dirname(__name__)) + "/alembic.ini")
 # let the config override the default db location in production
 alembic_config.set_section_option('alembic', 'sqlalchemy.url',
                                   app.config.get('SQLALCHEMY_DATABASE_URI'))
-
-manager.add_command("assets", ManageAssets())
 
 
 def reset_assets():
@@ -37,7 +31,8 @@ def reset_assets():
     assets._named_bundles = {}
 
 
-@manager.command
+@app.cli.command()
+@click.option('--external', default=None, help='externally routable domain')
 def runserver(external=None):
     """Run web server for local development and debugging
         pass --external for external routing"""
@@ -57,7 +52,7 @@ def runserver(external=None):
     app.run(debug=True, use_reloader=True, host=host)
 
 
-@manager.command
+@app.cli.command()
 def loadpoliticaldata():
     """Load political data into persistent cache"""
     try:
@@ -65,16 +60,18 @@ def loadpoliticaldata():
         gevent.monkey.patch_thread()
     except ImportError:
         log.warning("unable to apply gevent monkey.patch_thread")
+    from flask_babel import force_locale
 
     log.info("loading political data")
-    with app.app_context():
-        n = political_data.load_data(cache)
+    with app.app_context(), force_locale('en'):
+            n = political_data.load_data(cache)
     log.info("done loading %d objects" % n)
 
-@manager.command
+@app.cli.command()
+@click.argument('campaign_id')
+@click.argument('date', default=datetime.today().date().isoformat())
 def stop_scheduled_calls(campaign_id, date):
     # unsubscribe outgoing recurring calls created before date
-    from datetime import datetime
     from call_server.campaign import Campaign
     from call_server.schedule import ScheduleCall
     before_date = datetime.strptime(date, '%Y-%m-%d')
@@ -92,7 +89,9 @@ def stop_scheduled_calls(campaign_id, date):
     else:
         print "exit"
 
-@manager.command
+@app.cli.command()
+@click.argument('campaign_id', default='all')
+@click.option('--accept_all', default=False, help='skip ')
 def restart_scheduled_calls(campaign_id, accept_all=False):
     # rebind outgoing recurring calls
     from call_server.campaign import Campaign
@@ -124,8 +123,9 @@ def restart_scheduled_calls(campaign_id, accept_all=False):
         else:
             print "exit"
 
-@manager.command
-def crmsync(campaigns='all'):
+@app.cli.command()
+@click.argument('campaigns', default='all')
+def crmsync(campaigns):
     print "Sync to CRM"
     if campaigns == 'all':
         campaigns_list = 'all'
@@ -135,7 +135,8 @@ def crmsync(campaigns='all'):
         campaigns_list = (campaigns,)
     sync.jobs.sync_campaigns(campaigns_list)
 
-@manager.command
+@app.cli.command()
+@click.argument('campaign_id')
 def fixtargets(campaign_id):
     from call_server.campaign import Campaign, Target, CampaignTarget
     from call_server.utils import parse_target
@@ -164,7 +165,7 @@ def fixtargets(campaign_id):
     db.session.add(campaign)
     db.session.commit()
 
-@manager.command
+@app.cli.command()
 def redis_clear():
     print "This will entirely clear the Redis cache"
     confirm = raw_input('Confirm (Y/N): ')
@@ -176,7 +177,8 @@ def redis_clear():
         print "exit"
 
 
-@manager.command
+@app.cli.command()
+@click.argument('direction')
 def migrate(direction):
     """Migrate db revision up or down"""
     reset_assets()
@@ -189,23 +191,26 @@ def migrate(direction):
         app.logger.error('invalid direction. (up/down)')
         sys.exit(-1)
 
-
-@manager.command
+@app.cli.command()
+@click.argument('message')
 def migration(message):
     """Create migration file"""
     reset_assets()
     alembic.command.revision(alembic_config, autogenerate=True, message=message)
 
-
-@manager.command
+@app.cli.command()
+@click.argument('revision')
 def stamp(revision):
     """Fake a migration to a particular revision"""
     reset_assets()
     alembic.command.stamp(alembic_config, revision)
 
 
-@manager.command
-def createadminuser(username=None, password=None, email=None):
+@app.cli.command()
+@click.option('--username', default=None)
+@click.option('--password', default=None)
+@click.option('--email', default=None)
+def createadminuser(username, password, email):
     """Create a new admin user, get password from user input or directly via command line"""
 
     # first, check to see if exact user already exists
@@ -264,6 +269,3 @@ def createadminuser(username=None, password=None, email=None):
 
     print "created admin user", admin.name
 
-
-if __name__ == "__main__":
-    manager.run()

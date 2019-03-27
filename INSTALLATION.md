@@ -62,23 +62,25 @@ To install locally and run in debug mode use:
     virtualenv .venv
     source .venv/bin/activate
     pip install -r requirements/development.txt
+    export FLASK_APP=manager.py; FLASK_ENV=development; FLASK_DEBUG=1
 
     # create the database
-    python manager.py migrate up
+    flask migrate up
 
     # compile assets
     npm install -g bower
     bower install
-    python manager.py assets build
+    flask assets build
     
     # create an admin user
-    python manager.py createadminuser
+    flask createadminuser
 
     # if testing twilio, run in another tab
     ngrok http 5000
  
-    # run local server for debugging, pass external name from ngrok
-    flask run --host=SERVERID.ngrok.io
+    # run local server for debugging, pass subdomain from ngrok and bind to external host
+    export SERVER_NAME={{subdomain}}.ngrok.io
+    flask run --host=0.0.0.0
 
     # if testing scheduled calls, run broker, scheduler and workers in new tabs
     redis-server
@@ -96,6 +98,7 @@ Production server
 To run in production, with compiled assets:
 
     # create ENV variables
+    export FLASK_APP=manager.py
     
     # open correct port
     iptables -A INPUT -p tcp --dport 80 -j ACCEPT

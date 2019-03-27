@@ -30,7 +30,7 @@ case "$FLASK_ENV" in
         external_host="$(start_ngrok)"
         echo "External address is https://$external_host" >&2
 
-        exec bash -l -c "flask run --host=$external_host"
+        exec bash -l -c "export SERVER_NAME=$external_host; flask run --host=0.0.0.0"
         ;;
 
     "development" | "")

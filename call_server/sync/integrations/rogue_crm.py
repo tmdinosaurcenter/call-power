@@ -13,7 +13,10 @@ class RogueIntegration(CRMIntegration):
         if api_key:
             self.rogue_session = sessions.BaseUrlSession(
                 base_url='https://'+domain)
-            self.rogue_session.headers={'X-DS-Importer-API-Key': api_key}
+            self.rogue_session.headers={
+                'X-DS-Importer-API-Key': api_key,
+                'Accept': 'application/json'
+            }
         else:
             raise Exception('unable to authenticate to Rogue')
 

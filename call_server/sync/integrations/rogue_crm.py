@@ -1,5 +1,6 @@
 from flask import current_app
 
+import json
 import requests
 from requests_toolbelt import sessions
 from . import CRMIntegration
@@ -35,7 +36,7 @@ class RogueIntegration(CRMIntegration):
             'mobile': crm_user['phone'], # this is not strictly a verified mobile number
             'callpower_campaign_id': crm_campaign_id,
             'status': call.status,
-            'call_timestamp': call.timestamp,
+            'call_timestamp': call.timestamp.isoformat(),
             'call_duration': call.duration,
             'campaign_target_name': call.target.name,
             'campaign_target_title': call.target.title,
@@ -43,8 +44,9 @@ class RogueIntegration(CRMIntegration):
             'callpower_campaign_name': call.campaign.name,
             'number_dialed_into': call.session.from_number, 
         }
-        current_app.logger.info("creating action: %s" % call_action) 
-        rogue_response = self.rogue_session.post('/api/v1/callpower/call', call_action)
+        current_app.logger.info("creating action: %s" % json.dumps(call_action)) 
+        rogue_response = self.rogue_session.post('/api/v1/callpower/call', json=call_action)
+        current_app.logger.info("rogue response (%s): %s" % (rogue_response.status_code, rogue_response.text))
         return rogue_response.ok
 
 

@@ -8,7 +8,9 @@
       title: null,
       name: null,
       number: null,
-      order: null
+      order: null,
+      location: null,
+      district: null
     },
 
   });
@@ -195,7 +197,7 @@
 
       this.collection.each(function(model, index) {
         // create new hidden inputs named target_set-N-FIELD
-        var fields = ['order','title','name','number','location','key'];
+        var fields = ['order','title','name','number','district','location','key'];
         _.each(fields, function(field) {
           var input = $('<input name="target_set-'+index+'-'+field+'" type="hidden" />');
           input.val(model.get(field));

@@ -1,6 +1,6 @@
 from flask import current_app
 from flask_babel import gettext as _
-import werkzeug.contrib.cache
+import flask_caching
 import pickle
 
 class DataProvider(object):
@@ -66,8 +66,8 @@ class DataProvider(object):
         Handles difference between flask-cache and mock-dictionary
         """
         result = []
-        if isinstance(self._cache.cache, werkzeug.contrib.cache.RedisCache):
-            redis = self._cache.cache._client
+        if isinstance(self._cache.cache, flask_caching.backends.rediscache.RedisCache):
+            redis = self._cache.cache._read_clients
 
             # check sorted sets first
             for s in self.SORTED_SETS:
@@ -86,7 +86,8 @@ class DataProvider(object):
                 for prefixed_key in redis.scan_iter(match=key_scan):
                     key = prefixed_key.replace(current_app.config['CACHE_KEY_PREFIX'], '')
                     result.extend(self.cache_get(key))
-        elif isinstance(self._cache.cache, werkzeug.contrib.cache.SimpleCache):
+        elif isinstance(self._cache.cache, flask_caching.backends.simple.SimpleCache) \
+            or isinstance(self._cache.cache, dict):
             # naively search across all the keys
             for (k,v) in self._cache.cache._cache.items():
                 if k.startswith(key_starts_with):

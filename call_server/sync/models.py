@@ -15,8 +15,8 @@ class SyncCampaign(db.Model):
     created_time = db.Column(db.DateTime, default=datetime.utcnow)
     last_sync_time = db.Column(db.DateTime)
 
-    campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'))
-    campaign = db.relationship('Campaign', backref=db.backref('sync_campaign', lazy='dynamic'))
+    campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'), unique=True)
+    campaign = db.relationship('Campaign', backref=db.backref('sync_campaign', uselist=False))
 
     crm_id = db.Column(db.String(40), nullable=True) # id of the campaign in the CRM
 

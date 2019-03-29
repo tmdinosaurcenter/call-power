@@ -126,6 +126,8 @@ class OpenStatesData(DataAdapter):
             else:
                 chamber = None
                 district = None
+        else:
+            chamber = None
 
         if 'title' in data:
             adapted['title'] = data['title']

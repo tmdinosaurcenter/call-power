@@ -101,9 +101,8 @@
             searchData['key'] = 'us_state:governor:'+query;
           } else {
             // hit OpenStates
-            searchURL = CallPower.Config.OPENSTATES_URL;
+            searchURL = '/political_data/search/openstates';
             searchData = {
-              apikey: CallPower.Config.OPENSTATES_API_KEY,
               state: campaign_state,
             }
             if (chamber === 'upper' || chamber === 'lower') {
@@ -116,7 +115,7 @@
       }
 
       if (campaign_country === 'ca') {
-        var baseURL = CallPower.Config.OPENNORTH_URL;
+        var baseURL = 'https://represent.opennorth.ca/';
         // reset search data to match OpenNorth
         searchData = {};
         

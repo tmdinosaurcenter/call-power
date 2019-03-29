@@ -188,12 +188,20 @@
 <script type="text/template" id="search-results-item-tmpl">
     <li class="result">
         <a data-object='{ "title":"<%= data.title %>",
+                          <% if (data.first_name && data.last_name){ %>
                           "name":"<%= data.first_name %> <%= data.last_name %>",
+                          <% } if (data.name) { %>
+                          "name":"<%= data.name %>",
+                          <% } %>
                           <% if (data.location){ %> "location": "<%= data.location %>", <% } %>
                           "number":"<%= data.phone %>",
                           "key": "<%= data.key %>"
                         }'>
-            <span class="text"><%= data.title %> <%= data.first_name %> <%= data.last_name %></span>
+            <span class="text">
+                <%= data.title %> 
+                <% if (data.first_name && data.last_name){ %><%= data.first_name %> <%= data.last_name %><% } %>
+                <% if (data.name){ %><%= data.name %> <% } %>
+            </span>
              <% if (data.location){ %><span class="text">(<%= data.location %>)</span><% } %>
             <span class="phone"><%= data.phone %></span>
         </a>

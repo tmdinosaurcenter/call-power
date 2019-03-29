@@ -4,6 +4,7 @@ from graphqlclient import GraphQLClient
 
 from . import DataProvider, CampaignType
 
+from ..adapters import OpenStatesData
 from ..geocode import Geocoder, LocationError
 from ..constants import US_STATES
 from ...campaign.constants import (LOCATION_POSTAL, LOCATION_ADDRESS, LOCATION_LATLON)
@@ -570,6 +571,72 @@ class USDataProvider(DataProvider):
             leg['cache_key'] = key
             self.cache_set(key, leg)
         return leg
+
+    def search_state_leg(self, state, chamber, name):
+        # first get the legislature chamber OCD ID
+        organization_response = self._openstates.execute('''
+            query getOrganizationID($stateOCD:String, $chamber:String) {
+              jurisdiction(id: $stateOCD) {
+                organizations(classification: [$chamber], first: 3) {
+                  edges {
+                    node {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+        ''',{
+            'stateOCD': 'ocd-jurisdiction/country:us/state:%s/government' % state.lower(),
+            'chamber': chamber
+        })
+        organization_parsed = json.loads(organization_response)
+        org_ocd_id = organization_parsed['data']['jurisdiction']['organizations']['edges'][0]['node']['id']
+
+        # now use that to query for members by name
+        person_response = self._openstates.execute('''
+            query getLegislatorContact($name: String, $organizationID: String, $chamber: String) {
+              people(name: $name, memberOf: $organizationID, first: 5) {
+                edges {
+                  node {
+                    currentMemberships(classification: [$chamber]) {
+                      id
+                      post {
+                        label
+                        role
+                        division {
+                          id
+                        }
+                      }
+                    }
+                    id
+                    name
+                    contactDetails {
+                      type
+                      value
+                      note
+                      label
+                    }
+                  }
+                }
+              }
+            }
+        ''',{
+            'organizationID': org_ocd_id,
+            'chamber': chamber,
+            'name': name
+        })
+        people_parsed = json.loads(person_response)
+        result_data = []
+        for person_edge in people_parsed['data']['people']['edges']:
+            person = person_edge['node']
+            person['chamber'] = chamber
+            person['district'] = person['currentMemberships'][0]['post']['label']
+            adapter = OpenStatesData()
+            target = adapter.target(person)
+            target['phone'] = target.pop('number') # fix field name inconsistency...
+            result_data.append(target)
+        return result_data
 
     def get_uid(self, uid):
         return self.cache_get(uid, dict())

@@ -48,3 +48,16 @@ def search():
         'status': 'ok',
         'results': results
     })
+
+@political_data.route('/search/openstates')
+def search_openstates():
+    data_provider = get_country_data('us', cache=cache)
+    try:
+        state = request.args.get('state')
+        chamber = request.args.get('chamber')
+        name = request.args.get('last_name')
+        results = data_provider.search_state_leg(state, chamber, name)
+    except TypeError:
+        return jsonify({'status': 'error',
+                        'message': 'missing parameter state, chamber and name'})
+    return jsonify(results)

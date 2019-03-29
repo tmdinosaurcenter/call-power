@@ -2667,7 +2667,8 @@ $(document).ready(function () {
       // always filter on AudioRecording key
       var keyFilter = [{name: 'key', op: 'eq', val: this.key}];
       var flaskQuery = {
-        q: JSON.stringify({ filters: keyFilter })
+        q: JSON.stringify({ filters: keyFilter ,
+          order_by: [{"field": "version", "direction": "desc"}] })
       };
       var fetchOptions = _.extend({ data: flaskQuery }, options);
 

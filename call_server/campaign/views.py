@@ -438,7 +438,7 @@ def launch(campaign_id):
         campaign.embed['script'] = form.embed_script.data
         db.session.add(campaign)
 
-        if form.crm_sync.data and form.crm_id.data:
+        if form.crm_sync.data:
             sync_campaign = SyncCampaign(campaign.id, form.crm_id.data)
             db.session.add(sync_campaign)
         

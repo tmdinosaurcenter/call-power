@@ -33,11 +33,13 @@ class RogueIntegration(CRMIntegration):
         """Given a call and crm_campaign_id
         Save the call attributes (target, duration and status) to the CRM
         Returns a boolean status"""
+
+        # they don't actually want crm_campaign_id, so drop it
         
         # create the call action
         call_action = {
             'mobile': crm_user['phone'], # this is not strictly a verified mobile number
-            'callpower_campaign_id': crm_campaign_id,
+            'callpower_campaign_id': call.campaign.id,
             'status': call.status,
             'call_timestamp': call.timestamp.isoformat(),
             'call_duration': call.duration,

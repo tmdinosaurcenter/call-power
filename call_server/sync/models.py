@@ -18,7 +18,7 @@ class SyncCampaign(db.Model):
     campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'))
     campaign = db.relationship('Campaign', backref=db.backref('sync_campaign', lazy='dynamic'))
 
-    crm_id = db.Column(db.String(40)) # id of the campaign in the CRM
+    crm_id = db.Column(db.String(40), nullable=True) # id of the campaign in the CRM
 
     def __init__(self, campaign_id, crm_id):
         self.campaign_id = campaign_id

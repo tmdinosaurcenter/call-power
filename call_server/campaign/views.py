@@ -176,10 +176,7 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
             campaign_target.order = target_data['order']
 
             db.session.add(campaign_target)
-
-            # flush database intermittently, to avoid slow final commit
-            if index % 10:
-                db.session.flush()
+            db.session.commit()
 
         # save campaign.target_set
         setattr(campaign, 'target_set', target_list)

@@ -29,7 +29,7 @@ def get_crm_integration():
     return crm_integration
 
 
-@rq.job
+@rq.job(timeout=60*60)
 def sync_campaigns(campaign_id='all'):
     crm_integration = get_crm_integration()
 

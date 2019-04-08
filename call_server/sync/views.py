@@ -19,6 +19,6 @@ def before_request():
 def manual_job(campaign_id):
     # start sync job out of band with rq scheduler
     start_time = datetime.now() + timedelta(seconds=1)
-    sync_campaigns.schedule(start_time, campaign_id)
+    sync_campaigns.schedule(start_time, campaign_id, timeout=60*60)
 
     return jsonify({'scheduled_start_time': start_time})

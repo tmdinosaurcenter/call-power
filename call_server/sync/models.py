@@ -90,11 +90,10 @@ class SyncCall(db.Model):
             return False
 
         crm_user = integration.get_user(user_phone)
-        current_app.logger.info('got user %s' % crm_user['id'])
         if not crm_user:
             current_app.logger.warning('unable to get crm user for phone: %s' % user_phone)
             return False
 
         self.saved = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
-        current_app.logger.info('synced %s->%s' % (crm_user['id'], self.call.id))
+        current_app.logger.info('synced call %s by %s' % (self.call.id, crm_user['id']))
         return True

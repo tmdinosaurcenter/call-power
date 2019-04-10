@@ -132,6 +132,7 @@ class HerokuConfig(ProductionConfig):
 
     # db via heroku postgres
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+    SQLALCHEMY_POOL_RECYCLE = 500
 
     # cache via heroku-redis
     CACHE_TYPE = 'redis'

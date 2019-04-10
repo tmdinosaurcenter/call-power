@@ -59,7 +59,7 @@ class DefaultConfig(object):
 
     MAIL_SERVER = 'localhost'
 
-    CRM_INTEGRATION = os.environ.get('CRM_INTEGRATION').lower()
+    CRM_INTEGRATION = os.environ.get('CRM_INTEGRATION','').lower()
     if CRM_INTEGRATION == 'actionkit':
         ACTIONKIT_DOMAIN = os.environ.get('ACTIONKIT_DOMAIN')
         ACTIONKIT_USER = os.environ.get('ACTIONKIT_USER')

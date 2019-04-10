@@ -193,12 +193,20 @@
           prefix = 'us:bioguide:';
           person.key = prefix+person.bioguide_id;
           person.location = 'DC';
+          if (person.district + person.state) {
+            // concat them
+            person.district = person.state.toUpperCase() + '-' + person.district;
+          } else if (person.state && person.title == 'Senator') {
+            person.district = person.state;
+          }
         } else if (person.leg_id) {
           prefix = 'us_state:openstates:';
           person.key = prefix+person.leg_id;
+          person.district = person.state.toUpperCase() + '-' + person.district;
         } else if (person.title === 'Governor') {
           prefix = 'us_state:governor:';
-          person.key = prefix+person.state
+          person.key = prefix+person.state;
+          person.district = person.state;
         } else if (person.related && person.related.boundary_url) {
           var boundary_url = person.related.boundary_url.replace('/boundaries/', '/');
           person.key = boundary_url;
@@ -223,6 +231,7 @@
             } else {
               office.key = person.key + (office.id || '');
             }
+            office.district = person.district;
             office.phone = office.phone || office.tel;
             var office_location = office.office_name || office.name || office.city || office.type;
 

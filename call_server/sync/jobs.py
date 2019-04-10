@@ -7,7 +7,7 @@ from .integrations import CRMIntegrationError
 
 def get_crm_integration():
     # setup integration from config values
-    if current_app.config['CRM_INTEGRATION'] == 'ActionKit':
+    if current_app.config['CRM_INTEGRATION'].lower() == 'actionkit':
         from .integrations.actionkit_crm import ActionKitIntegration
         ak_credentials = {'domain': current_app.config['ACTIONKIT_DOMAIN'],
                           'username': current_app.config['ACTIONKIT_USER']}
@@ -18,17 +18,22 @@ def get_crm_integration():
         else:
             raise CRMIntegrationError('either ACTIONKIT_API_KEY or ACTIONKIT_PASSWORD must be configured')
         crm_integration = ActionKitIntegration(**ak_credentials)
+    elif current_app.config['CRM_INTEGRATION'].lower() == 'rogue':
+        from .integrations.rogue_crm import RogueIntegration
+        rogue_credentails = {'domain': current_app.config['ROGUE_DOMAIN'],
+                          'api_key': current_app.config['ROGUE_API_KEY']}
+        crm_integration = RogueIntegration(**rogue_credentails)
     else:
         raise CRMIntegrationError('no CRM_INTEGRATION configured')
         return False
     return crm_integration
 
 
-@rq.job
+@rq.job(timeout=60*60)
 def sync_campaigns(campaign_id='all'):
     crm_integration = get_crm_integration()
 
-    if campaign_id_list == 'all':
+    if campaign_id == 'all':
         campaigns_to_sync = SyncCampaign.query.all()
     else:
         campaigns_to_sync = SyncCampaign.query.filter_by(campaign_id=campaign_id)

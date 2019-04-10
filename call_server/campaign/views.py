@@ -13,7 +13,7 @@ from twilio.jwt.client import ClientCapabilityToken
 
 from ..extensions import db
 from ..political_data import COUNTRY_CHOICES
-from ..utils import choice_items, choice_keys, choice_values_flat, duplicate_object, parse_target
+from ..utils import choice_items, choice_keys, choice_values_flat, duplicate_object, parse_target, get_one_or_create
 
 from .constants import EMPTY_CHOICES, STATUS_LIVE
 from .models import (Campaign, Target, CampaignTarget,
@@ -404,7 +404,7 @@ def show_recording(campaign_id, recording_id):
 @campaign.route('/<int:campaign_id>/launch', methods=['GET', 'POST'])
 def launch(campaign_id):
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
-    form = CampaignLaunchForm()
+    form = CampaignLaunchForm(obj=campaign)
 
     if form.validate_on_submit():
         campaign.status_code = STATUS_LIVE
@@ -435,9 +435,12 @@ def launch(campaign_id):
         campaign.embed['script'] = form.embed_script.data
         db.session.add(campaign)
 
-        if form.crm_sync.data and form.crm_id.data:
-            sync_campaign = SyncCampaign(campaign.id, form.crm_id.data)
-            db.session.add(sync_campaign)
+        if form.crm_sync.data:
+            sync_campaign, created = get_one_or_create(db.session, SyncCampaign,
+                            campaign_id=campaign.id, crm_id=form.crm_id.data)
+            if created:
+                flash('Campaign sync started!', 'success')
+                db.session.add(sync_campaign)
         
         db.session.commit()
 
@@ -461,6 +464,10 @@ def launch(campaign_id):
 
             if campaign.embed.get('script'):
                 form.embed_script.data = campaign.embed.get('script')
+
+            if campaign.sync_campaign:
+                form.crm_sync.checked = True
+                form.crm_id.value = campaign.sync_campaign.crm_id
 
     if campaign.prompt_schedule:
         campaign_scheduled = {

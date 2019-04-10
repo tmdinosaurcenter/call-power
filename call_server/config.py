@@ -59,12 +59,15 @@ class DefaultConfig(object):
 
     MAIL_SERVER = 'localhost'
 
-    CRM_INTEGRATION = os.environ.get('CRM_INTEGRATION')
-    if CRM_INTEGRATION == 'ActionKit':
+    CRM_INTEGRATION = os.environ.get('CRM_INTEGRATION','').lower()
+    if CRM_INTEGRATION == 'actionkit':
         ACTIONKIT_DOMAIN = os.environ.get('ACTIONKIT_DOMAIN')
         ACTIONKIT_USER = os.environ.get('ACTIONKIT_USER')
         ACTIONKIT_API_KEY = os.environ.get('ACTIONKIT_API_KEY')
         ACTIONKIT_PASSWORD = os.environ.get('ACTIONKIT_PASSWORD')
+    if CRM_INTEGRATION == 'rogue':
+        ROGUE_DOMAIN = os.environ.get('ROGUE_DOMAIN')
+        ROGUE_API_KEY = os.environ.get('ROGUE_API_KEY')
 
 class ProductionConfig(DefaultConfig):
     DEBUG = False

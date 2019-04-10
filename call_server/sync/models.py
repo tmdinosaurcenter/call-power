@@ -15,10 +15,10 @@ class SyncCampaign(db.Model):
     created_time = db.Column(db.DateTime, default=datetime.utcnow)
     last_sync_time = db.Column(db.DateTime)
 
-    campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'))
-    campaign = db.relationship('Campaign', backref=db.backref('sync_campaign', lazy='dynamic'))
+    campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'), unique=True)
+    campaign = db.relationship('Campaign', backref=db.backref('sync_campaign', uselist=False))
 
-    crm_id = db.Column(db.String(40)) # id of the campaign in the CRM
+    crm_id = db.Column(db.String(40), nullable=True) # id of the campaign in the CRM
 
     def __init__(self, campaign_id, crm_id):
         self.campaign_id = campaign_id
@@ -50,7 +50,10 @@ class SyncCampaign(db.Model):
                 db.session.add(sync_call)
 
         completed_calls = Call.query.filter_by(campaign=self, status='completed')
-        integration.save_campaign_meta(self.crm_id, {'count': completed_calls.count()})
+        try:
+            integration.save_campaign_meta(self.crm_id, {'count': completed_calls.count()})
+        except NotImplementedError:
+            current_app.logger.info('crm_integration.save_campaign_meta not implemented')
         self.last_sync_time = datetime.utcnow()
         db.session.add(self)    
         db.session.commit()
@@ -87,11 +90,10 @@ class SyncCall(db.Model):
             return False
 
         crm_user = integration.get_user(user_phone)
-        current_app.logger.info('got user %s' % crm_user['id'])
         if not crm_user:
             current_app.logger.warning('unable to get crm user for phone: %s' % user_phone)
             return False
 
         self.saved = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
-        current_app.logger.info('synced %s->%s' % (crm_user['id'], self.call.id))
+        current_app.logger.info('synced call %s by %s' % (self.call.id, crm_user['id']))
         return True

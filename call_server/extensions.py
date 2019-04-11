@@ -36,7 +36,7 @@ from flask_store import Store
 store = Store()
 
 from flask_rq2 import RQ
-rq = RQ()
+rq = RQ(default_timeout=60*60)
 
 from flask_talisman import Talisman
 CALLPOWER_CSP = {

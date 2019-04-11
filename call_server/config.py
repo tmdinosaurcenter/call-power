@@ -146,6 +146,9 @@ class HerokuConfig(ProductionConfig):
     MAIL_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER', 'info@callpower.org')
 
+    # use rq HerokuWorker
+    RQ_WORKER_CLASS = 'call_server.sync.workers.CleanSlateHerokuWorker'
+
 
 class DevelopmentConfig(DefaultConfig):
     DEBUG = os.environ.get('APP_DEBUG', True)

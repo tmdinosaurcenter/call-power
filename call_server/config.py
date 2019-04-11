@@ -147,7 +147,7 @@ class HerokuConfig(ProductionConfig):
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER', 'info@callpower.org')
 
     # use rq HerokuWorker
-    RQ_WORKER_CLASS = 'call_server.sync.workers.CleanSlateHerokuWorker'
+    RQ_WORKER_CLASS = 'call_server.sync.worker.CleanSlateHerokuWorker'
 
 
 class DevelopmentConfig(DefaultConfig):

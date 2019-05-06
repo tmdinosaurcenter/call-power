@@ -104,7 +104,7 @@ def system():
                             'CA': cache.get('political_data:ca')}
     blocked = Blocklist.query.order_by(Blocklist.timestamp.desc()).all()
     if not political_data_cache['US']:
-        flash(_("US Political Data not yet loaded. Run > python manager.py loadpoliticaldata") , 'warning')
+        flash(_("US Political Data not yet loaded. Run > flask loadpoliticaldata") , 'warning')
     return render_template('admin/system.html',
                            message_defaults=current_app.config.CAMPAIGN_MESSAGE_DEFAULTS,
                            twilio_numbers=twilio_numbers,

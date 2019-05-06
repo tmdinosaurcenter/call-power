@@ -359,10 +359,12 @@ $(document).ready(function () {
       'click .filters button.search': 'searchCallIds',
       'blur input[name="call-search"]': 'searchCallIds',
       'click a.info-modal': 'showInfoModal',
+      'click .btn.export': 'exportCSV',
     },
 
 
     initialize: function(campaign_id) {
+      this.campaign_id = campaign_id;
       this.collection = new CallPower.Collections.CallList(campaign_id);
       this.listenTo(this.collection, 'reset add remove', this.renderCollection);
       this.views = [];
@@ -399,10 +401,10 @@ $(document).ready(function () {
         filters.push({'name': 'status', 'op': 'eq', 'val': status});
       }
       if (start) {
-        filters.push({'name': 'timestamp', 'op': 'gt', 'val': start.toISOString()});
+        filters.push({'name': 'timestamp', 'op': 'gt', 'val': start.toISOString().split('T')[0]});
       }
       if (end) {
-        filters.push({'name': 'timestamp', 'op': 'lt', 'val': end.toISOString()});
+        filters.push({'name': 'timestamp', 'op': 'lt', 'val': end.toISOString().split('T')[0]});
       }
       if(call_sids) {
         filters.push({'name': 'call_id', 'op': 'in', 'val': call_sids});
@@ -474,11 +476,27 @@ $(document).ready(function () {
         });
     },
 
+    exportCSV: function(event) {
+      // show warning dialog, and send filter params to modal
+
+      var status = $('select[name="status"]').val();
+      var start = new Date($('input[name="start"]').datepicker('getDate'));
+      var end = new Date($('input[name="end"]').datepicker('getDate'));
+
+      data = {
+        campaign_id: this.campaign_id,
+        status: status,
+        start: start.toISOString().split('T')[0],
+        end: end.toISOString().split('T')[0]
+      };
+      return (new CallPower.Views.CallLogExportView(data)).render();
+    }
+
   });
   
   CallPower.Views.CallInfoView = Backbone.View.extend({
     tagName: 'div',
-    className: 'microphone modal fade',
+    className: 'modal fade',
 
     initialize: function(data) {
       this.data = data;
@@ -496,12 +514,47 @@ $(document).ready(function () {
     },
 
     destroy: function() {
-      this.undelegateEvents();
       this.$el.removeData().unbind();
 
       this.remove();
       Backbone.View.prototype.remove.call(this);
     },
+  });
+
+  CallPower.Views.CallLogExportView = Backbone.View.extend({
+    tagName: 'div',
+    className: 'modal fade',
+    events: {
+      'click .btn.download': 'disableButton',
+    },
+
+    initialize: function(data) {
+      this.data = data;
+      this.template = _.template($('#export-confirm-tmpl').html(), { 'variable': 'data' });
+    },
+
+    render: function() {
+      var html = this.template(this.data);
+      this.$el.html(html);
+
+      this.$el.on('hidden.bs.modal', this.destroy);
+      this.$el.modal('show');
+
+      return this;
+    },
+
+    destroy: function() {
+      this.$el.removeData().unbind();
+
+      this.remove();
+      Backbone.View.prototype.remove.call(this);
+    },
+
+    disableButton: function() {
+      this.$el.find('.btn.download')
+        .html('<span class="glyphicon glyphicon-transfer"></span> Generating File')
+        .addClass('disabled');
+    }
   });
 
 

@@ -28,7 +28,19 @@ def api_key_or_auth_required(f):
 
         admin_key = current_app.config.get('ADMIN_API_KEY')
         if admin_key and request.args.get('api_key') == admin_key:
-                return f(*args, **kwargs)
+            return f(*args, **kwargs)
+
+        abort(401, 'Not Authenticated')
+    return decorated_function
+
+
+def admin_user_required(f):
+    """Restrict access to logged in user or valid admin api key
+    Flask view decorator"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if current_user.is_authenticated and current_user.is_admin():
+            return f(*args, **kwargs)  # allow
 
         abort(401, 'Not Authenticated')
     return decorated_function

@@ -221,6 +221,11 @@ select.block {
     color: #333;
 }
 
+.btn-warning a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* Search Results */
 .search-results .close {
     font-size: 14px;

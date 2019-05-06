@@ -1,6 +1,5 @@
 import os
 import sys
-import logging
 from datetime import datetime
 
 import click
@@ -12,8 +11,6 @@ from call_server.extensions import assets, db, cache, rq
 from call_server import political_data
 from call_server import sync
 from call_server.user import User, USER_ADMIN, USER_ACTIVE
-
-log = logging.getLogger(__name__)
 
 app = create_app()
 app.db = db
@@ -27,30 +24,15 @@ alembic_config.set_section_option('alembic', 'sqlalchemy.url',
 def reset_assets():
     """Reset assets named bundles to {} before running command.
     This command should really be run with TestingConfig context"""
-    log.info("resetting assets")
+    app.logger.info("resetting assets")
     assets._named_bundles = {}
 
 
 @app.cli.command()
 @click.option('--external', default=None, help='externally routable domain')
 def runserver(external=None):
-    """Run web server for local development and debugging
-        pass --external for external routing"""
-    if external:
-        app.config['SERVER_NAME'] = external
-        app.config['STORE_DOMAIN'] = "http://" + external # needs to have scheme, so urlparse is fully absolute
-        print "serving from %s" % app.config['SERVER_NAME']
-    if app.config['DEBUG'] and not cache.get('political_data:us'):
-        political_data.load_data(cache)
-
-    host = (os.environ.get('APP_HOST') or '127.0.0.1')
-    
-    app.jinja_env.cache = None
-    app.jinja_env.auto_reload = True
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-
-    app.run(debug=True, use_reloader=True, host=host)
-
+    app.logger.error('deprecated, use flask run instead')
+    sys.exit(-1)
 
 @app.cli.command()
 def loadpoliticaldata():
@@ -59,13 +41,13 @@ def loadpoliticaldata():
         import gevent.monkey
         gevent.monkey.patch_thread()
     except ImportError:
-        log.warning("unable to apply gevent monkey.patch_thread")
+        app.logger.warning("unable to apply gevent monkey.patch_thread")
     from flask_babel import force_locale
 
-    log.info("loading political data")
+    app.logger.info("loading political data")
     with app.app_context(), force_locale('en'):
             n = political_data.load_data(cache)
-    log.info("done loading %d objects" % n)
+    app.logger.info("done loading %d objects" % n)
 
 @app.cli.command()
 @click.argument('campaign_id')
@@ -269,3 +251,6 @@ def createadminuser(username, password, email):
 
     print "created admin user", admin.name
 
+if __name__ == "__main__":
+    app.logger.error("please use `flask run` to start")
+    sys.exit(-1)

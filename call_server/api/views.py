@@ -4,10 +4,11 @@ import dateutil
 
 import twilio.twiml
 from flask import Blueprint, Response, current_app, render_template, abort, request, jsonify
+from werkzeug.datastructures import Headers
 
 from sqlalchemy.sql import func, extract, distinct, cast, join
 
-from decorators import api_key_or_auth_required, restless_api_auth
+from decorators import api_key_or_auth_required, admin_user_required, restless_api_auth
 
 from constants import API_TIMESPANS
 from flask_talisman import ALLOW_FROM
@@ -377,6 +378,72 @@ def campaign_target_calls(campaign_id):
             targets[target_uid][call_status] = targets.get(target_uid, {}).get(call_status, 0) + count
 
     return jsonify({'objects': targets})
+
+
+# exports CSV of user phone numbers making successful calls in this campaign
+# returns real user data streamed from twilio api, so admin role is required
+@api.route('/campaign/<int:campaign_id>/user_phones.csv', methods=['GET'])
+@admin_user_required
+def user_phones_for_campaign(campaign_id):
+    start = request.values.get('start')
+    end = request.values.get('end')
+    status = request.values.get('status', 'completed')
+
+    campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
+
+    # get sessions for campaign, limited by start/end dates
+    query = db.session.query(
+        Call.session_id,
+        func.Max(Call.call_id),
+    ).filter(
+        Call.campaign_id == campaign.id,
+        Call.status == status,
+        Call.session_id != None
+    ).group_by(
+        Call.session_id
+    )
+
+    if start:
+        try:
+            startDate = dateutil.parser.parse(start)
+        except ValueError:
+            abort(400, 'start should be in isostring format')
+        query = query.filter(Call.timestamp >= startDate)
+
+    if end:
+        try:
+            endDate = dateutil.parser.parse(end)
+            if start:
+                if endDate < startDate:
+                    abort(400, 'end should be after start')
+                if endDate == startDate:
+                    endDate = startDate + timedelta(days=1)
+        except ValueError:
+            abort(400, 'end should be in isostring format')
+        query = query.filter(Call.timestamp <= endDate)
+
+    campaign_sessions = query
+    twilio_client = current_app.config['TWILIO_CLIENT']
+
+    # use an internal generator so we can stream the response
+    def generate():
+        # for each session, get the twilio_sid
+        # return the user phone (depending on direction)
+
+        for (session_id,call_id) in campaign_sessions:
+            twilio_call = twilio_client.calls.get(call_id).fetch()
+            # we want the user's phone number, which is either twilio_call.to or from_
+            # depending on direction (can be inbound, outbound-api, outbound-dial, or trunking)
+            if twilio_call.direction == 'inbound':
+                user_phone = twilio_call.from_
+            elif twilio_call.direction.startswith('outbound'):
+                user_phone = twilio_call.to
+            yield user_phone+'\n'
+
+    headers = Headers()
+    filename = 'callpower-log-campaign-%s' % campaign_id
+    headers.set('Content-Disposition', 'attachment', filename=filename+'.csv')
+    return Response(generate(), mimetype='text/csv', headers=headers)
 
 
 # returns twilio call sids made to a particular phone number

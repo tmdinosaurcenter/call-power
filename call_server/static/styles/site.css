@@ -7,6 +7,9 @@
 .align-center {
     text-align: center;
 }
+.center-block {
+  margin: 0 auto;
+}
 
 .voffset-2 { margin-top: 2px; }
 .voffset-5 { margin-top: 5px; }
@@ -33,6 +36,7 @@
 .alert button.close {
   margin-top: -10px;
 }
+
 
 html {
   position: relative;

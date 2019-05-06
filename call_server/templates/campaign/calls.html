@@ -73,6 +73,13 @@
     </table>
 
     <div id="calls-list-paginator"></div>
+
+    {% if current_user.role == 'admin' %}
+    <button class="btn btn-sm btn-warning export push-down-10">
+        <span class="glyphicon glyphicon-download"></span>
+        Export Log
+    </button>
+    {% endif %}
 </div>
 {% endblock %}
 
@@ -119,6 +126,38 @@
                     <% }); %>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/template" id="export-confirm-tmpl">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          <h4 class="modal-title">Download User Phone Log</h4>
+          <h5>Campaign ID: <%= data.campaign_id %></a></h5>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="align-center voffset-10"><b>This file contains personally-identifiable information.</b></p>
+                    <p>Remember to treat this file as highly confidential – it contains user phone numbers and should be deleted immediately upon uploading to a new platform.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-lg btn-warning center-block push-down-10 download">
+                        <a href="/api/campaign/<%= data.campaign_id %>/user_phones.csv?start=<%= data.start %>&end=<%= data.end %>">
+                            <span class="glyphicon glyphicon-download"></span>
+                            Download CSV
+                        </a>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@ US Congress contact information and boundaries change regularly after elections.
     make clean
     make
     cd ../../..
-    python manager.py loadpoliticaldata
+    flask loadpoliticaldata
 
 Geocoding
 ---------

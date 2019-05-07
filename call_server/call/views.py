@@ -713,6 +713,7 @@ def status_callback():
         call_session = Session.query.get(request.values.get('sessionId'))
         call_session.status = request.values.get('CallStatus', 'unknown')
         call_session.duration = request.values.get('CallDuration', None)
+        call_session.close()
         db.session.add(call_session)
         db.session.commit()
 
@@ -746,6 +747,7 @@ def status_inbound():
     if call_session:
         call_session.status = request.values.get('CallStatus', 'unknown')
         call_session.duration = request.values.get('CallDuration', None)
+        call_session.close()
         db.session.add(call_session)
         db.session.commit()
 

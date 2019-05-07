@@ -6,7 +6,7 @@ from ..extensions import db, rq
 
 from ..call.models import Call
 from ..campaign.models import Campaign
-from .constants import SCHEDULE_HOURLY, SCHEDULE_NIGHTLY, SCHEDULE_IMMEDIATE
+from .constants import SCHEDULE_IMMEDIATE, SCHEDULE_HOURLY, SCHEDULE_NIGHTLY
 
 class SyncCampaign(db.Model):
     __tablename__ = 'sync_campaign'
@@ -30,25 +30,26 @@ class SyncCampaign(db.Model):
     def has_schedule(self):
         return self.schedule in (SCHEDULE_CHOICES, SCHEDULE_HOURLY)
 
+    def is_immediate(self):
+        return self.schedule == SCHEDULE_IMMEDIATE
+
     def start(self, schedule):
         self.schedule = schedule
-        if self.schedule == SCHEDULE_HOURLY:
-            crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(
-                minute=0,
-                hour='*',
-                day_of_month='*',
-                month='*',
-                days_of_week='*')
+        if self.schedule == SCHEDULE_IMMEDIATE:
+            cron_data = {'minute': '*', hour: '*', day_of_week:'*', month:'*', day_of_month: '*'}
+        elif self.schedule == SCHEDULE_HOURLY:
+            cron_data = {'minute': 0, hour: '*', day_of_week:'*', month:'*', day_of_month: '*'}
         elif self.schedule == SCHEDULE_NIGHTLY:
-            crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(
-                minute=0,
-                hour=23,
-                day_of_month='*',
-                month='*',
-                days_of_week='*')
+            cron_data = {'minute': 0, hour: 23, day_of_week:'*', month:'*', day_of_month: '*'}
+        # elif self.schedule == SCHEDULE_END_OF_WEEK:
+        #     cron_data = {'minute': 0, hour: 23, day_of_week:7, month:'*', day_of_month: '*'}
+        # elif self.schedule == SCHEDULE_END_OF_MONTH:
+            # actually very start of a new month, because dates are hard
+        #     cron_data = {'minute': 0, hour: 0, month:'*', day_of_month: 1}
         else:
             return False
         from jobs import sync_campaigns
+        crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(**cron_data)
         cron_job = sync_campaigns.cron(crontab, 'sync:sync_campaigns:{}'.format(self.campaign_id), self.campaign_id)
         self.job_id = cron_job.id
 

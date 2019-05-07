@@ -91,3 +91,9 @@ class Session(db.Model):
 
     def __repr__(self):
         return u'<Session for {}>'.format(self.phone_hash)
+
+    def close(self):
+        # check campaign for immediate syncs to fire
+        sync = self.campaign.sync_campaign
+        if sync and sync.is_immediate():
+            sync.sync_calls()

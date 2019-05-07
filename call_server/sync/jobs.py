@@ -23,6 +23,13 @@ def get_crm_integration():
         rogue_credentails = {'domain': current_app.config['ROGUE_DOMAIN'],
                           'api_key': current_app.config['ROGUE_API_KEY']}
         crm_integration = RogueIntegration(**rogue_credentails)
+    elif current_app.config['CRM_INTEGRATION'].lower() == 'mobilecommons':
+        from .integrations.mobile_commons import MobileCommonsIntegration
+        mobile_commons_credentials = {
+            'username': current_app.config['MOBILE_COMMONS_USERNAME'],
+            'password': current_app.config['MOBILE_COMMONS_PASSWORD']
+        }
+        crm_integration = MobileCommonsIntegration(**mobile_commons_credentials)
     else:
         raise CRMIntegrationError('no CRM_INTEGRATION configured')
         return False

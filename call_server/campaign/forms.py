@@ -19,6 +19,7 @@ from .constants import (SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CH
 from .models import Campaign, TwilioPhoneNumber
 
 from ..political_data import COUNTRY_CHOICES
+from ..sync.constants import SCHEDULE_CHOICES, SCHEDULE_HOURLY
 from ..utils import choice_items, choice_keys, choice_values, choice_values_flat
 
 
@@ -176,6 +177,7 @@ class CampaignLaunchForm(FlaskForm):
     # CRM sync fields
     crm_sync = BooleanField(_('Sync calls to CRM'), [Optional()], default=False, description=True)
     crm_id = TextField(_('CRM Campaign'), description=True)
+    sync_schedule = SelectField(_('Schedule'), choices=choice_items(SCHEDULE_CHOICES), default=SCHEDULE_HOURLY)
 
     submit = SubmitField(_('Launch'))
 

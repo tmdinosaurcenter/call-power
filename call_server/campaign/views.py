@@ -8,6 +8,7 @@ from flask_store.providers.temp import TemporaryStore
 
 import sqlalchemy
 from sqlalchemy.sql import func, desc
+from sqlalchemy.orm.exc import NoResultFound
 
 from twilio.jwt.client import ClientCapabilityToken
 
@@ -21,6 +22,7 @@ from .models import (Campaign, Target, CampaignTarget,
                      TwilioPhoneNumber)
 from ..call.models import Call
 from ..sync.models import SyncCampaign
+from ..sync.constants import SCHEDULE_CHOICES, SCHEDULE_HOURLY
 from ..schedule.models import ScheduleCall
 
 
@@ -468,6 +470,7 @@ def launch(campaign_id):
             if campaign.sync_campaign:
                 form.crm_sync.checked = True
                 form.crm_id.value = campaign.sync_campaign.crm_id
+                form.sync_schedule.value = campaign.sync_campaign.schedule
 
     if campaign.prompt_schedule:
         campaign_scheduled = {

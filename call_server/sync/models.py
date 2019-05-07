@@ -6,40 +6,59 @@ from ..extensions import db, rq
 
 from ..call.models import Call
 from ..campaign.models import Campaign
+from .constants import SCHEDULE_HOURLY, SCHEDULE_NIGHTLY, SCHEDULE_IMMEDIATE
 
 class SyncCampaign(db.Model):
     __tablename__ = 'sync_campaign'
 
     id = db.Column(db.Integer, primary_key=True)
-    job_id = db.Column(db.String(36)) # UUID4
+    job_id = db.Column(db.String(36), nullable=True) # UUID4
     created_time = db.Column(db.DateTime, default=datetime.utcnow)
     last_sync_time = db.Column(db.DateTime)
 
     campaign_id = db.Column(db.ForeignKey('campaign_campaign.id'), unique=True)
     campaign = db.relationship('Campaign', backref=db.backref('sync_campaign', uselist=False))
+    schedule = db.Column(db.String(25), default=SCHEDULE_HOURLY) # nightly, hourly, immediate
 
     crm_id = db.Column(db.String(40), nullable=True) # id of the campaign in the CRM
 
-    def __init__(self, campaign_id, crm_id):
+    def __init__(self, campaign_id):
         self.campaign_id = campaign_id
-        self.crm_id = crm_id
-        self.start()
-        db.session.add(self)    
+        db.session.add(self)
         db.session.commit()
 
-    def start(self, location=None):
-        crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(
-            minute=0,
-            hour='*',
-            day_of_month='*',
-            month='*',
-            days_of_week='*')
+    def has_schedule(self):
+        return self.schedule in (SCHEDULE_CHOICES, SCHEDULE_HOURLY)
+
+    def start(self, schedule):
+        self.schedule = schedule
+        if self.schedule == SCHEDULE_HOURLY:
+            crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(
+                minute=0,
+                hour='*',
+                day_of_month='*',
+                month='*',
+                days_of_week='*')
+        elif self.schedule == SCHEDULE_NIGHTLY:
+            crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(
+                minute=0,
+                hour=23,
+                day_of_month='*',
+                month='*',
+                days_of_week='*')
+        else:
+            return False
         from jobs import sync_campaigns
         cron_job = sync_campaigns.cron(crontab, 'sync:sync_campaigns:{}'.format(self.campaign_id), self.campaign_id)
         self.job_id = cron_job.id
 
     def stop(self):
-        rq.get_scheduler().cancel(self.job_id)
+        if self.job_id:
+            rq.get_scheduler().cancel(self.job_id)
+            return True
+        else:
+            current_app.logger.info('unable to stop crm_sync for SyncCampaign {}'.format(self.id))
+            return False
 
     def sync_calls(self, integration):
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
@@ -55,7 +74,7 @@ class SyncCampaign(db.Model):
         except NotImplementedError:
             current_app.logger.info('crm_integration.save_campaign_meta not implemented')
         self.last_sync_time = datetime.utcnow()
-        db.session.add(self)    
+        db.session.add(self)
         db.session.commit()
 
 

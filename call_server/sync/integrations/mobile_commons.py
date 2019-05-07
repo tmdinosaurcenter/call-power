@@ -25,6 +25,8 @@ class MobileCommonsIntegration(CRMIntegration):
             'phone': phone_number
         }
 
+        # TODO, check here for opt-out?
+
 
     def save_action(self, call, crm_campaign_id, crm_user):
         """Given a crm_user and crm_campaign_id (opt in path)

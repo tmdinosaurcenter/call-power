@@ -28,7 +28,7 @@ class SyncCampaign(db.Model):
         db.session.commit()
 
     def has_schedule(self):
-        return self.schedule in (SCHEDULE_CHOICES, SCHEDULE_HOURLY)
+        return self.schedule in (SCHEDULE_NIGHTLY, SCHEDULE_HOURLY)
 
     def is_immediate(self):
         return self.schedule == SCHEDULE_IMMEDIATE
@@ -36,20 +36,20 @@ class SyncCampaign(db.Model):
     def start(self, schedule):
         self.schedule = schedule
         if self.schedule == SCHEDULE_IMMEDIATE:
-            cron_data = {'minute': '*', hour: '*', day_of_week:'*', month:'*', day_of_month: '*'}
+            cron_data = {'minute': '*', 'hour': '*', 'day_of_week':'*', 'month':'*', 'day_of_month': '*'}
         elif self.schedule == SCHEDULE_HOURLY:
-            cron_data = {'minute': 0, hour: '*', day_of_week:'*', month:'*', day_of_month: '*'}
+            cron_data = {'minute': 0, 'hour': '*', 'day_of_week':'*', 'month':'*', 'day_of_month': '*'}
         elif self.schedule == SCHEDULE_NIGHTLY:
-            cron_data = {'minute': 0, hour: 23, day_of_week:'*', month:'*', day_of_month: '*'}
+            cron_data = {'minute': 0, 'hour': 23, 'day_of_week':'*', 'month':'*', 'day_of_month': '*'}
         # elif self.schedule == SCHEDULE_END_OF_WEEK:
-        #     cron_data = {'minute': 0, hour: 23, day_of_week:7, month:'*', day_of_month: '*'}
+        #     cron_data = {'minute': 0, 'hour': 23, 'day_of_week':7, 'month':'*', 'day_of_month': '*'}
         # elif self.schedule == SCHEDULE_END_OF_MONTH:
             # actually very start of a new month, because dates are hard
-        #     cron_data = {'minute': 0, hour: 0, month:'*', day_of_month: 1}
+        #     cron_data = {'minute': 0, 'hour': 0, 'month':'*', 'day_of_month': 1}
         else:
             return False
         from jobs import sync_campaigns
-        crontab = '{minute} {hour} {day_of_month} {month} {days_of_week}'.format(**cron_data)
+        crontab = '{minute} {hour} {day_of_month} {month} {day_of_week}'.format(**cron_data)
         cron_job = sync_campaigns.cron(crontab, 'sync:sync_campaigns:{}'.format(self.campaign_id), self.campaign_id)
         self.job_id = cron_job.id
 
@@ -58,14 +58,24 @@ class SyncCampaign(db.Model):
             rq.get_scheduler().cancel(self.job_id)
             return True
         else:
-            current_app.logger.info('unable to stop crm_sync for SyncCampaign {}'.format(self.id))
+            current_app.logger.warning('unable to stop crm_sync for SyncCampaign {}'.format(self.id))
             return False
 
     def is_running(self):
-        return self.job_id in rq.get_scheduler()
+        if self.job_id:
+            return self.job_id in rq.get_scheduler()
+        else:
+            return False
 
     def sync_calls(self, integration):
+        # sync all calls for session, or one at a time?
+
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
+        if len(unsynced_calls) == 0:
+            current_app.logger.info('no calls to sync, exiting early')
+            return None
+        else:
+            current_app.logger.info('{} calls to sync'.format(len(unsynced_calls)))
         for call in unsynced_calls:
             sync_call = SyncCall(call.id)
             result = sync_call.save_to_crm(self, integration)

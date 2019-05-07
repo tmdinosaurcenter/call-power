@@ -40,4 +40,4 @@ embed_custom_onload: Javascript that will run after the callPowerForm is attache
 embed_redirect: After making call, redirect the page to this URL using Javascript.
 
 crm_sync: Automatically sync actions for this campaign to the configured CRM
-crm_id: Unique descriptor of the CRM campaign page. For ActionKit, this is the page name. For Rogue, this is ignored.
+crm_id: Unique descriptor of the CRM campaign page. For ActionKit, this is the page name. For MobileCommons, this is the desired SMS opt in path key. For Rogue, this is ignored.

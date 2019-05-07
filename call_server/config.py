@@ -68,6 +68,9 @@ class DefaultConfig(object):
     if CRM_INTEGRATION == 'rogue':
         ROGUE_DOMAIN = os.environ.get('ROGUE_DOMAIN')
         ROGUE_API_KEY = os.environ.get('ROGUE_API_KEY')
+    if CRM_INTEGRATION == 'mobilecommons':
+        MOBILE_COMMONS_USERNAME = os.environ.get('MOBILE_COMMONS_USERNAME')
+        MOBILE_COMMONS_PASSWORD = os.environ.get('MOBILE_COMMONS_PASSWORD')
 
 class ProductionConfig(DefaultConfig):
     DEBUG = False

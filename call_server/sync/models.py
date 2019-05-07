@@ -60,6 +60,9 @@ class SyncCampaign(db.Model):
             current_app.logger.info('unable to stop crm_sync for SyncCampaign {}'.format(self.id))
             return False
 
+    def is_running(self):
+        return self.job_id in rq.get_scheduler()
+
     def sync_calls(self, integration):
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
         for call in unsynced_calls:

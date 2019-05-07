@@ -438,11 +438,33 @@ def launch(campaign_id):
         db.session.add(campaign)
 
         if form.crm_sync.data:
-            sync_campaign, created = get_one_or_create(db.session, SyncCampaign,
-                            campaign_id=campaign.id, crm_id=form.crm_id.data)
+            sync_campaign, created = get_one_or_create(db.session, SyncCampaign, campaign_id=campaign.id)
+            sync_campaign.crm_id = form.crm_id.data 
             if created:
-                flash('Campaign sync started!', 'success')
+                if sync_campaign.has_schedule():
+                    sync_campaign.start(form.sync_schedule.data)
+                    flash('Campaign sync started!', 'success')
+                else:
+                    flash('Campaign sync configured', 'success')
+            # campaign restarted?
+            if not created and not sync_campaign.is_running():
+                if sync_campaign.has_schedule():
+                    sync_campaign.start(form.sync_schedule.data)
+                    flash('Campaign sync restarted!', 'success')
+
+            db.session.add(sync_campaign)
+        else:
+            # stop existing SyncCampaigns for this campaign_id
+            # don't delete, because we want to keep historical records
+            try:
+                sync_campaign = db.session.query(SyncCampaign).filter_by(campaign_id=campaign.id).one()
+                stopped = sync_campaign.stop()
+                if stopped:
+                    flash('Campaign sync stopped', 'warning')
                 db.session.add(sync_campaign)
+            except NoResultFound:
+                pass
+                # don't create one...
         
         db.session.commit()
 

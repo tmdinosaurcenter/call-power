@@ -440,6 +440,7 @@ def launch(campaign_id):
         if form.crm_sync.data:
             sync_campaign, created = get_one_or_create(db.session, SyncCampaign, campaign_id=campaign.id)
             sync_campaign.crm_id = form.crm_id.data 
+            sync_campaign.crm_key = form.crm_key.data 
             if created:
                 if sync_campaign.has_schedule():
                     sync_campaign.start(form.sync_schedule.data)
@@ -492,6 +493,7 @@ def launch(campaign_id):
             if campaign.sync_campaign and campaign.sync_campaign.is_running():
                 form.crm_sync.checked = True
                 form.crm_id.data = campaign.sync_campaign.crm_id
+                form.crm_key.data = campaign.sync_campaign.crm_key
                 form.sync_schedule.data = campaign.sync_campaign.schedule
 
     if campaign.prompt_schedule:

@@ -43,6 +43,12 @@ crm_sync: Automatically sync actions for this campaign to the configured CRM
 crm_id: |
   Unique descriptor of the CRM campaign page.<ul>
   <li>For ActionKit, this is the page name.
-  <li>For MobileCommons, this is the desired SMS opt in path key.
+  <li>For MobileCommons, this is the campaign ID.
+  <li>For Rogue, this is ignored.
+  </ul>
+crm_key: |
+  Campaign specific key for the CRM.<ul>
+  <li>For ActionKit, this is ignored.
+  <li>For MobileCommons, this is the opt in path key.
   <li>For Rogue, this is ignored.
   </ul>

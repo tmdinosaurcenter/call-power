@@ -27,13 +27,35 @@ class MobileCommonsIntegration(CRMIntegration):
             'phone': phone_number
         }
 
-        # TODO, check here for opt-out?
+    def check_opt_out(self, crm_campaign_id, crm_user):
+        # check user profile for existing subscription or opt-out
+        # returns True 
+        data = {
+            'phone_number': crm_user['phone'],
+        }
+
+        response = self.mc_api.get('/api/profile', params=data)
+        results = ElementTree.fromstring(response.content)
+        user_profile = results.find('profile')
+        if not user_profile:
+            return None
+
+        user_status = user_profile.find('status').text
+        subscriptions = user_profile.find('subscriptions')
+        for s in subscriptions:
+            if s.get('campaign_id') == crm_campaign_id:
+                if s.get('status') == 'Opted-Out':
+                    return True
 
 
     def save_action(self, call, crm_campaign_id, crm_user):
         """Given a crm_user and crm_campaign_id (opt in path)
         Subscribe the user's phone number via the opt-in path
         Returns a boolean status"""
+
+        if self.check_opt_out(crm_campaign_id, crm_user):
+            current_app.logger.warning('crm user (%s) opted out of campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+            return False
 
         data = {
             'phone_number': crm_user['phone'],

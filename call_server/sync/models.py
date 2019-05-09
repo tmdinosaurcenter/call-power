@@ -21,6 +21,7 @@ class SyncCampaign(db.Model):
     schedule = db.Column(db.String(25), default=SCHEDULE_HOURLY) # nightly, hourly, immediate
 
     crm_id = db.Column(db.String(40), nullable=True) # id of the campaign in the CRM
+    crm_key = db.Column(db.String(40), nullable=True) # some CRMs require a per-campaign key to post
 
     def __init__(self, campaign_id):
         self.campaign_id = campaign_id
@@ -148,5 +149,5 @@ class SyncCall(db.Model):
             return False
 
         self.saved = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
-        current_app.logger.info('synced call %s by %s' % (self.call.id, crm_user['id']))
+        current_app.logger.info('synced call %s by %s. action saved={}' % (self.call.id, crm_user['id'], self.saved))
         return True

@@ -176,7 +176,8 @@ class CampaignLaunchForm(FlaskForm):
 
     # CRM sync fields
     crm_sync = BooleanField(_('Sync calls to CRM'), [Optional()], default=False, description=True)
-    crm_id = TextField(_('CRM Campaign'), description=True)
+    crm_id = TextField(_('CRM Campaign ID'), description=True)
+    crm_key = TextField(_('CRM Campaign Key'), description=True)
     sync_schedule = SelectField(_('Schedule'), choices=choice_items(SCHEDULE_CHOICES), default=SCHEDULE_HOURLY)
 
     submit = SubmitField(_('Launch'))

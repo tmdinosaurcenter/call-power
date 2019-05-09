@@ -4,6 +4,9 @@ import requests
 from xml.etree import ElementTree
 from requests.auth import HTTPBasicAuth
 from requests_toolbelt import sessions
+import dateutil.parser
+from utils import utc_now
+
 from . import CRMIntegration
 
 class MobileCommonsIntegration(CRMIntegration):
@@ -27,9 +30,11 @@ class MobileCommonsIntegration(CRMIntegration):
             'phone': phone_number
         }
 
-    def check_opt_out(self, crm_campaign_id, crm_user):
+    def ok_to_subscribe_user(self, crm_campaign_id, crm_user):
         # check user profile for existing subscription or opt-out
-        # returns True 
+        # returns True to go ahead
+        # False if we should stop
+        # None if there isn't an existing user in the CRM
         data = {
             'phone_number': crm_user['phone'],
         }
@@ -41,11 +46,40 @@ class MobileCommonsIntegration(CRMIntegration):
             return None
 
         user_status = user_profile.find('status').text
-        subscriptions = user_profile.find('subscriptions')
-        for s in subscriptions:
+        profile_subscriptions = user_profile.find('subscriptions')
+        campaign_subscriptions = []
+        for s in profile_subscriptions:
             if s.get('campaign_id') == crm_campaign_id:
-                if s.get('status') == 'Opted-Out':
-                    return True
+                # copy matching subscriptions to a local list, so we can sort and reverse
+                campaign_subscriptions.append({
+                    'created_at': dateutil.parser.isoparse(s.get('created_at')),
+                    'status': s.get('status')    
+                })
+
+        # should already be ordered by created_at, double check tho
+        sorted_subscriptions = sorted(campaign_subscriptions, key=lambda k: k['created_at'])
+
+        most_recent_subscription = sorted_subscriptions[-1]
+        # if user's most recent action is to opt out, don't re-prompt
+        if most_recent_subscription.get('status') == 'Opted-Out':
+            current_app.logger.warning('user (%s) opted out of campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+            return False
+
+        # if user is subscribed, don't re-prompt
+        if most_recent_subscription.get('status') == 'Active':
+            current_app.logger.info('user (%s) already subscribed to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+            return False
+
+        # if user was prompted within last 30 days, don't re-prompt
+        since_last_prompt = most_recent_subscription.get('created_at') - utc_now()
+        if since_last_prompt.days < 30:
+            current_app.logger.info('user (%s) prompted about campaign (%s) at ' %
+                (crm_user['phone'], crm_campaign_id, most_recent_subscription.get('created_at').isoformat())
+            )
+            return False
+    
+        # no flags? go ahead
+        return True
 
 
     def save_action(self, call, crm_campaign_id, crm_user):
@@ -53,8 +87,8 @@ class MobileCommonsIntegration(CRMIntegration):
         Subscribe the user's phone number via the opt-in path
         Returns a boolean status"""
 
-        if self.check_opt_out(crm_campaign_id, crm_user):
-            current_app.logger.warning('crm user (%s) opted out of campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+        if not self.ok_to_subscribe_user(crm_campaign_id, crm_user):
+            current_app.logger.info('not ok to subscribe user (%s) to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
             return False
 
         data = {
@@ -66,13 +100,6 @@ class MobileCommonsIntegration(CRMIntegration):
         results = ElementTree.fromstring(response.content)
         success = bool(results.get('success'))
         # coerce 'true'/'false' into boolean
-
-        # verify phone number
-        # phone_number = results.find('profile').find('phone_number').text
-
-        # verify subscription
-        # subscriptions = results.find('profile').find('subscriptions')
-        # match campaign_id to opt_in_path_id ?
 
         return success
 

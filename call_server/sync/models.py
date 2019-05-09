@@ -28,7 +28,7 @@ class SyncCampaign(db.Model):
         db.session.commit()
 
     def has_schedule(self):
-        return self.schedule in (SCHEDULE_NIGHTLY, SCHEDULE_HOURLY)
+        return self.schedule in (SCHEDULE_NIGHTLY, SCHEDULE_HOURLY, SCHEDULE_IMMEDIATE)
 
     def is_immediate(self):
         return self.schedule == SCHEDULE_IMMEDIATE

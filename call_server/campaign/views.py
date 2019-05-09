@@ -489,10 +489,10 @@ def launch(campaign_id):
             if campaign.embed.get('script'):
                 form.embed_script.data = campaign.embed.get('script')
 
-            if campaign.sync_campaign:
+            if campaign.sync_campaign and campaign.sync_campaign.is_running():
                 form.crm_sync.checked = True
-                form.crm_id.value = campaign.sync_campaign.crm_id
-                form.sync_schedule.value = campaign.sync_campaign.schedule
+                form.crm_id.data = campaign.sync_campaign.crm_id
+                form.sync_schedule.data = campaign.sync_campaign.schedule
 
     if campaign.prompt_schedule:
         campaign_scheduled = {

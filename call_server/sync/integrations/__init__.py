@@ -2,6 +2,7 @@ from flask import current_app
 import requests
 
 class CRMIntegration(object):
+    BATCH_ALL_CALLS_IN_SESSION = False
 
     def __init__(self, *args, **kwargs):
         self.twilio_client = current_app.config['TWILIO_CLIENT']

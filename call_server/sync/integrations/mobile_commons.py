@@ -7,6 +7,8 @@ from requests_toolbelt import sessions
 from . import CRMIntegration
 
 class MobileCommonsIntegration(CRMIntegration):
+    BATCH_ALL_CALLS_IN_SESSION = True
+    # this forces the SyncCampaign to save only the first call in a session, to avoid duplicates
 
     def __init__(self, username, password):
         super(MobileCommonsIntegration, self).__init__()

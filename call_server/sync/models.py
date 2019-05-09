@@ -68,19 +68,38 @@ class SyncCampaign(db.Model):
             return False
 
     def sync_calls(self, integration):
-        # sync all calls for session, or one at a time?
-
+        # sync all calls for campaign which don't already have a SyncCall
+        
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
-        if len(unsynced_calls) == 0:
+        if len(unsynced_calls.all()) == 0:
             current_app.logger.info('no calls to sync, exiting early')
             return None
         else:
-            current_app.logger.info('{} calls to sync'.format(len(unsynced_calls)))
+            current_app.logger.info('{} calls to sync'.format(len(unsynced_calls.all())))
         for call in unsynced_calls:
+            # guard for changes after unsynced_call query
+            if call.sync_call.first():
+                continue
+
             sync_call = SyncCall(call.id)
             result = sync_call.save_to_crm(self, integration)
             if result:
                 db.session.add(sync_call)
+
+            if integration.BATCH_ALL_CALLS_IN_SESSION:
+                # get all the other calls in this session
+                # create SyncCalls for them too, but skip save_to_crm
+                other_calls_in_session = Call.query.filter(
+                    Call.session_id==call.session_id,
+                    Call.campaign_id==self.campaign.id,
+                    Call.id!=call.id
+                )
+                for other_call in other_calls_in_session:
+                    skip_sync = SyncCall(other_call.id)
+                    # don't save_to_crm here
+                    skip_sync.saved = False
+                    db.session.add(skip_sync)
+            db.session.commit()
 
         completed_calls = Call.query.filter_by(campaign=self, status='completed')
         try:

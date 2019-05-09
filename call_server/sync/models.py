@@ -69,7 +69,7 @@ class SyncCampaign(db.Model):
 
     def sync_calls(self, integration):
         # sync all calls for campaign which don't already have a SyncCall
-        
+
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
         if len(unsynced_calls.all()) == 0:
             current_app.logger.info('no calls to sync, exiting early')
@@ -79,6 +79,7 @@ class SyncCampaign(db.Model):
         for call in unsynced_calls:
             # guard for changes after unsynced_call query
             if call.sync_call.first():
+                current_app.logger.info('{} has an existing sync_call, continuing'.format(call.id))
                 continue
 
             sync_call = SyncCall(call.id)

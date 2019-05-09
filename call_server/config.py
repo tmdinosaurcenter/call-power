@@ -154,7 +154,7 @@ class HerokuConfig(ProductionConfig):
 
 
 class DevelopmentConfig(DefaultConfig):
-    DEBUG = os.environ.get('APP_DEBUG', True)
+    DEBUG = os.environ.get('FLASK_DEBUG', True)
     DEBUG_MORE = True
     TESTING = False
 

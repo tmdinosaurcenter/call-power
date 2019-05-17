@@ -68,6 +68,7 @@ EMBED_SCRIPT_DISPLAY = (
 EMPTY_CHOICES = {'': ''}
 
 STRING_LEN = 100
+LONG_STRING_LEN = 255
 TWILIO_SID_LENGTH = 34
 
 # from https://www.twilio.com/docs/api/twiml/say#attributes-alice

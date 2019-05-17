@@ -7,7 +7,7 @@ from sqlalchemy import UniqueConstraint
 
 from ..extensions import db, cache
 from ..political_data import get_country_data, check_political_data_cache
-from .constants import (STRING_LEN, TWILIO_SID_LENGTH, LANGUAGE_CHOICES,
+from .constants import (STRING_LEN, LONG_STRING_LEN, TWILIO_SID_LENGTH, LANGUAGE_CHOICES,
                         CAMPAIGN_STATUS, STATUS_PAUSED,
                         SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CHOCIES, TARGET_OFFICE_CHOICES)
 
@@ -18,7 +18,7 @@ class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_time = db.Column(db.DateTime, default=datetime.utcnow)
 
-    name = db.Column(db.String(STRING_LEN), nullable=False, unique=True)
+    name = db.Column(db.String(LONG_STRING_LEN), nullable=False, unique=True)
     country_code = db.Column(db.String(STRING_LEN), index=True)
     campaign_type = db.Column(db.String(STRING_LEN))
     campaign_state = db.Column(db.String(STRING_LEN))

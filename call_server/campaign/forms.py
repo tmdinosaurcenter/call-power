@@ -10,11 +10,11 @@ from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleF
 from wtforms_components import IntegerField, read_only
 from wtforms_alchemy import PhoneNumberField
 from wtforms.widgets import TextArea, Input
-from wtforms.validators import Required, Optional, AnyOf, NumberRange, ValidationError
+from wtforms.validators import Required, Optional, AnyOf, NumberRange, ValidationError, Length
 from wtforms_alchemy.validators import Unique
 
 from .constants import (SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CHOCIES, TARGET_OFFICE_CHOICES, LANGUAGE_CHOICES,
-                        CAMPAIGN_STATUS, EMBED_FORM_CHOICES, EMBED_SCRIPT_DISPLAY)
+                        CAMPAIGN_STATUS, EMBED_FORM_CHOICES, EMBED_SCRIPT_DISPLAY, LONG_STRING_LEN)
 
 from .models import Campaign, TwilioPhoneNumber
 
@@ -47,7 +47,7 @@ class TargetForm(FlaskForm):
 
 class CampaignForm(FlaskForm):
     next = HiddenField()
-    name = TextField(_('Campaign Name'), [Required(), Unique(Campaign.name, message="Campaign with that name already exists")])
+    name = TextField(_('Campaign Name'), [Required(), Length(max=LONG_STRING_LEN), Unique(Campaign.name, message="Campaign with that name already exists")])
     campaign_country = DisabledSelectField(_('Country'), [Optional()], choices=COUNTRY_CHOICES)
     campaign_type = DisabledSelectField(_('Type'), [Optional()])
     campaign_state = SelectField(_('State'), [Optional()])

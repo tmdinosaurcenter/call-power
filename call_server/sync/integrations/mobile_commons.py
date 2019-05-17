@@ -37,6 +37,7 @@ class MobileCommonsIntegration(CRMIntegration):
         # None if there isn't an existing user in the CRM
         data = {
             'phone_number': crm_user['phone'],
+            'company': current_app.config.get('MOBILE_COMMONS_COMPANY')
         }
 
         response = self.mc_api.get('/api/profile', params=data)
@@ -93,7 +94,8 @@ class MobileCommonsIntegration(CRMIntegration):
 
         data = {
             'phone_number': crm_user['phone'],
-            'opt_in_path_id': crm_campaign_id
+            'opt_in_path_id': crm_campaign_id,
+            'company': current_app.config.get('MOBILE_COMMONS_COMPANY')
         }
 
         response = self.mc_api.post('/api/profile_update', data)

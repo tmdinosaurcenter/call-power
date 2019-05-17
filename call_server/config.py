@@ -71,6 +71,7 @@ class DefaultConfig(object):
     if CRM_INTEGRATION == 'mobilecommons':
         MOBILE_COMMONS_USERNAME = os.environ.get('MOBILE_COMMONS_USERNAME')
         MOBILE_COMMONS_PASSWORD = os.environ.get('MOBILE_COMMONS_PASSWORD')
+        MOBILE_COMMONS_COMPANY = os.environ.get('MOBILE_COMMONS_COMPANY')
 
 class ProductionConfig(DefaultConfig):
     DEBUG = False

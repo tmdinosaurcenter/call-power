@@ -4,7 +4,6 @@ from datetime import datetime
 from ..extensions import db
 
 from .constants import STRING_LEN
-from call_server.sync import get_crm_integration
 
 class Call(db.Model):
     # tracks outbound calls to target
@@ -96,4 +95,4 @@ class Session(db.Model):
         # check campaign for immediate syncs to fire
         sync = self.campaign.sync_campaign
         if sync and sync.is_immediate():
-            sync.sync_calls(get_crm_integration())
+            sync.sync_calls()

@@ -6,7 +6,8 @@ from ..extensions import db, rq
 
 from ..call.models import Call
 from ..campaign.models import Campaign
-from .jobs import get_crm_integration
+
+from .integrations import get_crm_integration
 from .constants import SCHEDULE_IMMEDIATE, SCHEDULE_HOURLY, SCHEDULE_NIGHTLY
 
 class SyncCampaign(db.Model):

@@ -39,3 +39,32 @@ class CRMIntegrationError(Exception):
     def __init__(self, message):
         self.message = message
 
+def get_crm_integration():
+    # setup integration from config values
+    if current_app.config['CRM_INTEGRATION'].lower() == 'actionkit':
+        from .actionkit_crm import ActionKitIntegration
+        ak_credentials = {'domain': current_app.config['ACTIONKIT_DOMAIN'],
+                          'username': current_app.config['ACTIONKIT_USER']}
+        if 'ACTIONKIT_PASSWORD' in current_app.config:
+            ak_credentials['password'] = current_app.config['ACTIONKIT_PASSWORD']
+        elif 'ACTIONKIT_API_KEY' in current_app.config:
+            ak_credentials['api_key'] = current_app.config['ACTIONKIT_API_KEY']
+        else:
+            raise CRMIntegrationError('either ACTIONKIT_API_KEY or ACTIONKIT_PASSWORD must be configured')
+        crm_integration = ActionKitIntegration(**ak_credentials)
+    elif current_app.config['CRM_INTEGRATION'].lower() == 'rogue':
+        from .rogue_crm import RogueIntegration
+        rogue_credentails = {'domain': current_app.config['ROGUE_DOMAIN'],
+                          'api_key': current_app.config['ROGUE_API_KEY']}
+        crm_integration = RogueIntegration(**rogue_credentails)
+    elif current_app.config['CRM_INTEGRATION'].lower() == 'mobilecommons':
+        from .mobile_commons import MobileCommonsIntegration
+        mobile_commons_credentials = {
+            'username': current_app.config['MOBILE_COMMONS_USERNAME'],
+            'password': current_app.config['MOBILE_COMMONS_PASSWORD']
+        }
+        crm_integration = MobileCommonsIntegration(**mobile_commons_credentials)
+    else:
+        raise CRMIntegrationError('no CRM_INTEGRATION configured')
+        return False
+    return crm_integration

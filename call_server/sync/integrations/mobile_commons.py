@@ -58,6 +58,10 @@ class MobileCommonsIntegration(CRMIntegration):
                     'status': s.get('status')    
                 })
 
+        if not campaign_subscriptions:
+            # no current subscriptions, no need to check further
+            return True
+
         # should already be ordered by created_at, double check tho
         sorted_subscriptions = sorted(campaign_subscriptions, key=lambda k: k['created_at'])
 

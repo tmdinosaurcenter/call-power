@@ -155,5 +155,5 @@ class SyncCall(db.Model):
             return False
 
         self.saved = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
-        current_app.logger.info('synced call %s by %s. action saved={}' % (self.call.id, crm_user['id'], self.saved))
+        current_app.logger.info('synced call %s by %s. action saved=%s' % (self.call.id, crm_user['id'], self.saved))
         return True

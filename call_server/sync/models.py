@@ -6,6 +6,7 @@ from ..extensions import db, rq
 
 from ..call.models import Call
 from ..campaign.models import Campaign
+from .jobs import get_crm_integration
 from .constants import SCHEDULE_IMMEDIATE, SCHEDULE_HOURLY, SCHEDULE_NIGHTLY
 
 class SyncCampaign(db.Model):
@@ -68,8 +69,12 @@ class SyncCampaign(db.Model):
         else:
             return False
 
-    def sync_calls(self, integration):
+    def sync_calls(self):
         # sync all calls for campaign which don't already have a SyncCall
+
+        # currently integration is global
+        # TBD, should it be configurable per SyncCampaign
+        integration = get_crm_integration()
 
         unsynced_calls = Call.query.filter_by(campaign=self.campaign, sync_call=None)
         if len(unsynced_calls.all()) == 0:

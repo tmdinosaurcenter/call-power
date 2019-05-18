@@ -5,7 +5,8 @@ from xml.etree import ElementTree
 from requests.auth import HTTPBasicAuth
 from requests_toolbelt import sessions
 import dateutil.parser
-from utils import utc_now
+
+from call_server.utils import utc_now
 
 from . import CRMIntegration
 

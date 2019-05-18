@@ -44,8 +44,9 @@ class MobileCommonsIntegration(CRMIntegration):
         response = self.mc_api.get('/api/profile', params=data)
         results = ElementTree.fromstring(response.content)
         user_profile = results.find('profile')
-        if not user_profile:
-            return None
+        if user_profile is None:
+            # not yet subscribed, ok to go ahead
+            return True
 
         user_status = user_profile.find('status').text
         profile_subscriptions = user_profile.find('subscriptions')

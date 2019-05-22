@@ -234,6 +234,13 @@ def copy(campaign_id):
         db.session.add(new_campaign)
         db.session.commit()
 
+    # copy embed fields, if defined
+    if orig_campaign.embed:
+        for k,v in orig_campaign.embed.items():
+            new_campaign.embed[k] = v
+        db.session.add(new_campaign)
+        db.session.commit()
+
     # loop over selected audio recordings for the original campaign
     for audio_recording in orig_campaign._audio_query():
         # create new ones for the new campaign

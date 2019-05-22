@@ -6,6 +6,9 @@ from requests_toolbelt import sessions
 from . import CRMIntegration
 import phonenumbers
 
+import logging
+logger = logging.getLogger("rq.worker")
+
 class RogueIntegration(CRMIntegration):
 
     def __init__(self, domain, api_key):
@@ -49,9 +52,9 @@ class RogueIntegration(CRMIntegration):
             'callpower_campaign_name': call.campaign.name,
             'number_dialed_into': call.session.from_number, 
         }
-        # current_app.logger.info("creating action: %s" % json.dumps(call_action)) 
+        # logger.info("creating action: %s" % json.dumps(call_action)) 
         rogue_response = self.rogue_session.post('/api/v1/callpower/call', json=call_action)
-        # current_app.logger.info("rogue response (%s): %s" % (rogue_response.status_code, rogue_response.text))
+        # logger.info("rogue response (%s): %s" % (rogue_response.status_code, rogue_response.text))
         return rogue_response.ok
 
 

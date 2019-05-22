@@ -10,6 +10,9 @@ from call_server.utils import utc_now
 
 from . import CRMIntegration
 
+import logging
+logger = logging.getLogger("rq.worker")
+
 class MobileCommonsIntegration(CRMIntegration):
     BATCH_ALL_CALLS_IN_SESSION = True
     # this forces the SyncCampaign to save only the first call in a session, to avoid duplicates
@@ -69,18 +72,18 @@ class MobileCommonsIntegration(CRMIntegration):
         most_recent_subscription = sorted_subscriptions[-1]
         # if user's most recent action is to opt out, don't re-prompt
         if most_recent_subscription.get('status') == 'Opted-Out':
-            current_app.logger.warning('user (%s) opted out of campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+            logger.warning('user (%s) opted out of campaign (%s)' % (crm_user['phone'], crm_campaign_id))
             return False
 
         # if user is subscribed, don't re-prompt
         if most_recent_subscription.get('status') == 'Active':
-            current_app.logger.info('user (%s) already subscribed to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+            logger.info('user (%s) already subscribed to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
             return False
 
         # if user was prompted within last 30 days, don't re-prompt
         since_last_prompt = most_recent_subscription.get('created_at') - utc_now()
         if since_last_prompt.days < 30:
-            current_app.logger.info('user (%s) prompted about campaign (%s) at ' %
+            logger.info('user (%s) prompted about campaign (%s) at ' %
                 (crm_user['phone'], crm_campaign_id, most_recent_subscription.get('created_at').isoformat())
             )
             return False
@@ -95,7 +98,7 @@ class MobileCommonsIntegration(CRMIntegration):
         Returns a boolean status"""
 
         if not self.ok_to_subscribe_user(crm_campaign_id, crm_user):
-            current_app.logger.info('not ok to subscribe user (%s) to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+            logger.info('not ok to subscribe user (%s) to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
             return False
 
         data = {

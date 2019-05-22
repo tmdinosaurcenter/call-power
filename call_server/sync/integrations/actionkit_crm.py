@@ -5,6 +5,9 @@ from actionkit.rest import ActionKit
 from actionkit.xmlrpc import ActionKitXML
 import phonenumbers
 
+import logging
+logger = logging.getLogger("rq.worker")
+
 class ActionKitIntegration(CRMIntegration):
 
     def __init__(self, domain, username, api_key=None, password=None):
@@ -88,7 +91,7 @@ class ActionKitIntegration(CRMIntegration):
         for t in ak_targets_list:
             if t['last'] == last_name and t['first'] == first_name:
                 ak_target = t
-                current_app.logger.info("found target: %s" % target_name) 
+                logger.info("found target: %s" % target_name) 
         if not ak_target:
             # it doesn't exist, create it
             target_data['last'] = last_name
@@ -97,7 +100,7 @@ class ActionKitIntegration(CRMIntegration):
                 target_data['title'] = 'MP'
             if target_type == 'governor':
                 target_data['title'] = 'Governor'
-            current_app.logger.info("creating target: %s" % target_data)
+            logger.info("creating target: %s" % target_data)
             ak_target = self.ak_client.target.create(target_data)
         return ak_target['id']
 
@@ -121,7 +124,7 @@ class ActionKitIntegration(CRMIntegration):
             'action_status': call.status,
             'skip_confirmation': 1,
         }
-        current_app.logger.info("creating action: %s" % call_action) 
+        logger.info("creating action: %s" % call_action) 
         ak_callaction = self.ak_client.action.create(call_action)
         return True
 
@@ -148,6 +151,6 @@ class ActionKitIntegration(CRMIntegration):
         if xml_response.get(name) == value:
             return True
         else:
-            current_app.logger.info("unable to update pagefield: {} for {}".format(name, crm_campaign_id)) 
+            logger.info("unable to update pagefield: {} for {}".format(name, crm_campaign_id)) 
             return False
         return True

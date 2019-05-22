@@ -297,13 +297,18 @@ def instance_defaults(app):
 
 
 def configure_logging(app):
+    rq_logger = logging.getLogger("rq.worker")
+
     if app.config.get('DEBUG_MORE'):
         app.logger.setLevel(logging.DEBUG)
+        rq_logger.setLevel(logging.DEBUG)
     elif app.config.get('DEBUG'):
         app.logger.setLevel(logging.INFO)
+        rq_logger.setLevel(logging.INFO)
     else:
         app.logger.setLevel(logging.WARNING)
-    
+        rq_logger.setLevel(logging.WARNING)
+
     if app.config.get('OUTPUT_LOG'):
         app.logger.addHandler(logging.StreamHandler())
 

@@ -91,7 +91,7 @@ class MobileCommonsIntegration(CRMIntegration):
         # if user was prompted within last 30 days, don't re-prompt
         since_last_prompt = most_recent_subscription.get('created_at') - utc_now()
         if since_last_prompt.days < 30:
-            logger.info('user (%s) prompted about campaign (%s) at ' %
+            logger.info('user (%s) prompted about campaign (%s) at %s' %
                 (crm_user['phone'], crm_campaign_id, most_recent_subscription.get('created_at').isoformat())
             )
             return (False, 'already prompted')

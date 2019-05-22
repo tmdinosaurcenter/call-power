@@ -45,7 +45,14 @@ class MobileCommonsIntegration(CRMIntegration):
         }
 
         response = self.mc_api.get('/api/profile', params=data)
-        results = ElementTree.fromstring(response.content)
+        try:
+            results = ElementTree.fromstring(response.content)
+            logger.debug('mobilecommons /api/profile response %s' % response.content)
+        except ElementTree.ParseError:
+            logger.info('get mobilecommons /api/profile %s' % data)
+            logger.error('unable to parse response: %s' % response.content)
+            return False
+
         user_profile = results.find('profile')
         if user_profile is None:
             # not yet subscribed, ok to go ahead
@@ -108,7 +115,14 @@ class MobileCommonsIntegration(CRMIntegration):
         }
 
         response = self.mc_api.post('/api/profile_update', data)
-        results = ElementTree.fromstring(response.content)
+        try:
+            results = ElementTree.fromstring(response.content)
+            logger.debug( 'mobilecommons /api/profile response %s' % response.content)
+        except ElementTree.ParseError:
+            logger.info('post mobilecommons /api/profile_update %s' % data)
+            logger.error('unable to parse response: %s' % response.content)
+            return False
+
         success = bool(results.get('success'))
         # coerce 'true'/'false' into boolean
 

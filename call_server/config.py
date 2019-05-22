@@ -152,6 +152,7 @@ class HerokuConfig(ProductionConfig):
 
     # use rq HerokuWorker
     RQ_WORKER_CLASS = 'call_server.sync.worker.CleanSlateHerokuWorker'
+    RQ_LOG_LEVEL = os.environ.get('RQ_LOG_LEVEL', 'info')
 
 
 class DevelopmentConfig(DefaultConfig):

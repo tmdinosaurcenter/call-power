@@ -312,6 +312,11 @@ def configure_logging(app):
     if app.config.get('OUTPUT_LOG'):
         app.logger.addHandler(logging.StreamHandler())
 
+    # allow rq_logger level override
+    if app.config.get('RQ_LOG_LEVEL'):
+        rq_log_level = logging.getLevelName(app.config.get('RQ_LOG_LEVEL').upper())
+        rq_logger.setLevel(rq_log_level)
+
 def configure_error_pages(app):
     @app.errorhandler(404)
     def page_not_found(e):

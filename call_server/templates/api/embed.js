@@ -83,9 +83,7 @@ if (typeof window.jQuery === 'undefined') {
 
 // load sentry for frontend error tracking
 if (window.CallPowerOptions.errorTracking) {
-  getScript('https://cdn.ravenjs.com/3.22.1/raven.min.js',
-    function() {
-      Raven.config('{{DSN_PUBLIC}}').install();
-    },
+  getScript('https://js.sentry-cdn.com/{{DSN_PUBLIC}}.min.js',
+    function() {},
     'anonymous')
 }

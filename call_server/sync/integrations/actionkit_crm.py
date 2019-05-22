@@ -126,7 +126,7 @@ class ActionKitIntegration(CRMIntegration):
         }
         logger.info("creating action: %s" % call_action) 
         ak_callaction = self.ak_client.action.create(call_action)
-        return True
+        return (True, ak_callaction.get('status'))
 
 
     def save_campaign_meta(self, crm_campaign_id, meta={}):

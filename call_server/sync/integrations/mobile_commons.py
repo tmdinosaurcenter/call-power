@@ -36,7 +36,8 @@ class MobileCommonsIntegration(CRMIntegration):
 
     def ok_to_subscribe_user(self, crm_campaign_id, crm_user):
         # check user profile for existing subscription or opt-out
-        # returns True to go ahead
+        # returns (bool, message)
+        # True to go ahead
         # False if we should stop
         # None if there isn't an existing user in the CRM
         data = {
@@ -51,12 +52,12 @@ class MobileCommonsIntegration(CRMIntegration):
         except ElementTree.ParseError:
             logger.info('get mobilecommons /api/profile %s' % data)
             logger.error('unable to parse response: %s' % response.content)
-            return False
+            return (False, 'parse error')
 
         user_profile = results.find('profile')
         if user_profile is None:
             # not yet subscribed, ok to go ahead
-            return True
+            return (True, None)
 
         user_status = user_profile.find('status').text
         profile_subscriptions = user_profile.find('subscriptions')
@@ -71,7 +72,7 @@ class MobileCommonsIntegration(CRMIntegration):
 
         if not campaign_subscriptions:
             # no current subscriptions, no need to check further
-            return True
+            return (True, None)
 
         # should already be ordered by created_at, double check tho
         sorted_subscriptions = sorted(campaign_subscriptions, key=lambda k: k['created_at'])
@@ -80,12 +81,12 @@ class MobileCommonsIntegration(CRMIntegration):
         # if user's most recent action is to opt out, don't re-prompt
         if most_recent_subscription.get('status') == 'Opted-Out':
             logger.warning('user (%s) opted out of campaign (%s)' % (crm_user['phone'], crm_campaign_id))
-            return False
+            return (False, 'opted out')
 
         # if user is subscribed, don't re-prompt
         if most_recent_subscription.get('status') == 'Active':
             logger.info('user (%s) already subscribed to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
-            return False
+            return (False, 'already subscribed')
 
         # if user was prompted within last 30 days, don't re-prompt
         since_last_prompt = most_recent_subscription.get('created_at') - utc_now()
@@ -93,20 +94,21 @@ class MobileCommonsIntegration(CRMIntegration):
             logger.info('user (%s) prompted about campaign (%s) at ' %
                 (crm_user['phone'], crm_campaign_id, most_recent_subscription.get('created_at').isoformat())
             )
-            return False
+            return (False, 'already prompted')
     
         # no flags? go ahead
-        return True
+        return (True, None)
 
 
     def save_action(self, call, crm_campaign_id, crm_user):
         """Given a crm_user and crm_campaign_id (opt in path)
         Subscribe the user's phone number via the opt-in path
-        Returns a boolean status"""
+        Returns a tuple of (boolean status, string message)"""
 
-        if not self.ok_to_subscribe_user(crm_campaign_id, crm_user):
+        (ok, message) = self.ok_to_subscribe_user(crm_campaign_id, crm_user)
+        if not ok:
             logger.info('not ok to subscribe user (%s) to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
-            return False
+            return (False, message)
 
         data = {
             'phone_number': crm_user['phone'],
@@ -121,12 +123,15 @@ class MobileCommonsIntegration(CRMIntegration):
         except ElementTree.ParseError:
             logger.info('post mobilecommons /api/profile_update %s' % data)
             logger.error('unable to parse response: %s' % response.content)
-            return False
+            return (False, 'parse error')
 
         success = bool(results.get('success'))
         # coerce 'true'/'false' into boolean
 
-        return success
+        if not success:
+            message = results.find('error').get('message')
+
+        return (success, message)
 
 
     def save_campaign_meta(self, crm_campaign_id, meta={}):

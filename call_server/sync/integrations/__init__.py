@@ -26,7 +26,7 @@ class CRMIntegration(object):
     def save_action(self, call, crm_campaign_id, crm_user):
         """Given a call, crm_campaign and crm_user
         Save the call attributes (target, duration and status) to the CRM
-        Returns a boolean status"""
+        Returns a tuple of (boolean status, string message)"""
         raise NotImplementedError()
 
     def save_campaign_meta(self, crm_campaign_id, meta):

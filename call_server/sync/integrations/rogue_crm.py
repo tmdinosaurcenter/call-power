@@ -35,7 +35,7 @@ class RogueIntegration(CRMIntegration):
     def save_action(self, call, crm_campaign_id, crm_user):
         """Given a call and crm_campaign_id
         Save the call attributes (target, duration and status) to the CRM
-        Returns a boolean status"""
+        Returns a tuple of (boolean status, string message)"""
 
         # they don't actually want crm_campaign_id, so drop it
         
@@ -55,7 +55,7 @@ class RogueIntegration(CRMIntegration):
         # logger.info("creating action: %s" % json.dumps(call_action)) 
         rogue_response = self.rogue_session.post('/api/v1/callpower/call', json=call_action)
         # logger.info("rogue response (%s): %s" % (rogue_response.status_code, rogue_response.text))
-        return rogue_response.ok
+        return (rogue_response.ok, rogue_response.text)
 
 
     def save_campaign_meta(self, crm_campaign_id, meta={}):

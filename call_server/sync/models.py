@@ -155,6 +155,6 @@ class SyncCall(db.Model):
             current_app.logger.warning('unable to get crm user for phone: %s' % user_phone)
             return False
 
-        self.saved, self.crm_message = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
+        (self.saved, self.crm_message) = integration.save_action(self.call, sync_campaign.crm_id, crm_user)
         current_app.logger.info('synced call %s by %s. action saved=%s' % (self.call.id, crm_user['id'], self.saved))
         return True

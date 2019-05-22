@@ -119,7 +119,7 @@ class MobileCommonsIntegration(CRMIntegration):
         response = self.mc_api.post('/api/profile_update', data)
         try:
             results = ElementTree.fromstring(response.content)
-            logger.debug( 'mobilecommons /api/profile response %s' % response.content)
+            logger.debug('mobilecommons /api/profile_update response %s' % response.content)
         except ElementTree.ParseError:
             logger.info('post mobilecommons /api/profile_update %s' % data)
             logger.error('unable to parse response: %s' % response.content)

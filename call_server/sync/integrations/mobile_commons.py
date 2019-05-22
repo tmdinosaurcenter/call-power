@@ -125,9 +125,7 @@ class MobileCommonsIntegration(CRMIntegration):
             logger.error('unable to parse response: %s' % response.content)
             return (False, 'parse error')
 
-        success = bool(results.get('success'))
-        # coerce 'true'/'false' into boolean
-
+        success = (results.get('success') == 'true')
         if not success:
             message = results.find('error').get('message')
 

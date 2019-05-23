@@ -100,7 +100,7 @@ class MobileCommonsIntegration(CRMIntegration):
         return (True, None)
 
 
-    def save_action(self, call, crm_campaign_id, crm_user):
+    def save_action(self, call, crm_campaign_id, crm_user, crm_campaign_key):
         """Given a crm_user and crm_campaign_id (opt in path)
         Subscribe the user's phone number via the opt-in path
         Returns a tuple of (boolean status, string message)"""
@@ -114,7 +114,7 @@ class MobileCommonsIntegration(CRMIntegration):
 
         data = {
             'phone_number': crm_user['phone'],
-            'opt_in_path_id': crm_campaign_id,
+            'opt_in_path_id': crm_campaign_key, # this is the key, not the ID
             'company': current_app.config.get('MOBILE_COMMONS_COMPANY')
         }
 

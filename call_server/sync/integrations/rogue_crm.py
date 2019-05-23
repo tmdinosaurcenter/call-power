@@ -32,12 +32,12 @@ class RogueIntegration(CRMIntegration):
         }
 
 
-    def save_action(self, call, crm_campaign_id, crm_user):
+    def save_action(self, call, crm_campaign_id, crm_user, crm_campaign_key=None):
         """Given a call and crm_campaign_id
         Save the call attributes (target, duration and status) to the CRM
         Returns a tuple of (boolean status, string message)"""
 
-        # they don't actually want crm_campaign_id, so drop it
+        # they don't actually need crm_campaign_id or crm_campaign_key, so drop it
         
         # create the call action
         call_action = {

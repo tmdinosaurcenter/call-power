@@ -23,8 +23,8 @@ class CRMIntegration(object):
         Returns a unique ID, implementation dependent"""
         raise NotImplementedError()
 
-    def save_action(self, call, crm_campaign_id, crm_user):
-        """Given a call, crm_campaign and crm_user
+    def save_action(self, call, crm_campaign_id, crm_user, crm_campaign_key=None):
+        """Given a call, crm_campaign_id, crm_user and optional crm_campaign_key
         Save the call attributes (target, duration and status) to the CRM
         Returns a tuple of (boolean status, string message)"""
         raise NotImplementedError()

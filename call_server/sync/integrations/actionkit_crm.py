@@ -105,8 +105,8 @@ class ActionKitIntegration(CRMIntegration):
         return ak_target['id']
 
 
-    def save_action(self, call, crm_campaign_id, crm_user):
-        """Given a call, crm_campaign and crm_user
+    def save_action(self, call, crm_campaign_id, crm_user, crm_campaign_key=None):
+        """Given a call, crm_campaign_id and crm_user
         Save the call attributes (target, duration and status) to the CRM
         Returns a boolean status"""
         

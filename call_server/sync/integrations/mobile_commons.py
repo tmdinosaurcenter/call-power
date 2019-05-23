@@ -105,6 +105,8 @@ class MobileCommonsIntegration(CRMIntegration):
         Subscribe the user's phone number via the opt-in path
         Returns a tuple of (boolean status, string message)"""
 
+        logger.debug('save_action (%s) to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
+
         (ok, message) = self.ok_to_subscribe_user(crm_campaign_id, crm_user)
         if not ok:
             logger.info('not ok to subscribe user (%s) to campaign (%s)' % (crm_user['phone'], crm_campaign_id))
@@ -116,12 +118,12 @@ class MobileCommonsIntegration(CRMIntegration):
             'company': current_app.config.get('MOBILE_COMMONS_COMPANY')
         }
 
+        logger.debug('mobilecommons /api/profile_update post %s' % data)
         response = self.mc_api.post('/api/profile_update', data)
         try:
             results = ElementTree.fromstring(response.content)
             logger.debug('mobilecommons /api/profile_update response %s' % response.content)
         except ElementTree.ParseError:
-            logger.info('post mobilecommons /api/profile_update %s' % data)
             logger.error('unable to parse response: %s' % response.content)
             return (False, 'parse error')
 

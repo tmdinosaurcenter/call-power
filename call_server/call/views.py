@@ -603,6 +603,7 @@ def make_single():
         name=current_target.name,
         location=office_location,
         office_type=office_type,
+        district=current_target.district,
         lang=campaign.language_code)
 
     if current_app.debug:

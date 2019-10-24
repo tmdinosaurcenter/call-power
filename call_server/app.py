@@ -1,7 +1,10 @@
 import os
 import logging
 import glob
-import urlparse
+try:
+    from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
 
 from flask import Flask, g, request, session, render_template
 from flask_assets import Bundle
@@ -73,7 +76,7 @@ def create_app(configuration=None, app_name=None, blueprints=None):
 
     # store production assets
     if app.config.get('STORE_DOMAIN'):
-        store_domain = urlparse.urlparse(app.config['STORE_DOMAIN']).netloc
+        store_domain = urlparse(app.config['STORE_DOMAIN']).netloc
         # set production security headers
         if app.config['ENVIRONMENT'] == "Production":
             # append media-src to include flask-store domain

@@ -5,7 +5,7 @@ try:
     import psycogreen.gevent
     psycogreen.gevent.patch_psycopg()
 except ImportError:
-    print "unable to apply gevent monkey.patch_all"
+    print("unable to apply gevent monkey.patch_all")
 
 import os
 

@@ -59,17 +59,17 @@ def stop_scheduled_calls(campaign_id, date):
     before_date = datetime.strptime(date, '%Y-%m-%d')
     campaign = Campaign.query.get(campaign_id)
     scheduled_calls = ScheduleCall.query.filter(campaign==campaign, ScheduleCall.created_at <= before_date).all()
-    print 'This will stop all {} scheduled calls for campaign {} created before {}'.format(len(scheduled_calls), campaign.name, date)
+    print('This will stop all {} scheduled calls for campaign {} created before {}'.format(len(scheduled_calls), campaign.name, date))
     confirm = raw_input('Confirm (Y/N): ')
     if confirm == 'Y':
         for sc in scheduled_calls:
-            print "canceling job", sc.job_id
+            print("canceling job", sc.job_id)
             sc.stop_job()
             db.session.add(sc)
         db.session.commit()
-        print "done"
+        print("done")
     else:
-        print "exit"
+        print("exit")
 
 @app.cli.command()
 @click.argument('campaign_id', default='all')
@@ -85,7 +85,7 @@ def restart_scheduled_calls(campaign_id, accept_all=False):
     else:
         campaigns = [Campaign.query.get(campaign_id),]
 
-    print 'This will restart all subscribed scheduled calls for campaign {}'.format(campaign_id)
+    print('This will restart all subscribed scheduled calls for campaign {}'.format(campaign_id))
     if accept_all:
         confirm = 'Y'
     else:
@@ -93,22 +93,22 @@ def restart_scheduled_calls(campaign_id, accept_all=False):
     if confirm == 'Y':
         for campaign in campaigns:
             scheduled_calls = ScheduleCall.query.filter_by(campaign=campaign, subscribed=True).all()
-            print 'Scheduled calls for {}: {}'.format(campaign.name, len(scheduled_calls))
+            print('Scheduled calls for {}: {}'.format(campaign.name, len(scheduled_calls)))
             rq_scheduler = rq.get_scheduler()
             for sc in scheduled_calls:
                 if not sc.job_id in rq_scheduler:
-                    print "resetting job", sc.job_id
+                    print("resetting job", sc.job_id)
                     sc.start_job()
                     db.session.add(sc)
             db.session.commit()
-            print "done"
+            print("done")
         else:
-            print "exit"
+            print("exit")
 
 @app.cli.command()
 @click.argument('campaigns', default='all')
 def crmsync(campaigns):
-    print "Sync to CRM"
+    print("Sync to CRM")
     if campaigns == 'all':
         campaigns_list = 'all'
     elif ',' in campaigns:
@@ -123,11 +123,11 @@ def fixtargets(campaign_id):
     from call_server.campaign import Campaign, Target, CampaignTarget
     from call_server.utils import parse_target
 
-    print "Fixing duplicate campaign targets"
+    print("Fixing duplicate campaign targets")
     campaign = Campaign.query.filter_by(id=campaign_id).one()
     # create exclusive set of targets
     target_set = set((t.key) for t in campaign.target_set)
-    print "Got %s targets, %s unique" % (len(campaign.target_set), len(target_set))
+    print("Got %s targets, %s unique" % (len(campaign.target_set), len(target_set)))
 
     # delete exisiting CampaignTargets
     CampaignTarget.query.filter_by(campaign=campaign).delete()
@@ -137,7 +137,7 @@ def fixtargets(campaign_id):
     for index,target_key in enumerate(list(target_set)):
         # split prefix:uid
         (uid, prefix) = parse_target(target_key)
-        print index,uid
+        print(index,uid)
         # get or create Target
         (target, created) = Target.get_or_create(uid, prefix, commit=False)
         target_list.append(target)
@@ -149,14 +149,14 @@ def fixtargets(campaign_id):
 
 @app.cli.command()
 def redis_clear():
-    print "This will entirely clear the Redis cache"
+    print("This will entirely clear the Redis cache")
     confirm = raw_input('Confirm (Y/N): ')
     if confirm == 'Y':
         with app.app_context():
             cache.cache._client.flushdb()
-        print "redis cache cleared"
+        print("redis cache cleared")
     else:
-        print "exit"
+        print("exit")
 
 
 @app.cli.command()
@@ -164,7 +164,7 @@ def redis_clear():
 def migrate(direction):
     """Migrate db revision up or down"""
     reset_assets()
-    print "migrating %s database at %s" % (direction, app.db.engine.url)
+    print("migrating %s database at %s" % (direction, app.db.engine.url))
     if direction == "up":
         alembic.command.upgrade(alembic_config, "head")
     elif direction == "down":
@@ -198,7 +198,7 @@ def createadminuser(username, password, email):
     # first, check to see if exact user already exists
     if username and email and password:
         if User.query.filter_by(name=username).count() == 1:
-            print "username %s already exists" % username
+            print("username %s already exists" % username)
             return True
 
     # else, getpass from raw input
@@ -209,15 +209,15 @@ def createadminuser(username, password, email):
     while username is None:
         username = raw_input('Username: ')
         if len(username) < USERNAME_LEN_MIN:
-            print "username too short, must be at least", USERNAME_LEN_MIN, "characters"
+            print("username too short, must be at least", USERNAME_LEN_MIN, "characters")
             username = None
             continue
         if len(username) > USERNAME_LEN_MAX:
-            print "username too long, must be less than", USERNAME_LEN_MIN, "characters"
+            print("username too long, must be less than", USERNAME_LEN_MIN, "characters")
             username = None
             continue
         if User.query.filter_by(name=username).count() > 0:
-            print "username already exists"
+            print("username already exists")
             username = None
             continue
 
@@ -229,15 +229,15 @@ def createadminuser(username, password, email):
         password = getpass('Password: ')
         password_confirm = getpass('Confirm: ')
         if password != password_confirm:
-            print "passwords don't match"
+            print("passwords don't match")
             password = None
             continue
         if len(password) < PASSWORD_LEN_MIN:
-            print "password too short, must be at least", PASSWORD_LEN_MIN, "characters"
+            print("password too short, must be at least", PASSWORD_LEN_MIN, "characters")
             password = None
             continue
         if len(password) > PASSWORD_LEN_MAX:
-            print "password too long, must be less than", PASSWORD_LEN_MAX, "characters"
+            print("password too long, must be less than", PASSWORD_LEN_MAX, "characters")
             password = None
             continue
 
@@ -249,7 +249,7 @@ def createadminuser(username, password, email):
     db.session.add(admin)
     db.session.commit()
 
-    print "created admin user", admin.name
+    print("created admin user", admin.name)
 
 if __name__ == "__main__":
     app.logger.error("please use `flask run` to start")

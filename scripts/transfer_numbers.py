@@ -19,7 +19,7 @@ if __name__ == "__main__":
     else:
         numbers = client.phone_numbers.list(phone_number=match_string)
 
-    print "Transferring {} phone numbers matching {}".format(len(numbers), match_string)
+    print("Transferring {} phone numbers matching {}".format(len(numbers), match_string))
     numbers_list = [n.phone_number for n in numbers]
     print numbers_list
 
@@ -27,4 +27,4 @@ if __name__ == "__main__":
     if confirm.upper() == 'Y':
         for n in numbers:
             number = client.phone_numbers.update(n.sid, account_sid=to_account_sid)
-            print "updated", number.phone_number
+            print("updated", number.phone_number)

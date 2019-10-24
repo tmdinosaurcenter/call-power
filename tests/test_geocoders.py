@@ -33,7 +33,7 @@ class TestGeocoders(BaseTestCase):
 
         self.assertIsNot(result.service, LOCAL_USDATA_SERVICE)
         if result.service == 'Timeout':
-            print "geocoder timeout, skipping"
+            print("geocoder timeout, skipping")
         else:
             self.assertEqual(result.postal, '94612')
             self.assertEqual(result.state, 'CA')
@@ -44,7 +44,7 @@ class TestGeocoders(BaseTestCase):
 
         self.assertIsNot(result.service, LOCAL_USDATA_SERVICE)
         if result.service == 'Timeout':
-            print "geocoder timeout, skipping"
+            print("geocoder timeout, skipping")
         else:
             self.assertEqual(result.postal, '20500')
             self.assertEqual(result.state, 'DC')

@@ -52,4 +52,3 @@ twilio==6.25.2
 unittest2==1.1.0
 validators==0.12.4
 webassets==0.12.1
-wsgiref==0.1.2

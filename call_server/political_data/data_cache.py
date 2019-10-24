@@ -1,7 +1,7 @@
 from flask import current_app
 from ..extensions import cache
 from ..political_data.adapters import adapt_by_key
-from countries.us import USDataProvider
+from .countries.us import USDataProvider
 
 def check_political_data_cache(key, cache=cache):
     adapter = adapt_by_key(key)

@@ -7,12 +7,11 @@ from flask import Flask, g, request, session, render_template
 from flask_assets import Bundle
 import sqlalchemy
 
-from utils import json_markup, OrderedDictYAMLLoader
+from .utils import json_markup, OrderedDictYAMLLoader
 import yaml
 from datetime import datetime
 
-import config
-
+from .config import DefaultConfig
 from .site import site
 from .admin import admin
 from .sync import sync
@@ -23,7 +22,7 @@ from .schedule import schedule
 from .api import api, configure_restless, restless_preprocessors
 from .political_data import political_data
 
-from extensions import (cache, db, babel, assets, login_manager, 
+from .extensions import (cache, db, babel, assets, login_manager,
     csrf, mail, store, rest, rq, talisman, CALLPOWER_CSP, limiter)
 
 DEFAULT_BLUEPRINTS = (
@@ -43,7 +42,7 @@ def create_app(configuration=None, app_name=None, blueprints=None):
     """Create the main Flask app."""
 
     if app_name is None:
-        app_name = config.DefaultConfig.APP_NAME
+        app_name = DefaultConfig.APP_NAME
     if blueprints is None:
         blueprints = DEFAULT_BLUEPRINTS
 
@@ -104,12 +103,12 @@ def configure_app(app, configuration=None):
     """Configure app by object, instance folders or environment variables"""
 
     # http://flask.pocoo.org/docs/api/#configuration
-    app.config.from_object(config.DefaultConfig)
+    app.config.from_object(DefaultConfig)
     if configuration:
         app.logger.info('Config: %s' % configuration)
         app.config.from_object(configuration)
     else:
-        config_name = '%s_CONFIG' % config.DefaultConfig.PROJECT.upper()
+        config_name = '%s_CONFIG' % DefaultConfig.PROJECT.upper()
         env_config = os.environ.get(config_name)
         if env_config:
             app.logger.info('Config: %s' % config_name)

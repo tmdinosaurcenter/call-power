@@ -1,4 +1,3 @@
-import countries
 import importlib
 
 COUNTRY_CHOICES = [

@@ -83,7 +83,7 @@ class Location(geopy.Location):
             try:
                 # fallback to raw
                 return self.raw.get(field)
-            except KeyError, ValueError:
+            except (KeyError, ValueError):
                 raise ValueError('unable to parse raw fields from geocoder service '+self.service)
 
     @property

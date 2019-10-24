@@ -40,7 +40,7 @@ def search():
             field, value = f.split('=')
             value = ignore_accents(value.lower()) # ensure comparison ignores accented characters
             results = [d for d in results if ignore_accents(d[field]).lower().startswith(value)]
-        except ValueError,e:
+        except (ValueError,e):
           log.error(e)
           continue
 

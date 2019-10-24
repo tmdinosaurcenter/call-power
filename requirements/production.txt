@@ -3,7 +3,7 @@ boto==2.49.0
 gevent==1.4.0
 psycogreen==1.0.1
 greenlet==0.4.15
-psycopg2==2.7.7
+psycopg2==2.8.4
 redis==3.2.1
 uWSGI==2.0.18
 raven==6.10.0

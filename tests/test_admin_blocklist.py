@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime, timedelta
 
-from run import BaseTestCase
+from .run import BaseTestCase
 
 from call_server.utils import utc_now
 from call_server.extensions import db

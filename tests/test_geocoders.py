@@ -1,7 +1,7 @@
 import logging
 import json, yaml
 
-from run import BaseTestCase
+from .run import BaseTestCase
 
 from call_server.political_data.geocode import LOCAL_USDATA_SERVICE, NOMINATIM_SERVICE
 from call_server.political_data.countries.us import USDataProvider

@@ -1,7 +1,7 @@
 import logging
 import json, yaml
 
-from run import BaseTestCase
+from .run import BaseTestCase
 
 from call_server.political_data.adapters import adapt_by_key
 from call_server.political_data.countries.us import USDataProvider

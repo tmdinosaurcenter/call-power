@@ -76,7 +76,7 @@ class Session(db.Model):
         """
         Takes a phone number and returns a 64 character string
         """
-        return hashlib.sha256(number).hexdigest()
+        return hashlib.sha256(number.encode('ascii')).hexdigest()
 
     def __init__(self, campaign_id, phone_number=None, location=None, from_number=None, status='initiated', direction='outbound'):
         self.timestamp = datetime.utcnow()

@@ -49,7 +49,7 @@ class Blocklist(db.Model):
         if self.ip_address:
             return self.ip_address == user_ip
         if self.phone_hash:
-            return self.phone_hash == hashlib.sha256(user_phone).hexdigest()
+            return self.phone_hash == hashlib.sha256(user_phone.encode('ascii')).hexdigest()
         if self.phone_number:
             if type(user_phone) == str:
                 return self.phone_number == phone_number.PhoneNumber(user_phone, user_country)

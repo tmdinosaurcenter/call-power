@@ -144,6 +144,11 @@ development-expose  | App is brought up with flask's built in http server and th
 
 If `FLASK_ENV` is not provided, the default is to bring the app up in the development environment.
 
+Testing
+------------------
+To run the full test suite, `python tests/run.py`
+Or just a subset `python tests/run.py test_us_data.TestUSData`
+
 
 Performance Tips
 --------------------------------

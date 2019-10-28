@@ -280,7 +280,7 @@ class OpenNorthAdapter(DataAdapter):
             'district': data.get('district_name', '')
         }
         if data.get('offices'):
-            office_legistlature = filter(lambda d: d['type'] == 'legislature', data['offices'])
+            office_legistlature = list(filter(lambda d: d['type'] == 'legislature', data['offices']))
             adapted['number'] = office_legistlature[0].get('tel', '')
             # legislature office number is the main one
         else:

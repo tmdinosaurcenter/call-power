@@ -18,7 +18,7 @@ class TestDataAdapters(BaseTestCase):
 
     def test_us_adapter(self):
         f = open('tests/data/us_congress_representative.yaml', 'r')
-        data = yaml.load(f.read())[0]
+        data = yaml.full_load(f.read())[0]
         f.close()
 
         data['bioguide_id'] = data['id']['bioguide']

@@ -160,7 +160,7 @@ class CampaignType(object):
 
     def get_targets_for_campaign(self, location, campaign):
         country_code = campaign.country_code
-        if isinstance(location, basestring):
+        if isinstance(location, str):
             location = self.data_provider.get_location(campaign.locate_by, location)
         all_targets = self.all_targets(location, campaign.campaign_state)
         return self.sort_targets(all_targets,

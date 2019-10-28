@@ -319,7 +319,7 @@ class USDataProvider(DataProvider):
                     else:
                         continue
 
-                district = str(term['district']) if term.has_key('district') else None
+                district = str(term['district']) if 'district' in term else None
 
                 record = {
                     'first_name':  info['name']['first'],
@@ -379,7 +379,7 @@ class USDataProvider(DataProvider):
         Load US state governor data from saved file
         Returns a dictionary keyed by state to cache for fast lookup
 
-        eg us_state:governor:CA = [{'title':'Governor', 'name':'Jerry Brown Jr.', 'phone': '18008076755', 'state': 'CA', 'state_name': 'California'}]
+        eg us_state:governor:CA = [{'title':'Governor', 'name':'Gavin Newsom', 'phone': '18008076755', 'state': 'CA', 'state_name': 'California'}]
         """
         governors = collections.defaultdict(list)
 

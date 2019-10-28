@@ -95,7 +95,7 @@ class TestUSStateData(BaseTestCase):
         self.STATE_CAMPAIGN.campaign_state = 'CA'
 
         other_location = Location('Boston, MA', (42.355662,-71.065483),
-            {'components':{'state':'MA','zipcode':'02111'}})
+            {'state':'MA','zipcode':'02111'})
         
         uids = locate_targets(other_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 0)
@@ -106,7 +106,7 @@ class TestUSStateData(BaseTestCase):
         self.STATE_CAMPAIGN.target_ordering = 'lower-first'
 
         other_location = Location('Lincoln, NE', (40.80798, -96.69968),
-            {'components':{'state':'NE','zipcode':'68508'}})
+            {'state':'NE','zipcode':'68508'})
         
         uids = locate_targets(other_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 1)

@@ -23,7 +23,7 @@ start_ngrok() {
 case "$FLASK_ENV" in
     "production")
         flask loadpoliticaldata
-        exec bash -l -c "uwsgi uwsgi.ini"
+        exec bash -l -c "gunicorn call_server.wsgi:application"
         ;;
 
     "development-expose")

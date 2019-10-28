@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-RUN apt-get update && apt-get -y install python-pip python-dev npm git uwsgi libpq-dev curl unzip
+RUN apt-get update && apt-get -y install python-pip python-dev npm git libpq-dev curl unzip
 
 RUN  mkdir /ngrok && \
      cd /ngrok && \
@@ -25,7 +25,7 @@ RUN npm install -g bower
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN bower --allow-root --config.interactive=false install
 
-ADD alembic.ini manager.py Procfile uwsgi.ini entrypoint.sh ./
+ADD alembic.ini manager.py Procfile entrypoint.sh ./
 ADD scripts ./scripts/
 ADD tests ./tests/
 ADD call_server ./call_server/

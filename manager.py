@@ -37,11 +37,11 @@ def runserver(external=None):
 @app.cli.command()
 def loadpoliticaldata():
     """Load political data into persistent cache"""
-    try:
-        import gevent.monkey
-        gevent.monkey.patch_thread()
-    except ImportError:
-        app.logger.warning("unable to apply gevent monkey.patch_thread")
+    # try:
+    #     import gevent.monkey
+    #     gevent.monkey.patch_thread()
+    # except ImportError:
+    #     app.logger.warning("unable to apply gevent monkey.patch_thread")
     from flask_babel import force_locale
 
     app.logger.info("loading political data")

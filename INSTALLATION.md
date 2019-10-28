@@ -155,4 +155,3 @@ Performance Tips
 TBD, fill in once we benchmark
 
 - How many dynos / uwsgi processes for incoming calls 
-- gevent monkey-patch

@@ -11,8 +11,8 @@ import os
 
 from werkzeug.contrib.fixers import ProxyFix
 
-from app import create_app
-from extensions import assets
+from call_server.app import create_app
+from call_server.extensions import assets
 
 assets._named_bundles = {}
 application = create_app()

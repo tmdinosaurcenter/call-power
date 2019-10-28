@@ -35,6 +35,7 @@ For production, you will also need to set:
 * APPLICATION_ROOT to the path where the application will live. If you are using a whole domain or subdomain, this should be set to '/'.
 * SERVER_NAME to the domain or subdomain on which the application will live (if this is not set, external urls will default to localhost)
 * CALL_RATE_LIMIT, the maximum number of allowed calls to a phone number for each campaign, to limit abuse potential. Admin phone numbers and logged in users are exempt. Defaults to "2 / hour", and must be specified in [flask-limit notation](https://flask-limiter.readthedocs.io/en/stable/#rate-limit-string-notation).
+* WEB_THREADS to set the number of Gunicorn threads (default to 4)
 
 If you are storing assets on Amazon S3, or another [Flask-Store provider](http://flask-store.soon.build)
 
@@ -152,6 +153,7 @@ Or just a subset `python tests/run.py test_us_data.TestUSData`
 
 Performance Tips
 --------------------------------
-TBD, fill in once we benchmark
 
-- How many dynos / uwsgi processes for incoming calls 
+We use the Gunicorn WSGI server with async workers in production.
+
+[Their docs](http://docs.gunicorn.org/en/latest/design.html#how-many-workers) recommend (2 x $num_cores) + 1 as a number of workers. For a regular (1x) Heroku dyno with 512mb RAM, this means WEB_CONCURRENCY=3 and WEB_THREADS=4

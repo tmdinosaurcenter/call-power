@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from flask import Blueprint, render_template, current_app, flash, url_for, redirect, request
+from flask import Blueprint, render_template, current_app, flash, url_for, redirect, request, session
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
 
@@ -24,7 +24,9 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin.before_request
 @login_required
 def before_request():
-    pass
+    # check and delete old old python2 cookies before rendering 
+    if type(session['csrf_token']) is bytes:
+        del session['csrf_token']
 
 
 @admin.route('/')

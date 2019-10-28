@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
 
     _password = db.Column('password', db.String(PASSWORD_LEN_MAX), nullable=False)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def _get_password(self):

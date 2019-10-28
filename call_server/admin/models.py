@@ -24,7 +24,7 @@ class Blocklist(db.Model):
         self.phone_number = phone_number
         self.ip_address = ip_address
 
-    def __unicode__(self):
+    def __str__(self):
         if self.phone_number:
             return self.phone_number.e164
         if self.phone_hash:

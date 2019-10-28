@@ -52,7 +52,7 @@ class Campaign(db.Model):
     def status(self):
         return CAMPAIGN_STATUS.get(self.status_code, '')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def audio(self, key):
@@ -226,7 +226,7 @@ class Target(db.Model):
     location = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
     offices = db.relationship('TargetOffice', backref="target")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.key
 
     def full_name(self):
@@ -305,7 +305,7 @@ class TargetOffice(db.Model):
     number = db.Column(phone_number.PhoneNumberType())
     target_id = db.Column(db.Integer, db.ForeignKey('campaign_target.id'))
 
-    def __unicode__(self):
+    def __str__(self):
         return u"{} {}".format(self.target, self.type)
 
     def phone_number(self):
@@ -323,7 +323,7 @@ class TwilioPhoneNumber(db.Model):
 
     call_in_campaign = db.relationship('Campaign', foreign_keys=[call_in_campaign_id])
 
-    def __unicode__(self):
+    def __str__(self):
         # use e164 for external apis, but international formatting for display
         return self.number.international
 
@@ -410,7 +410,7 @@ class AudioRecording(db.Model):
         ids = set([s.campaign.id for s in self.selected_recordings()])
         return list(ids)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s v%s" % (self.key, self.version)
 
 

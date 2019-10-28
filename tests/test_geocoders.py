@@ -47,4 +47,3 @@ class TestGeocoders(BaseTestCase):
             print("geocoder timeout, skipping")
         else:
             self.assertEqual(result.postal, '20500')
-            self.assertEqual(result.city, 'Washington')

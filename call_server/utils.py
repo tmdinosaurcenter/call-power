@@ -36,7 +36,7 @@ def get_one_or_create(session,
             session.commit()
             session.flush()
             return created, True
-        except (IntegrityError, e):
+        except IntegrityError as e:
             current_app.logger.error('get_one_or_create failed for '+model+' '+kwargs+e)
             flash("Unable to create "+model, 'error')
             session.rollback()
@@ -166,9 +166,9 @@ class OrderedDictYAMLLoader(yaml.Loader):
             key = self.construct_object(key_node, deep=deep)
             try:
                 hash(key)
-            except (TypeError, exc):
+            except TypeError as err:
                 raise yaml.constructor.ConstructorError('while constructing a mapping',
-                    node.start_mark, 'found unacceptable key (%s)' % exc, key_node.start_mark)
+                    node.start_mark, 'found unacceptable key (%s)' % err, key_node.start_mark)
             value = self.construct_object(value_node, deep=deep)
             mapping[key] = value
         return mapping

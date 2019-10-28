@@ -327,7 +327,7 @@ def campaign_target_calls(campaign_id):
             target_data = political_data.cache_get(target_uid)[0]
         except (KeyError,IndexError):
             target_data = political_data.cache_get(target_uid)
-        except (Exception, e):
+        except Exception as e:
             current_app.logger.error('unable to cache_get for %s: %s' % (target_uid, e))
             target_data = None
 
@@ -348,7 +348,7 @@ def campaign_target_calls(campaign_id):
             if not target_data:
                 try:
                     target_data = political_data.get_bioguide(target_uid)[0]
-                except (Exception, e):
+                except Exception as e:
                     current_app.logger.error('unable to get_bioguide for %s: %s' % (target_uid, e))
             if target_data:
                 try:

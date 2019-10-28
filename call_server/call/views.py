@@ -200,7 +200,7 @@ def make_calls(params, campaign):
                 current_app.logger.info('locate_targets for %(userLocation)s in %(userCountry)s' % params)
                 params['targetIds'] = locate_targets(params['userLocation'], campaign=campaign)
                 # locate_targets will include from special target_set if specified in campaign.include_special
-            except (LocationError, e):
+            except LocationError as e:
                 current_app.logger.error('Unable to locate_targets for %(userLocation)s in %(userCountry)s' % params)
                 params['targetIds'] = []
         else:
@@ -416,7 +416,7 @@ def create():
         result = jsonify(campaign=campaign.status, call=call.status, script=script, redirect=redirect,
             fromNumber=from_number, targets=target_response)
         result.status_code = 200 if call.status != 'failed' else 500
-    except (TwilioRestException, err):
+    except TwilioRestException as err:
         twilio_error = stripANSI(err.msg)
         abort(400, twilio_error)
 

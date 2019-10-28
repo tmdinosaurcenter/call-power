@@ -1,7 +1,7 @@
 import logging
 import json, yaml
 
-from .run import BaseTestCase
+from tests.run import BaseTestCase
 
 from call_server.political_data.geocode import LOCAL_USDATA_SERVICE, NOMINATIM_SERVICE
 from call_server.political_data.countries.us import USDataProvider
@@ -47,4 +47,4 @@ class TestGeocoders(BaseTestCase):
             print("geocoder timeout, skipping")
         else:
             self.assertEqual(result.postal, '20500')
-            self.assertEqual(result.state, 'DC')
+            self.assertEqual(result.city, 'Washington')

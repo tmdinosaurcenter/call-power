@@ -25,7 +25,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 def before_request():
     # check and delete old old python2 cookies before rendering 
-    if type(session['csrf_token']) is bytes:
+    if type(session.get('csrf_token')) is bytes:
         del session['csrf_token']
 
 

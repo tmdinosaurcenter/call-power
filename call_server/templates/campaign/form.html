@@ -133,7 +133,7 @@
         {{render_field_default(form.call_limit, offset='col-sm-offset-2') }}
 
         {% with %}
-        {% if form.call_maximum.data > 0 %}
+        {% if form.call_maximum.data and form.call_maximum.data > 0 %}
             {% set call_max_display = '' %}
         {% else %}
             {% set call_max_display = 'hide-initial' %}

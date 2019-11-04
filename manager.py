@@ -60,7 +60,7 @@ def stop_scheduled_calls(campaign_id, date):
     campaign = Campaign.query.get(campaign_id)
     scheduled_calls = ScheduleCall.query.filter(campaign==campaign, ScheduleCall.created_at <= before_date).all()
     print('This will stop all {} scheduled calls for campaign {} created before {}'.format(len(scheduled_calls), campaign.name, date))
-    confirm = raw_input('Confirm (Y/N): ')
+    confirm = input('Confirm (Y/N): ')
     if confirm == 'Y':
         for sc in scheduled_calls:
             print("canceling job", sc.job_id)
@@ -89,7 +89,7 @@ def restart_scheduled_calls(campaign_id, accept_all=False):
     if accept_all:
         confirm = 'Y'
     else:
-        confirm = raw_input('Confirm (Y/N): ')
+        confirm = input('Confirm (Y/N): ')
     if confirm == 'Y':
         for campaign in campaigns:
             scheduled_calls = ScheduleCall.query.filter_by(campaign=campaign, subscribed=True).all()
@@ -150,7 +150,7 @@ def fixtargets(campaign_id):
 @app.cli.command()
 def redis_clear():
     print("This will entirely clear the Redis cache")
-    confirm = raw_input('Confirm (Y/N): ')
+    confirm = input('Confirm (Y/N): ')
     if confirm == 'Y':
         with app.app_context():
             cache.cache._client.flushdb()
@@ -207,7 +207,7 @@ def createadminuser(username, password, email):
                                             PASSWORD_LEN_MIN, PASSWORD_LEN_MAX)
 
     while username is None:
-        username = raw_input('Username: ')
+        username = input('Username: ')
         if len(username) < USERNAME_LEN_MIN:
             print("username too short, must be at least", USERNAME_LEN_MIN, "characters")
             username = None
@@ -222,7 +222,7 @@ def createadminuser(username, password, email):
             continue
 
     while email is None:
-        email = raw_input('Email: ')
+        email = input('Email: ')
         # email validation necessary?
 
     while password is None:

@@ -1,6 +1,6 @@
 import os
 from getpass import getpass
-from twilio.rest import TwilioRestClient
+from twilio.rest import Client
 
 if __name__ == "__main__":
     account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -10,21 +10,21 @@ if __name__ == "__main__":
     if not auth_token:
         auth_token = getpass('From Account Token: ')
 
-    client = TwilioRestClient(account_sid, auth_token)
+    client = Client(account_sid, auth_token)
     to_account_sid = input('Transfer to Account SID: ')
 
     match_string = input('Transfer phone numbers matching: ')
     if match_string == '*':
-        numbers = client.phone_numbers.list()
+        numbers = client.incoming_phone_numbers.list()
     else:
-        numbers = client.phone_numbers.list(phone_number=match_string)
+        numbers = client.incoming_phone_numbers.list(phone_number=match_string)
 
     print("Transferring {} phone numbers matching {}".format(len(numbers), match_string))
     numbers_list = [n.phone_number for n in numbers]
-    print numbers_list
+    print(numbers_list)
 
     confirm = input('Confirm transfer Y/[N] ')
     if confirm.upper() == 'Y':
         for n in numbers:
-            number = client.phone_numbers.update(n.sid, account_sid=to_account_sid)
+            number = n.update(account_sid=to_account_sid)
             print("updated", number.phone_number)

@@ -35,7 +35,7 @@ class TestGeocoders(BaseTestCase):
         if result.service == 'Timeout':
             print("geocoder timeout, skipping")
         else:
-            self.assertEqual(result.postal, '94612')
+            self.assertTrue(result.postal.startswith('94612')) # some returns zip+4
             self.assertEqual(result.state, 'CA')
 
     def test_geocoder_us_address_exists_live_api(self):

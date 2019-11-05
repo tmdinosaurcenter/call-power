@@ -46,8 +46,10 @@ def dashboard():
     next_month = today.replace(day=28) + timedelta(days=4)  # a day in next month (for months with 28,29,30,31)
 
     this_month_end = next_month - timedelta(days=next_month.day)  # the last day of the current month
+    this_month_end = this_month_end.replace(hour=23, minute=59)
     last_month_start = last_month - timedelta(days=(last_month.day-1))
     last_month_end = this_month_start - timedelta(days=this_month_start.day)
+    last_month_end = last_month_end.replace(hour=23, minute=59)
 
     calls_this_month = (db.session.query(func.count(Call.id))
             .filter(Call.status == 'completed')

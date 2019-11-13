@@ -77,6 +77,7 @@ class DataProvider(object):
                     max_val = u'(' + key_starts_with + u'\xff'
                     matching_keys = redis.zrangebylex(s, min_val, max_val)
                     for key in matching_keys:
+                        key = key.decode('ascii')
                         result.extend(self.cache_get(key))
 
             # fall back on key scan
@@ -84,6 +85,7 @@ class DataProvider(object):
             if not result:
                 key_scan = current_app.config['CACHE_KEY_PREFIX'] + key_starts_with + '*'
                 for prefixed_key in redis.scan_iter(match=key_scan):
+                    prefixed_key = prefixed_key.decode('ascii')
                     key = prefixed_key.replace(current_app.config['CACHE_KEY_PREFIX'], '')
                     result.extend(self.cache_get(key))
         elif isinstance(self._cache.cache, flask_caching.backends.simple.SimpleCache) \

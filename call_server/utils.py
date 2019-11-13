@@ -99,12 +99,13 @@ def utc_now():
 
 def ignore_accents(string):
     if type(string) == str:
-        string = unicode(string, 'utf-8')
-    elif type(string) == unicode:
         string = string
     else:
-        raise ValueError('not a string or unicode')
-    return unicodedata.normalize('NFD', string).encode('ascii', 'ignore')
+        raise ValueError('not a string')
+    normalized_string = unicodedata.normalize('NFD', string)
+    ascii_bytes = normalized_string.encode('ascii', 'ignore')
+    ascii_string = ascii_bytes.decode('ascii')
+    return ascii_string
 
 
 def ocd_field(ocd_data, field):

@@ -12,7 +12,7 @@ Flask-Restless==0.17.0
 flask-rq2==18.3
 Flask-SQLAlchemy==2.3.2
 -e git://github.com/spacedogXYZ/Flask-Store.git#egg=flask-store
-Flask-WTF==0.14.2
+-e git://github.com/lepture/flask-wtf.git@eff54eca0d0c070a32da8815f9efd5189add3f1e#egg=flask-wtf
 Jinja2>=2.10.1
 Mako==1.0.8
 MarkupSafe==1.1.1

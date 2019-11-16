@@ -53,7 +53,7 @@
 <script>
     window.CallPower = {
       Config: {
-        {% if twilio_capability %}TWILIO_CAPABILITY: "{{twilio_capability.to_jwt()|safe}}", {%endif%}
+        {% if twilio_capability %}TWILIO_CAPABILITY: "{{twilio_capability}}", {%endif%}
       }
     };
 </script>

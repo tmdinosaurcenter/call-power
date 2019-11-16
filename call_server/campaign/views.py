@@ -279,7 +279,7 @@ def audio(campaign_id):
         return redirect(url_for('campaign.launch', campaign_id=campaign.id))
 
     return render_template('campaign/audio.html', campaign=campaign, form=form,
-                           twilio_capability = twilio_capability,
+                           twilio_capability = twilio_capability.to_jwt().decode('UTF-8'),
                            descriptions=current_app.config.CAMPAIGN_FIELD_DESCRIPTIONS,
                            example_text=current_app.config.CAMPAIGN_MESSAGE_DEFAULTS)
 

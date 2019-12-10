@@ -27,11 +27,11 @@ class ScheduleCall(db.Model):
 
     job_id = db.Column(db.String(36)) # UUID4
 
-    def __init__(self, campaign_id, phone_number, time=utc_now().time()):
+    def __init__(self, campaign_id, phone_number, time):
         self.created_at = utc_now()
         self.campaign_id = campaign_id
         self.phone_number = phone_number
-        self.time_to_call = time
+        self.time_to_call = time or utc_now().time()
 
     def __repr__(self):
         return u'<ScheduleCall for {} to {}>'.format(self.campaign.name, self.phone_number.e164)

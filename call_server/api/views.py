@@ -357,7 +357,7 @@ def campaign_target_calls(campaign_id):
                 except AttributeError:
                     current_app.logger.error('unable to adapt target_data for %s: %s' % (target_uid, target_data))
             else:
-                current_app.logger.error('no target_data for %s: %s' % (target_uid, e))
+                current_app.logger.error('no target_data for %s' % target_uid)
 
         if adapted_data:    
             targets[target_uid]['title'] = adapted_data.get('title')

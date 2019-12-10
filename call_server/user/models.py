@@ -1,4 +1,5 @@
 from datetime import datetime
+import functools
 
 from sqlalchemy_utils.types import phone_number
 from werkzeug import generate_password_hash, check_password_hash
@@ -87,7 +88,7 @@ class User(db.Model, UserMixin):
                 User.name.ilike(keyword),
                 User.email.ilike(keyword),
             ))
-        q = reduce(db.and_, criteria)
+        q = functools.reduce(db.and_, criteria)
         return cls.query.filter(q)
 
     @classmethod

@@ -48,7 +48,7 @@ class ActionKitIntegration(CRMIntegration):
         if campaign.country_code.upper() == 'US':
             # look up target in political_data
             data_provider = campaign.get_country_data()
-            target_data = data_provider.cache_get(target_key)
+            target_data = data_provider.cache_get(target.key)
             
             if campaign.campaign_type == 'congress':
                 target_state = target_data.get('state', '')

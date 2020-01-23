@@ -141,7 +141,7 @@ class AudioRecordingForm(FlaskForm):
             return True
 
         # Use Unix libmagic to check the file type. Read just the header
-        mime = magic.from_buffer(field.data.read(4096), mime=True)
+        mime = magic.from_buffer(field.data.read(8192), mime=True)
         if mime in ["audio/wav", "audio/x-wav"] and field.data.mimetype in ["audio/wav", "audio/x-wav"]:
             return True
         if mime in ["audio/mp3", "audio/mpeg"] and field.data.mimetype in ["audio/mp3", "audio/mpeg"]:

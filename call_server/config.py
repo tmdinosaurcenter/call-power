@@ -5,7 +5,7 @@ class DefaultConfig(object):
     PROJECT = 'CallPower'
     DEBUG = False
     TESTING = False
-    VERSION = "1.5.1"
+    VERSION = "1.5.3"
     ENVIRONMENT = os.environ.get('APP_ENVIRONMENT', "Default")
 
     APP_NAME = "call_server"

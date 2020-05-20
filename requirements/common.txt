@@ -29,7 +29,7 @@ decorator==4.4.0
 flask-talisman==0.6.0
 geopy==1.18.1
 graphqlclient==0.2.4
-httplib2==0.12.1
+httplib2==0.18.0
 infinity==1.4
 intervals==0.8.1
 itsdangerous==1.1.0

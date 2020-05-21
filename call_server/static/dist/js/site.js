@@ -1012,7 +1012,7 @@ $(document).ready(function () {
       var statusIcon = $(event.target).next('.glyphicon');
       statusIcon.removeClass('error').addClass('glyphicon-earphone');
       if (window.location.hostname === 'localhost') {
-        alert("Call Power cannot place test calls unless hosted on an externally routable address. Try using ngrok and restarting with the --server option.");
+        alert("Call Power cannot place test calls unless hosted on an externally routable address. Try using ngrok and restarting with a SERVER_NAME.");
         $(event.target).addClass('disabled');
         statusIcon.addClass('error');
         return false;
@@ -2077,12 +2077,20 @@ $(document).ready(function () {
           prefix = 'us:bioguide:';
           person.key = prefix+person.bioguide_id;
           person.location = 'DC';
+          if (person.district + person.state) {
+            // concat them
+            person.district = person.state.toUpperCase() + '-' + person.district;
+          } else if (person.state && person.title == 'Senator') {
+            person.district = person.state;
+          }
         } else if (person.leg_id) {
           prefix = 'us_state:openstates:';
           person.key = prefix+person.leg_id;
+          person.district = person.state.toUpperCase() + '-' + person.district;
         } else if (person.title === 'Governor') {
           prefix = 'us_state:governor:';
-          person.key = prefix+person.state
+          person.key = prefix+person.state;
+          person.district = person.state;
         } else if (person.related && person.related.boundary_url) {
           var boundary_url = person.related.boundary_url.replace('/boundaries/', '/');
           person.key = boundary_url;
@@ -2107,6 +2115,7 @@ $(document).ready(function () {
             } else {
               office.key = person.key + (office.id || '');
             }
+            office.district = person.district;
             office.phone = office.phone || office.tel;
             var office_location = office.office_name || office.name || office.city || office.type;
 
@@ -2421,7 +2430,9 @@ $(document).ready(function () {
       title: null,
       name: null,
       number: null,
-      order: null
+      order: null,
+      location: null,
+      district: null
     },
 
   });
@@ -2608,7 +2619,7 @@ $(document).ready(function () {
 
       this.collection.each(function(model, index) {
         // create new hidden inputs named target_set-N-FIELD
-        var fields = ['order','title','name','number','location','key'];
+        var fields = ['order','title','name','number','district','location','key'];
         _.each(fields, function(field) {
           var input = $('<input name="target_set-'+index+'-'+field+'" type="hidden" />');
           input.val(model.get(field));

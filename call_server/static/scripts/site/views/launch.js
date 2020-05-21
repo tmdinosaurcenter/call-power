@@ -36,7 +36,7 @@
       var statusIcon = $(event.target).next('.glyphicon');
       statusIcon.removeClass('error').addClass('glyphicon-earphone');
       if (window.location.hostname === 'localhost') {
-        alert("Call Power cannot place test calls unless hosted on an externally routable address. Try using ngrok and restarting with the --server option.");
+        alert("Call Power cannot place test calls unless hosted on an externally routable address. Try using ngrok and restarting with a SERVER_NAME.");
         $(event.target).addClass('disabled');
         statusIcon.addClass('error');
         return false;

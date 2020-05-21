@@ -24,6 +24,8 @@ def check_political_data_cache(key, cache=cache):
     elif type(cached_obj) is dict:
         data = adapter.target(cached_obj)
         offices = adapter.offices(cached_obj)
+    elif cached_obj is None:
+        return False
     else:
         current_app.logger.error('Target.check_political_data_cache got unknown cached_obj type %s for key %s' % (type(cached_obj), key))
         # do it live

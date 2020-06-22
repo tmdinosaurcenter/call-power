@@ -1,4 +1,4 @@
-import nose
+import pytest
 
 from flask_testing import TestCase
 
@@ -9,7 +9,6 @@ if __name__ == '__main__' and __package__ is None:
 from call_server.app import create_app, db
 from call_server.config import TestingConfig
 from call_server.extensions import assets
-
 
 class BaseTestCase(TestCase):
 
@@ -25,4 +24,4 @@ class BaseTestCase(TestCase):
         db.drop_all()
 
 if __name__ == '__main__':
-    nose.main()
+    pytest.main()

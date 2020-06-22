@@ -1,6 +1,7 @@
 import logging
 
 from tests.run import BaseTestCase
+import pytest
 
 from call_server.political_data.lookup import locate_targets
 from call_server.political_data.countries.us import USDataProvider
@@ -37,6 +38,7 @@ class TestUSStateData(BaseTestCase):
         self.assertIsNotNone(self.mock_cache)
         self.assertIsNotNone(self.us_data)
 
+    @pytest.mark.slow
     def test_locate_targets(self):
         uids = locate_targets(self.mock_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
         # returns a list of uids (openstates leg_id)
@@ -50,6 +52,7 @@ class TestUSStateData(BaseTestCase):
         self.assertEqual(senator['chamber'], 'upper')
         self.assertEqual(senator['state'].upper(), 'CA')
 
+    @pytest.mark.slow
     def test_locate_targets_lower_only(self):
         self.STATE_CAMPAIGN.campaign_subtype = 'lower'
         uids = locate_targets(self.mock_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
@@ -58,6 +61,8 @@ class TestUSStateData(BaseTestCase):
         house_rep = self.us_data.get_uid(uids[0])
         self.assertEqual(house_rep['chamber'], 'lower')
         self.assertEqual(house_rep['state'].upper(), 'CA')
+    
+    @pytest.mark.slow
     def test_locate_targets_upper_only(self):
         self.STATE_CAMPAIGN.campaign_subtype = 'upper'
         uids = locate_targets(self.mock_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
@@ -67,6 +72,7 @@ class TestUSStateData(BaseTestCase):
         self.assertEqual(senator['chamber'], 'upper')
         self.assertEqual(senator['state'].upper(), 'CA')
 
+    @pytest.mark.slow
     def test_locate_targets_ordered_lower_first(self):
         self.STATE_CAMPAIGN.campaign_subtype = 'both'
         self.STATE_CAMPAIGN.target_ordering = 'lower-first'
@@ -79,6 +85,7 @@ class TestUSStateData(BaseTestCase):
         second = self.us_data.get_uid(uids[1])
         self.assertEqual(second['chamber'], 'upper')
 
+    @pytest.mark.slow
     def test_locate_targets_ordered_upper_first(self):
         self.STATE_CAMPAIGN.campaign_subtype = 'both'
         self.STATE_CAMPAIGN.target_ordering = 'upper-first'
@@ -91,6 +98,7 @@ class TestUSStateData(BaseTestCase):
         second = self.us_data.get_uid(uids[1])
         self.assertEqual(second['chamber'], 'lower')
 
+    @pytest.mark.slow
     def test_locate_targets_incorrect_state(self):
         self.STATE_CAMPAIGN.campaign_state = 'CA'
 
@@ -100,6 +108,7 @@ class TestUSStateData(BaseTestCase):
         uids = locate_targets(other_location, self.STATE_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(uids), 0)
 
+    @pytest.mark.slow
     def test_locate_targets_unicameral_state(self):
         self.STATE_CAMPAIGN.campaign_state = 'NE'
         self.STATE_CAMPAIGN.campaign_subtype = 'both'
@@ -114,6 +123,7 @@ class TestUSStateData(BaseTestCase):
         first = self.us_data.get_uid(uids[0])
         self.assertEqual(first['chamber'], 'legislature')
 
+    @pytest.mark.slow
     def test_get_state_legid(self):
         # uses openstates api directly, not our locate_targets functions
         self.STATE_CAMPAIGN.campaign_state = 'CA'

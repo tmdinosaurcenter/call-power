@@ -1,6 +1,7 @@
 import logging
 
 from tests.run import BaseTestCase
+import pytest
 
 from call_server.political_data.lookup import locate_targets
 from call_server.political_data.countries.ca import CADataProvider
@@ -43,11 +44,13 @@ class TestCAData(BaseTestCase):
         self.assertIsNotNone(self.mock_cache)
         self.assertIsNotNone(self.ca_data)
 
+    @pytest.mark.slow
     def test_postcodes(self):
         riding = self.ca_data.get_postcode('L5G4L3')
         self.assertEqual(riding['province'], 'ON')
         self.assertEqual(riding['city'], 'Mississauga')
 
+    @pytest.mark.slow
     def test_locate_targets(self):
         keys = locate_targets(self.mock_location, self.PARLIAMENT_CAMPAIGN, cache=self.mock_cache)
         # returns a list of target boundary keys
@@ -57,6 +60,7 @@ class TestCAData(BaseTestCase):
         self.assertEqual(mp['elected_office'], 'MP')
         self.assertEqual(mp['representative_set_name'], 'House of Commons')
 
+    @pytest.mark.slow
     def test_locate_targets_province_quebec(self):
         keys = locate_targets(self.mock_location, self.PROVINCE_CAMPAIGN, cache=self.mock_cache)
         self.assertEqual(len(keys), 1)

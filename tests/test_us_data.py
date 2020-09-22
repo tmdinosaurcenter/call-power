@@ -40,7 +40,7 @@ class TestUSData(BaseTestCase):
             {'state':'MA','zipcode':'02111'})
 
         self.mock_location_split_parties = Location('Bakersfield, CA', (35.375960, -119.020865),
-            {'state':'MA','zipcode':'93301'})
+            {'state':'CA','zipcode':'93301'})
 
        # this zipcode pretty evenly split between KY-2 & TN-7
         self.mock_location_multiple_states = Location('Fort Campbell, KY', (36.647207, -87.451635),
@@ -176,7 +176,7 @@ class TestUSData(BaseTestCase):
         self.CONGRESS_CAMPAIGN.target_ordering = 'democrats-first'
 
         uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
-        self.assertEqual(len(uids), 3)
+        self.assertEqual(len(uids), 4)
 
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['party'], 'Democrat')
@@ -192,13 +192,13 @@ class TestUSData(BaseTestCase):
         self.CONGRESS_CAMPAIGN.target_ordering = 'republicans-first'
 
         uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
-        self.assertEqual(len(uids), 3)
+        self.assertEqual(len(uids), 4)
 
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['party'], 'Republican')
 
         second = self.us_data.get_uid(uids[1])[0]
-        self.assertEqual(second['party'], 'Democrat')
+        self.assertEqual(second['party'], 'Republican')
 
         third = self.us_data.get_uid(uids[2])[0]
         self.assertEqual(third['party'], 'Democrat')
@@ -221,12 +221,13 @@ class TestUSData(BaseTestCase):
         self.CONGRESS_CAMPAIGN.target_ordering = 'republicans-only'
 
         uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
-        self.assertEqual(len(uids), 1)
+        self.assertEqual(len(uids), 2)
 
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['party'], 'Republican')
 
-
+        second = self.us_data.get_uid(uids[1])[0]
+        self.assertEqual(first['party'], 'Republican')
 
     def test_locate_targets_multiple_states(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'

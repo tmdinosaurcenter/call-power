@@ -7,3 +7,4 @@ cssmin==0.2.0
 coverage==4.4
 coveralls==1.1
 pip-upgrade
+pytest-cov==2.10.1

@@ -203,6 +203,30 @@ class TestUSData(BaseTestCase):
         third = self.us_data.get_uid(uids[2])[0]
         self.assertEqual(third['party'], 'Democrat')
 
+    def test_locate_targets_both_ordered_democrats_only(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'
+        self.CONGRESS_CAMPAIGN.target_ordering = 'democrats-only'
+
+        uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 2)
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['party'], 'Democrat')
+
+        second = self.us_data.get_uid(uids[1])[0]
+        self.assertEqual(second['party'], 'Democrat')
+
+    def test_locate_targets_both_ordered_republicans_only(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'
+        self.CONGRESS_CAMPAIGN.target_ordering = 'republicans-only'
+
+        uids = locate_targets(self.mock_location_split_parties, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['party'], 'Republican')
+
+
 
     def test_locate_targets_multiple_states(self):
         self.CONGRESS_CAMPAIGN.campaign_subtype = 'both'

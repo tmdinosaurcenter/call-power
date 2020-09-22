@@ -69,6 +69,8 @@ class USCampaignType_Congress(USCampaignType):
         ('lower-first', _("House First")),
         ('democrats-first', _("Democrats First")),
         ('republicans-first', _("Republicans First")),
+        ('democrats-only', _("Democrats Only")),
+        ('republicans-only', _("Republicans Only")),
     ]
 
     @property
@@ -77,23 +79,37 @@ class USCampaignType_Congress(USCampaignType):
 
     def all_targets(self, location, campaign_region=None):
         return {
-            'upper': self._get_senators(location),
-            'lower': self._get_representative(location),
-            'republicans': self._get_congress_party(location, 'Republican'),
-            'democrats': self._get_congress_party(location, 'Democrat'),
+            'upper': {
+                'all': self._get_senators(location),
+                'democrats': self._get_senate_party(location, 'Democrat'),
+                'republicans': self._get_congress_party(location, 'Republican')
+            },
+            'lower': {
+                'all': self._get_representative(location),
+                'democrats': self._get_congress_party(location, 'Democrat'),
+                'republicans': self._get_congress_party(location, 'Republican'),
+            }
         }
 
     def sort_targets(self, targets, subtype, order, shuffle_chamber=True):
-        upper_targets = list(targets.get('upper'))
-        lower_targets = list(targets.get('lower'))
-        republican_targets = list(targets.get('republicans'))
-        democrat_targets = list(targets.get('democrats'))
+        # get all targets for both chambers
+        upper_targets = list(targets.get('upper').get('all'))
+        lower_targets = list(targets.get('lower').get('all'))
 
-        # by default, shuffle target ordering within chamber
+        # filter by party
+        democrats_upper = list(targets.get('upper').get('democrats'))
+        republicans_upper = list(targets.get('upper').get('republicans'))
+        democrats_lower = list(targets.get('lower').get('democrats'))
+        republicans_lower = list(targets.get('lower').get('republicans'))
+        democrat_targets = democrats_upper + democrats_lower
+        republican_targets = republicans_upper + republicans_lower
+
+        # shuffle target ordering within chamber if desired
         if shuffle_chamber:
             random.shuffle(upper_targets)
             random.shuffle(lower_targets)
 
+        # then order by chamber and/or party
         if subtype == 'both':
             if order == 'upper-first':
                 return upper_targets + lower_targets
@@ -101,10 +117,23 @@ class USCampaignType_Congress(USCampaignType):
                 return democrat_targets + republican_targets
             elif order == 'republicans-first':
                 return republican_targets + democrat_targets
+            elif order == 'democrats-only':
+                return democrat_targets
+            elif order == 'republicans-only':
+                return republican_targets
             else:
                 return lower_targets + upper_targets
         elif subtype == 'upper':
-            return upper_targets
+            if order == 'democrats-first':
+                return democrats_upper + republicans_upper
+            elif order == 'republicans-first':
+                return republicans_upper + democrats_upper
+            elif order == 'democrats-only':
+                return democrats_upper
+            elif order == 'republicans-only':
+                return republicans_upper
+            else:
+                return upper_targets
         elif subtype == 'lower':
             return lower_targets
         elif subtype == 'exec':
@@ -127,18 +156,22 @@ class USCampaignType_Congress(USCampaignType):
             if rep:
                 yield self.data_provider.KEY_BIOGUIDE.format(**rep[0])
 
-    def _get_congress_party(self, location, party):
+    def _get_senate_party(self, location, party):
         districts = self.data_provider.get_districts(location.postal)
         # This is a set because zipcodes may cross states
         states = set(d['state'] for d in districts)
-
         matched_party = []
 
         for state in states:
             for senator in self.data_provider.get_senators(state):
                 if senator.get('party') == party:
                     matched_party.append(self.data_provider.KEY_BIOGUIDE.format(**senator))
+        return matched_party
 
+    def _get_congress_party(self, location, party):
+        districts = self.data_provider.get_districts(location.postal)
+        matched_party = []
+        
         for district in districts:
             rep = self.data_provider.get_house_members(district['state'], district['house_district'])
             if rep and rep[0].get('party') == party:

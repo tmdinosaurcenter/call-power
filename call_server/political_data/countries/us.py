@@ -365,8 +365,12 @@ class USDataProvider(DataProvider):
                     'district':    district,
                     'offices':     offices.get(info['id']['bioguide'], []),
                     'current':     term['current'],
-                    'party':       term['party'],
                 }
+
+                if term.get('caucus'):
+                    record['party'] = term['caucus']
+                else:
+                    record['party'] = term['party']
 
                 direct_key = self.KEY_BIOGUIDE.format(**record)
                 if record['chamber'] == "senate":

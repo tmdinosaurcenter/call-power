@@ -149,6 +149,7 @@ class HerokuConfig(ProductionConfig):
     MAIL_USERNAME = os.environ.get('SENDGRID_USERNAME')
     MAIL_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER', 'info@callpower.org')
+    MAIL_USE_TLS = True
 
     # use rq HerokuWorker
     RQ_WORKER_CLASS = 'call_server.sync.worker.CleanSlateHerokuWorker'

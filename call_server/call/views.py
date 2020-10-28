@@ -136,10 +136,16 @@ def intro_wait_human(params, campaign):
     action = url_for("call._make_calls", **params)
 
     # wait for user keypress, in case we connected to voicemail
-    # give up after 10 seconds
-    g = Gather(num_digits=1, method="POST", timeout=10, action=action)
+    g = Gather(num_digits=1, timeout=10, method="POST", action=action)
     play_or_say(g, campaign.audio('msg_intro_confirm'), lang=campaign.language_code)
     resp.append(g)
+
+    # didn't get a response, text-to-speech fallback (in case campaign text isn't explicit)
+    g2 = Gather(num_digits=1, timeout=10, method="POST", action=action)
+    play_or_say(g2, "Press the star key to get started.", lang="en")
+    resp.append(g2)
+    play_or_say(resp, campaign.audio('msg_goodbye'), lang=campaign.language_code)
+    # if no response, hang up
 
     return str(resp)
 
@@ -167,7 +173,7 @@ def location_gather(resp, params, campaign):
     Then, redirect to location_parse
     If no response, replay then hang up
     """
-    g = Gather(num_digits=5, timeout=5, method="POST", action=url_for("call.location_parse", **params))
+    g = Gather(num_digits=5, timeout=10, method="POST", action=url_for("call.location_parse", **params))
     play_or_say(g, campaign.audio('msg_location'), lang=campaign.language_code)
     resp.append(g)
     # didn't get a response

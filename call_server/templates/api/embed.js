@@ -83,7 +83,7 @@ if (typeof window.jQuery === 'undefined') {
 
 // load sentry for frontend error tracking
 if (window.CallPowerOptions.errorTracking) {
-  getScript('https://js.sentry-cdn.com/{{DSN_PUBLIC}}.min.js',
+  getScript('https://js.sentry-cdn.com/{{DSN_PUBLIC_KEY}}.min.js',
     function() {},
     'anonymous')
 }

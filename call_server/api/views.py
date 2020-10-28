@@ -490,9 +490,9 @@ def call_info(sid):
 @cache.cached(timeout=600)
 def campaign_embed_js(campaign_id):
     campaign = Campaign.query.filter_by(id=campaign_id).first_or_404()
-    dsn_public = current_app.config.get('SENTRY_DSN_PUBLIC', '')
+    dsn_public_key = current_app.config.get('SENTRY_DSN_PUBLIC_KEY', '')
     return Response(render_template('api/embed.js',
-        campaign=campaign, DSN_PUBLIC=dsn_public
+        campaign=campaign, DSN_PUBLIC_KEY=dsn_public_key
     ), content_type='application/javascript')
 
 

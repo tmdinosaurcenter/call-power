@@ -57,13 +57,14 @@ def create_app(configuration=None, app_name=None, blueprints=None):
         import sentry_sdk
         from sentry_sdk.integrations.flask import FlaskIntegration
         
-        sentry_sdk.init(app.config['SENTRY_DSN'],
+        sentry = sentry_sdk.init(app.config['SENTRY_DSN'],
             integrations=[FlaskIntegration()],
             _experiments={"auto_enabling_integrations": True},
             traces_sample_rate=0.1
         )
-        sentry_report_uri = 'https://sentry.io/api/%s/csp-report/?sentry_key=%s' % (
-            sentry.client.remote.project, sentry.client.remote.public_key
+        sentry_dsn = sentry._client.transport.parsed_dsn
+        sentry_report_uri = 'https://sentry.io/api/%s/security/?sentry_key=%s' % (
+            sentry_dsn.project_id, sentry_dsn.public_key
         )
         talisman.content_security_policy_report_uri = sentry_report_uri
         sentry_public_dsn = 'https://%s@sentry.io/%s' % (

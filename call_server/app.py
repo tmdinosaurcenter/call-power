@@ -54,17 +54,20 @@ def create_app(configuration=None, app_name=None, blueprints=None):
     configure_app(app, configuration)
 
     if app.config.get('SENTRY_DSN'):
-        from raven.contrib.flask import Sentry
-        sentry = Sentry()
-        sentry.init_app(app, dsn=app.config['SENTRY_DSN'])
-        sentry_report_uri = 'https://sentry.io/api/%s/csp-report/?sentry_key=%s' % (
-            sentry.client.remote.project, sentry.client.remote.public_key
+        import sentry_sdk
+        from sentry_sdk.integrations.flask import FlaskIntegration
+        
+        sentry = sentry_sdk.init(app.config['SENTRY_DSN'],
+            integrations=[FlaskIntegration()],
+            _experiments={"auto_enabling_integrations": True},
+            traces_sample_rate=0.1
+        )
+        sentry_dsn = sentry._client.transport.parsed_dsn
+        sentry_report_uri = 'https://sentry.io/api/%s/security/?sentry_key=%s' % (
+            sentry_dsn.project_id, sentry_dsn.public_key
         )
         talisman.content_security_policy_report_uri = sentry_report_uri
-        sentry_public_dsn = 'https://%s@sentry.io/%s' % (
-            sentry.client.remote.public_key, sentry.client.remote.project
-        )
-        app.config['SENTRY_DSN_PUBLIC'] = sentry_public_dsn
+        app.config['SENTRY_DSN_PUBLIC_KEY'] = sentry_dsn.public_key
 
     # init extensions once we have app context
     init_extensions(app)

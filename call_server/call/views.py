@@ -558,7 +558,18 @@ def make_single():
     i = int(request.values.get('call_index', 0))
     params['call_index'] = i
 
-    (uid, prefix) = parse_target(params['targetIds'][i])
+    try:
+        target_id = params['targetIds'][i]
+    except IndexError:
+        # if the url is too long, we may not get a valid parameter here
+        # reset the list
+        params['call_index'] = 0
+        params['targetIds'] = [t.key for t in campaign.target_set]
+        resp = VoiceResponse()
+        resp.redirect(url_for('call.make_single', **params))
+        return str(resp)
+
+    (uid, prefix) = parse_target(target_id)
     (current_target, created) = Target.get_or_create(uid, prefix)
     if created:
         # save Target to database
@@ -644,7 +655,18 @@ def complete():
     if not params or not campaign:
         abort(400)
 
-    (uid, prefix) = parse_target(params['targetIds'][i])
+    try:
+        target_id = params['targetIds'][i]
+    except IndexError:
+        # if the url is too long, we may not get a valid parameter here
+        # reset the list
+        params['call_index'] = 0
+        params['targetIds'] = [t.key for t in campaign.target_set]
+        resp = VoiceResponse()
+        resp.redirect(url_for('call.make_single', **params))
+        return str(resp)
+
+    (uid, prefix) = parse_target(target_id)
     (current_target, created) = Target.get_or_create(uid, prefix)
     call_data = {
         'session_id': params['sessionId'],
@@ -670,8 +692,6 @@ def complete():
             lang=campaign.language_code)
 
     # TODO if district offices, try another office number
-
-    i = int(request.values.get('call_index', 0))
 
     if i == len(params['targetIds']) - 1:
         # thank you for calling message

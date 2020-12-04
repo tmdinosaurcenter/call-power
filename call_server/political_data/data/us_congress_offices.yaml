@@ -5145,30 +5145,6 @@
     hours: M-F 9AM-5PM PT
     phone: 707-438-1822
 - id:
-    bioguide: G000560
-    govtrack: 412388
-    thomas: '01979'
-  offices:
-  - id: G000560-dalton
-    address: 702 S. Thornton Ave.
-    city: Dalton
-    state: GA
-    zip: '30720'
-    latitude: 34.7627274
-    longitude: -84.9720332
-    fax: 706-278-0840
-    phone: 706-226-5320
-  - id: G000560-rome
-    address: 600 E. First St.
-    suite: Suite 301
-    city: Rome
-    state: GA
-    zip: '30161'
-    latitude: 34.2553159
-    longitude: -85.1670568
-    fax: 706-232-7864
-    phone: 706-290-1776
-- id:
     bioguide: G000562
     govtrack: 412406
     thomas: '01998'
@@ -5892,31 +5868,6 @@
     hours: Mon-Fri 9:00 am to 5:00 pm
     phone: 203-353-9400
 - id:
-    bioguide: H001048
-    govtrack: 412283
-    thomas: '01909'
-  offices:
-  - id: H001048-el_cajon
-    address: 1611 N. Magnolia Ave.
-    suite: Suite 310
-    city: El Cajon
-    state: CA
-    zip: '92020'
-    latitude: 32.820926
-    longitude: -116.9614599
-    fax: 619-449-2251
-    hours: M-F 9am-5pm
-    phone: 619-448-5201
-  - id: H001048-temecula
-    address: 41000 Main St.
-    city: Temecula
-    state: CA
-    zip: '92590'
-    latitude: 33.4941712
-    longitude: -117.1470449
-    hours: Tues, Wed, Thurs, 10am-3pm
-    phone: 951-695-5108
-- id:
     bioguide: H001052
     govtrack: 412434
     thomas: '02026'
@@ -6422,27 +6373,6 @@
     longitude: -75.92123
     phone: 610-295-0815
 - id:
-    bioguide: H001087
-    govtrack: 412756
-  offices:
-  - id: H001087-palmdale
-    address: 1008 W Avenue M14
-    suite: E
-    city: Palmdale
-    state: CA
-    zip: 93551-1441
-    latitude: 34.63294
-    longitude: -118.14866
-    phone: 661-839-0539
-  - id: H001087-simi_valley
-    address: 1445 E Los Angeles Ave
-    suite: Suite 206
-    city: Simi Valley
-    state: CA
-    zip: 93065-2817
-    latitude: 34.27247
-    longitude: -118.77161
-- id:
     bioguide: H001088
     govtrack: 412788
   offices:
@@ -6522,22 +6452,6 @@
     longitude: -95.96760839999999
     fax: 918-748-5119
     phone: 918-748-5111
-- id:
-    bioguide: I000055
-    govtrack: 400194
-    thomas: '01608'
-  offices:
-  - id: I000055-atlanta
-    address: 3625 Cumberland Blvd.
-    suite: Suite 970
-    building: One Overton Park
-    city: Atlanta
-    state: GA
-    zip: '30339'
-    latitude: 33.8841172
-    longitude: -84.4539174
-    fax: 770-661-0768
-    phone: 770-661-0999
 - id:
     bioguide: J000032
     govtrack: 400199
@@ -7628,20 +7542,6 @@
     latitude: 44.260997
     longitude: -72.5775843
     phone: 802-229-0569
-- id:
-    bioguide: L000287
-    govtrack: 400240
-    thomas: '00688'
-  offices:
-  - id: L000287-atlanta
-    address: 100 Peachtree St. NW
-    suite: Suite 1920
-    city: Atlanta
-    state: GA
-    zip: '30303'
-    latitude: 33.7568505
-    longitude: -84.38859939999999
-    phone: 404-659-0116
 - id:
     bioguide: L000397
     govtrack: 400245
@@ -9248,203 +9148,6 @@
     longitude: -74.010127
     fax: 845-561-2890
     phone: 845-561-1259
-- id:
-    bioguide: M001187
-    govtrack: 412552
-    thomas: '02142'
-  offices:
-  - id: M001187-asheville
-    address: 9 Miller Rd.
-    building: Skyland Fire Department
-    city: Asheville
-    state: NC
-    zip: '28776'
-    latitude: 35.4846372
-    longitude: -82.5240931
-    fax: 828-693-5603
-    hours: Thursday 2PM-5PM
-    phone: 828-765-0573
-  - id: M001187-asheville-1
-    address: 90 Elk Mountain Rd.
-    building: Woodfin Town Hall
-    city: Asheville
-    state: NC
-    zip: '28804'
-    latitude: 35.631458
-    longitude: -82.5859027
-    fax: 828-693-5603
-    hours: Thursday 9AM-12PM
-    phone: 828-765-0573
-  - id: M001187-brevard
-    address: 98 E. Morgan St.
-    building: Community Services Building Second Floor, Conference Room A
-    city: Brevard
-    state: NC
-    zip: '28712'
-    latitude: 35.2312324
-    longitude: -82.7340135
-    fax: 828-693-5603
-    hours: 2nd Tuesday of the 1st month of each quarter, 9AM-12PM
-    phone: 828-693-5660
-  - id: M001187-bryson_city
-    address: 101 Mitchell St.
-    building: Swain County Administration Building
-    city: Bryson City
-    state: NC
-    zip: '28713'
-    latitude: 35.4284337
-    longitude: -83.44769629999999
-    phone: 828-452-6022
-    hours: 2nd Tuesday of the 2nd month of each quarter, 2PM-5PM
-  - id: M001187-burnsville
-    address: 2 Town Sq.
-    building: Burnsville Town Hall
-    city: Burnsville
-    state: NC
-    zip: '28714'
-    latitude: 35.91698
-    longitude: -82.300495
-    phone: 828-765-0573
-    hours: 2nd Tuesday of the 1st month of each quarter, 2PM-5PM
-  - id: M001187-cherokee
-    address: 810 Acquoni Rd.
-    building: Ginger Lynn Welch Building
-    city: Cherokee
-    state: NC
-    zip: '28719'
-    latitude: 35.4889529
-    longitude: -83.31281460000001
-    hours: 4th Tuesday of the 1st month of each quarter, 9AM-12PM
-    phone: 828-452-6022
-  - id: M001187-franklin
-    address: 5 W. Main St.
-    suite: Room 332
-    building: Macon County Courthouse
-    city: Franklin
-    state: NC
-    zip: '28734'
-    latitude: 35.181994
-    longitude: -83.3816781
-    hours: 1st Tuesday of the 3rd month of each quarter, 9AM-12PM
-    phone: 828-452-6022
-  - id: M001187-hayesville
-    address: 261 Courthouse Dr.
-    suite: Paul Jordan Conference Room
-    building: Clay County Courthouse
-    city: Hayesville
-    state: NC
-    zip: '28904'
-    latitude: 35.041118
-    longitude: -83.829076
-    hours: 1st Tuesday of the 1st month of each quarter, 9AM-12PM
-    phone: 828-452-6022
-  - id: M001187-hendersonville
-    address: 200 N. Grove St.
-    suite: Suite 90
-    building: Henderson County Courthouse
-    city: Hendersonville
-    state: NC
-    zip: '28792'
-    latitude: 35.3159633
-    longitude: -82.45688779999999
-    fax: 828-693-5603
-    hours: M-F, 9:00 AM-5:00 PM
-    phone: 828-693-5660
-  - id: M001187-lenoir
-    address: 2345 Morganton Blvd.
-    building: Health and Human Services Bldg.
-    city: Lenoir
-    state: NC
-    zip: '28645'
-    latitude: 35.8920346
-    longitude: -81.5724283
-    fax: 828-426-8710
-    hours: M-F 9:00 AM - 5:00 PM
-    phone: 828-426-8701
-  - id: M001187-marion
-    address: 100 Spaulding Road
-    building: McDowell County Senior Center
-    city: Marion
-    state: NC
-    zip: '28752'
-    latitude: 35.6661262
-    longitude: -82.02352800000001
-    fax: 828-693-5603
-    hours: 1st Wednesday of the 1st month of each quarter, 9AM-12PM
-    phone: 828-432-2699
-  - id: M001187-mars_hill
-    address: 280 N. Main St.
-    building: Mars Hill Town Hall
-    city: Mars Hill
-    state: NC
-    zip: '28754'
-    latitude: 35.8306609
-    longitude: -82.5496506
-    hours: 2nd Tuesday of the 1st month of each quarter, 9AM-12PM
-    phone: 828-765-0573
-  - id: M001187-morganton
-    address: 305 E. Union St.
-    suite: Suite A100
-    building: City of Morganton Town Hall
-    city: Morganton
-    state: NC
-    zip: '28655'
-    latitude: 35.7480974
-    longitude: -81.6863355
-    fax: 828-426-8710
-    hours: M-F 9AM-5PM
-    phone: 828-432-2699
-  - id: M001187-murphy
-    address: 107 Peachtree St.
-    building: Murphy Power Board
-    city: Murphy
-    state: NC
-    zip: '28906'
-    latitude: 35.0865265
-    longitude: -84.0326446
-    hours: 1st Tuesday of the 1st month of each quarter, 2PM-5PM
-    phone: 828-452-6022
-  - id: M001187-robbinsville
-    address: 12 N. Main St.
-    building: Graham County Courthouse
-    city: Robbinsville
-    state: NC
-    zip: '28771'
-    latitude: 35.323017
-    longitude: -83.80684699999999
-    hours: 1st Tuesday of the 2nd month of each quarter, 9AM-12PM
-    phone: 828-452-6022
-  - id: M001187-spruce_pine
-    address: 11 Crystal St.
-    building: Mitchell Country Chamber of Commerce Building
-    city: Spruce Pine
-    state: NC
-    zip: '28777'
-    latitude: 35.91595
-    longitude: -82.068939
-    hours: Mon-Wed and Fri, 9:00 AM - 5:00 PM
-    phone: 828-765-0573
-  - id: M001187-sylva
-    address: 125 Bonnie Ln.
-    building: Southwestern Commission Building
-    city: Sylva
-    state: NC
-    zip: '28779'
-    latitude: 35.3514788
-    longitude: -83.208622
-    phone: 828-452-6022
-    hours: 1st Tuesday of the 3rd month of each quarter, 2PM-5PM
-  - id: M001187-waynesville
-    address: 285 N. Main St.
-    suite: Suite 1300
-    building: Haywood County Justice Center
-    city: Waynesville
-    state: NC
-    zip: '28786'
-    latitude: 35.4932599
-    longitude: -82.98666940000001
-    hours: M-F 9AM-5PM
-    phone: 828-452-6022
 - id:
     bioguide: M001188
     govtrack: 412560
@@ -11310,42 +11013,6 @@
     longitude: -170.6899787
     fax: 684-633-3607
     phone: 684-633-3601
-- id:
-    bioguide: R000601
-    govtrack: 412653
-    thomas: '02268'
-  offices:
-  - id: R000601-rockwall
-    address: 6531 Horizon Rd.
-    suite: Suite A
-    city: Rockwall
-    state: TX
-    zip: '75032'
-    latitude: 32.8672397
-    longitude: -96.4424884
-    fax: 972-771-1222
-    phone: 972-771-0100
-  - id: R000601-sherman
-    address: 100 W. Houston St.
-    suite: 1st Floor
-    city: Sherman
-    state: TX
-    zip: '75090'
-    latitude: 33.6358717
-    longitude: -96.60972439999999
-    fax: 903-868-8613
-    phone: 903-813-5270
-  - id: R000601-texarkana
-    address: 2600 N. Robison Rd.
-    suite: Suite 190
-    building: Texarkana College – Health Science Building
-    city: Texarkana
-    state: TX
-    zip: '75599'
-    latitude: 33.4436958
-    longitude: -94.0802978
-    fax: 903-832-3232
-    phone: 903-823-3173
 - id:
     bioguide: R000602
     govtrack: 412647
@@ -15955,3 +15622,31 @@
     state: PA
     zip: '17701'
     phone: 570-322-3961
+- id:
+    bioguide: B001311
+    govtrack: 412844
+  offices:
+  - id: B001311-monroe
+    address: 300 N Main Street
+    city: Monroe
+    state: NC
+    zip: '28112'
+    phone: 740-218-5300
+    fax: 844-273-1255
+- id:
+    bioguide: M001210
+    govtrack: 412845
+  offices:
+  - id: M001210-greenville
+    address: 1105 Corporate Drive
+    suite: Suite C
+    city: Greenville
+    state: NC
+    zip: '27858'
+    phone: 252-931-1003
+  - id: M001210-jacksonville
+    address: 234 Northwest Corridor Blvd.
+    city: Jacksonville
+    state: NC
+    zip: '28540'
+    phone: 910-937-6929

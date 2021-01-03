@@ -354,16 +354,21 @@ class USDataProvider(DataProvider):
 
                 district = str(term['district']) if 'district' in term else None
 
+                try:
+                    bioguide = info['id']['bioguide']
+                except KeyError:
+                    log.warning(u"{first} {last} does not have bioguide id".format(**info['name']))
+
                 record = {
                     'first_name':  info['name']['first'],
                     'last_name':   info['name']['last'],
-                    'bioguide_id': info['id']['bioguide'],
+                    'bioguide_id': bioguide,
                     'title':       "Senator" if term['type'] == "sen" else "Representative",
                     'phone':       term.get('phone'),
                     'chamber':     "senate" if term['type'] == "sen" else "house",
                     'state':       term['state'],
                     'district':    district,
-                    'offices':     offices.get(info['id']['bioguide'], []),
+                    'offices':     offices.get(bioguide, []),
                     'current':     term['current'],
                 }
 

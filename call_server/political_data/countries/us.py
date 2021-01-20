@@ -358,6 +358,7 @@ class USDataProvider(DataProvider):
                     bioguide = info['id']['bioguide']
                 except KeyError:
                     log.warning(u"{first} {last} does not have bioguide id".format(**info['name']))
+                    bioguide = ''
 
                 record = {
                     'first_name':  info['name']['first'],

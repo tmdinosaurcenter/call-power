@@ -371,6 +371,8 @@ class USDataProvider(DataProvider):
                     'offices':     offices.get(bioguide, []),
                     'current':     term['current'],
                 }
+                if info['name'].get('nickname'):
+                    record['nick_name'] = info['name']['nickname']
 
                 if term.get('caucus'):
                     record['party'] = term['caucus']

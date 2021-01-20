@@ -68,7 +68,9 @@ class UnitedStatesData(DataAdapter):
             'uid': data.get('bioguide_id', ''),
             'location': 'DC', # don't parse whole address here
         }
-        if 'first_name' in data and 'last_name' in data:
+        if 'nick_name' in data and 'last_name' in data:
+            adapted['name'] = u'{nick_name} {last_name}'.format(**data)
+        elif 'first_name' in data and 'last_name' in data:
             adapted['name'] = u'{first_name} {last_name}'.format(**data)
         elif 'name' in data:
             adapted['name'] = data['name']

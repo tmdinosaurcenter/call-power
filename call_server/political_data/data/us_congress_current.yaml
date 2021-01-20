@@ -41694,6 +41694,7 @@
     class: 3
     party: Democrat
     state_rank: junior
+    phone: 202-224-3553
 - id:
     fec:
     - H8GA06195
@@ -41716,6 +41717,7 @@
     class: 2
     party: Democrat
     state_rank: senior
+    phone: 202-224-3521
 - id:
     fec:
     - S0GA00559
@@ -41739,3 +41741,4 @@
     class: 3
     party: Democrat
     state_rank: junior
+    phone: 202-224-3643

@@ -52,7 +52,11 @@ This application should be easy to host on Heroku, with Docker, or directly on a
 
 Read detailed instrustions at [INSTALLATION.md](INSTALLATION.md)
 
-[![Build Status](https://travis-ci.org/OpenSourceActivismTech/call-power.svg?branch=master)](https://travis-ci.org/OpenSourceActivismTech/call-power)
+Testing
+-------
+`python tests/run.py` 
+
+[![Build Status](https://travis-ci.com/OpenSourceActivismTech/call-power.svg?branch=master)](https://travis-ci.com/OpenSourceActivismTech/call-power)
 [![Coverage Status](https://coveralls.io/repos/github/OpenSourceActivismTech/call-power/badge.svg?branch=master)](https://coveralls.io/github/OpenSourceActivismTech/call-power?branch=master)
 
 Political Data

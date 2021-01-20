@@ -1,8 +1,10 @@
 import pytest
+from dotenv import load_dotenv
 
 from flask_testing import TestCase
 
 if __name__ == '__main__' and __package__ is None:
+    load_dotenv()
     from os import sys, path
     sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 

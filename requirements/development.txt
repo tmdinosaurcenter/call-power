@@ -8,3 +8,4 @@ coverage==4.4
 coveralls==1.1
 pip-upgrade
 pytest-cov==2.10.1
+pytest-dotenv==0.5.2

@@ -132,10 +132,10 @@ class TestUSStateData(BaseTestCase):
         self.assertEqual(len(legids), 2)
 
         first = self.us_data.get_state_legid(legids[0]['id'])
-        self.assertEqual(first['chamber'], 'upper')
+        self.assertEqual(first['chamber'], 'lower')
 
         second = self.us_data.get_state_legid(legids[1]['id'])
-        self.assertEqual(second['chamber'], 'lower')
+        self.assertEqual(second['chamber'], 'upper')
 
     def test_50_governors(self):
         NO_GOV = ['AS', 'GU', 'MP', 'PR', 'VI', 'DC', '']

@@ -39,8 +39,9 @@ class TestUSData(BaseTestCase):
         self.mock_location = Location('Boston, MA', (42.355662,-71.065483),
             {'state':'MA','zipcode':'02111'})
 
-        self.mock_location_split_parties = Location('Bakersfield, CA', (35.375960, -119.020865),
-            {'state':'CA','zipcode':'93301'})
+        # this zipcode is CA-4, a district with Republican Representative and Democratic Senator
+        self.mock_location_split_parties = Location('South Lake Tahoe, CA', (38.939391, -119.977879),
+            {'state':'CA','zipcode':'96150'})
 
        # this zipcode pretty evenly split between KY-2 & TN-7
         self.mock_location_multiple_states = Location('Fort Campbell, KY', (36.647207, -87.451635),
@@ -72,14 +73,14 @@ class TestUSData(BaseTestCase):
         self.assertEqual(len(districts), 2)
 
     def test_senate(self):
-        senator_0 = self.us_data.get_senators('CA')[0]
+        senator_0 = self.us_data.get_senators('MA')[0]
         self.assertEqual(senator_0['chamber'], 'senate')
-        self.assertEqual(senator_0['state'], 'CA')
+        self.assertEqual(senator_0['state'], 'MA')
         self.assertGreater(len(senator_0['offices']), 1)
 
-        senator_1 = self.us_data.get_senators('CA')[1]
+        senator_1 = self.us_data.get_senators('MA')[1]
         self.assertEqual(senator_1['chamber'], 'senate')
-        self.assertEqual(senator_1['state'], 'CA')
+        self.assertEqual(senator_1['state'], 'MA')
         self.assertGreater(len(senator_1['offices']), 1)
 
         # make sure we got two different senators...

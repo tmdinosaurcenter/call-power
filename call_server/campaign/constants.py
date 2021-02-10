@@ -21,12 +21,14 @@ INCLUDE_SPECIAL_BEFORE = 'before'
 INCLUDE_SPECIAL_AFTER = 'after'
 INCLUDE_SPECIAL_ONLY = 'only'
 INCLUDE_SPECIAL_FIRST = 'first'
+INCLUDE_SPECIAL_FALLBACK = 'fallback'
 INCLUDE_SPECIAL_CHOCIES = (
     ('', '- choose order -'),
     (INCLUDE_SPECIAL_BEFORE, 'Before'),
     (INCLUDE_SPECIAL_AFTER, 'After'),
     (INCLUDE_SPECIAL_ONLY, 'Only If'),
     (INCLUDE_SPECIAL_FIRST, 'First If'),
+    (INCLUDE_SPECIAL_FALLBACK, 'First, Fallback to'),
 )
 
 TARGET_OFFICE_DISTRICT = 'district'

@@ -8,7 +8,7 @@ from call_server.political_data.geocode import Location
 from call_server.campaign.models import Campaign, Target
 from call_server.campaign.constants import (
     INCLUDE_SPECIAL_BEFORE, INCLUDE_SPECIAL_AFTER,
-    INCLUDE_SPECIAL_ONLY, INCLUDE_SPECIAL_FIRST
+    INCLUDE_SPECIAL_ONLY, INCLUDE_SPECIAL_FIRST, INCLUDE_SPECIAL_FALLBACK
 )
 
 
@@ -38,6 +38,9 @@ class TestUSData(BaseTestCase):
         # avoid geocoding round-trip
         self.mock_location = Location('Boston, MA', (42.355662,-71.065483),
             {'state':'MA','zipcode':'02111'})
+
+        self.mock_location_two = Location('Oakland, CA', (37.80496, -122.27176),
+            {'state':'CA','zipcode':'94612'})
 
         # this zipcode is CA-4, a district with Republican Representative and Democratic Senator
         self.mock_location_split_parties = Location('South Lake Tahoe, CA', (38.939391, -119.977879),
@@ -453,7 +456,7 @@ class TestUSData(BaseTestCase):
         self.assertEqual(len(uids), 1)
 
         # should only get overlap between special and location
-        # in this case, just Capuano
+        # in this case, just Pressley
 
         first = self.us_data.get_uid(uids[0])[0]
         self.assertEqual(first['chamber'], 'house')
@@ -484,3 +487,40 @@ class TestUSData(BaseTestCase):
         third = self.us_data.get_uid(uids[2])[0]
         self.assertEqual(third['chamber'], 'house')
         self.assertEqual(third['state'], 'WI')
+
+    def test_locate_targets_special_multiple_fallback_match(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
+
+        (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_three, created_three) = Target.get_or_create('us:bioguide:P000617', cache=self.mock_cache) # Pressley
+        self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_FALLBACK
+
+        uids = locate_targets(self.mock_location, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        # should only get overlap between special and location
+        # in this case, just Pressley
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['chamber'], 'house')
+        self.assertEqual(first['state'], 'MA')
+
+    def test_locate_targets_special_multiple_fallback_no_match(self):
+        self.CONGRESS_CAMPAIGN.campaign_subtype = 'lower'
+
+        (special_target_one, created_one) = Target.get_or_create('us:bioguide:P000197', cache=self.mock_cache) # Pelosi
+        (special_target_two, created_two) = Target.get_or_create('us:bioguide:R000570', cache=self.mock_cache) # Ryan
+        (special_target_three, created_three) = Target.get_or_create('us:bioguide:P000617', cache=self.mock_cache) # Pressley
+        self.CONGRESS_CAMPAIGN.target_set = [special_target_one, special_target_two, special_target_three]
+        self.CONGRESS_CAMPAIGN.include_special = INCLUDE_SPECIAL_FALLBACK
+
+        uids = locate_targets(self.mock_location_two, self.CONGRESS_CAMPAIGN, cache=self.mock_cache)
+        self.assertEqual(len(uids), 1)
+
+        # no match to special, get local
+
+        first = self.us_data.get_uid(uids[0])[0]
+        self.assertEqual(first['chamber'], 'house')
+        self.assertEqual(first['state'], 'CA')

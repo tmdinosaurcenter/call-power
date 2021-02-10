@@ -5,7 +5,7 @@ import random
 from ..extensions import cache
 from ..campaign.constants import (SEGMENT_BY_LOCATION,
     INCLUDE_SPECIAL_BEFORE, INCLUDE_SPECIAL_AFTER,
-    INCLUDE_SPECIAL_ONLY, INCLUDE_SPECIAL_FIRST,
+    INCLUDE_SPECIAL_ONLY, INCLUDE_SPECIAL_FIRST, INCLUDE_SPECIAL_FALLBACK,
 )
 
 def validate_location(location, campaign, cache=cache):
@@ -73,6 +73,22 @@ def locate_targets(location, campaign, skip_special=False, cache=cache):
                 random.shuffle(special_targets)
             combined = first_targets + special_targets
             return list(OrderedDict.fromkeys(combined))
+
+        elif campaign.include_special == INCLUDE_SPECIAL_FALLBACK:
+            # if location target is in special targets, put it first
+            # otherwise, fallback to location
+            first_targets = list()
+
+            for l in location_targets:
+                for t in special_targets:
+                    if t.startswith(l):
+                        if t not in first_targets:
+                            first_targets.insert(0, t)
+            
+            if first_targets:
+                return first_targets
+            else:
+                return location_targets
         else:
             return special_targets
     else:

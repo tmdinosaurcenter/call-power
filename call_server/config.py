@@ -142,6 +142,8 @@ class HerokuConfig(ProductionConfig):
     CACHE_TYPE = 'redis'
     CACHE_REDIS_URL = os.environ.get('REDIS_URL')
     CACHE_KEY_PREFIX = 'call-power:'
+    CACHE_OPTIONS = {'ssl_cert_reqs': None}
+    # heroku uses self-signed certificates for redis, so don't try to validate them
 
     # smtp via sendgrid
     MAIL_SERVER = 'smtp.sendgrid.net'

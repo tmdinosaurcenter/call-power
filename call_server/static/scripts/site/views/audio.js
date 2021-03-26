@@ -23,8 +23,8 @@
                        navigator.msGetUserMedia);
       window.URL = window.URL || window.webkitURL;
 
-      if (CallPower.Config.TWILIO_CAPABILITY) {
-        this.setupTwilioClient(CallPower.Config.TWILIO_CAPABILITY);
+      if (CallPower.Config.TWILIO_JWT) {
+        this.setupTwilioClient(CallPower.Config.TWILIO_JWT);
       }
 
       // add required fields client-side
@@ -139,10 +139,10 @@
       button.children('.text').html('Play');
     },
 
-    setupTwilioClient: function(capability) {
+    setupTwilioClient: function(token) {
       //connect twilio API to read text-to-speech
       try {
-        this.twilio = Twilio.Device.setup(capability, {"debug":CallPower.Config.DEBUG | false});
+        this.twilio = Twilio.Device.setup(token, {"debug":CallPower.Config.DEBUG | false});
       } catch (e) {
         console.error(e);
         msg = 'Sorry, your browser does not support WebRTC, Text-to-Speech playback may not work.<br/>' +

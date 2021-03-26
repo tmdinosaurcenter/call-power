@@ -263,6 +263,11 @@ def audio(campaign_id):
     twilio_client = current_app.config.get('TWILIO_CLIENT')
     twilio_capability = ClientCapabilityToken(*twilio_client.auth)
     twilio_capability.allow_client_outgoing(current_app.config.get('TWILIO_PLAYBACK_APP'))
+    twilio_jwt = twilio_capability.to_jwt()
+    if type(twilio_jwt) == bytes:
+        twilio_jwt_str = twilio_capability.to_jwt().decode('UTF-8')
+    elif type(twilio_jwt) == str:
+        twilio_jwt_str = twilio_jwt
 
     for field in form:
         campaign_audio, is_default_message = campaign.audio_or_default(field.name)
@@ -279,7 +284,7 @@ def audio(campaign_id):
         return redirect(url_for('campaign.launch', campaign_id=campaign.id))
 
     return render_template('campaign/audio.html', campaign=campaign, form=form,
-                           twilio_capability = twilio_capability.to_jwt().decode('UTF-8'),
+                           twilio_jwt=twilio_jwt_str,
                            descriptions=current_app.config.CAMPAIGN_FIELD_DESCRIPTIONS,
                            example_text=current_app.config.CAMPAIGN_MESSAGE_DEFAULTS)
 

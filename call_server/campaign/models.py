@@ -222,7 +222,7 @@ class Target(db.Model):
     title = db.Column(db.String(STRING_LEN), nullable=True)
     name = db.Column(db.String(STRING_LEN), nullable=False, unique=False)
     district = db.Column(db.String(STRING_LEN), nullable=True)
-    number = db.Column(phone_number.PhoneNumberType())
+    number = db.Column(phone_number.PhoneNumberType(max_length=23)) # increase from default of 20 to allow for 5 digit extensions 
     location = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
     offices = db.relationship('TargetOffice', backref="target")
 
@@ -302,7 +302,7 @@ class TargetOffice(db.Model):
     address = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
     latlon = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
     type = db.Column(db.String(STRING_LEN), nullable=True, unique=False)
-    number = db.Column(phone_number.PhoneNumberType())
+    number = db.Column(phone_number.PhoneNumberType(max_length=23)) # increase from default of 20 to allow for 5 digit extensions 
     target_id = db.Column(db.Integer, db.ForeignKey('campaign_target.id'))
 
     def __str__(self):

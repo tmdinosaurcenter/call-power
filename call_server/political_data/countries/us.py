@@ -82,7 +82,7 @@ class USCampaignType_Congress(USCampaignType):
             'upper': {
                 'all': self._get_senators(location),
                 'democrats': self._get_senate_party(location, 'Democrat'),
-                'republicans': self._get_congress_party(location, 'Republican')
+                'republicans': self._get_senate_party(location, 'Republican')
             },
             'lower': {
                 'all': self._get_representative(location),

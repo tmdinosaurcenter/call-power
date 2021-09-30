@@ -430,7 +430,11 @@ def user_phones_for_campaign(campaign_id):
         # return the user phone (depending on direction)
 
         for (session_id,call_id) in campaign_sessions:
-            twilio_call = twilio_client.calls.get(call_id).fetch()
+            try:
+                twilio_call = twilio_client.calls.get(call_id).fetch()
+            except twilio.base.exceptions.TwilioRestException:
+                # if older than 13 months Twilio may no longer have the record online
+                yield ''
             # we want the user's phone number, which is either twilio_call.to or from_
             # depending on direction (can be inbound, outbound-api, outbound-dial, or trunking)
             if twilio_call.direction == 'inbound':

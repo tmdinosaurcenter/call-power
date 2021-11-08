@@ -441,7 +441,12 @@ def user_phones_for_campaign(campaign_id):
                 user_phone = twilio_call.from_
             elif twilio_call.direction.startswith('outbound'):
                 user_phone = twilio_call.to
-            yield user_phone+'\n'
+
+            session = Session.query.get(session_id)
+            if session and session.location:
+                yield f"{user_phone},{session.location}\n"
+            else:
+                yield f"{user_phone},\n"
 
     headers = Headers()
     filename = 'callpower-log-campaign-%s' % campaign_id

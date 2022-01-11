@@ -253,6 +253,7 @@ class Target(db.Model):
         if not t:
             # create target object
             t = Target(**data)
+            t.key = key # specify this directly to ensure it saves
             db.session.add(t)
             created = True
         elif data:

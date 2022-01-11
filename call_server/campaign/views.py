@@ -152,7 +152,7 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
 
         # handle target_set nested data
         target_list = []
-        for index, target_data in enumerate(form.target_set.data):        
+        for target_data in form.target_set.data:
             # get key from the data fields
             target_key = target_data.pop('key')
             # split prefix:uid

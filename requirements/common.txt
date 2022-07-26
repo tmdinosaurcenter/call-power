@@ -13,7 +13,7 @@ flask-rq2==18.3
 Flask-SQLAlchemy==2.3.2
 -e git+https://github.com/spacedogXYZ/Flask-Store.git#egg=flask-store
 -e git+https://github.com/lepture/flask-wtf.git@eff54eca0d0c070a32da8815f9efd5189add3f1e#egg=flask-wtf
-Jinja2>=2.10.1
+Jinja2<3.1.0
 Mako==1.0.8
 MarkupSafe==2.0.1
 PyYAML>=4.2b1

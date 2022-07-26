@@ -11,8 +11,8 @@ Flask-Mail==0.9.1
 Flask-Restless==0.17.0
 flask-rq2==18.3
 Flask-SQLAlchemy==2.3.2
--e git://github.com/spacedogXYZ/Flask-Store.git#egg=flask-store
--e git://github.com/lepture/flask-wtf.git@eff54eca0d0c070a32da8815f9efd5189add3f1e#egg=flask-wtf
+-e git+https://github.com/spacedogXYZ/Flask-Store.git#egg=flask-store
+-e git+https://github.com/lepture/flask-wtf.git@eff54eca0d0c070a32da8815f9efd5189add3f1e#egg=flask-wtf
 Jinja2>=2.10.1
 Mako==1.0.8
 MarkupSafe==2.0.1
@@ -36,9 +36,9 @@ itsdangerous==1.1.0
 limits==1.3
 mimerender==0.6.0
 phonenumbers==8.10.8
--e git://github.com/ncadou/pyrepresent.git#egg=pyrepresent
-pystache==0.5.4
--e git://github.com/MoveOnOrg/python-actionkit.git#egg=python-actionkit
+-e git+https://github.com/ncadou/pyrepresent.git#egg=pyrepresent
+pystache==0.6.0
+-e git+https://github.com/MoveOnOrg/python-actionkit.git#egg=python-actionkit
 python-dateutil==2.8.0
 python-magic==0.4.15
 python-mimeparse==1.6.0

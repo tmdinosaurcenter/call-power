@@ -1,4 +1,4 @@
-import werkzeug.contrib.cache
+import flask_caching
 from flask_babel import gettext as _
 from graphqlclient import GraphQLClient
 
@@ -454,7 +454,7 @@ class USDataProvider(DataProvider):
         self.cache_set_many(governors)
 
         # if cache is redis, add lexigraphical index on states, names
-        if hasattr(self._cache, 'cache') and isinstance(self._cache.cache, werkzeug.contrib.cache.RedisCache):
+        if hasattr(self._cache, 'cache') and isinstance(self._cache.cache, flask_caching.backends.rediscache.RedisCache):
             redis = self._cache.cache._client
             searchable_items = legislators.items() + governors.items()
             for (key,record) in searchable_items:

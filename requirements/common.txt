@@ -25,6 +25,7 @@ WTForms-Components==0.10.4
 Werkzeug==0.16
 alembic==1.0.8
 blinker==1.4
+cachelib==0.9.0
 decorator==4.4.0
 flask-talisman==0.6.0
 geopy==1.18.1

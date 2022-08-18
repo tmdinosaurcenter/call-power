@@ -525,6 +525,7 @@ class USDataProvider(DataProvider):
                       organization {
                         name
                         classification
+                        jurisdictionId
                       }
                     }
                     contactDetails {
@@ -543,16 +544,24 @@ class USDataProvider(DataProvider):
         for edge in parsed_response['data']['people']['edges']:
             leg = edge['node']
 
-            chamber_classification = leg['chamber'][0]['organization']['classification']
-            district_label = leg['chamber'][0]['post']['label']
+            org_classificiation = leg['chamber'][0]['organization']['classification']
+            org_jurisdiction = leg['chamber'][0]['organization']['jurisdictionId']
+            
+            post_label = leg['chamber'][0]['post']['label']
             post_division = leg['chamber'][0]['post']['division']['id']
             post_state = ocd_field(post_division, 'state').upper()
             role_title = leg['chamber'][0]['post']['role']
 
-            leg['chamber'] = chamber_classification
+            leg['chamber'] = org_classificiation
             leg['state'] = post_state
-            leg['district'] = district_label
+            leg['district'] = post_label
             leg['title'] = role_title
+
+            # filter out non-state jurisdictions
+            # we only want (eg) ocd-jurisdiction/country:us/state:ca/government
+            jurisdiction_state = ocd_field(org_jurisdiction, 'state')
+            if not jurisdiction_state:
+                continue
 
             key = self.KEY_OPENSTATES.format(id=leg['id'])
             leg['cache_key'] = key

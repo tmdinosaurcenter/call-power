@@ -688,6 +688,7 @@ class USDataProvider(DataProvider):
             person['district'] = person['currentMemberships'][0]['post']['label']
             adapter = OpenStatesData()
             target = adapter.target(person)
+            target['state'] = state.lower()
             target['phone'] = target.pop('number') # fix field name inconsistency...
             result_data.append(target)
         return result_data

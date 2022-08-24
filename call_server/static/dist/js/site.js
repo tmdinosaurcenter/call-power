@@ -2083,9 +2083,9 @@ $(document).ready(function () {
           } else if (person.state && person.title == 'Senator') {
             person.district = person.state;
           }
-        } else if (person.leg_id) {
+        } else if (person.uid) {
           prefix = 'us_state:openstates:';
-          person.key = prefix+person.leg_id;
+          person.key = prefix+person.uid;
           person.district = person.state.toUpperCase() + '-' + person.district;
         } else if (person.title === 'Governor') {
           prefix = 'us_state:governor:';

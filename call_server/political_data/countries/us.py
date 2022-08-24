@@ -455,7 +455,7 @@ class USDataProvider(DataProvider):
 
         # if cache is redis, add lexigraphical index on states, names
         if hasattr(self._cache, 'cache') and isinstance(self._cache.cache, flask_caching.backends.rediscache.RedisCache):
-            redis = self._cache.cache._client
+            redis = self._cache.cache._write_client
             searchable_items = legislators.items() + governors.items()
             for (key,record) in searchable_items:
                 for sorted_key in self.SORTED_SETS:

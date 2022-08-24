@@ -91,7 +91,7 @@ class DataProvider(object):
         elif isinstance(self._cache.cache, flask_caching.backends.simple.SimpleCache) \
             or isinstance(self._cache.cache, dict):
             # naively search across all the keys
-            for (k,v) in self._cache.cache._cache.items():
+            for (k,v) in self._cache.cache.items():
                 if k.startswith(key_starts_with):
                     wet_value = pickle.loads(v[1])
                     if isinstance(wet_value, list):

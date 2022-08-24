@@ -103,7 +103,7 @@
     state_rank: senior
     url: https://www.brown.senate.gov
     rss_url: http://www.brown.senate.gov/rss/feeds/?type=all&amp;
-    contact_form: http://www.brown.senate.gov/contact/
+    contact_form: https://www.brown.senate.gov/contact/
     address: 503 Hart Senate Office Building Washington DC 20510
     office: 503 Hart Senate Office Building
     phone: 202-224-2315
@@ -181,7 +181,7 @@
     state_rank: junior
     url: https://www.cantwell.senate.gov
     rss_url: http://www.cantwell.senate.gov/public/index.cfm/rss/feed
-    contact_form: http://www.cantwell.senate.gov/public/index.cfm/email-maria
+    contact_form: https://www.cantwell.senate.gov/public/index.cfm/email-maria
     address: 511 Hart Senate Office Building Washington DC 20510
     office: 511 Hart Senate Office Building
     phone: 202-224-3441
@@ -309,7 +309,7 @@
     state_rank: senior
     url: https://www.cardin.senate.gov
     rss_url: http://www.cardin.senate.gov/rss/feeds/?type=all
-    contact_form: http://www.cardin.senate.gov/contact/
+    contact_form: https://www.cardin.senate.gov/contact/
     address: 509 Hart Senate Office Building Washington DC 20510
     office: 509 Hart Senate Office Building
     phone: 202-224-4524
@@ -411,7 +411,7 @@
     state_rank: senior
     url: https://www.carper.senate.gov/public
     rss_url: http://www.carper.senate.gov/public/index.cfm/rss/feed
-    contact_form: http://www.carper.senate.gov/public/index.cfm/email-senator-carper
+    contact_form: https://www.carper.senate.gov/public/index.cfm/email-senator-carper
     address: 513 Hart Senate Office Building Washington DC 20510
     office: 513 Hart Senate Office Building
     phone: 202-224-2441
@@ -477,7 +477,7 @@
     state_rank: senior
     url: https://www.casey.senate.gov
     rss_url: http://www.casey.senate.gov/rss/feeds/?all
-    contact_form: https://www.casey.senate.gov/contact/
+    contact_form: https://www.casey.senate.gov/contact
     address: 393 Russell Senate Office Building Washington DC 20510
     office: 393 Russell Senate Office Building
     phone: 202-224-6324
@@ -631,7 +631,7 @@
     party: Democrat
     state_rank: senior
     url: https://www.klobuchar.senate.gov
-    contact_form: http://www.klobuchar.senate.gov/public/index.cfm/contact
+    contact_form: https://www.klobuchar.senate.gov/public/index.cfm/contact
     address: 425 Dirksen Senate Office Building Washington DC 20510
     office: 425 Dirksen Senate Office Building
     phone: 202-224-3244
@@ -878,7 +878,7 @@
     state_rank: junior
     url: https://www.sanders.senate.gov
     rss_url: http://www.sanders.senate.gov/rss/
-    contact_form: http://www.sanders.senate.gov/contact/
+    contact_form: https://www.sanders.senate.gov/contact/
     address: 332 Dirksen Senate Office Building Washington DC 20510
     office: 332 Dirksen Senate Office Building
     phone: 202-224-5141
@@ -1360,7 +1360,7 @@
     party: Republican
     url: https://www.collins.senate.gov
     rss_url: http://www.collins.senate.gov/public/?a=rss.feed
-    contact_form: http://www.collins.senate.gov/contact
+    contact_form: https://www.collins.senate.gov/contact
     address: 413 Dirksen Senate Office Building Washington DC 20510
     office: 413 Dirksen Senate Office Building
     phone: 202-224-2523
@@ -1951,7 +1951,7 @@
     party: Republican
     url: https://www.mcconnell.senate.gov
     rss_url: http://www.mcconnell.senate.gov/public/?a=rss.feed
-    contact_form: http://www.mcconnell.senate.gov/public/index.cfm?p=contact
+    contact_form: https://www.mcconnell.senate.gov/public/index.cfm?p=contact
     address: 317 Russell Senate Office Building Washington DC 20510
     office: 317 Russell Senate Office Building
     phone: 202-224-2541
@@ -2016,7 +2016,7 @@
     party: Democrat
     url: https://www.merkley.senate.gov
     rss_url: http://www.merkley.senate.gov/rss/
-    contact_form: http://www.merkley.senate.gov/contact/
+    contact_form: https://www.merkley.senate.gov/contact/
     address: 531 Hart Senate Office Building Washington DC 20510
     office: 531 Hart Senate Office Building
     phone: 202-224-3753
@@ -2179,7 +2179,7 @@
     state_rank: junior
     party: Republican
     url: https://www.risch.senate.gov
-    contact_form: http://www.risch.senate.gov/public/index.cfm?p=Email
+    contact_form: https://www.risch.senate.gov/public/index.cfm?p=Email
     address: 483 Russell Senate Office Building Washington DC 20510
     office: 483 Russell Senate Office Building
     phone: 202-224-2752
@@ -2312,7 +2312,7 @@
     party: Democrat
     url: https://www.warner.senate.gov
     rss_url: http://www.warner.senate.gov/public/?a=rss.feed
-    contact_form: http://www.warner.senate.gov/public/index.cfm?p=Contact
+    contact_form: https://www.warner.senate.gov/public/index.cfm?p=Contact
     address: 703 Hart Senate Office Building Washington DC 20510
     office: 703 Hart Senate Office Building
     phone: 202-224-2023
@@ -2522,7 +2522,7 @@
     state_rank: senior
     url: https://www.manchin.senate.gov
     rss_url: http://www.manchin.senate.gov/public/index.cfm/rss/feed
-    contact_form: http://www.manchin.senate.gov/public/index.cfm/contact-form
+    contact_form: https://www.manchin.senate.gov/public/index.cfm/contact-form
     address: 306 Hart Senate Office Building Washington DC 20510
     office: 306 Hart Senate Office Building
     phone: 202-224-3954
@@ -4375,7 +4375,7 @@
     address: 217 Russell Senate Office Building Washington DC 20510
     office: 217 Russell Senate Office Building
     phone: 202-224-3154
-    contact_form: https://www.burr.senate.gov/contact/email
+    contact_form: https://www.burr.senate.gov/contact
     fax: 202-228-2981
 - id:
     bioguide: B001251
@@ -8556,123 +8556,6 @@
     office: 462 Cannon House Office Building
     phone: 202-225-3271
 - id:
-    bioguide: F000449
-    thomas: '01793'
-    govtrack: 400640
-    opensecrets: N00026631
-    votesmart: 41929
-    fec:
-    - H4NE01064
-    cspan: 1013049
-    wikipedia: Jeff Fortenberry
-    house_history: 13545
-    ballotpedia: Jeff Fortenberry
-    maplight: 646
-    icpsr: 20518
-    wikidata: Q1397331
-    google_entity_id: kg:/m/04fcch
-  name:
-    first: Jeff
-    middle: Lane
-    last: Fortenberry
-    official_full: Jeff Fortenberry
-  bio:
-    gender: M
-    birthday: '1960-12-27'
-  terms:
-  - type: rep
-    start: '2005-01-04'
-    end: '2007-01-03'
-    state: NE
-    district: 1
-    party: Republican
-  - type: rep
-    start: '2007-01-04'
-    end: '2009-01-03'
-    state: NE
-    district: 1
-    party: Republican
-    url: http://fortenberry.house.gov
-  - type: rep
-    start: '2009-01-06'
-    end: '2011-01-03'
-    state: NE
-    district: 1
-    party: Republican
-    url: http://fortenberry.house.gov
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: NE
-    district: 1
-    party: Republican
-    url: http://fortenberry.house.gov
-    address: 1514 Longworth HOB; Washington DC 20515-2701
-    phone: 202-225-4806
-    fax: 202-225-5686
-    contact_form: http://fortenberry.house.gov/contactform_zipcheck.shtml
-    office: 1514 Longworth House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: NE
-    party: Republican
-    district: 1
-    url: http://fortenberry.house.gov
-    address: 1514 Longworth HOB; Washington DC 20515-2701
-    phone: 202-225-4806
-    fax: 202-225-5686
-    contact_form: https://fortenberry.house.gov/contact-me1
-    office: 1514 Longworth House Office Building
-    rss_url: http://fortenberry.house.gov/index.php?format=feed&amp;type=rss
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: NE
-    party: Republican
-    district: 1
-    url: https://fortenberry.house.gov
-    address: 1514 Longworth HOB; Washington DC 20515-2701
-    phone: 202-225-4806
-    fax: 202-225-5686
-    contact_form: https://fortenberry.house.gov/contact-me1
-    office: 1514 Longworth House Office Building
-    rss_url: http://fortenberry.house.gov/index.php?format=feed&amp;type=rss
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: NE
-    district: 1
-    party: Republican
-    phone: 202-225-4806
-    url: https://fortenberry.house.gov
-    rss_url: http://fortenberry.house.gov/index.php?format=feed&amp;type=rss
-    address: 1514 Longworth House Office Building; Washington DC 20515-2701
-    office: 1514 Longworth House Office Building
-    fax: 202-225-5686
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: NE
-    district: 1
-    party: Republican
-    phone: 202-225-4806
-    address: 1514 Longworth House Office Building Washington DC 20515-2701
-    office: 1514 Longworth House Office Building
-    url: https://fortenberry.house.gov
-    rss_url: http://fortenberry.house.gov/index.php?format=feed&amp;type=rss
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: NE
-    district: 1
-    party: Republican
-    url: https://fortenberry.house.gov
-    rss_url: http://fortenberry.house.gov/index.php?format=feed&amp;type=rss
-    address: 1514 Longworth House Office Building Washington DC 20515-2701
-    office: 1514 Longworth House Office Building
-    phone: 202-225-4806
-- id:
     bioguide: F000450
     thomas: '01791'
     govtrack: 400643
@@ -9454,7 +9337,7 @@
     address: 135 Hart Senate Office Building Washington DC 20510
     office: 135 Hart Senate Office Building
     phone: 202-224-3744
-    contact_form: http://www.grassley.senate.gov/contact
+    contact_form: https://www.grassley.senate.gov/contact
     fax: 202-224-6020
 - id:
     bioguide: G000546
@@ -10283,7 +10166,7 @@
     party: Democrat
     state_rank: senior
     url: https://www.heinrich.senate.gov
-    contact_form: http://www.heinrich.senate.gov/contact
+    contact_form: https://www.heinrich.senate.gov/contact
     address: 303 Hart Senate Office Building Washington DC 20510
     office: 303 Hart Senate Office Building
     phone: 202-224-5521
@@ -10734,7 +10617,7 @@
     address: 338 Russell Senate Office Building Washington DC 20510
     office: 338 Russell Senate Office Building
     phone: 202-224-2551
-    contact_form: http://www.hoeven.senate.gov/public/index.cfm/email-the-senator
+    contact_form: https://www.hoeven.senate.gov/public/index.cfm/email-the-senator
     fax: 202-224-7999
 - id:
     bioguide: H000874
@@ -12654,7 +12537,7 @@
     address: 316 Hart Senate Office Building Washington DC 20510
     office: 316 Hart Senate Office Building
     phone: 202-224-5754
-    contact_form: http://www.lankford.senate.gov/contact/email
+    contact_form: https://www.lankford.senate.gov/contact/email
 - id:
     bioguide: L000560
     thomas: '01675'
@@ -13932,7 +13815,7 @@
     state_rank: junior
     party: Democrat
     url: https://www.lujan.senate.gov
-    contact_form: https://www.lujan.senate.gov
+    contact_form: https://www.lujan.senate.gov/contact/
     address: 498 Russell Senate Office Building Washington DC 20510
     office: 498 Russell Senate Office Building
     phone: 202-224-6621
@@ -14552,7 +14435,6 @@
     votesmart: 28918
     fec:
     - H6CA22125
-    - H2CA23148
     cspan: 85231
     house_history: 18801
     wikipedia: Kevin McCarthy (California politician)
@@ -15405,8 +15287,8 @@
     google_entity_id: kg:/m/03dlf3
   name:
     first: Cathy
-    middle: McMorris
-    last: Rodgers
+    middle: Anne
+    last: McMorris Rodgers
     official_full: Cathy McMorris Rodgers
   bio:
     birthday: '1969-05-22'
@@ -16121,7 +16003,7 @@
     state_rank: junior
     url: https://www.murphy.senate.gov
     rss_url: http://www.theday.com/article/20121216/nws12/312169935/1069/rss
-    contact_form: http://www.murphy.senate.gov/contact
+    contact_form: https://www.murphy.senate.gov/contact
     address: 136 Hart Senate Office Building Washington DC 20510
     office: 136 Hart Senate Office Building
     phone: 202-224-4041
@@ -16203,12 +16085,12 @@
     class: 3
     state_rank: senior
     party: Democrat
-    url: https://www.murray.senate.gov/public
+    url: https://www.murray.senate.gov
     rss_url: http://www.murray.senate.gov/public/?a=rss.feed
     address: 154 Russell Senate Office Building Washington DC 20510
     office: 154 Russell Senate Office Building
     phone: 202-224-2621
-    contact_form: http://www.murray.senate.gov/public/index.cfm/contactme
+    contact_form: https://www.murray.senate.gov/write-to-patty/
     fax: 202-224-0238
 - id:
     bioguide: N000002
@@ -16834,131 +16716,6 @@
     address: 2136 Rayburn House Office Building Washington DC 20515-5101
     office: 2136 Rayburn House Office Building
     phone: 202-225-8050
-- id:
-    bioguide: N000181
-    thomas: '01710'
-    govtrack: 400297
-    opensecrets: N00007248
-    votesmart: 16725
-    fec:
-    - H8CA20059
-    cspan: 1003553
-    house_history: 19058
-    wikipedia: Devin Nunes
-    maplight: 392
-    icpsr: 20307
-    wikidata: Q539493
-    google_entity_id: kg:/m/024tds
-    ballotpedia: Devin Nunes
-  name:
-    first: Devin
-    middle: G.
-    last: Nunes
-    official_full: Devin Nunes
-  bio:
-    birthday: '1973-10-01'
-    gender: M
-  terms:
-  - type: rep
-    start: '2003-01-07'
-    end: '2005-01-03'
-    state: CA
-    district: 21
-    party: Republican
-    url: http://www.nunes.house.gov
-  - type: rep
-    start: '2005-01-04'
-    end: '2007-01-03'
-    state: CA
-    district: 21
-    party: Republican
-    url: http://www.nunes.house.gov
-  - type: rep
-    start: '2007-01-04'
-    end: '2009-01-03'
-    state: CA
-    district: 21
-    party: Republican
-    url: http://nunes.house.gov
-  - type: rep
-    start: '2009-01-06'
-    end: '2011-01-03'
-    state: CA
-    district: 21
-    party: Republican
-    url: http://nunes.house.gov
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: CA
-    district: 21
-    party: Republican
-    url: http://nunes.house.gov
-    address: 1013 Longworth HOB; Washington DC 20515-0521
-    phone: 202-225-2523
-    fax: 202-225-3404
-    contact_form: http://www.nunes.house.gov/index.cfm?FuseAction=ContactUs.ContactForm
-    office: 1013 Longworth House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: CA
-    party: Republican
-    district: 22
-    url: http://nunes.house.gov
-    address: 1013 Longworth HOB; Washington DC 20515-0522
-    phone: 202-225-2523
-    fax: 202-225-3404
-    contact_form: https://nunes.house.gov/contactform/default.aspx
-    office: 1013 Longworth House Office Building
-    rss_url: http://nunes.house.gov/news/rss.aspx
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: CA
-    party: Republican
-    district: 22
-    url: http://nunes.house.gov
-    address: 1013 Longworth HOB; Washington DC 20515-0522
-    phone: 202-225-2523
-    fax: 202-225-3404
-    contact_form: https://nunes.house.gov/contactform/default.aspx
-    office: 1013 Longworth House Office Building
-    rss_url: http://nunes.house.gov/news/rss.aspx
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: CA
-    district: 22
-    party: Republican
-    phone: 202-225-2523
-    url: https://nunes.house.gov
-    rss_url: http://nunes.house.gov/news/rss.aspx
-    address: 1013 Longworth House Office Building; Washington DC 20515-0522
-    office: 1013 Longworth House Office Building
-    fax: 202-225-3404
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: CA
-    district: 22
-    party: Republican
-    phone: 202-225-2523
-    address: 1013 Longworth House Office Building Washington DC 20515-0522
-    office: 1013 Longworth House Office Building
-    url: https://nunes.house.gov
-    rss_url: http://nunes.house.gov/news/rss.aspx
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: CA
-    district: 22
-    party: Republican
-    url: https://nunes.house.gov
-    rss_url: http://nunes.house.gov/news/rss.aspx
-    address: 1013 Longworth House Office Building Washington DC 20515-0522
-    office: 1013 Longworth House Office Building
-    phone: 202-225-2523
 - id:
     bioguide: P000601
     thomas: '02035'
@@ -17626,7 +17383,7 @@
     office: 1236 Longworth House Office Building
     phone: 202-225-4965
   family:
-  - name: Thomas D?Alesandro Jr.
+  - name: Thomas D'Alesandro Jr.
     relation: daughter
 - id:
     bioguide: P000593
@@ -18399,108 +18156,6 @@
     office: 2078 Rayburn House Office Building
     phone: 202-225-4061
 - id:
-    bioguide: R000585
-    thomas: '01982'
-    govtrack: 412393
-    opensecrets: N00030949
-    votesmart: 127046
-    fec:
-    - H0NY29054
-    cspan: 623468
-    wikipedia: Tom Reed (politician)
-    house_history: 20811
-    maplight: 1374
-    icpsr: 21101
-    wikidata: Q2440035
-    google_entity_id: kg:/m/07kf86m
-    ballotpedia: Tom Reed (New York)
-  name:
-    first: Tom
-    middle: W.
-    last: Reed
-    official_full: Tom Reed
-  bio:
-    birthday: '1971-11-18'
-    gender: M
-  terms:
-  - type: rep
-    start: '2010-11-18'
-    end: '2011-01-03'
-    state: NY
-    district: 29
-    party: Republican
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: NY
-    district: 29
-    party: Republican
-    url: http://reed.house.gov/
-    address: 1037 Longworth HOB; Washington DC 20515-3229
-    phone: 202-225-3161
-    fax: 202-226-6599
-    office: 1037 Longworth House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: NY
-    party: Republican
-    district: 23
-    url: http://reed.house.gov
-    address: 1504 Longworth HOB; Washington DC 20515-3223
-    phone: 202-225-3161
-    fax: 202-226-6599
-    office: 1504 Longworth House Office Building
-    rss_url: http://reed.house.gov/rss.xml
-    contact_form: https://reed.house.gov/contact-me/email-me
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: NY
-    party: Republican
-    district: 23
-    url: http://reed.house.gov
-    address: 2437 Rayburn HOB; Washington DC 20515-3223
-    phone: 202-225-3161
-    fax: 202-226-6599
-    office: 2437 Rayburn House Office Building
-    rss_url: http://reed.house.gov/rss.xml
-    contact_form: https://reed.house.gov/contact-me/email-me
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: NY
-    district: 23
-    party: Republican
-    phone: 202-225-3161
-    url: https://reed.house.gov
-    rss_url: http://reed.house.gov/rss.xml
-    address: 2437 Rayburn House Office Building; Washington DC 20515-3223
-    office: 2437 Rayburn House Office Building
-    fax: 202-226-6599
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: NY
-    district: 23
-    party: Republican
-    phone: 202-225-3161
-    address: 2263 Rayburn House Office Building Washington DC 20515-3223
-    office: 2263 Rayburn House Office Building
-    url: https://reed.house.gov
-    rss_url: http://reed.house.gov/rss.xml
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: NY
-    district: 23
-    party: Republican
-    url: https://reed.house.gov
-    rss_url: http://reed.house.gov/rss.xml
-    address: 1203 Longworth House Office Building Washington DC 20515-3223
-    office: 1203 Longworth House Office Building
-    phone: 202-225-3161
-- id:
     bioguide: R000395
     thomas: '00977'
     govtrack: 400340
@@ -19022,7 +18677,7 @@
     address: 284 Russell Senate Office Building Washington DC 20510
     office: 284 Russell Senate Office Building
     phone: 202-224-3041
-    contact_form: http://www.rubio.senate.gov/public/index.cfm/contact
+    contact_form: https://www.rubio.senate.gov/public/index.cfm/contact
     fax: 202-228-0285
 - id:
     bioguide: R000576
@@ -22614,7 +22269,7 @@
     address: 511 Dirksen Senate Office Building Washington DC 20510
     office: 511 Dirksen Senate Office Building
     phone: 202-224-2321
-    contact_form: http://www.thune.senate.gov/public/index.cfm/contact
+    contact_form: https://www.thune.senate.gov/public/index.cfm/contact
     fax: 202-228-5429
 - id:
     bioguide: T000469
@@ -23196,7 +22851,7 @@
     office: 110 Hart Senate Office Building
     phone: 202-224-4654
     url: https://www.vanhollen.senate.gov
-    contact_form: http://www.vanhollen.senate.gov/contact/email
+    contact_form: https://www.vanhollen.senate.gov/contact/email
     fax: 202-225-0375
 - id:
     bioguide: V000081
@@ -24594,221 +24249,6 @@
     address: 402 Cannon House Office Building Washington DC 20515-1703
     office: 402 Cannon House Office Building
     phone: 202-225-5401
-- id:
-    bioguide: Y000033
-    thomas: '01256'
-    govtrack: 400440
-    opensecrets: N00007999
-    votesmart: 26717
-    icpsr: 14066
-    fec:
-    - H6AK00045
-    cspan: 1897
-    wikipedia: Don Young
-    house_history: 21071
-    ballotpedia: Don Young
-    maplight: 525
-    wikidata: Q1239590
-    google_entity_id: kg:/m/024p1k
-  name:
-    first: Don
-    middle: E.
-    last: Young
-    official_full: Don Young
-  bio:
-    birthday: '1933-06-09'
-    gender: M
-  terms:
-  - type: rep
-    start: '1973-03-06'
-    end: '1975-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1975-01-14'
-    end: '1977-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1977-01-04'
-    end: '1979-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1979-01-15'
-    end: '1981-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1981-01-05'
-    end: '1983-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1983-01-03'
-    end: '1985-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1985-01-03'
-    end: '1987-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1987-01-06'
-    end: '1989-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1989-01-03'
-    end: '1991-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1991-01-03'
-    end: '1993-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1993-01-05'
-    end: '1995-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1995-01-04'
-    end: '1997-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1997-01-07'
-    end: '1999-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '1999-01-06'
-    end: '2001-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '2001-01-03'
-    end: '2003-01-03'
-    state: AK
-    district: 0
-    party: Republican
-  - type: rep
-    start: '2003-01-07'
-    end: '2005-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    url: http://www.house.gov/donyoung
-  - type: rep
-    start: '2005-01-04'
-    end: '2007-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    url: http://www.house.gov/donyoung
-  - type: rep
-    start: '2007-01-04'
-    end: '2009-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    url: http://donyoung.house.gov
-  - type: rep
-    start: '2009-01-06'
-    end: '2011-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    url: http://donyoung.house.gov
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    url: http://donyoung.house.gov
-    address: 2314 Rayburn HOB; Washington DC 20515-0201
-    phone: 202-225-5765
-    fax: 202-225-0425
-    contact_form: http://donyoung.house.gov/Contact/
-    office: 2314 Rayburn House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: AK
-    party: Republican
-    district: 0
-    url: http://donyoung.house.gov
-    address: 2314 Rayburn HOB; Washington DC 20515-0200
-    phone: 202-225-5765
-    fax: 202-225-0425
-    contact_form: https://donyoung.house.gov/forms/writeyourrep/
-    office: 2314 Rayburn House Office Building
-    rss_url: http://donyoung.house.gov/news/rss.aspx
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: AK
-    party: Republican
-    district: 0
-    url: http://donyoung.house.gov
-    address: 2314 Rayburn HOB; Washington DC 20515-0200
-    phone: 202-225-5765
-    fax: 202-225-0425
-    contact_form: https://donyoung.house.gov/forms/writeyourrep/
-    office: 2314 Rayburn House Office Building
-    rss_url: http://donyoung.house.gov/news/rss.aspx
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    phone: 202-225-5765
-    url: https://donyoung.house.gov
-    rss_url: http://donyoung.house.gov/news/rss.aspx
-    address: 2314 Rayburn House Office Building; Washington DC 20515-0200
-    office: 2314 Rayburn House Office Building
-    fax: 202-225-0425
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    phone: 202-225-5765
-    address: 2314 Rayburn House Office Building Washington DC 20515-0200
-    office: 2314 Rayburn House Office Building
-    url: https://donyoung.house.gov
-    rss_url: http://donyoung.house.gov/news/rss.aspx
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: AK
-    district: 0
-    party: Republican
-    url: https://donyoung.house.gov
-    rss_url: http://donyoung.house.gov/news/rss.aspx
-    address: 2314 Rayburn House Office Building Washington DC 20515-0200
-    office: 2314 Rayburn House Office Building
-    phone: 202-225-5765
 - id:
     bioguide: Y000064
     thomas: '02019'
@@ -26976,90 +26416,6 @@
     office: 1233 Longworth House Office Building
     phone: 202-225-5905
 - id:
-    govtrack: 412538
-    bioguide: W000813
-    thomas: '02128'
-    cspan: 95005
-    fec:
-    - H0IN02190
-    wikipedia: Jackie Walorski
-    votesmart: 34205
-    opensecrets: N00031226
-    ballotpedia: Jackie Walorski
-    maplight: 1762
-    icpsr: 21330
-    house_history: 15032387909
-    wikidata: Q3157413
-    google_entity_id: kg:/m/0ksf92
-  name:
-    first: Jackie
-    last: Walorski
-    official_full: Jackie Walorski
-  bio:
-    gender: F
-    birthday: '1963-08-17'
-  terms:
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: IN
-    party: Republican
-    district: 2
-    office: 419 Cannon House Office Building
-    address: 419 Cannon HOB; Washington DC 20515-1402
-    phone: 202-225-3915
-    url: http://walorski.house.gov
-    rss_url: http://walorski.house.gov/rss.xml
-    contact_form: https://walorski.house.gov/contact/email-me
-    fax: 202-225-6798
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: IN
-    party: Republican
-    district: 2
-    office: 419 Cannon House Office Building
-    address: 419 Cannon HOB; Washington DC 20515-1402
-    phone: 202-225-3915
-    url: http://walorski.house.gov
-    rss_url: http://walorski.house.gov/rss.xml
-    contact_form: https://walorski.house.gov/contact/email-me
-    fax: 202-225-6798
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: IN
-    district: 2
-    party: Republican
-    phone: 202-225-3915
-    url: https://walorski.house.gov
-    rss_url: http://walorski.house.gov/rss.xml
-    address: 419 Cannon House Office Building; Washington DC 20515-1402
-    office: 419 Cannon House Office Building
-    fax: 202-225-6798
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: IN
-    district: 2
-    party: Republican
-    phone: 202-225-3915
-    address: 419 Cannon House Office Building Washington DC 20515-1402
-    office: 419 Cannon House Office Building
-    url: https://walorski.house.gov
-    rss_url: http://walorski.house.gov/rss.xml
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: IN
-    district: 2
-    party: Republican
-    url: https://walorski.house.gov
-    rss_url: http://walorski.house.gov/rss.xml
-    address: 466 Cannon House Office Building Washington DC 20515-1402
-    office: 466 Cannon House Office Building
-    phone: 202-225-3915
-- id:
     govtrack: 412541
     bioguide: B001282
     thomas: '02131'
@@ -27688,7 +27044,7 @@
     state_rank: senior
     url: https://www.fischer.senate.gov
     rss_url: http://www.fischer.senate.gov/public/index.cfm/rss/feed
-    contact_form: http://www.fischer.senate.gov/public/index.cfm/contact
+    contact_form: https://www.fischer.senate.gov/public/index.cfm/contact
     address: 454 Russell Senate Office Building Washington DC 20510
     office: 454 Russell Senate Office Building
     phone: 202-224-6551
@@ -28993,89 +28349,6 @@
     address: 2348 Rayburn House Office Building Washington DC 20515-4333
     office: 2348 Rayburn House Office Building
     phone: 202-225-9897
-- id:
-    govtrack: 412580
-    bioguide: V000132
-    thomas: '02167'
-    cspan: 95434
-    fec:
-    - H2TX27190
-    votesmart: 137719
-    wikipedia: Filemon Vela Jr.
-    opensecrets: N00034349
-    ballotpedia: Filemon Vela
-    maplight: 1804
-    icpsr: 21366
-    wikidata: Q4069225
-    google_entity_id: kg:/m/0ll43fz
-  name:
-    first: Filemon
-    last: Vela
-    official_full: Filemon Vela
-  bio:
-    gender: M
-    birthday: '1963-02-13'
-  terms:
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: TX
-    party: Democrat
-    district: 34
-    office: 437 Cannon House Office Building
-    address: 437 Cannon HOB; Washington DC 20515-4334
-    phone: 202-225-9901
-    url: http://vela.house.gov
-    rss_url: http://vela.house.gov/rss.xml
-    contact_form: https://forms.house.gov/vela/webforms/email-me.shtml
-    fax: 202-225-9770
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: TX
-    party: Democrat
-    district: 34
-    office: 437 Cannon House Office Building
-    address: 437 Cannon HOB; Washington DC 20515-4334
-    phone: 202-225-9901
-    url: http://vela.house.gov
-    rss_url: http://vela.house.gov/rss.xml
-    contact_form: https://forms.house.gov/vela/webforms/email-me.shtml
-    fax: 202-225-9770
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: TX
-    district: 34
-    party: Democrat
-    phone: 202-225-9901
-    url: https://vela.house.gov
-    rss_url: http://vela.house.gov/rss.xml
-    address: 437 Cannon House Office Building; Washington DC 20515-4334
-    office: 437 Cannon House Office Building
-    fax: 202-225-9770
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: TX
-    district: 34
-    party: Democrat
-    phone: 202-225-9901
-    address: 307 Cannon House Office Building Washington DC 20515-4334
-    office: 307 Cannon House Office Building
-    url: https://vela.house.gov
-    rss_url: http://vela.house.gov/rss.xml
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: TX
-    district: 34
-    party: Democrat
-    url: https://vela.house.gov
-    rss_url: http://vela.house.gov/rss.xml
-    address: 307 Cannon House Office Building Washington DC 20515-4334
-    office: 307 Cannon House Office Building
-    phone: 202-225-9901
 - id:
     govtrack: 412581
     bioguide: S001192
@@ -31454,6 +30727,10 @@
   bio:
     gender: F
     birthday: '1984-07-02'
+  leadership_roles:
+  - title: House Republican Conference Chair
+    chamber: house
+    start: '2021-05-14'
   terms:
   - type: rep
     start: '2015-01-06'
@@ -32187,7 +31464,7 @@
     class: 2
     state_rank: junior
     party: Republican
-    url: https://www.ernst.senate.gov/public
+    url: https://www.ernst.senate.gov
     contact_form: https://www.ernst.senate.gov/public/index.cfm/contact
     address: 730 Hart Senate Office Building Washington DC 20510
     office: 730 Hart Senate Office Building
@@ -32334,7 +31611,7 @@
     state_rank: junior
     party: Republican
     url: https://www.sasse.senate.gov/public
-    contact_form: http://www.sasse.senate.gov/public/index.cfm/email-ben
+    contact_form: https://www.sasse.senate.gov/public/index.cfm/email-ben
     address: 139 Russell Senate Office Building Washington DC 20510
     office: 139 Russell Senate Office Building
     phone: 202-224-4224
@@ -33997,7 +33274,7 @@
     state_rank: junior
     party: Republican
     url: https://www.marshall.senate.gov
-    contact_form: https://www.marshall.senate.gov
+    contact_form: https://www.marshall.senate.gov/contact/
     address: 479A Russell Senate Office Building Washington DC 20510
     office: 479a Russell Senate Office Building
     phone: 202-224-4774
@@ -34127,7 +33404,7 @@
     first: Anthony
     middle: G.
     last: Brown
-    official_full: Anthony Brown
+    official_full: Anthony G. Brown
   bio:
     gender: M
     birthday: '1961-11-21'
@@ -35061,6 +34338,7 @@
   - title: House Republican Conference Chair
     chamber: house
     start: '2021-01-03'
+    end: '2021-05-14'
   terms:
   - type: rep
     start: '2017-01-03'
@@ -37067,46 +36345,6 @@
     office: 1628 Longworth House Office Building
     phone: 202-225-5126
 - id:
-    bioguide: H001088
-    fec:
-    - H0MN01045
-    govtrack: 412788
-    wikipedia: Jim Hagedorn
-    wikidata: Q58494532
-    opensecrets: N00031390
-    votesmart: 146027
-    icpsr: 21929
-    ballotpedia: Jim Hagedorn
-    google_entity_id: kg:/g/11fg5k6588
-  name:
-    first: Jim
-    last: Hagedorn
-    official_full: Jim Hagedorn
-  bio:
-    gender: M
-    birthday: '1962-08-04'
-  terms:
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: MN
-    district: 1
-    party: Republican
-    phone: 202-225-2472
-    address: 325 Cannon House Office Building Washington DC 20515-2301
-    office: 325 Cannon House Office Building
-    url: https://hagedorn.house.gov
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: MN
-    district: 1
-    party: Republican
-    url: https://hagedorn.house.gov
-    address: 1433 Longworth House Office Building Washington DC 20515-2301
-    office: 1433 Longworth House Office Building
-    phone: 202-225-2472
-- id:
     bioguide: C001119
     fec:
     - H6MN02131
@@ -37632,46 +36870,6 @@
     address: 216 Cannon House Office Building Washington DC 20515-3214
     office: 216 Cannon House Office Building
     phone: 202-225-3965
-- id:
-    bioguide: D000630
-    fec:
-    - H8NY19181
-    govtrack: 412805
-    wikipedia: Antonio Delgado (politician)
-    wikidata: Q60428696
-    opensecrets: N00040741
-    icpsr: 21916
-    google_entity_id: kg:/g/11gzqgrp2f
-    ballotpedia: Antonio Delgado (New York)
-    votesmart: 180313
-  name:
-    first: Antonio
-    last: Delgado
-    official_full: Antonio Delgado
-  bio:
-    gender: M
-    birthday: '1977-01-19'
-  terms:
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: NY
-    district: 19
-    party: Democrat
-    phone: 202-225-5614
-    address: 1007 Longworth House Office Building Washington DC 20515-3219
-    office: 1007 Longworth House Office Building
-    url: https://delgado.house.gov
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: NY
-    district: 19
-    party: Democrat
-    url: https://delgado.house.gov
-    address: 1007 Longworth House Office Building Washington DC 20515-3219
-    office: 1007 Longworth House Office Building
-    phone: 202-225-5614
 - id:
     bioguide: G000588
     fec:
@@ -38751,7 +37949,7 @@
     address: 502 Hart Senate Office Building Washington DC 20510
     office: 502 Hart Senate Office Building
     phone: 202-224-5274
-    contact_form: https://www.rickscott.senate.gov/contact_rick
+    contact_form: https://www.rickscott.senate.gov/contact/contact
 - id:
     bioguide: B001310
     fec:
@@ -38784,7 +37982,7 @@
     address: 404 Russell Senate Office Building Washington DC 20510
     office: 404 Russell Senate Office Building
     phone: 202-224-4814
-    contact_form: http://www.braun.senate.gov/contact-mike
+    contact_form: https://www.braun.senate.gov/contact-mike
 - id:
     bioguide: H001089
     fec:
@@ -39306,7 +38504,7 @@
     state_rank: junior
     party: Republican
     url: https://www.lummis.senate.gov
-    contact_form: https://www.lummis.senate.gov
+    contact_form: https://www.lummis.senate.gov/contact/contact-form/
     address: 124 Russell Senate Office Building Washington DC 20510
     office: 124 Russell Senate Office Building
     phone: 202-224-3424
@@ -39665,7 +38863,7 @@
     state_rank: junior
     party: Republican
     url: https://www.tuberville.senate.gov
-    contact_form: https://www.tuberville.senate.gov
+    contact_form: https://www.tuberville.senate.gov/contact/contact-form/
     address: 142 Russell Senate Office Building Washington DC 20510
     office: 142 Russell Senate Office Building
     phone: 202-224-4124
@@ -39697,7 +38895,7 @@
     state_rank: junior
     party: Democrat
     url: https://www.hickenlooper.senate.gov
-    contact_form: https://www.hickenlooper.senate.gov
+    contact_form: https://www.hickenlooper.senate.gov/contact/
     address: 374 Russell Senate Office Building Washington DC 20510
     office: 374 Russell Senate Office Building
     phone: 202-224-5941
@@ -39730,7 +38928,7 @@
     state_rank: junior
     party: Republican
     url: https://www.hagerty.senate.gov
-    contact_form: https://www.hagerty.senate.gov
+    contact_form: https://www.hagerty.senate.gov/email-me/
     address: 248 Russell Senate Office Building Washington DC 20510
     office: 248 Russell Senate Office Building
     phone: 202-224-4944
@@ -40062,7 +39260,7 @@
     last: Salazar
     official_full: Maria Elvira Salazar
   bio:
-    gender: M
+    gender: F
     birthday: '1961-11-01'
   terms:
   - type: rep
@@ -40629,7 +39827,7 @@
     middle: Martin
     last: Rosendale
     suffix: Sr.
-    official_full: Matthew M. Rosendale
+    official_full: Matthew M. Rosendale, Sr.
   bio:
     gender: M
     birthday: '1960-07-07'
@@ -40712,8 +39910,7 @@
     google_entity_id: kg:/g/11jcrrfg9t
     ballotpedia: Madison Cawthorn
   name:
-    first: David
-    nickname: Madison
+    first: Madison
     last: Cawthorn
     official_full: Madison Cawthorn
   bio:
@@ -41387,7 +40584,7 @@
     office: 112 Hart Senate Office Building
     phone: 202-224-3553
     url: https://www.padilla.senate.gov
-    contact_form: http://www.padilla.senate.gov
+    contact_form: https://www.padilla.senate.gov/contact/
 - id:
     bioguide: O000174
     lis: S414
@@ -41418,7 +40615,7 @@
     office: 455 Russell Senate Office Building
     phone: 202-224-3521
     url: https://www.ossoff.senate.gov
-    contact_form: https://www.ossoff.senate.gov
+    contact_form: https://www.ossoff.senate.gov/contact-us/
 - id:
     bioguide: W000790
     lis: S415
@@ -41450,7 +40647,7 @@
     office: 388 Russell Senate Office Building
     phone: 202-224-3643
     url: https://www.warnock.senate.gov
-    contact_form: https://www.warnock.senate.gov
+    contact_form: https://www.warnock.senate.gov/contact/
 - id:
     bioguide: T000478
     fec:
@@ -41580,6 +40777,7 @@
     bioguide: E000071
     fec:
     - H8TX06266
+    opensecrets: N00042243
     govtrack: 456862
     wikipedia: Jake Ellzey
     wikidata: Q105061782
@@ -41587,6 +40785,7 @@
   name:
     first: Jake
     last: Ellzey
+    official_full: Jake Ellzey
   bio:
     gender: M
     birthday: '1970-01-24'
@@ -41596,4 +40795,178 @@
     end: '2023-01-03'
     state: TX
     district: 6
+    party: Republican
+    url: https://ellzey.house.gov
+    address: 1725 Longworth House Office Building Washington DC 20515-4306
+    office: 1725 Longworth House Office Building
+    phone: 202-225-2002
+- id:
+    bioguide: B001313
+    fec:
+    - H2OH11169
+    govtrack: 456863
+    wikipedia: Shontel Brown
+    wikidata: Q107863952
+  name:
+    first: Shontel
+    middle: M.
+    last: Brown
+    official_full: Shontel M. Brown
+  bio:
+    gender: F
+    birthday: '1975-06-24'
+  terms:
+  - type: rep
+    start: '2021-11-04'
+    end: '2023-01-03'
+    state: OH
+    district: 11
+    party: Democrat
+    url: https://shontelbrown.house.gov
+    address: 2344 Rayburn House Office Building Washington DC 20515-3511
+    office: 2344 Rayburn House Office Building
+    phone: 202-225-7032
+- id:
+    bioguide: C001126
+    fec:
+    - H2OH15228
+    govtrack: 456864
+    wikipedia: Mike Carey (politician)
+    wikidata: Q108010312
+  name:
+    first: Mike
+    last: Carey
+    official_full: Mike Carey
+  bio:
+    gender: M
+    birthday: '1971-03-13'
+  terms:
+  - type: rep
+    start: '2021-11-04'
+    end: '2023-01-03'
+    state: OH
+    district: 15
+    party: Republican
+    url: https://carey.house.gov
+    address: 2234 Rayburn House Office Building Washington DC 20515-3515
+    office: 2234 Rayburn House Office Building
+    phone: 202-225-2015
+- id:
+    bioguide: C001127
+    fec:
+    - H8FL20032
+    govtrack: 456865
+    wikipedia: Sheila Cherfilus-McCormick
+    wikidata: Q109560948
+  name:
+    first: Sheila
+    last: Cherfilus-McCormick
+    official_full: Sheila Cherfilus-McCormick
+  bio:
+    gender: F
+    birthday: '1979-01-25'
+  terms:
+  - type: rep
+    start: '2022-01-18'
+    end: '2023-01-03'
+    state: FL
+    district: 20
+    party: Democrat
+    url: https://cherfilus-mccormick.house.gov
+    address: 2365 Rayburn House Office Building Washington DC 20515-0920
+    office: 2365 Rayburn House Office Building
+    phone: 202-225-1313
+- id:
+    bioguide: C001128
+    fec:
+    - H2CA22231
+    govtrack: 456866
+    wikipedia: Connie Conway
+    wikidata: Q5161840
+    ballotpedia: Connie Conway
+  name:
+    first: Connie
+    last: Conway
+    official_full: Connie Conway
+  bio:
+    gender: F
+    birthday: '1950-09-25'
+  terms:
+  - type: rep
+    start: '2022-06-07'
+    end: '2023-01-03'
+    state: CA
+    district: 22
+    party: Republican
+    address: 1013 Longworth House Office Building Washington DC 20515-0522
+    office: 1013 Longworth House Office Building
+    phone: 202-225-2523
+- id:
+    bioguide: F000473
+    fec:
+    - H2TX34113
+    govtrack: 456867
+    wikipedia: Mayra Flores
+    wikidata: Q112577890
+  name:
+    first: Mayra
+    last: Flores
+    official_full: Mayra Flores
+  bio:
+    gender: F
+    birthday: '1986-01-01'
+  terms:
+  - type: rep
+    start: '2022-06-21'
+    end: '2023-01-03'
+    state: TX
+    district: 34
+    party: Republican
+    address: 307 Cannon House Office Building Washington DC 20515-4334
+    office: 307 Cannon House Office Building
+    phone: 202-225-9901
+- id:
+    bioguide: F000474
+    fec:
+    - H2NE01118
+    govtrack: 456868
+    wikipedia: Mike Flood (politician)
+    wikidata: Q6846855
+    ballotpedia: Mike Flood
+  name:
+    first: Mike
+    last: Flood
+  bio:
+    gender: M
+    birthday: '1975-02-23'
+  terms:
+  - type: rep
+    start: '2022-07-12'
+    end: '2023-01-03'
+    state: NE
+    district: 1
+    party: Republican
+    address: 1514 Longworth House Office Building Washington DC 20515-2701
+    office: 1514 Longworth House Office Building
+    phone: 202-225-4806
+- id:
+    bioguide: F000475
+    fec:
+    - H2MN01223
+    govtrack: 456869
+    wikipedia: Brad Finstad
+    wikidata: Q111159803
+    ballotpedia: Brad Finstad
+  name:
+    first: Brad
+    last: Finstad
+  bio:
+    gender: M
+    birthday: '1976-05-30'
+  terms:
+  - type: rep
+    start: '2022-08-12'
+    end: '2023-01-03'
+    state: MN
+    district: 1
     party: Republican

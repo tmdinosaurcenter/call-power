@@ -598,13 +598,11 @@
     phone: 423-541-2939
     fax: 423-541-2944
   - id: B001243-jackson
-    address: 91 Stonebridge Blvd
-    suite: Suite 103
+    address: 109 S Highland Ave
+    suite: Suite 218
     city: Jackson
     state: TN
-    zip: 38305-2042
-    latitude: 35.68031
-    longitude: -88.85355
+    zip: 38301
     phone: 731-660-3971
     fax: 731-660-3978
   - id: B001243-jonesborough
@@ -638,14 +636,13 @@
     phone: 901-527-9199
     fax: 901-527-9515
   - id: B001243-nashville
-    address: 150 4th Ave N
-    suite: Ste. G-250
+    address: 3322 West End Avenue
+    suite: Suite 610
     city: Nashville
     state: TN
-    zip: 37219-2415
-    latitude: 36.16286
-    longitude: -86.77797
-    phone: 800-657-6910
+    zip: 37203
+    phone: 629-800-6600
+    fax: 615-298-2148
 - id:
     bioguide: B001248
     govtrack: 400052
@@ -3645,36 +3642,6 @@
     phone: 913-621-0832
     fax: 913-621-1533
 - id:
-    bioguide: D000630
-    govtrack: 412805
-  offices:
-  - id: D000630-delhi
-    address: 111 Main St
-    city: Delhi
-    state: NY
-    zip: 13753-1233
-    latitude: 42.27706
-    longitude: -74.91709
-    hours: Tuesdays & Wednesdays, 10AM – 4PM
-  - id: D000630-kingston
-    address: 256 Clinton Ave
-    city: Kingston
-    state: NY
-    zip: 12401-2909
-    latitude: 41.93346
-    longitude: -74.01604
-    phone: 845-443-2930
-    hours: Monday to Friday, 9AM - 5PM
-  - id: D000630-oneonta
-    address: 189 Main St
-    suite: Suite 500
-    city: Oneonta
-    state: NY
-    zip: 13820-3510
-    latitude: 42.45476
-    longitude: -75.06093
-    hours: Thursdays & Fridays, 10AM - 4 PM
-- id:
     bioguide: D000631
     govtrack: 412809
   offices:
@@ -3864,38 +3831,6 @@
     fax: 415-393-0710
     phone: 415-393-0707
     hours: 9AM-5PM
-- id:
-    bioguide: F000449
-    govtrack: 400640
-    thomas: '01793'
-  offices:
-  - id: F000449-fremont
-    address: 641 N. Broad St.
-    city: Fremont
-    state: NE
-    zip: '68026'
-    latitude: 41.43559459999999
-    longitude: -96.49880739999999
-    phone: 402-727-0888
-  - id: F000449-lincoln
-    address: 301 S. 13th St.
-    suite: Suite 100
-    city: Lincoln
-    state: NE
-    zip: '68508'
-    latitude: 40.8108404
-    longitude: -96.7033345
-    fax: 402-438-1604
-    phone: 402-438-1598
-  - id: F000449-norfolk
-    address: 506 W. Madison Ave.
-    suite: Suite 2
-    city: Norfolk
-    state: NE
-    zip: '68701'
-    latitude: 42.0317036
-    longitude: -97.4144702
-    phone: 402-379-2064
 - id:
     bioguide: F000450
     govtrack: 400643
@@ -4440,6 +4375,8 @@
     zip: '13367'
     fax: 315-376-6118
     phone: 315-376-6118
+    latitude: 43.7880969
+    longitude: -75.4938177
   - id: G000555-new_york
     address: 780 Third Ave.
     suite: Suite 2601
@@ -4489,6 +4426,8 @@
     zip: 10710-0749
     phone: 845-875-4585
     fax: 845-875-9099
+    latitude: 40.9188505
+    longitude: -73.8596689
 - id:
     bioguide: G000558
     govtrack: 412278
@@ -5533,28 +5472,6 @@
     latitude: 40.33695
     longitude: -75.92123
     phone: 610-295-0815
-- id:
-    bioguide: H001088
-    govtrack: 412788
-  offices:
-  - id: H001088-mankato
-    address: 11 Civic Center Plz
-    suite: Suite 301
-    city: Mankato
-    state: MN
-    zip: 56001-7710
-    latitude: 44.19115
-    longitude: -93.94899
-    phone: 507-323-6090
-  - id: H001088-rochester
-    address: 1530 Greenview Dr SW
-    suite: Ste. 207
-    city: Rochester
-    state: MN
-    zip: 55902-4286
-    latitude: 44.00307
-    longitude: -92.48603
-    phone: 507-323-6090
 - id:
     bioguide: H001090
     govtrack: 412754
@@ -7481,12 +7398,16 @@
     state: MD
     zip: '21201'
     phone: 410-685-9199
+    latitude: 39.3030877
+    longitude: -76.6191032
   - id: M000687-catonsville
     address: 754 Frederick Road
     city: Catonsville
     state: MD
     zip: '21228'
     phone: 410-818-2120
+    latitude: 39.2719068
+    longitude: -76.7336972
   - id: M000687-ellicot
     address: 8267 Main Street
     suite: Room 102
@@ -8510,31 +8431,6 @@
     fax: 626-350-0450
     phone: 626-350-0150
 - id:
-    bioguide: N000181
-    govtrack: 400297
-    thomas: '01710'
-  offices:
-  - id: N000181-clovis
-    address: 264 Clovis Ave.
-    suite: Suite 206
-    city: Clovis
-    state: CA
-    zip: '93612'
-    latitude: 36.8268342
-    longitude: -119.7008959
-    fax: 559-323-5528
-    phone: 559-323-5235
-  - id: N000181-visalia
-    address: 113 N. Church St.
-    suite: Suite 208
-    city: Visalia
-    state: CA
-    zip: '93291'
-    latitude: 36.3304563
-    longitude: -119.2914737
-    fax: 559-733-3865
-    phone: 559-733-3861
-- id:
     bioguide: N000188
     govtrack: 412606
     thomas: '02202'
@@ -8571,6 +8467,8 @@
     state: WA
     zip: 98856-0823
     phone: 509-433-7760
+    latitude: 48.3634784
+    longitude: -120.122303
   - id: N000189-yakima
     address: 402 E Yakima Ave
     suite: Suite 1000
@@ -9490,48 +9388,6 @@
     fax: 208-734-3905
     phone: 208-734-6780
 - id:
-    bioguide: R000585
-    govtrack: 412393
-    thomas: '01982'
-  offices:
-  - id: R000585-corning
-    address: 89 W. Market St.
-    city: Corning
-    state: NY
-    zip: '14830'
-    latitude: 42.1441654
-    longitude: -77.0580681
-    fax: 607-654-7568
-    phone: 607-654-7566
-  - id: R000585-geneva
-    address: 433 Exchange St.
-    city: Geneva
-    state: NY
-    zip: '14456'
-    latitude: 42.868166
-    longitude: -76.980885
-    fax: 315-325-4045
-    phone: 315-759-5229
-  - id: R000585-jamestown
-    address: 2 E. 2nd St.
-    suite: Suite 208
-    city: Jamestown
-    state: NY
-    zip: '14701'
-    latitude: 42.0953958
-    longitude: -79.2406941
-    fax: 716-708-6058
-    phone: 716-708-6369
-  - id: R000585-olean
-    address: One Bluebird Square
-    city: Olean
-    state: NY
-    zip: '14760'
-    latitude: 42.07941
-    longitude: -78.43005699999999
-    fax: 716-806-1069
-    phone: 716-379-8434
-- id:
     bioguide: R000595
     govtrack: 412491
     thomas: '02084'
@@ -9574,7 +9430,6 @@
     zip: '32801'
     latitude: 28.5400755
     longitude: -81.3780508
-    fax: 407-423-0941
     phone: 407-254-2573
   - id: R000595-palm_beach_gardens
     address: 4580 PGA Blvd.
@@ -9583,9 +9438,8 @@
     state: FL
     zip: '33418'
     latitude: 26.8380427
-    longitude: -80.11140940000001
+    longitude: -80.1114094
     phone: 561-775-3360
-    fax: 866-630-7106
   - id: R000595-pensacola
     address: 700 S. Palafox St.
     suite: Suite 125
@@ -9605,16 +9459,14 @@
     longitude: -84.281289
     phone: 850-599-9100
   - id: R000595-tampa
-    address: 801 N. Florida Ave.
-    suite: Suite 1130
-    building: Sam M. Gibbons U.S. Courthouse
+    address: 501 E. Polk St
+    suite: Suite 601
     city: Tampa
     state: FL
     zip: '33602'
-    latitude: 27.9514709
-    longitude: -82.4604482
-    phone: 813-853-1099
-    fax: 866-630-7106
+    latitude: 27.9511694
+    longitude: -82.459228
+    phone: 813-947-6288
 - id:
     bioguide: R000597
     govtrack: 412572
@@ -11348,6 +11200,76 @@
     latitude: 30.44252
     longitude: -84.2819
     phone: 850-942-8415
+  - id: S001217-pensacola
+    address: 221 Palafox Place
+    suite: Suite 420
+    city: Pensacola
+    state: FL
+    zip: '32502'
+    phone: 850-760-5151
+    latitude: 30.4096575
+    longitude: -87.2155533
+  - id: S001217-jacksonville
+    address: 400 West Bay Street
+    suite: Suite 289
+    city: Jacksonville
+    state: FL
+    zip: '32202'
+    phone: 904-479-7227
+    latitude: 30.3269484
+    longitude: -81.6637337
+  - id: S001217-orlando
+    address: 225 East Robinson Street
+    suite: Suite 410
+    city: Orlando
+    state: FL
+    zip: '32801'
+    phone: 407-872-7161
+    latitude: 28.5460289
+    longitude: -81.3745694
+  - id: S001217-tampa
+    address: 801 North Florida Avenue
+    suite: Suite 421
+    city: Tampa
+    state: FL
+    zip: '33602'
+    phone: 813-225-7040
+    latitude: 27.95168
+    longitude: -82.4580549
+  - id: S001217-kissimmee
+    address: 1 Courthouse Square
+    suite: Suite 300
+    city: Kissimmee
+    state: FL
+    zip: '34741'
+    phone: 407-586-7879
+    latitude: 28.2912612
+    longitude: -81.4108061
+  - id: S001217-west_palm_beach
+    address: 415 Clematis Street
+    suite: Suite 201
+    city: West Palm Beach
+    state: FL
+    zip: '33401'
+    phone: 561-514-0189
+    latitude: 26.7134899
+    longitude: -80.0544948
+  - id: S001217-naples
+    address: 3299 Tamiami Trail East
+    suite: Building F, Suite 106
+    city: Naples
+    state: FL
+    zip: '34112'
+    phone: 239-231-7890
+    latitude: 26.1275317
+    longitude: -81.7654572
+  - id: S001217-miami
+    address: 901 Ponce de Leon Boulevard
+    suite: Suite 505
+    city: Miami
+    state: FL
+    zip: '33134'
+    phone: 786-501-7141
 - id:
     bioguide: T000193
     govtrack: 400402
@@ -12017,46 +11939,6 @@
     phone: 817-920-9086
     hours: M-F 8:30AM-5:30PM
 - id:
-    bioguide: V000132
-    govtrack: 412580
-    thomas: '02167'
-  offices:
-  - id: V000132-alice
-    address: 500 E. Main
-    city: Alice
-    state: TX
-    zip: '78332'
-    latitude: 27.7499027
-    longitude: -98.0720001
-    phone: 361-230-9776
-  - id: V000132-brownsville
-    address: 800 N Expressway
-    suite: Suite 9
-    city: Brownsville
-    state: TX
-    zip: 78521-1482
-    latitude: 25.93642
-    longitude: -97.49335
-    phone: 956-544-8352
-  - id: V000132-san_benito
-    address: 1390 W. Expressway 83
-    city: San Benito
-    state: TX
-    zip: '78586'
-    latitude: 26.1404901
-    longitude: -97.65383639999999
-    fax: 956-276-4603
-    phone: 956-276-4497
-  - id: V000132-weslaco
-    address: 301 W. Railroad
-    city: Weslaco
-    state: TX
-    zip: '78596'
-    latitude: 26.1602727
-    longitude: -97.9944049
-    fax: 956-520-8277
-    phone: 956-520-8273
-- id:
     bioguide: V000133
     govtrack: 412796
   offices:
@@ -12507,31 +12389,6 @@
     phone: 636-779-5449
     fax: 636-779-5449
 - id:
-    bioguide: W000813
-    govtrack: 412538
-    thomas: '02128'
-  offices:
-  - id: W000813-mishawaka
-    address: 202 Lincolnway East
-    suite: 'Suite #101'
-    city: Mishawaka
-    state: IN
-    zip: '46544'
-    latitude: 41.6614853
-    longitude: -86.1788818
-    fax: 574-217-8735
-    phone: 574-204-2645
-    hours: Monday through Friday, 8 a.m. to 5 p.m. ET
-  - id: W000813-rochester
-    address: 709 Main St.
-    city: Rochester
-    state: IN
-    zip: '46975'
-    latitude: 41.06708709999999
-    longitude: -86.21585259999999
-    fax: 574-217-8735
-    phone: 574-223-4373
-- id:
     bioguide: W000814
     govtrack: 412574
     thomas: '02161'
@@ -12753,32 +12610,6 @@
     latitude: 39.02961
     longitude: -77.40825
     phone: 703-234-3800
-- id:
-    bioguide: Y000033
-    govtrack: 400440
-    thomas: '01256'
-  offices:
-  - id: Y000033-anchorage
-    address: 471 W. 36th Avenue
-    suite: Suite 201
-    city: Anchorage
-    state: AK
-    zip: '99503'
-    latitude: 61.1884605
-    longitude: -149.8942221
-    fax: 907-271-5950
-    phone: 907-271-5978
-  - id: Y000033-fairbanks
-    address: 100 Cushman St.
-    building: Key Bank Building
-    suite: Suite 307
-    city: Fairbanks
-    state: AK
-    zip: '99707'
-    latitude: 64.84351649999999
-    longitude: -147.7220032
-    fax: 907-456-0279
-    phone: 907-456-0210
 - id:
     bioguide: Y000062
     govtrack: 412211
@@ -13591,6 +13422,8 @@
     state: PA
     zip: '17870'
     phone: 570-374-9469
+    latitude: 40.8116177
+    longitude: -76.8629974
   - id: K000395-tunkhannock
     address: 181 West Tioga Street
     suite: Suite 2
@@ -13598,6 +13431,8 @@
     state: PA
     zip: '18658'
     phone: 570-996-6550
+    latitude: 41.54412
+    longitude: -75.9636732
   - id: K000395-williamsport
     address: 1020 Commerce Park Drive
     suite: Suite 1A
@@ -13605,6 +13440,8 @@
     state: PA
     zip: '17701'
     phone: 570-322-3961
+    latitude: 41.2472344
+    longitude: -76.9834777
 - id:
     bioguide: B001311
     govtrack: 412844
@@ -13616,6 +13453,8 @@
     zip: '28112'
     phone: 740-218-5300
     fax: 844-273-1255
+    latitude: 34.982986
+    longitude: -80.5499099
 - id:
     bioguide: M001210
     govtrack: 412845
@@ -13627,9 +13466,67 @@
     state: NC
     zip: '27858'
     phone: 252-931-1003
+    latitude: 35.5806764
+    longitude: -77.35680359999999
   - id: M001210-jacksonville
     address: 234 Northwest Corridor Blvd.
     city: Jacksonville
     state: NC
     zip: '28540'
     phone: 910-937-6929
+    latitude: 34.7798159
+    longitude: -77.48408909999999
+- id:
+    bioguide: P000145
+    govtrack: 456856
+  offices:
+  - id: P000145-fresno
+    address: 2500 Tulare Street
+    suite: Suite 5290
+    city: Fresno
+    state: CA
+    zip: '93721'
+    phone: 559-497-5109
+    fax: 202-228-3864
+    latitude: 36.7373445
+    longitude: -119.7837236
+  - id: P000145-san_francisco
+    address: 333 Bush Street
+    suite: Suite 3225
+    city: San Francisco
+    state: CA
+    zip: '94104'
+    phone: 415-981-9369
+    fax: 202-224-0454
+    latitude: 37.7906431
+    longitude: -122.4030566
+  - id: P000145-sacramento
+    address: 501 I Street
+    suite: Suite 7-800
+    city: Sacramento
+    state: CA
+    zip: '95814'
+    phone: 916-448-2787
+    fax: 202-228-3865
+    latitude: 38.5836017
+    longitude: -121.4987695
+  - id: P000145-los_angeles
+    address: 11845 West Olympic Blvd
+    suite: Suite 1250W
+    city: Los Angeles
+    state: CA
+    zip: '90064'
+    phone: 310-231-4494
+    fax: 202-224-0357
+    latitude: 34.0333756
+    longitude: -118.4519795
+  - id: P000145-san_diego
+    address: 600 B Street
+    suite: Suite 2240
+    city: San Diego
+    state: CA
+    zip: '92101'
+    phone: 619-239-3884
+    fax: 202-228-3863
+    latitude: 32.718147
+    longitude: -117.1585979

@@ -432,21 +432,21 @@ def user_phones_for_campaign(campaign_id):
         for (session_id,call_id) in campaign_sessions:
             try:
                 twilio_call = twilio_client.calls.get(call_id).fetch()
+                # we want the user's phone number, which is either twilio_call.to or from_
+                # depending on direction (can be inbound, outbound-api, outbound-dial, or trunking)
+                if twilio_call.direction == 'inbound':
+                    user_phone = twilio_call.from_
+                elif twilio_call.direction.startswith('outbound'):
+                    user_phone = twilio_call.to
+
+                session = Session.query.get(session_id)
+                if session and session.location:
+                    yield f"{session.timestamp},{user_phone},{session.location}\n"
+                else:
+                    yield f"{session.timestamp},{user_phone},\n"
             except twilio.base.exceptions.TwilioRestException:
                 # if older than 13 months Twilio may no longer have the record online
-                yield ''
-            # we want the user's phone number, which is either twilio_call.to or from_
-            # depending on direction (can be inbound, outbound-api, outbound-dial, or trunking)
-            if twilio_call.direction == 'inbound':
-                user_phone = twilio_call.from_
-            elif twilio_call.direction.startswith('outbound'):
-                user_phone = twilio_call.to
-
-            session = Session.query.get(session_id)
-            if session and session.location:
-                yield f"{user_phone},{session.location}\n"
-            else:
-                yield f"{user_phone},\n"
+                yield f"{session.timestamp},,"
 
     headers = Headers()
     filename = 'callpower-log-campaign-%s' % campaign_id

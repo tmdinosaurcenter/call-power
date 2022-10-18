@@ -430,6 +430,7 @@ def user_phones_for_campaign(campaign_id):
         # return the user phone (depending on direction)
 
         for (session_id,call_id) in campaign_sessions:
+            session = Session.query.get(session_id)
             try:
                 twilio_call = twilio_client.calls.get(call_id).fetch()
                 # we want the user's phone number, which is either twilio_call.to or from_
@@ -439,8 +440,8 @@ def user_phones_for_campaign(campaign_id):
                 elif twilio_call.direction.startswith('outbound'):
                     user_phone = twilio_call.to
 
-                session = Session.query.get(session_id)
-                if session and session.location:
+
+                if session.location:
                     yield f"{session.timestamp},{user_phone},{session.location}\n"
                 else:
                     yield f"{session.timestamp},{user_phone},\n"

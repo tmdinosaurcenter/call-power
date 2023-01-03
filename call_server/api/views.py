@@ -447,7 +447,7 @@ def user_phones_for_campaign(campaign_id):
                     yield f"{session.timestamp},{user_phone},\n"
             except twilio.base.exceptions.TwilioRestException:
                 # if older than 13 months Twilio may no longer have the record online
-                yield f"{session.timestamp},,"
+                yield f"{session.timestamp},,\n"
 
     headers = Headers()
     filename = 'callpower-log-campaign-%s' % campaign_id

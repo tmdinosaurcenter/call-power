@@ -1,5 +1,6 @@
 import os
 import twilio.rest
+from ssl import CERT_NONE
 
 class DefaultConfig(object):
     PROJECT = 'CallPower'
@@ -142,7 +143,7 @@ class HerokuConfig(ProductionConfig):
     CACHE_TYPE = 'redis'
     CACHE_REDIS_URL = os.environ.get('REDIS_URL')
     CACHE_KEY_PREFIX = 'call-power:'
-    CACHE_OPTIONS = {'ssl_cert_reqs': None}
+    CACHE_OPTIONS = {'ssl':True, 'ssl_cert_reqs': CERT_NONE}
     # heroku uses self-signed certificates for redis, so don't try to validate them
 
     # smtp via sendgrid

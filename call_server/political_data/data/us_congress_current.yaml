@@ -598,6 +598,9 @@
     chamber: senate
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Senate Democratic Steering Committee Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2007-01-04'
@@ -782,6 +785,10 @@
   bio:
     birthday: '1941-09-08'
     gender: M
+  leadership_roles:
+  - title: Senate Democratic Outreach Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '1991-01-03'
@@ -918,6 +925,9 @@
     chamber: senate
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Senate Democratic Policy & Communications Committee Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '1997-01-07'
@@ -1136,6 +1146,9 @@
     chamber: senate
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Senate Republican Conference Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2007-06-25'
@@ -1284,8 +1297,8 @@
     state_rank: senior
     url: https://www.wicker.senate.gov
     contact_form: https://www.wicker.senate.gov/public/index.cfm/contact
-    address: 555 Dirksen Senate Office Building Washington DC 20510
-    office: 555 Dirksen Senate Office Building
+    address: 425 Russell Senate Office Building Washington DC 20510
+    office: 425 Russell Senate Office Building
     phone: 202-224-6253
 - id:
     bioguide: C001035
@@ -1525,6 +1538,9 @@
     chamber: senate
     start: '2021-01-20'
     end: '2023-01-03'
+  - title: Senate Majority Whip
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '1983-01-03'
@@ -1718,8 +1734,8 @@
     url: https://www.lgraham.senate.gov/public
     rss_url: http://www.lgraham.senate.gov/public/index.cfm?FuseAction=Rss.Feed
     contact_form: https://www.lgraham.senate.gov/public/index.cfm/e-mail-senator-graham
-    address: 290 Russell Senate Office Building Washington DC 20510
-    office: 290 Russell Senate Office Building
+    address: 211 Russell Senate Office Building Washington DC 20510
+    office: 211 Russell Senate Office Building
     phone: 202-224-5972
 - id:
     bioguide: M000355
@@ -1781,6 +1797,9 @@
     chamber: senate
     start: '2021-01-20'
     end: '2023-01-03'
+  - title: Senate Minority Leader
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '1985-01-03'
@@ -2167,6 +2186,10 @@
   bio:
     gender: M
     birthday: '1954-12-15'
+  leadership_roles:
+  - title: Senate Democratic Conference Vice Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2009-01-06'
@@ -2380,6 +2403,10 @@
   bio:
     birthday: '1947-08-24'
     gender: M
+  leadership_roles:
+  - title: Senate Democratic Policy & Communications Committee Vice Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2010-11-15'
@@ -2599,10 +2626,13 @@
     birthday: '1962-02-11'
     gender: F
   leadership_roles:
-  - title: Senate Democratic Caucus Secretary
+  - title: Senate Democratic Conference Secretary
     chamber: senate
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Senate Democratic Conference Secretary
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '1999-01-06'
@@ -3488,8 +3518,8 @@
     url: https://www.boozman.senate.gov/public
     rss_url: http://www.boozman.senate.gov/public/index.cfm/rss/feed
     contact_form: https://www.boozman.senate.gov/public/index.cfm/contact
-    address: 141 Hart Senate Office Building Washington DC 20510
-    office: 141 Hart Senate Office Building
+    address: 555 Dirksen Senate Office Building Washington DC 20510
+    office: 555 Dirksen Senate Office Building
     phone: 202-224-4843
 - id:
     bioguide: B001260
@@ -4045,6 +4075,10 @@
   bio:
     birthday: '1953-11-26'
     gender: F
+  leadership_roles:
+  - title: Senate Republican Conference Vice Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2001-01-03'
@@ -4473,8 +4507,8 @@
     party: Republican
     url: https://www.cassidy.senate.gov
     contact_form: https://www.cassidy.senate.gov/contact
-    address: 520 Hart Senate Office Building Washington DC 20510
-    office: 520 Hart Senate Office Building
+    address: 455 Dirksen Senate Office Building Washington DC 20510
+    office: 455 Dirksen Senate Office Building
     phone: 202-224-5824
 - id:
     bioguide: C001066
@@ -5104,6 +5138,9 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Assistant House Minority Leader
+    chamber: house
+    start: '2021-01-03'
   terms:
   - type: rep
     start: '1993-01-05'
@@ -10024,7 +10061,7 @@
     fec:
     - S0WI00197
     cspan: 62835
-    wikipedia: Ron Johnson (Wisconsin politician)
+    wikipedia: Ron Johnson
     ballotpedia: Ron Johnson (Wisconsin)
     maplight: 1501
     icpsr: 41111
@@ -12522,6 +12559,10 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Speaker of the House
+    chamber: house
+    start: '2023-01-07'
+    end: '2025-01-03'
   terms:
   - type: rep
     start: '2007-01-04'
@@ -14006,6 +14047,9 @@
     chamber: senate
     start: '2021-01-20'
     end: '2023-01-03'
+  - title: President Pro Tempore of the Senate
+    chamber: senate
+    start: '2021-01-03'
   terms:
   - type: sen
     start: '1993-01-05'
@@ -15139,8 +15183,8 @@
     url: https://www.paul.senate.gov
     rss_url: http://paul.senate.gov/rss/?p=news
     contact_form: https://www.paul.senate.gov/connect/email-rand
-    address: 167 Russell Senate Office Building Washington DC 20510
-    office: 167 Russell Senate Office Building
+    address: 295 Russell Senate Office Building Washington DC 20510
+    office: 295 Russell Senate Office Building
     phone: 202-224-4343
   family:
   - name: Ronald Ernest Paul
@@ -16612,6 +16656,9 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: House Majority Leader
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2008-05-07'
@@ -17045,6 +17092,9 @@
     chamber: senate
     start: '2021-01-20'
     end: '2023-01-03'
+  - title: Senate Majority Leader
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '1981-01-05'
@@ -17863,8 +17913,8 @@
     party: Democrat
     url: https://sewell.house.gov
     rss_url: http://sewell.house.gov/rss.xml
-    address: 1035 Rayburn House Office Building Washington DC 20515-0107
-    office: 1035 Rayburn House Office Building
+    address: 1035 Longworth House Office Building Washington DC 20515-0107
+    office: 1035 Longworth House Office Building
     phone: 202-225-2665
 - id:
     bioguide: S000344
@@ -19251,6 +19301,9 @@
     chamber: senate
     start: '2021-01-20'
     end: '2023-01-03'
+  - title: Senate Minority Whip
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '1997-01-07'
@@ -20367,6 +20420,7 @@
 - id:
     bioguide: W000800
     thomas: '01879'
+    lis: S422
     govtrack: 412239
     opensecrets: N00000515
     votesmart: 51272
@@ -21746,6 +21800,10 @@
   bio:
     birthday: '1972-10-20'
     gender: M
+  leadership_roles:
+  - title: Senate Democratic Conference Deputy Secretary
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2012-12-27'
@@ -22074,6 +22132,7 @@
     govtrack: 412509
     bioguide: S001191
     thomas: '02099'
+    lis: S403
     cspan: 68489
     opensecrets: N00033983
     votesmart: 28338
@@ -22087,7 +22146,6 @@
     house_history: 15032387755
     wikidata: Q1556541
     google_entity_id: kg:/m/03qnndb
-    lis: S403
   name:
     first: Kyrsten
     last: Sinema
@@ -23373,6 +23431,10 @@
   bio:
     gender: F
     birthday: '1949-06-22'
+  leadership_roles:
+  - title: Senate Democratic Conference Vice Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2013-01-03'
@@ -23670,6 +23732,10 @@
   bio:
     gender: M
     birthday: '1962-08-20'
+  leadership_roles:
+  - title: Senate Republican Committee Chair
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2013-01-03'
@@ -23879,8 +23945,8 @@
     party: Republican
     state_rank: junior
     url: https://www.cramer.senate.gov
-    address: 330 Hart Senate Office Building Washington DC 20510
-    office: 330 Hart Senate Office Building
+    address: 313 Hart Senate Office Building Washington DC 20510
+    office: 313 Hart Senate Office Building
     phone: 202-224-2043
     contact_form: https://www.cramer.senate.gov/contact/contact-kevin
 - id:
@@ -24157,6 +24223,9 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: House Minority Leader
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2013-01-03'
@@ -24507,6 +24576,7 @@
     govtrack: 412568
     bioguide: M001190
     thomas: '02156'
+    lis: S419
     cspan: 1034045
     votesmart: 135898
     wikipedia: Markwayne Mullin
@@ -25647,7 +25717,7 @@
     bioguide: S001195
     thomas: '02191'
     govtrack: 412596
-    wikipedia: Jason Smith (politician)
+    wikipedia: Jason Smith (American politician)
     votesmart: 59318
     maplight: 2047
     opensecrets: N00035282
@@ -25735,8 +25805,8 @@
     party: Republican
     url: https://jasonsmith.house.gov
     rss_url: http://jasonsmith.house.gov/rss.xml
-    address: 1011 Rayburn House Office Building Washington DC 20515-2508
-    office: 1011 Rayburn House Office Building
+    address: 1011 Longworth House Office Building Washington DC 20515-2508
+    office: 1011 Longworth House Office Building
     phone: 202-225-4404
 - id:
     bioguide: B001288
@@ -25762,6 +25832,10 @@
   bio:
     birthday: '1969-04-27'
     gender: M
+  leadership_roles:
+  - title: Senate Democratic Policy & Communications Committee Vice Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2013-10-31'
@@ -25829,6 +25903,9 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: House Minority Whip
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2013-12-12'
@@ -26104,6 +26181,9 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: House Republican Policy Committee Chair
+    chamber: house
+    start: '2021-01-03'
   terms:
   - type: rep
     start: '2015-01-06'
@@ -26481,6 +26561,9 @@
     chamber: house
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: House Democratic Caucus Chair
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2015-01-06'
@@ -27389,6 +27472,10 @@
   bio:
     gender: M
     birthday: '1961-03-03'
+  leadership_roles:
+  - title: House Majority Whip
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2015-01-06'
@@ -27621,6 +27708,9 @@
     chamber: house
     start: '2021-05-14'
     end: '2023-01-03'
+  - title: House Republican Conference Chair
+    chamber: house
+    start: '2023-01-03'
   terms:
   - type: rep
     start: '2015-01-06'
@@ -28276,8 +28366,8 @@
     district: 0
     party: Republican
     url: https://radewagen.house.gov
-    address: 2001 Longworth House Office Building Washington DC 20515-5200
-    office: 2001 Longworth House Office Building
+    address: 2001 Rayburn House Office Building Washington DC 20515-5200
+    office: 2001 Rayburn House Office Building
     phone: 202-225-8577
 - id:
     bioguide: S001198
@@ -28360,6 +28450,9 @@
     chamber: senate
     start: '2021-01-03'
     end: '2023-01-03'
+  - title: Senate Republican Policy Committee Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2015-01-06'
@@ -28382,8 +28475,8 @@
     party: Republican
     url: https://www.ernst.senate.gov
     contact_form: https://www.ernst.senate.gov/public/index.cfm/contact
-    address: 730 Hart Senate Office Building Washington DC 20510
-    office: 730 Hart Senate Office Building
+    address: 260 Russell Senate Office Building Washington DC 20510
+    office: 260 Russell Senate Office Building
     phone: 202-224-3254
 - id:
     bioguide: T000476
@@ -28481,56 +28574,6 @@
     address: 716 Hart Senate Office Building Washington DC 20510
     office: 716 Hart Senate Office Building
     phone: 202-224-5842
-- id:
-    bioguide: S001197
-    thomas: '02289'
-    fec:
-    - S4NE00090
-    govtrack: 412671
-    opensecrets: N00035544
-    lis: S382
-    maplight: 2127
-    wikidata: Q16192221
-    wikipedia: Ben Sasse
-    google_entity_id: kg:/m/0j5wk_6
-    votesmart: 150182
-    cspan: 77429
-    icpsr: 41503
-    ballotpedia: Ben Sasse
-  name:
-    first: Benjamin
-    middle: Eric
-    nickname: Ben
-    last: Sasse
-    official_full: Ben Sasse
-  bio:
-    gender: M
-    birthday: '1972-02-22'
-  terms:
-  - type: sen
-    start: '2015-01-06'
-    end: '2021-01-03'
-    state: NE
-    class: 2
-    state_rank: junior
-    party: Republican
-    url: https://www.sasse.senate.gov/public
-    address: 107 Russell Senate Office Building Washington DC 20510
-    office: 107 Russell Senate Office Building
-    phone: 202-224-4224
-    contact_form: http://www.sasse.senate.gov/public/index.cfm/email-ben
-  - type: sen
-    start: '2021-01-03'
-    end: '2027-01-03'
-    state: NE
-    class: 2
-    state_rank: junior
-    party: Republican
-    url: https://www.sasse.senate.gov/public
-    contact_form: https://www.sasse.senate.gov/public/index.cfm/email-ben
-    address: 139 Russell Senate Office Building Washington DC 20510
-    office: 139 Russell Senate Office Building
-    phone: 202-224-4224
 - id:
     bioguide: K000388
     thomas: '02294'
@@ -28953,8 +28996,8 @@
     party: Republican
     url: https://www.kennedy.senate.gov/public
     contact_form: https://www.kennedy.senate.gov/public/email-me
-    address: 416 Russell Senate Office Building Washington DC 20510
-    office: 416 Russell Senate Office Building
+    address: 437 Russell Senate Office Building Washington DC 20510
+    office: 437 Russell Senate Office Building
     phone: 202-224-4623
 - id:
     bioguide: H001076
@@ -29027,6 +29070,10 @@
   bio:
     gender: F
     birthday: '1964-03-29'
+  leadership_roles:
+  - title: Senate Democratic Outreach Vice Chair
+    chamber: senate
+    start: '2023-01-03'
   terms:
   - type: sen
     start: '2017-01-03'
@@ -29049,8 +29096,8 @@
     party: Democrat
     url: https://www.cortezmasto.senate.gov
     contact_form: https://www.cortezmasto.senate.gov/contact
-    address: 313 Hart Senate Office Building Washington DC 20510
-    office: 313 Hart Senate Office Building
+    address: 520 Hart Senate Office Building Washington DC 20510
+    office: 520 Hart Senate Office Building
     phone: 202-224-3542
 - id:
     govtrack: 412534
@@ -30069,8 +30116,8 @@
     district: 3
     party: Republican
     url: https://banks.house.gov
-    address: 2418 Longworth House Office Building Washington DC 20515-1403
-    office: 2418 Longworth House Office Building
+    address: 2418 Rayburn House Office Building Washington DC 20515-1403
+    office: 2418 Rayburn House Office Building
     phone: 202-225-4436
 - id:
     bioguide: M001198
@@ -30383,6 +30430,7 @@
     phone: 202-225-4735
 - id:
     bioguide: B001305
+    lis: S417
     govtrack: 412712
     wikipedia: Ted Budd
     wikidata: Q27733792
@@ -30571,6 +30619,7 @@
     phone: 202-225-4465
 - id:
     bioguide: R000608
+    lis: S402
     govtrack: 412715
     wikipedia: Jacky Rosen
     wikidata: Q27825033
@@ -30583,7 +30632,6 @@
     google_entity_id: kg:/g/11cntnvwkg
     cspan: 104738
     icpsr: 21743
-    lis: S402
   name:
     first: Jacky
     last: Rosen
@@ -32292,8 +32340,8 @@
     district: 49
     party: Democrat
     url: https://mikelevin.house.gov
-    address: 2352 Longworth House Office Building Washington DC 20515-0549
-    office: 2352 Longworth House Office Building
+    address: 2352 Rayburn House Office Building Washington DC 20515-0549
+    office: 2352 Rayburn House Office Building
     phone: 202-225-3906
 - id:
     bioguide: N000191
@@ -32342,8 +32390,8 @@
     district: 2
     party: Democrat
     url: https://neguse.house.gov
-    address: 2400 Longworth House Office Building Washington DC 20515-0602
-    office: 2400 Longworth House Office Building
+    address: 2400 Rayburn House Office Building Washington DC 20515-0602
+    office: 2400 Rayburn House Office Building
     phone: 202-225-2161
 - id:
     bioguide: C001121
@@ -34111,7 +34159,7 @@
     fec:
     - H8SC04250
     govtrack: 412815
-    wikipedia: William Timmons
+    wikipedia: William Timmons (politician)
     wikidata: Q28837296
     opensecrets: N00042715
     google_entity_id: kg:/g/11g6ns21_f
@@ -34305,15 +34353,15 @@
     district: 6
     party: Republican
     url: https://johnrose.house.gov
-    address: 2238 Longworth House Office Building Washington DC 20515-4206
-    office: 2238 Longworth House Office Building
+    address: 2238 Rayburn House Office Building Washington DC 20515-4206
+    office: 2238 Rayburn House Office Building
     phone: 202-225-4231
 - id:
     bioguide: G000590
     fec:
     - H8TN07076
     govtrack: 412819
-    wikipedia: Mark E. Green
+    wikipedia: Mark Green (Tennessee politician)
     wikidata: Q16224587
     opensecrets: N00041873
     google_entity_id: kg:/m/09rx6jq
@@ -34367,7 +34415,7 @@
     wikipedia: Dan Crenshaw
     wikidata: Q58301995
     opensecrets: N00042224
-    google_entity_id: kg:/g/11hcj7fy00
+    google_entity_id: kg:/g/11fk40sjyz
     votesmart: 177270
     icpsr: 21911
     ballotpedia: Daniel Crenshaw
@@ -34556,8 +34604,8 @@
     district: 16
     party: Democrat
     url: https://escobar.house.gov
-    address: 2448 Longworth House Office Building Washington DC 20515-4316
-    office: 2448 Longworth House Office Building
+    address: 2448 Rayburn House Office Building Washington DC 20515-4316
+    office: 2448 Rayburn House Office Building
     phone: 202-225-4831
 - id:
     bioguide: R000614
@@ -36057,8 +36105,8 @@
     party: Republican
     url: https://www.hagerty.senate.gov
     contact_form: https://www.hagerty.senate.gov/email-me/
-    address: 248 Russell Senate Office Building Washington DC 20510
-    office: 248 Russell Senate Office Building
+    address: 251 Russell Senate Office Building Washington DC 20510
+    office: 251 Russell Senate Office Building
     phone: 202-224-4944
 - id:
     bioguide: C001054
@@ -36108,6 +36156,7 @@
     wikidata: Q63198048
     wikipedia: Barry Moore (Alabama politician)
     google_entity_id: kg:/g/11fkw7vjdf
+    ballotpedia: Barry Moore (Alabama)
   name:
     first: Barry
     last: Moore
@@ -36413,6 +36462,7 @@
     wikidata: Q59726216
     wikipedia: Byron Donalds
     google_entity_id: kg:/g/11c1xk7pbn
+    votesmart: 137655
   name:
     first: Byron
     middle: Lowell
@@ -36842,6 +36892,7 @@
     wikidata: Q44059867
     wikipedia: Victoria Spartz
     google_entity_id: kg:/g/11h23hjb94
+    votesmart: 178203
   name:
     first: Victoria
     last: Spartz
@@ -37148,7 +37199,7 @@
     opensecrets: N00038565
     govtrack: 456831
     wikidata: Q5248285
-    wikipedia: Deborah K. Ross
+    wikipedia: Deborah Ross (politician)
     google_entity_id: kg:/m/02b3x2
     ballotpedia: Deborah Ross
   name:
@@ -37596,8 +37647,8 @@
     district: 4
     party: Republican
     url: https://fallon.house.gov
-    address: 2416 Longworth House Office Building Washington DC 20515-4304
-    office: 2416 Longworth House Office Building
+    address: 2416 Rayburn House Office Building Washington DC 20515-4304
+    office: 2416 Rayburn House Office Building
     phone: 202-225-6673
 - id:
     bioguide: P000048
@@ -37956,7 +38007,7 @@
     opensecrets: N00045434
     govtrack: 456855
     wikidata: Q7436650
-    wikipedia: Scott L. Fitzgerald
+    wikipedia: Scott Fitzgerald (politician)
     google_entity_id: kg:/m/03nvqsc
     votesmart: 3446
   name:
@@ -38213,8 +38264,8 @@
     district: 5
     party: Republican
     url: https://letlow.house.gov
-    address: 142 Longworth House Office Building Washington DC 20515-1805
-    office: 142 Longworth House Office Building
+    address: 142 Cannon House Office Building Washington DC 20515-1805
+    office: 142 Cannon House Office Building
     phone: 202-225-8490
 - id:
     bioguide: C001125
@@ -38303,7 +38354,7 @@
     wikipedia: Jake Ellzey
     wikidata: Q105061782
     ballotpedia: Jake Ellzey
-    google_entity_id: kg:/g/11lsr970tb
+    google_entity_id: kg:/g/11f0lw2cdc
   name:
     first: Jake
     last: Ellzey
@@ -38450,6 +38501,7 @@
     wikipedia: Mike Flood (politician)
     wikidata: Q6846855
     ballotpedia: Mike Flood
+    votesmart: 41983
   name:
     first: Mike
     last: Flood
@@ -38485,6 +38537,7 @@
     wikipedia: Brad Finstad
     wikidata: Q111159803
     ballotpedia: Brad Finstad
+    votesmart: 38612
   name:
     first: Brad
     last: Finstad
@@ -38520,6 +38573,7 @@
     wikipedia: Mary Peltola
     wikidata: Q13562231
     ballotpedia: Mary Peltola
+    votesmart: 207620
   name:
     first: Mary
     middle: Sattler
@@ -38676,6 +38730,7 @@
     phone: 202-225-5628
 - id:
     bioguide: B001319
+    lis: S416
     fec:
     - S2AL00145
     govtrack: 456874
@@ -38683,6 +38738,7 @@
     wikipedia: Katie Britt
     google_entity_id: kg:/g/11rfpf26r8
     ballotpedia: Katie Britt
+    votesmart: 201704
   name:
     first: Katie
     middle: Elizabeth
@@ -38706,12 +38762,14 @@
     phone: 202-224-5744
 - id:
     bioguide: S001227
+    lis: S420
     fec:
     - S2MO00544
     govtrack: 456875
     wikidata: Q5387455
-    wikipedia: Eric S. Schmitt
+    wikipedia: Eric Schmitt
     ballotpedia: Eric Schmitt
+    votesmart: 104474
   name:
     first: Eric
     middle: Stephen
@@ -38735,6 +38793,7 @@
     phone: 202-224-5721
 - id:
     bioguide: V000137
+    lis: S421
     fec:
     - S2OH00436
     govtrack: 456876
@@ -38765,6 +38824,7 @@
     phone: 202-224-3353
 - id:
     bioguide: F000479
+    lis: S418
     fec:
     - S6PA00274
     govtrack: 456877
@@ -38800,6 +38860,7 @@
     govtrack: 456878
     wikidata: Q115137374
     wikipedia: Dale Strong
+    votesmart: 81485
   name:
     first: Dale
     last: Strong
@@ -38814,6 +38875,7 @@
     state: AL
     district: 5
     party: Republican
+    url: https://strong.house.gov/
     address: 1337 Longworth House Office Building Washington DC 20515-0105
     office: 1337 Longworth House Office Building
     phone: 202-225-4801
@@ -38825,6 +38887,7 @@
     wikidata: Q115155633
     wikipedia: Eli Crane
     ballotpedia: Eli Crane
+    votesmart: 205885
   name:
     first: Eli
     last: Crane
@@ -38839,6 +38902,7 @@
     state: AZ
     district: 2
     party: Republican
+    url: https://crane.house.gov/
     address: 1229 Longworth House Office Building Washington DC 20515-0302
     office: 1229 Longworth House Office Building
     phone: 202-225-3361
@@ -38849,6 +38913,7 @@
     govtrack: 456880
     wikidata: Q115220916
     wikipedia: Juan Ciscomani
+    votesmart: 106728
   name:
     first: Juan
     middle: Guadaloupe
@@ -38864,6 +38929,7 @@
     state: AZ
     district: 6
     party: Republican
+    url: https://ciscomani.house.gov/
     address: 1429 Longworth House Office Building Washington DC 20515-0306
     office: 1429 Longworth House Office Building
     phone: 202-225-2542
@@ -38892,6 +38958,7 @@
     state: CA
     district: 3
     party: Republican
+    url: https://kiley.house.gov/
     address: 1032 Longworth House Office Building Washington DC 20515-0503
     office: 1032 Longworth House Office Building
     phone: 202-225-2523
@@ -38902,6 +38969,7 @@
     govtrack: 456882
     wikidata: Q115574315
     wikipedia: John Duarte (politician)
+    votesmart: 204965
   name:
     first: John
     last: Duarte
@@ -38916,6 +38984,7 @@
     state: CA
     district: 13
     party: Republican
+    url: https://duarte.house.gov/
     address: 1535 Longworth House Office Building Washington DC 20515-0513
     office: 1535 Longworth House Office Building
     phone: 202-225-1947
@@ -38926,6 +38995,7 @@
     govtrack: 456883
     wikidata: Q6397046
     wikipedia: Kevin Mullin
+    votesmart: 105586
   name:
     first: Kevin
     last: Mullin
@@ -38940,6 +39010,7 @@
     state: CA
     district: 15
     party: Democrat
+    url: https://kevinmullin.house.gov/
     address: 1404 Longworth House Office Building Washington DC 20515-0515
     office: 1404 Longworth House Office Building
     phone: 202-225-3531
@@ -38949,12 +39020,13 @@
     - H2CA37304
     govtrack: 456884
     wikidata: Q20177418
-    wikipedia: Sydney Kamlager
+    wikipedia: Sydney Kamlager-Dove
     ballotpedia: Sydney Kamlager-Dove
+    votesmart: 178079
   name:
     first: Sydney
     middle: Kai
-    last: Kamlager
+    last: Kamlager-Dove
     official_full: Sydney Kamlager-Dove
   bio:
     gender: F
@@ -38966,6 +39038,7 @@
     state: CA
     district: 37
     party: Democrat
+    url: https://kamlager-dove.house.gov/
     address: 1419 Longworth House Office Building Washington DC 20515-0537
     office: 1419 Longworth House Office Building
     phone: 202-225-7084
@@ -38976,6 +39049,7 @@
     govtrack: 456885
     wikidata: Q16204904
     wikipedia: Robert Garcia (California politician)
+    votesmart: 29749
   name:
     first: Robert
     middle: Julio
@@ -38991,6 +39065,7 @@
     state: CA
     district: 42
     party: Democrat
+    url: https://robertgarcia.house.gov/
     address: 1305 Longworth House Office Building Washington DC 20515-0542
     office: 1305 Longworth House Office Building
     phone: 202-225-7924
@@ -39001,6 +39076,7 @@
     govtrack: 456886
     wikidata: Q16734469
     wikipedia: Brittany Pettersen
+    votesmart: 138744
   name:
     first: Brittany
     middle: Louise
@@ -39008,6 +39084,7 @@
     official_full: Brittany Pettersen
   bio:
     gender: F
+    birthday: '1981-12-06'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -39015,6 +39092,7 @@
     state: CO
     district: 7
     party: Democrat
+    url: https://pettersen.house.gov/
     address: 1230 Longworth House Office Building Washington DC 20515-0607
     office: 1230 Longworth House Office Building
     phone: 202-225-2645
@@ -39027,6 +39105,7 @@
     wikipedia: Yadira Caraveo
     google_entity_id: kg:/g/11h23hqvwm
     ballotpedia: Yadira Caraveo
+    votesmart: 181770
   name:
     first: Yadira
     middle: D.
@@ -39042,6 +39121,7 @@
     state: CO
     district: 8
     party: Democrat
+    url: https://caraveo.house.gov/
     address: 1024 Longworth House Office Building Washington DC 20515-0001
     office: 1024 Longworth House Office Building
     phone: 202-225-5625
@@ -39052,6 +39132,7 @@
     govtrack: 456888
     wikidata: Q4661833
     wikipedia: Aaron Bean
+    votesmart: 53932
   name:
     first: Aaron
     middle: Paul
@@ -39067,6 +39148,7 @@
     state: FL
     district: 4
     party: Republican
+    url: https://bean.house.gov/
     address: 1239 Longworth House Office Building Washington DC 20515-0904
     office: 1239 Longworth House Office Building
     phone: 202-225-0123
@@ -39077,6 +39159,7 @@
     govtrack: 456889
     wikidata: Q115137377
     wikipedia: Cory Mills
+    votesmart: 209085
   name:
     first: Cory
     last: Mills
@@ -39091,6 +39174,7 @@
     state: FL
     district: 7
     party: Republican
+    url: https://mills.house.gov/
     address: 1237 Longworth House Office Building Washington DC 20515-0907
     office: 1237 Longworth House Office Building
     phone: 202-225-4035
@@ -39102,6 +39186,7 @@
     wikidata: Q113587724
     wikipedia: Maxwell Frost
     google_entity_id: kg:/g/11p01k7h4b
+    votesmart: 209096
   name:
     first: Maxwell
     middle: Alejandro
@@ -39117,6 +39202,7 @@
     state: FL
     district: 10
     party: Democrat
+    url: https://frost.house.gov/
     address: 1224 Longworth House Office Building Washington DC 20515-0910
     office: 1224 Longworth House Office Building
     phone: 202-225-2176
@@ -39125,7 +39211,10 @@
     fec:
     - H0FL13158
     govtrack: 456891
-    wikidata: Q115174760
+    wikidata: Q112805534
+    wikipedia: Anna Paulina Luna
+    votesmart: 191344
+    ballotpedia: Anna Paulina Luna
   name:
     first: Anna
     middle: (Paulina)
@@ -39141,6 +39230,7 @@
     state: FL
     district: 13
     party: Republican
+    url: https://luna.house.gov/
     address: 1017 Longworth House Office Building Washington DC 20515-0913
     office: 1017 Longworth House Office Building
     phone: 202-225-5961
@@ -39152,6 +39242,7 @@
     wikidata: Q61483038
     wikipedia: Laurel Lee
     google_entity_id: kg:/g/11h3cbjvc3
+    votesmart: 186114
   name:
     first: Laurel
     middle: Frances
@@ -39159,6 +39250,7 @@
     official_full: Laurel M. Lee
   bio:
     gender: F
+    birthday: '1974-03-26'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -39166,6 +39258,7 @@
     state: FL
     district: 15
     party: Republican
+    url: https://laurellee.house.gov/
     address: 1118 Longworth House Office Building Washington DC 20515-0915
     office: 1118 Longworth House Office Building
     phone: 202-225-5626
@@ -39176,6 +39269,7 @@
     govtrack: 456893
     wikidata: Q16221073
     wikipedia: Jared Moskowitz
+    votesmart: 138155
   name:
     first: Jared
     middle: Evan
@@ -39191,6 +39285,7 @@
     state: FL
     district: 23
     party: Democrat
+    url: https://moskowitz.house.gov/
     address: 1130 Longworth House Office Building Washington DC 20515-0923
     office: 1130 Longworth House Office Building
     phone: 202-225-3001
@@ -39201,6 +39296,7 @@
     govtrack: 456894
     wikidata: Q115474083
     wikipedia: Rich McCormick
+    votesmart: 189765
   name:
     first: Rich
     middle: Dean
@@ -39216,6 +39312,7 @@
     state: GA
     district: 6
     party: Republican
+    url: https://mccormick.house.gov/
     address: 1213 Longworth House Office Building Washington DC 20515-1006
     office: 1213 Longworth House Office Building
     phone: 202-225-4272
@@ -39224,6 +39321,9 @@
     fec:
     - H4GA10071
     govtrack: 456895
+    wikipedia: Mike Collins (politician)
+    votesmart: 151225
+    wikidata: Q115806750
   name:
     first: Mike
     middle: Allen
@@ -39240,6 +39340,7 @@
     state: GA
     district: 10
     party: Republican
+    url: https://collins.house.gov/
     address: 1223 Longworth House Office Building Washington DC 20515-1010
     office: 1223 Longworth House Office Building
     phone: 202-225-4101
@@ -39250,6 +39351,7 @@
     govtrack: 456896
     wikidata: Q114108969
     wikipedia: James Moylan
+    ballotpedia: James Moylan
   name:
     first: James (Jim)
     middle: Camacho
@@ -39257,6 +39359,7 @@
     official_full: James C. Moylan
   bio:
     gender: M
+    birthday: '1962-07-18'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -39264,6 +39367,7 @@
     state: GU
     district: 0
     party: Republican
+    url: https://moylan.house.gov/
     address: 1628 Longworth House Office Building Washington DC 20515-5301
     office: 1628 Longworth House Office Building
     phone: 202-225-1188
@@ -39274,6 +39378,7 @@
     govtrack: 456897
     wikidata: Q13562293
     wikipedia: Jill Tokuda
+    votesmart: 68493
   name:
     first: Jill
     middle: Naomi
@@ -39289,8 +39394,9 @@
     state: HI
     district: 2
     party: Democrat
-    address: 1005 Cannon House Office Building Washington DC 20515-1102
-    office: 1005 Cannon House Office Building
+    url: https://tokuda.house.gov/
+    address: 1005 Longworth House Office Building Washington DC 20515-1102
+    office: 1005 Longworth House Office Building
     phone: 202-225-4906
 - id:
     bioguide: N000193
@@ -39316,6 +39422,7 @@
     state: IA
     district: 3
     party: Republican
+    url: https://nunn.house.gov/
     address: 1232 Longworth House Office Building Washington DC 20515-1503
     office: 1232 Longworth House Office Building
     phone: 202-225-5476
@@ -39326,6 +39433,7 @@
     govtrack: 456899
     wikidata: Q6273473
     wikipedia: Jonathan Jackson (Illinois politician)
+    votesmart: 204284
   name:
     first: Jonathan
     middle: Luther
@@ -39341,6 +39449,7 @@
     state: IL
     district: 1
     party: Democrat
+    url: https://jonathanjackson.house.gov/
     address: 1641 Longworth House Office Building Washington DC 20515-1301
     office: 1641 Longworth House Office Building
     phone: 202-225-4372
@@ -39352,6 +39461,7 @@
     wikidata: Q58416610
     wikipedia: Delia Ramirez
     google_entity_id: kg:/g/11fgm72s6f
+    votesmart: 177128
   name:
     first: Delia
     middle: Catalina
@@ -39367,6 +39477,7 @@
     state: IL
     district: 3
     party: Democrat
+    url: https://ramirez.house.gov/
     address: 1523 Longworth House Office Building Washington DC 20515-1303
     office: 1523 Longworth House Office Building
     phone: 202-225-5701
@@ -39377,6 +39488,7 @@
     govtrack: 456901
     wikidata: Q111342337
     wikipedia: Nikki Budzinski
+    votesmart: 204328
   name:
     first: Nicole (Nikki)
     middle: Jai
@@ -39384,6 +39496,7 @@
     official_full: Nikki Budzinski
   bio:
     gender: F
+    birthday: '1977-03-11'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -39391,6 +39504,7 @@
     state: IL
     district: 13
     party: Democrat
+    url: https://budzinski.house.gov/
     address: 1009 Longworth House Office Building Washington DC 20515-1313
     office: 1009 Longworth House Office Building
     phone: 202-225-2371
@@ -39401,6 +39515,7 @@
     govtrack: 456902
     wikidata: Q115182513
     wikipedia: Eric Sorensen (politician)
+    votesmart: 204339
   name:
     first: Eric
     last: Sorensen
@@ -39415,6 +39530,7 @@
     state: IL
     district: 17
     party: Democrat
+    url: https://sorensen.house.gov/
     address: 1205 Longworth House Office Building Washington DC 20515-1317
     office: 1205 Longworth House Office Building
     phone: 202-225-5905
@@ -39442,6 +39558,7 @@
     state: IN
     district: 9
     party: Republican
+    url: https://houchin.house.gov/
     address: 1632 Longworth House Office Building Washington DC 20515-1409
     office: 1632 Longworth House Office Building
     phone: 202-225-5315
@@ -39454,8 +39571,7 @@
     wikipedia: Morgan McGarvey
     votesmart: 139826
   name:
-    first: John
-    middle: Morgan (goes by Morgan)
+    first: Morgan
     last: McGarvey
     official_full: Morgan McGarvey
   bio:
@@ -39468,6 +39584,7 @@
     state: KY
     district: 3
     party: Democrat
+    url: https://mcgarvey.house.gov/
     address: 1527 Longworth House Office Building Washington DC 20515-1703
     office: 1527 Longworth House Office Building
     phone: 202-225-5401
@@ -39479,6 +39596,7 @@
     wikidata: Q22004572
     wikipedia: Glenn Ivey
     google_entity_id: kg:/g/11bxfgrf12
+    votesmart: 166279
   name:
     first: Glenn
     middle: Frederick
@@ -39494,6 +39612,7 @@
     state: MD
     district: 4
     party: Democrat
+    url: https://ivey.house.gov/
     address: 1529 Longworth House Office Building Washington DC 20515-2004
     office: 1529 Longworth House Office Building
     phone: 202-225-8699
@@ -39504,6 +39623,7 @@
     govtrack: 456906
     wikidata: Q115137368
     wikipedia: Hillary Scholten
+    votesmart: 191584
   name:
     first: Hillary
     middle: Jeanne
@@ -39519,6 +39639,7 @@
     state: MI
     district: 3
     party: Democrat
+    url: https://scholten.house.gov/
     address: 1317 Longworth House Office Building Washington DC 20515-2203
     office: 1317 Longworth House Office Building
     phone: 202-225-3831
@@ -39529,8 +39650,9 @@
     govtrack: 456907
     wikidata: Q56027187
     wikipedia: John James (Michigan politician)
-    google_entity_id: kg:/g/11gwjmtcrt
+    google_entity_id: kg:/g/11f7r6ft_j
     ballotpedia: John James (Michigan)
+    votesmart: 181062
   name:
     first: John
     middle: Edwards
@@ -39546,6 +39668,7 @@
     state: MI
     district: 10
     party: Republican
+    url: https://james.house.gov/
     address: 1319 Longworth House Office Building Washington DC 20515-2210
     office: 1319 Longworth House Office Building
     phone: 202-225-4961
@@ -39557,6 +39680,7 @@
     wikidata: Q7503912
     wikipedia: Shri Thanedar
     ballotpedia: Shri Thanedar
+    votesmart: 182346
   name:
     first: Shri
     last: Thanedar
@@ -39571,6 +39695,7 @@
     state: MI
     district: 13
     party: Democrat
+    url: https://thanedar.house.gov/
     address: 1039 Longworth House Office Building Washington DC 20515-2213
     office: 1039 Longworth House Office Building
     phone: 202-225-5802
@@ -39581,6 +39706,7 @@
     govtrack: 456909
     wikidata: Q115137637
     wikipedia: Mark Alford (politician)
+    votesmart: 205858
   name:
     first: Mark
     middle: Allen
@@ -39596,6 +39722,7 @@
     state: MO
     district: 4
     party: Republican
+    url: https://alford.house.gov/
     address: 1516 Longworth House Office Building Washington DC 20515-2504
     office: 1516 Longworth House Office Building
     phone: 202-225-2876
@@ -39623,6 +39750,7 @@
     state: MO
     district: 7
     party: Republican
+    url: https://burlison.house.gov/
     address: 1108 Longworth House Office Building Washington DC 20515-2507
     office: 1108 Longworth House Office Building
     phone: 202-225-6536
@@ -39633,13 +39761,14 @@
     govtrack: 456911
     wikidata: Q115137554
     wikipedia: Mike Ezell
+    votesmart: 202526
   name:
-    first: Walter
-    middle: Michael (goes by Mike)
+    first: Mike
     last: Ezell
     official_full: Mike Ezell
   bio:
     gender: M
+    birthday: '1959-04-06'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -39647,6 +39776,7 @@
     state: MS
     district: 4
     party: Republican
+    url: https://ezell.house.gov/
     address: 443 Cannon House Office Building Washington DC 20515-2404
     office: 443 Cannon House Office Building
     phone: 202-225-5772
@@ -39656,7 +39786,8 @@
     - H2NC02287
     govtrack: 456912
     wikidata: Q5294403
-    wikipedia: Donald G. Davis
+    wikipedia: Don Davis (North Carolina politician)
+    votesmart: 102950
   name:
     first: Donald
     middle: Gene
@@ -39672,6 +39803,7 @@
     state: NC
     district: 1
     party: Democrat
+    url: https://dondavis.house.gov/
     address: 1123 Longworth House Office Building Washington DC 20515-3301
     office: 1123 Longworth House Office Building
     phone: 202-225-3101
@@ -39682,6 +39814,7 @@
     govtrack: 456913
     wikidata: Q16729064
     wikipedia: Valerie Foushee
+    votesmart: 93091
   name:
     first: Valerie
     middle: Jean
@@ -39697,6 +39830,7 @@
     state: NC
     district: 4
     party: Democrat
+    url: https://foushee.house.gov/
     address: 1716 Longworth House Office Building Washington DC 20515-3304
     office: 1716 Longworth House Office Building
     phone: 202-225-1784
@@ -39708,6 +39842,7 @@
     wikidata: Q55065043
     wikipedia: Chuck Edwards
     google_entity_id: kg:/g/11ghxw1t29
+    votesmart: 166600
   name:
     first: Charles (Chuck)
     middle: Marion
@@ -39723,6 +39858,7 @@
     state: NC
     district: 11
     party: Republican
+    url: https://edwards.house.gov/
     address: 1505 Longworth House Office Building Washington DC 20515-3311
     office: 1505 Longworth House Office Building
     phone: 202-225-6401
@@ -39734,9 +39870,9 @@
     wikidata: Q58494710
     wikipedia: Wiley Nickel
     google_entity_id: kg:/g/11h1r27wjx
+    votesmart: 178326
   name:
-    first: George
-    middle: Wiley (uses as 1st)
+    first: Wiley
     last: Nickel
     suffix: III
     official_full: Wiley Nickel
@@ -39750,6 +39886,7 @@
     state: NC
     district: 13
     party: Democrat
+    url: https://nickel.house.gov/
     address: 1133 Longworth House Office Building Washington DC 20515-3313
     office: 1133 Longworth House Office Building
     phone: 202-225-4531
@@ -39760,6 +39897,7 @@
     govtrack: 456916
     wikidata: Q17183308
     wikipedia: Jeff Jackson (politician)
+    votesmart: 153729
   name:
     first: Jeffrey
     middle: Neale
@@ -39775,6 +39913,7 @@
     state: NC
     district: 14
     party: Democrat
+    url: https://jeffjackson.house.gov/
     address: 1318 Longworth House Office Building Washington DC 20515-0001
     office: 1318 Longworth House Office Building
     phone: 202-225-5634
@@ -39786,6 +39925,7 @@
     wikidata: Q7791445
     wikipedia: Thomas Kean Jr.
     ballotpedia: Thomas Kean Jr.
+    votesmart: 43250
   name:
     first: Thomas
     middle: Howard
@@ -39802,6 +39942,7 @@
     state: NJ
     district: 7
     party: Republican
+    url: https://kean.house.gov/
     address: 251 Cannon House Office Building Washington DC 20515-3007
     office: 251 Cannon House Office Building
     phone: 202-225-5361
@@ -39812,6 +39953,7 @@
     govtrack: 456918
     wikidata: Q115137457
     wikipedia: Rob Menendez
+    votesmart: 205678
   name:
     first: Robert
     middle: Jacobsen
@@ -39828,6 +39970,7 @@
     state: NJ
     district: 8
     party: Democrat
+    url: https://menendez.house.gov/
     address: 1007 Longworth House Office Building Washington DC 20515-3008
     office: 1007 Longworth House Office Building
     phone: 202-225-7919
@@ -39838,6 +39981,8 @@
     govtrack: 456919
     wikidata: Q115155647
     wikipedia: Gabe Vasquez
+    votesmart: 201740
+    opensecrets: N00049142
   name:
     first: Gabriel (Gabe)
     last: Vasquez
@@ -39852,6 +39997,7 @@
     state: NM
     district: 2
     party: Democrat
+    url: https://vasquez.house.gov/
     address: 1517 Longworth House Office Building Washington DC 20515-3102
     office: 1517 Longworth House Office Building
     phone: 202-225-2365
@@ -39862,6 +40008,7 @@
     govtrack: 456920
     wikidata: Q115168182
     wikipedia: Nick LaLota
+    votesmart: 191957
   name:
     first: Nicolas
     middle: Joseph
@@ -39877,6 +40024,7 @@
     state: NY
     district: 1
     party: Republican
+    url: https://lalota.house.gov/
     address: 1530 Longworth House Office Building Washington DC 20515-3201
     office: 1530 Longworth House Office Building
     phone: 202-225-3826
@@ -39888,6 +40036,8 @@
     wikidata: Q115170395
     wikipedia: George Santos
     ballotpedia: George Devolder-Santos
+    votesmart: 191234
+    google_entity_id: kg:/g/11fsg7b03f
   name:
     first: George
     middle: Anthony Devolder
@@ -39903,6 +40053,7 @@
     state: NY
     district: 3
     party: Republican
+    url: https://santos.house.gov/
     address: 1117 Longworth House Office Building Washington DC 20515-3203
     office: 1117 Longworth House Office Building
     phone: 202-225-3335
@@ -39914,6 +40065,7 @@
     wikidata: Q115170420
     wikipedia: Anthony D'Esposito
     ballotpedia: Anthony D'Esposito
+    votesmart: 174091
   name:
     first: Anthony
     middle: P.
@@ -39929,6 +40081,7 @@
     state: NY
     district: 4
     party: Republican
+    url: https://desposito.house.gov/
     address: 1508 Longworth House Office Building Washington DC 20515-3204
     office: 1508 Longworth House Office Building
     phone: 202-225-5516
@@ -39940,6 +40093,7 @@
     wikidata: Q74849175
     wikipedia: Dan Goldman (politician)
     google_entity_id: kg:/g/11j0y32d4c
+    votesmart: 208627
   name:
     first: Dan
     middle: Sachs
@@ -39955,6 +40109,7 @@
     state: NY
     district: 10
     party: Democrat
+    url: https://goldman.house.gov/
     address: 245 Cannon House Office Building Washington DC 20515-3210
     office: 245 Cannon House Office Building
     phone: 202-225-7944
@@ -39966,6 +40121,7 @@
     wikidata: Q105179052
     wikipedia: Mike Lawler
     google_entity_id: kg:/g/11qwsdzzd6
+    votesmart: 192271
   name:
     first: Michael
     middle: Vincent
@@ -39981,6 +40137,7 @@
     state: NY
     district: 17
     party: Republican
+    url: https://lawler.house.gov/
     address: 1013 Longworth House Office Building Washington DC 20515-3217
     office: 1013 Longworth House Office Building
     phone: 202-225-6506
@@ -40008,6 +40165,7 @@
     state: NY
     district: 19
     party: Republican
+    url: https://molinaro.house.gov/
     address: 1207 Longworth House Office Building Washington DC 20515-3219
     office: 1207 Longworth House Office Building
     phone: 202-225-5441
@@ -40016,6 +40174,9 @@
     fec:
     - H2NY22212
     govtrack: 456926
+    wikipedia: Brandon Williams (politician)
+    votesmart: 206001
+    wikidata: Q115805431
   name:
     first: Brandon
     middle: McDonald
@@ -40023,6 +40184,7 @@
     official_full: Brandon Williams
   bio:
     gender: M
+    birthday: '1967-05-22'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -40030,6 +40192,7 @@
     state: NY
     district: 22
     party: Republican
+    url: https://brandonwilliams.house.gov/
     address: 1022 Longworth House Office Building Washington DC 20515-3222
     office: 1022 Longworth House Office Building
     phone: 202-225-3701
@@ -40041,8 +40204,9 @@
     wikidata: Q55356856
     wikipedia: Nick Langworthy
     google_entity_id: kg:/g/11g119yyj8
+    votesmart: 208663
   name:
-    first: Nickolas
+    first: Nicholas
     middle: A.
     last: Langworthy
     official_full: Nicholas A. Langworthy
@@ -40056,6 +40220,7 @@
     state: NY
     district: 23
     party: Republican
+    url: https://langworthy.house.gov/
     address: 1630 Longworth House Office Building Washington DC 20515-3223
     office: 1630 Longworth House Office Building
     phone: 202-225-3161
@@ -40064,8 +40229,10 @@
     fec:
     - H2OH01194
     govtrack: 456928
-    wikidata: Q113234151
-    wikipedia: Greg Landsman (politician)
+    wikidata: Q115180677
+    wikipedia: Greg Landsman
+    votesmart: 186237
+    google_entity_id: kg:/g/11rn585y5q
   name:
     first: Greg
     middle: John
@@ -40081,6 +40248,7 @@
     state: OH
     district: 1
     party: Democrat
+    url: https://landsman.house.gov/
     address: 1432 Longworth House Office Building Washington DC 20515-3501
     office: 1432 Longworth House Office Building
     phone: 202-225-2216
@@ -40091,6 +40259,7 @@
     govtrack: 456929
     wikidata: Q106522145
     wikipedia: Max Miller (politician)
+    votesmart: 206947
   name:
     first: Max
     middle: Leonard
@@ -40106,6 +40275,7 @@
     state: OH
     district: 7
     party: Republican
+    url: https://maxmiller.house.gov/
     address: 143 Cannon House Office Building Washington DC 20515-3507
     office: 143 Cannon House Office Building
     phone: 202-225-3876
@@ -40116,6 +40286,7 @@
     govtrack: 456930
     wikidata: Q18637943
     wikipedia: Emilia Sykes
+    votesmart: 152164
   name:
     first: Emilia
     middle: Strong
@@ -40131,6 +40302,7 @@
     state: OH
     district: 13
     party: Democrat
+    url: https://sykes.house.gov/
     address: 1217 Longworth House Office Building Washington DC 20515-3513
     office: 1217 Longworth House Office Building
     phone: 202-225-6265
@@ -40141,6 +40313,7 @@
     govtrack: 456931
     wikidata: Q6288704
     wikipedia: Josh Brecheen
+    votesmart: 124973
   name:
     first: Josh
     middle: Chad
@@ -40156,6 +40329,7 @@
     state: OK
     district: 2
     party: Republican
+    url: https://brecheen.house.gov/
     address: 1208 Longworth House Office Building Washington DC 20515-3602
     office: 1208 Longworth House Office Building
     phone: 202-225-2701
@@ -40166,6 +40340,8 @@
     govtrack: 456932
     wikidata: Q7909103
     wikipedia: Val Hoyle
+    votesmart: 116336
+    ballotpedia: Val Hoyle
   name:
     first: Valerie
     middle: Anne
@@ -40181,6 +40357,7 @@
     state: OR
     district: 4
     party: Democrat
+    url: https://hoyle.house.gov/
     address: 1620 Longworth House Office Building Washington DC 20515-3704
     office: 1620 Longworth House Office Building
     phone: 202-225-6416
@@ -40191,6 +40368,7 @@
     govtrack: 456933
     wikidata: Q115522128
     wikipedia: Lori Chavez-DeRemer
+    votesmart: 202792
   name:
     first: Lori
     middle: Michelle
@@ -40206,6 +40384,7 @@
     state: OR
     district: 5
     party: Republican
+    url: https://chavez-deremer.house.gov/
     address: 1722 Longworth House Office Building Washington DC 20515-3705
     office: 1722 Longworth House Office Building
     phone: 202-225-5711
@@ -40217,6 +40396,7 @@
     wikidata: Q39791512
     wikipedia: Andrea Salinas
     google_entity_id: kg:/g/11fyzcn4zd
+    votesmart: 178196
   name:
     first: Andrea
     middle: Rose
@@ -40224,6 +40404,7 @@
     official_full: Andrea Salinas
   bio:
     gender: F
+    birthday: '1969-12-06'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -40231,6 +40412,7 @@
     state: OR
     district: 6
     party: Democrat
+    url: https://salinas.house.gov/
     address: 109 Cannon House Office Building Washington DC 20515-0001
     office: 109 Cannon House Office Building
     phone: 202-225-5643
@@ -40243,6 +40425,7 @@
     wikipedia: Summer Lee
     google_entity_id: kg:/g/11f8p2q8bd
     ballotpedia: Summer Lee
+    votesmart: 179240
   name:
     first: Summer
     middle: Lynn
@@ -40258,6 +40441,7 @@
     state: PA
     district: 12
     party: Democrat
+    url: https://summerlee.house.gov/
     address: 243 Cannon House Office Building Washington DC 20515-3812
     office: 243 Cannon House Office Building
     phone: 202-225-2135
@@ -40268,6 +40452,7 @@
     govtrack: 456936
     wikidata: Q115181700
     wikipedia: Chris Deluzio
+    votesmart: 202954
   name:
     first: Chris
     middle: Raphael
@@ -40275,6 +40460,7 @@
     official_full: Christopher R. Deluzio
   bio:
     gender: M
+    birthday: '1984-07-13'
   terms:
   - type: rep
     start: '2023-01-03'
@@ -40282,6 +40468,7 @@
     state: PA
     district: 17
     party: Democrat
+    url: https://deluzio.house.gov/
     address: 1222 Longworth House Office Building Washington DC 20515-3817
     office: 1222 Longworth House Office Building
     phone: 202-225-2301
@@ -40292,6 +40479,7 @@
     govtrack: 456937
     wikidata: Q16222460
     wikipedia: Seth Magaziner
+    votesmart: 154457
   name:
     first: Seth
     middle: Michael
@@ -40307,6 +40495,7 @@
     state: RI
     district: 2
     party: Democrat
+    url: https://magaziner.house.gov/
     address: 1218 Longworth House Office Building Washington DC 20515-3902
     office: 1218 Longworth House Office Building
     phone: 202-225-2735
@@ -40318,6 +40507,7 @@
     wikidata: Q96015883
     wikipedia: Russell Fry (politician)
     google_entity_id: kg:/g/11f0r9q6_r
+    votesmart: 157265
   name:
     first: Russell
     middle: William
@@ -40333,6 +40523,7 @@
     state: SC
     district: 7
     party: Republican
+    url: https://fry.house.gov/
     address: 1626 Longworth House Office Building Washington DC 20515-4007
     office: 1626 Longworth House Office Building
     phone: 202-225-9895
@@ -40343,9 +40534,10 @@
     govtrack: 456939
     wikidata: Q111623114
     wikipedia: Andy Ogles
+    votesmart: 48673
+    ballotpedia: Andy Ogles
   name:
-    first: William
-    middle: Andrew (goes by Andy)
+    first: Andrew
     last: Ogles
     suffix: IV
     official_full: Andrew Ogles
@@ -40359,6 +40551,7 @@
     state: TN
     district: 5
     party: Republican
+    url: https://ogles.house.gov/
     address: 151 Cannon House Office Building Washington DC 20515-4205
     office: 151 Cannon House Office Building
     phone: 202-225-4311
@@ -40369,6 +40562,8 @@
     govtrack: 456940
     wikidata: Q115137468
     wikipedia: Nathaniel Moran
+    votesmart: 79156
+    ballotpedia: Nathaniel Moran
   name:
     first: Nathaniel
     middle: Quentin
@@ -40384,6 +40579,7 @@
     state: TX
     district: 1
     party: Republican
+    url: https://moran.house.gov/
     address: 1541 Longworth House Office Building Washington DC 20515-4301
     office: 1541 Longworth House Office Building
     phone: 202-225-3035
@@ -40394,6 +40590,9 @@
     govtrack: 456941
     wikidata: Q115137462
     wikipedia: Keith Self
+    votesmart: 97491
+    ballotpedia: Keith Self
+    google_entity_id: kg:/g/11s0s133nc
   name:
     first: Keith
     middle: Alan
@@ -40409,6 +40608,7 @@
     state: TX
     district: 3
     party: Republican
+    url: https://keithself.house.gov/
     address: 1113 Longworth House Office Building Washington DC 20515-4303
     office: 1113 Longworth House Office Building
     phone: 202-225-4201
@@ -40419,6 +40619,7 @@
     govtrack: 456942
     wikidata: Q115137460
     wikipedia: Morgan Luttrell
+    votesmart: 200930
   name:
     first: Morgan
     middle: Joe
@@ -40434,6 +40635,7 @@
     state: TX
     district: 8
     party: Republican
+    url: https://luttrell.house.gov/
     address: 1320 Longworth House Office Building Washington DC 20515-4308
     office: 1320 Longworth House Office Building
     phone: 202-225-4901
@@ -40444,6 +40646,7 @@
     govtrack: 456943
     wikidata: Q115496109
     wikipedia: Monica De La Cruz
+    votesmart: 188292
   name:
     first: Mónica
     last: De La Cruz
@@ -40458,6 +40661,7 @@
     state: TX
     district: 15
     party: Republican
+    url: https://delacruz.house.gov/
     address: 1415 Longworth House Office Building Washington DC 20515-4315
     office: 1415 Longworth House Office Building
     phone: 202-225-9901
@@ -40469,6 +40673,7 @@
     wikidata: Q101428652
     wikipedia: Jasmine Crockett
     google_entity_id: kg:/g/11j90m9942
+    votesmart: 188486
   name:
     first: Jasmine
     middle: Felicia
@@ -40484,6 +40689,7 @@
     state: TX
     district: 30
     party: Democrat
+    url: https://crockett.house.gov/
     address: 1616 Longworth House Office Building Washington DC 20515-4330
     office: 1616 Longworth House Office Building
     phone: 202-225-8885
@@ -40495,6 +40701,7 @@
     wikidata: Q104148369
     wikipedia: Greg Casar
     google_entity_id: kg:/g/11fl9pbltx
+    votesmart: 161953
   name:
     first: Gregorio
     middle: Eduardo
@@ -40510,6 +40717,7 @@
     state: TX
     district: 35
     party: Democrat
+    url: https://casar.house.gov/
     address: 1339 Longworth House Office Building Washington DC 20515-4335
     office: 1339 Longworth House Office Building
     phone: 202-225-5645
@@ -40520,6 +40728,8 @@
     govtrack: 456946
     wikidata: Q110434665
     wikipedia: Wesley Hunt
+    votesmart: 188147
+    ballotpedia: Wesley Hunt (Texas Congress)
   name:
     first: Wesley
     middle: Parish
@@ -40535,6 +40745,7 @@
     state: TX
     district: 38
     party: Republican
+    url: https://hunt.house.gov/
     address: 1520 Longworth House Office Building Washington DC 20515-0001
     office: 1520 Longworth House Office Building
     phone: 202-225-5646
@@ -40546,6 +40757,7 @@
     wikidata: Q83119566
     wikipedia: Jen Kiggans
     google_entity_id: kg:/g/11gbjlv65q
+    votesmart: 186387
   name:
     first: Jennifer
     middle: Ann
@@ -40561,6 +40773,7 @@
     state: VA
     district: 2
     party: Republican
+    url: https://kiggans.house.gov/
     address: 1037 Longworth House Office Building Washington DC 20515-4602
     office: 1037 Longworth House Office Building
     phone: 202-225-4215
@@ -40572,6 +40785,7 @@
     wikidata: Q28137193
     wikipedia: Becca Balint
     google_entity_id: kg:/g/11c1pdt17l
+    votesmart: 154056
   name:
     first: Becca
     middle: A.
@@ -40587,6 +40801,7 @@
     state: VT
     district: 0
     party: Democrat
+    url: https://balint.house.gov/
     address: 1408 Longworth House Office Building Washington DC 20515-4500
     office: 1408 Longworth House Office Building
     phone: 202-225-4115
@@ -40599,9 +40814,9 @@
     wikipedia: Marie Gluesenkamp Perez
     google_entity_id: kg:/g/11rts0yhzk
     ballotpedia: Marie Gluesenkamp Perez
+    votesmart: 207307
   name:
-    first: Kristina
-    middle: Marie (goes by)
+    first: Marie
     last: Gluesenkamp Perez
     official_full: Marie Gluesenkamp Perez
   bio:
@@ -40614,6 +40829,7 @@
     state: WA
     district: 3
     party: Democrat
+    url: https://gluesenkampperez.house.gov/
     address: 1431 Longworth House Office Building Washington DC 20515-4703
     office: 1431 Longworth House Office Building
     phone: 202-225-3536
@@ -40626,6 +40842,7 @@
     wikipedia: Derrick Van Orden
     google_entity_id: kg:/g/11j5bmd2d3
     ballotpedia: Derrick Van Orden
+    votesmart: 192343
   name:
     first: Derrick
     middle: Francis
@@ -40641,6 +40858,7 @@
     state: WI
     district: 3
     party: Republican
+    url: https://vanorden.house.gov/
     address: 1513 Longworth House Office Building Washington DC 20515-4903
     office: 1513 Longworth House Office Building
     phone: 202-225-5506
@@ -40653,6 +40871,7 @@
     wikipedia: Harriet Hageman
     google_entity_id: kg:/g/11f77yffzm
     ballotpedia: Harriet Hageman
+    votesmart: 182961
   name:
     first: Harriet
     middle: Maxine
@@ -40668,6 +40887,65 @@
     state: WY
     district: 0
     party: Republican
+    url: https://hageman.house.gov/
     address: 1531 Longworth House Office Building Washington DC 20515-5000
     office: 1531 Longworth House Office Building
     phone: 202-225-2311
+- id:
+    bioguide: R000618
+    lis: S423
+    fec:
+    - S6NE00129
+    govtrack: 456952
+    wikidata: Q6106781
+    wikipedia: Pete Ricketts
+    votesmart: 57777
+    cspan: 61233
+    ballotpedia: Pete Ricketts
+  name:
+    first: Pete
+    last: Ricketts
+    official_full: Pete Ricketts
+  bio:
+    gender: M
+    birthday: '1964-08-19'
+  terms:
+  - type: sen
+    start: '2023-01-23'
+    end: '2024-11-05'
+    how: appointment
+    end-type: special-election
+    state: NE
+    class: 2
+    state_rank: junior
+    party: Republican
+    url: https://www.ricketts.senate.gov
+    address: 40D Dirksen Senate Office Building Washington DC 20510
+    office: 40d Dirksen Senate Office Building
+    phone: 202-224-4224
+- id:
+    bioguide: M001227
+    fec:
+    - H4VA04066
+    govtrack: 456953
+    wikipedia: Jennifer McClellan
+    wikidata: Q6178602
+    ballotpedia: Jennifer McClellan
+    votesmart: 58655
+  name:
+    first: Jennifer
+    last: McClellan
+    official_full: Jennifer L. McClellan
+  bio:
+    gender: F
+    birthday: '1972-12-28'
+  terms:
+  - type: rep
+    start: '2023-03-07'
+    end: '2025-01-03'
+    state: VA
+    district: 4
+    party: Democrat
+    address: 2417 Rayburn House Office Building Washington DC 20515-4604
+    office: 2417 Rayburn House Office Building
+    phone: 202-225-6365

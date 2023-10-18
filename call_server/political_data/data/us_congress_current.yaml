@@ -482,89 +482,6 @@
     office: 393 Russell Senate Office Building
     phone: 202-224-6324
 - id:
-    bioguide: F000062
-    thomas: '01332'
-    lis: S221
-    govtrack: 300043
-    opensecrets: N00007364
-    votesmart: 53273
-    fec:
-    - S0CA00199
-    cspan: 13061
-    wikipedia: Dianne Feinstein
-    house_history: 13044
-    ballotpedia: Dianne Feinstein
-    maplight: 567
-    icpsr: 49300
-    wikidata: Q230733
-    google_entity_id: kg:/m/01gqws
-  name:
-    first: Dianne
-    last: Feinstein
-    official_full: Dianne Feinstein
-  bio:
-    birthday: '1933-06-22'
-    gender: F
-  terms:
-  - type: sen
-    start: '1992-11-10'
-    end: '1995-01-03'
-    state: CA
-    class: 1
-    party: Democrat
-  - type: sen
-    start: '1995-01-04'
-    end: '2001-01-03'
-    state: CA
-    class: 1
-    party: Democrat
-  - type: sen
-    start: '2001-01-03'
-    end: '2007-01-03'
-    state: CA
-    class: 1
-    party: Democrat
-    url: http://feinstein.senate.gov
-  - type: sen
-    start: '2007-01-04'
-    end: '2013-01-03'
-    state: CA
-    class: 1
-    party: Democrat
-    url: http://feinstein.senate.gov
-    address: 331 HART SENATE OFFICE BUILDING WASHINGTON DC 20510
-    phone: 202-224-3841
-    fax: 202-228-3954
-    contact_form: http://www.feinstein.senate.gov/public/index.cfm/e-mail-me
-    office: 331 Hart Senate Office Building
-  - type: sen
-    start: '2013-01-03'
-    end: '2019-01-03'
-    state: CA
-    party: Democrat
-    class: 1
-    url: https://www.feinstein.senate.gov
-    address: 331 Hart Senate Office Building Washington DC 20510
-    phone: 202-224-3841
-    fax: 202-228-3954
-    contact_form: https://www.feinstein.senate.gov/public/index.cfm/e-mail-me
-    office: 331 Hart Senate Office Building
-    state_rank: senior
-    rss_url: http://www.feinstein.senate.gov/public/?a=rss.feed
-  - type: sen
-    start: '2019-01-03'
-    end: '2025-01-03'
-    state: CA
-    class: 1
-    party: Democrat
-    state_rank: senior
-    url: https://www.feinstein.senate.gov
-    rss_url: http://www.feinstein.senate.gov/public/?a=rss.feed
-    contact_form: https://www.feinstein.senate.gov/public/index.cfm/e-mail-me
-    address: 331 Hart Senate Office Building Washington DC 20510
-    office: 331 Hart Senate Office Building
-    phone: 202-224-3841
-- id:
     bioguide: K000367
     thomas: '01826'
     lis: S311
@@ -2710,8 +2627,8 @@
     url: https://www.baldwin.senate.gov
     rss_url: http://www.baldwin.senate.gov/rss/feeds/?type=all
     contact_form: https://www.baldwin.senate.gov/feedback
-    address: 709 Hart Senate Office Building Washington DC 20510
-    office: 709 Hart Senate Office Building
+    address: 141 Hart Senate Office Building Washington DC 20510
+    office: 141 Hart Senate Office Building
     phone: 202-224-5653
 - id:
     bioguide: B001267
@@ -4161,8 +4078,8 @@
     party: Republican
     url: https://www.capito.senate.gov
     contact_form: https://www.capito.senate.gov/contact/contact-shelley
-    address: 172 Russell Senate Office Building Washington DC 20510
-    office: 172 Russell Senate Office Building
+    address: 170 Russell Senate Office Building Washington DC 20510
+    office: 170 Russell Senate Office Building
     phone: 202-224-6472
   family:
   - name: Arch Alfred Moore Jr.
@@ -4747,113 +4664,6 @@
     address: 2423 Rayburn House Office Building Washington DC 20515-0528
     office: 2423 Rayburn House Office Building
     phone: 202-225-5464
-- id:
-    bioguide: C001084
-    thomas: '02055'
-    govtrack: 412470
-    opensecrets: N00032019
-    votesmart: 7349
-    fec:
-    - H0RI01073
-    cspan: 1033865
-    wikipedia: David Cicilline
-    house_history: 11826
-    ballotpedia: David N. Cicilline
-    maplight: 1475
-    icpsr: 21172
-    wikidata: Q938498
-    google_entity_id: kg:/m/04t97v
-  name:
-    first: David
-    last: Cicilline
-    official_full: David N. Cicilline
-    middle: N.
-  bio:
-    birthday: '1961-07-15'
-    gender: M
-  terms:
-  - type: rep
-    start: '2011-01-05'
-    end: '2013-01-03'
-    state: RI
-    district: 1
-    party: Democrat
-    url: http://cicilline.house.gov/
-    address: 128 Cannon HOB; Washington DC 20515-3901
-    phone: 202-225-4911
-    fax: 202-225-3290
-    office: 128 Cannon House Office Building
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: RI
-    party: Democrat
-    district: 1
-    url: http://cicilline.house.gov
-    address: 128 Cannon HOB; Washington DC 20515-3901
-    phone: 202-225-4911
-    fax: 202-225-3290
-    office: 128 Cannon House Office Building
-    rss_url: http://cicilline.house.gov/rss.xml
-    contact_form: https://cicilline.house.gov/contact-me/email-me
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: RI
-    party: Democrat
-    district: 1
-    url: http://cicilline.house.gov
-    address: 2244 Rayburn HOB; Washington DC 20515-3901
-    phone: 202-225-4911
-    fax: 202-225-3290
-    office: 2244 Rayburn House Office Building
-    rss_url: http://cicilline.house.gov/rss.xml
-    contact_form: https://cicilline.house.gov/contact-me/email-me
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: RI
-    district: 1
-    party: Democrat
-    phone: 202-225-4911
-    url: https://cicilline.house.gov
-    rss_url: http://cicilline.house.gov/rss.xml
-    address: 2244 Rayburn House Office Building; Washington DC 20515-3901
-    office: 2244 Rayburn House Office Building
-    fax: 202-225-3290
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: RI
-    district: 1
-    party: Democrat
-    phone: 202-225-4911
-    address: 2233 Rayburn House Office Building Washington DC 20515-3901
-    office: 2233 Rayburn House Office Building
-    url: https://cicilline.house.gov
-    rss_url: http://cicilline.house.gov/rss.xml
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: RI
-    district: 1
-    party: Democrat
-    url: https://cicilline.house.gov
-    rss_url: http://cicilline.house.gov/rss.xml
-    address: 2233 Rayburn House Office Building Washington DC 20515-3901
-    office: 2233 Rayburn House Office Building
-    phone: 202-225-4911
-  - type: rep
-    start: '2023-01-03'
-    end: '2025-01-03'
-    state: RI
-    district: 1
-    party: Democrat
-    url: https://cicilline.house.gov
-    rss_url: http://cicilline.house.gov/rss.xml
-    address: 2233 Rayburn House Office Building Washington DC 20515-3901
-    office: 2233 Rayburn House Office Building
-    phone: 202-225-4911
 - id:
     bioguide: C001067
     thomas: '01864'
@@ -8929,8 +8739,8 @@
     state_rank: senior
     url: https://www.heinrich.senate.gov
     contact_form: https://www.heinrich.senate.gov/contact
-    address: 303 Hart Senate Office Building Washington DC 20510
-    office: 303 Hart Senate Office Building
+    address: 709 Hart Senate Office Building Washington DC 20510
+    office: 709 Hart Senate Office Building
     phone: 202-224-5521
 - id:
     bioguide: H001038
@@ -12562,7 +12372,7 @@
   - title: Speaker of the House
     chamber: house
     start: '2023-01-07'
-    end: '2025-01-03'
+    end: '2023-10-03'
   terms:
   - type: rep
     start: '2007-01-04'
@@ -19736,8 +19546,8 @@
     party: Democrat
     url: https://www.vanhollen.senate.gov
     contact_form: https://www.vanhollen.senate.gov/contact/email
-    address: 110 Hart Senate Office Building Washington DC 20510
-    office: 110 Hart Senate Office Building
+    address: 730 Hart Senate Office Building Washington DC 20510
+    office: 730 Hart Senate Office Building
     phone: 202-224-4654
 - id:
     bioguide: V000081
@@ -20538,8 +20348,8 @@
     party: Democrat
     url: https://www.welch.senate.gov
     contact_form: https://www.welch.senate.gov/
-    address: G12 Russell Senate Office Building Washington DC 20510
-    office: G12 Russell Senate Office Building
+    address: 124 Russell Senate Office Building Washington DC 20510
+    office: 124 Russell Senate Office Building
     phone: 202-224-4242
 - id:
     bioguide: W000795
@@ -23998,8 +23808,8 @@
     url: https://www.fischer.senate.gov
     rss_url: http://www.fischer.senate.gov/public/index.cfm/rss/feed
     contact_form: https://www.fischer.senate.gov/public/index.cfm/contact
-    address: 454 Russell Senate Office Building Washington DC 20510
-    office: 454 Russell Senate Office Building
+    address: 448 Russell Senate Office Building Washington DC 20510
+    office: 448 Russell Senate Office Building
     phone: 202-224-6551
 - id:
     govtrack: 412557
@@ -24665,8 +24475,8 @@
     party: Republican
     url: https://www.mullin.senate.gov
     contact_form: https://www.mullin.senate.gov/
-    address: B33 Russell Senate Office Building Washington DC 20510
-    office: B33 Russell Senate Office Building
+    address: 330 Hart Senate Office Building Washington DC 20510
+    office: 330 Hart Senate Office Building
     phone: 202-224-4721
 - id:
     govtrack: 412569
@@ -24904,8 +24714,8 @@
     state_rank: junior
     url: https://www.cruz.senate.gov
     contact_form: https://www.cruz.senate.gov/?p=form&id=16
-    address: 127A Russell Senate Office Building Washington DC 20510
-    office: 127a Russell Senate Office Building
+    address: 167 Russell Senate Office Building Washington DC 20510
+    office: 167 Russell Senate Office Building
     phone: 202-224-5922
 - id:
     govtrack: 412574
@@ -25286,100 +25096,6 @@
     address: 2348 Rayburn House Office Building Washington DC 20515-4333
     office: 2348 Rayburn House Office Building
     phone: 202-225-9897
-- id:
-    govtrack: 412581
-    bioguide: S001192
-    thomas: '02168'
-    cspan: 68466
-    votesmart: 135930
-    wikipedia: Chris Stewart (politician)
-    fec:
-    - H2UT02324
-    opensecrets: N00033932
-    ballotpedia: Chris Stewart
-    maplight: 1805
-    icpsr: 21367
-    wikidata: Q4068880
-    google_entity_id: kg:/m/0j273ks
-  name:
-    first: Chris
-    last: Stewart
-    official_full: Chris Stewart
-  bio:
-    gender: M
-    birthday: '1960-07-15'
-  terms:
-  - type: rep
-    start: '2013-01-03'
-    end: '2015-01-03'
-    state: UT
-    party: Republican
-    district: 2
-    office: 323 Cannon House Office Building
-    address: 323 Cannon HOB; Washington DC 20515-4402
-    phone: 202-225-9730
-    url: http://stewart.house.gov
-    rss_url: http://stewart.house.gov/rss.xml
-    contact_form: https://stewart.house.gov/contact/email-me
-    fax: 801-364-5551
-  - type: rep
-    start: '2015-01-06'
-    end: '2017-01-03'
-    state: UT
-    party: Republican
-    district: 2
-    office: 323 Cannon House Office Building
-    address: 323 Cannon HOB; Washington DC 20515-4402
-    phone: 202-225-9730
-    url: http://stewart.house.gov
-    rss_url: http://stewart.house.gov/rss.xml
-    contact_form: https://stewart.house.gov/contact/email-me
-    fax: 801-364-5551
-  - type: rep
-    start: '2017-01-03'
-    end: '2019-01-03'
-    state: UT
-    district: 2
-    party: Republican
-    phone: 202-225-9730
-    url: https://stewart.house.gov
-    rss_url: http://stewart.house.gov/rss.xml
-    address: 323 Cannon House Office Building; Washington DC 20515-4402
-    office: 323 Cannon House Office Building
-    fax: 801-364-5551
-  - type: rep
-    start: '2019-01-03'
-    end: '2021-01-03'
-    state: UT
-    district: 2
-    party: Republican
-    phone: 202-225-9730
-    address: 2242 Rayburn House Office Building Washington DC 20515-4402
-    office: 2242 Rayburn House Office Building
-    url: https://stewart.house.gov
-    rss_url: http://stewart.house.gov/rss.xml
-  - type: rep
-    start: '2021-01-03'
-    end: '2023-01-03'
-    state: UT
-    district: 2
-    party: Republican
-    url: https://stewart.house.gov
-    rss_url: http://stewart.house.gov/rss.xml
-    address: 166 Cannon House Office Building Washington DC 20515-4402
-    office: 166 Cannon House Office Building
-    phone: 202-225-9730
-  - type: rep
-    start: '2023-01-03'
-    end: '2025-01-03'
-    state: UT
-    district: 2
-    party: Republican
-    url: https://stewart.house.gov
-    rss_url: http://stewart.house.gov/rss.xml
-    address: 166 Cannon House Office Building Washington DC 20515-4402
-    office: 166 Cannon House Office Building
-    phone: 202-225-9730
 - id:
     bioguide: K000384
     thomas: '02176'
@@ -30490,8 +30206,8 @@
     party: Republican
     url: https://www.budd.senate.gov
     contact_form: https://www.budd.senate.gov/
-    address: B85 Russell Senate Office Building Washington DC 20510
-    office: B85 Russell Senate Office Building
+    address: 304 Russell Senate Office Building Washington DC 20510
+    office: 304 Russell Senate Office Building
     phone: 202-224-3154
 - id:
     bioguide: B001298
@@ -35089,8 +34805,8 @@
     party: Republican
     state_rank: junior
     url: https://www.rickscott.senate.gov
-    address: 502 Hart Senate Office Building Washington DC 20510
-    office: 502 Hart Senate Office Building
+    address: 110 Hart Senate Office Building Washington DC 20510
+    office: 110 Hart Senate Office Building
     phone: 202-224-5274
     contact_form: https://www.rickscott.senate.gov/contact/contact
 - id:
@@ -35648,8 +35364,8 @@
     party: Republican
     url: https://www.lummis.senate.gov
     contact_form: https://www.lummis.senate.gov/contact/contact-form/
-    address: 124 Russell Senate Office Building Washington DC 20510
-    office: 124 Russell Senate Office Building
+    address: 127A Russell Senate Office Building Washington DC 20510
+    office: 127a Russell Senate Office Building
     phone: 202-224-3424
 - id:
     bioguide: I000056
@@ -36040,8 +35756,8 @@
     party: Republican
     url: https://www.tuberville.senate.gov
     contact_form: https://www.tuberville.senate.gov/contact/contact-form/
-    address: 142 Russell Senate Office Building Washington DC 20510
-    office: 142 Russell Senate Office Building
+    address: 455 Russell Senate Office Building Washington DC 20510
+    office: 455 Russell Senate Office Building
     phone: 202-224-4124
 - id:
     bioguide: H000273
@@ -38090,7 +37806,7 @@
     end: '2029-01-03'
     state: CA
     class: 3
-    state_rank: junior
+    state_rank: senior
     party: Democrat
     url: https://www.padilla.senate.gov
     contact_form: https://www.padilla.senate.gov/contact/
@@ -38125,8 +37841,8 @@
     class: 2
     party: Democrat
     state_rank: senior
-    address: 455 Russell Senate Office Building Washington DC 20510
-    office: 455 Russell Senate Office Building
+    address: 303 Hart Senate Office Building Washington DC 20510
+    office: 303 Hart Senate Office Building
     phone: 202-224-3521
     url: https://www.ossoff.senate.gov
     contact_form: https://www.ossoff.senate.gov/contact-us/
@@ -38173,8 +37889,8 @@
     party: Democrat
     url: https://www.warnock.senate.gov
     contact_form: https://www.warnock.senate.gov/contact/
-    address: 388 Russell Senate Office Building Washington DC 20510
-    office: 388 Russell Senate Office Building
+    address: 416 Russell Senate Office Building Washington DC 20510
+    office: 416 Russell Senate Office Building
     phone: 202-224-3643
 - id:
     bioguide: T000478
@@ -38757,8 +38473,8 @@
     party: Republican
     url: https://www.britt.senate.gov
     contact_form: https://www.britt.senate.gov/
-    address: B40A Dirksen Senate Office Building Washington DC 20510
-    office: B40a Dirksen Senate Office Building
+    address: 502 Hart Senate Office Building Washington DC 20510
+    office: 502 Hart Senate Office Building
     phone: 202-224-5744
 - id:
     bioguide: S001227
@@ -38788,8 +38504,8 @@
     party: Republican
     url: https://www.schmitt.senate.gov
     contact_form: https://www.schmitt.senate.gov/
-    address: B11 Russell Senate Office Building Washington DC 20510
-    office: B11 Russell Senate Office Building
+    address: 387 Russell Senate Office Building Washington DC 20510
+    office: 387 Russell Senate Office Building
     phone: 202-224-5721
 - id:
     bioguide: V000137
@@ -38819,8 +38535,8 @@
     party: Republican
     url: https://www.vance.senate.gov
     contact_form: https://www.vance.senate.gov/
-    address: B40C Dirksen Senate Office Building Washington DC 20510
-    office: B40c Dirksen Senate Office Building
+    address: 288 Russell Senate Office Building Washington DC 20510
+    office: 288 Russell Senate Office Building
     phone: 202-224-3353
 - id:
     bioguide: F000479
@@ -38850,8 +38566,8 @@
     party: Democrat
     url: https://www.fetterman.senate.gov
     contact_form: https://www.fetterman.senate.gov/
-    address: B40B Dirksen Senate Office Building Washington DC 20510
-    office: B40b Dirksen Senate Office Building
+    address: 142 Russell Senate Office Building Washington DC 20510
+    office: 142 Russell Senate Office Building
     phone: 202-224-4254
 - id:
     bioguide: S001220
@@ -40920,8 +40636,8 @@
     state_rank: junior
     party: Republican
     url: https://www.ricketts.senate.gov
-    address: 40D Dirksen Senate Office Building Washington DC 20510
-    office: 40d Dirksen Senate Office Building
+    address: 139 Russell Senate Office Building Washington DC 20510
+    office: 139 Russell Senate Office Building
     phone: 202-224-4224
 - id:
     bioguide: M001227
@@ -40949,3 +40665,32 @@
     address: 2417 Rayburn House Office Building Washington DC 20515-4604
     office: 2417 Rayburn House Office Building
     phone: 202-225-6365
+- id:
+    bioguide: B001320
+    lis: S424
+    govtrack: 456954
+    wikipedia: Laphonza Butler
+    wikidata: Q121337973
+    ballotpedia: Laphonza Butler
+  name:
+    first: Laphonza
+    middle: Romanique
+    last: Butler
+    official_full: Laphonza R. Butler
+  bio:
+    gender: F
+    birthday: '1979-05-11'
+  terms:
+  - type: sen
+    start: '2023-10-03'
+    end: '2025-01-03'
+    how: appointment
+    state: CA
+    class: 1
+    party: Democrat
+    state_rank: junior
+    url: https://www.butler.senate.gov
+    contact_form: https://www.butler.senate.gov/
+    address: G12 Dirksen Senate Office Building Washington DC 20510
+    office: G12 Dirksen Senate Office Building
+    phone: 202-224-3841

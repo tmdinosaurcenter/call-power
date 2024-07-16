@@ -282,7 +282,7 @@ class USDataProvider(DataProvider):
         super(USDataProvider, self).__init__(**kwargs)
         self._cache = cache
         self._geocoder = Geocoder(country='US')
-        self._openstates = GraphQLClient('https://openstates.org/graphql')
+        self._openstates = GraphQLClient('https://open.pluralpolicy.com/graphql')
         self._openstates.inject_token(os.environ.get('OPENSTATES_API_KEY'), 'x-api-key')
 
     def get_location(self, locate_by, raw, ignore_local_cache=False):

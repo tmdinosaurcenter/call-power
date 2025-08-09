@@ -1,35 +1,28 @@
-FROM ubuntu:xenial
-RUN apt-get update && apt-get -y install python-pip python-dev npm git libpq-dev curl unzip
+FROM python:3.11-slim
 
-RUN  mkdir /ngrok && \
-     cd /ngrok && \
-     curl -sLo ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
-     unzip ngrok.zip ngrok -d /bin && \
-     rm -r /ngrok
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
 WORKDIR /opt
 
-# We need to remove the os version of setuptools
-# It's incompatible with a dependency in gevent-psycopg2
-RUN easy_install -m setuptools
-RUN rm -r /usr/lib/python2.7/dist-packages/setuptools*
-RUN pip install setuptools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential libpq-dev curl git \
+    && rm -rf /var/lib/apt/lists/*
 
+# system-level node if you still need bower (temporary)
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get update && apt-get install -y nodejs \
+    && npm i -g bower
+
+# install app
 ADD requirements.txt ./
 ADD requirements ./requirements
-RUN pip install -r requirements/production.txt -r requirements/development.txt
+RUN python -m pip install --upgrade pip setuptools wheel
+# temporary: relax pins and install; we’ll adjust after code tweaks
+RUN pip install -r requirements/production.txt
 
-ADD bower.json ./
-ADD .bowerrc ./
-RUN npm install -g bower
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN bower --allow-root --config.interactive=false install
+ADD . /opt
+ENV FLASK_APP=manager.py
+CMD ["gunicorn","-w","4","-b","0.0.0.0:5000","--worker-class","gthread","call_server:app"]
 
-ADD alembic.ini manager.py Procfile entrypoint.sh ./
-ADD scripts ./scripts/
-ADD tests ./tests/
-ADD call_server ./call_server/
-ADD alembic ./alembic/
-ADD instance ./instance/
-
-ENTRYPOINT ["/opt/entrypoint.sh"]

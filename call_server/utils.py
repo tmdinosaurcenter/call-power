@@ -57,7 +57,7 @@ def duplicate_object(orig, skip=None):
 
 def convert_to_dict(obj):
     """converts tuples of tuples to OrderedDict for easy lookup that maintains order"""
-    if type(obj) is not dict():
+    if not isinstance(obj, dict):
         try:
             dictlike = OrderedDict(obj)
             return dictlike

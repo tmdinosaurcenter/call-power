@@ -8,7 +8,8 @@
     "Sina Khanifar <sina.khanifar@gmail.com>",
     "Beau Gunderson <beau@beaugunderson.com>",
     "Adam Greenhall <hello@adamgreenhall.com>",
-    "Thomas Davis <thomasalwyndavis@gmail.com>"
+    "Thomas Davis <thomasalwyndavis@gmail.com>",
+    "Steve Dogiakos <steve@dogiakos.com>"
   ],
   "main": "call_server/app.py",
   "license": "AGPL",

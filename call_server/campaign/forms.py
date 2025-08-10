@@ -1,4 +1,7 @@
-import magic
+try:  # pragma: no cover
+    import magic
+except ImportError:  # pragma: no cover
+    magic = None
 from flask_wtf import FlaskForm
 from flask_babel import gettext as _
 
@@ -155,6 +158,9 @@ class AudioRecordingForm(FlaskForm):
 
     def validate_file_storage(form, field):
         if not field.data:
+            return True
+
+        if magic is None:
             return True
 
         # Use Unix libmagic to check the file type. Read just the header

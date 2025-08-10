@@ -1,10 +1,11 @@
 Installation
 ==============
+CallPower requires Python 3.11. Ensure it is installed before continuing.
 
 Configure Settings
 ------------
 
-The app requires several account keys to run. These should not be stored in version control, but in environment variables. For development, you can export these from your virtualenv/bin/activate script, or put them in a .env file and load them with [autoenv](https://github.com/kennethreitz/autoenv).
+The app requires several account keys to run. These should not be stored in version control, but in environment variables. For development, you can export these from your `.venv/bin/activate` script, or put them in a .env file and load them with [autoenv](https://github.com/kennethreitz/autoenv).
 
 At a minimum, you will need to set:
 
@@ -60,7 +61,7 @@ Development mode
 To install locally and run in debug mode use:
 
     # create ENV variables
-    virtualenv .venv
+    python3.11 -m venv .venv
     source .venv/bin/activate
     pip install -r requirements/development.txt
     export FLASK_APP=manager.py; FLASK_ENV=development; FLASK_DEBUG=1

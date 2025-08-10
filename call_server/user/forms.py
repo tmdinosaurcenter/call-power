@@ -1,15 +1,30 @@
 # -*- coding: utf-8 -*-
 
-from flask import Markup
+from markupsafe import Markup
 
 from flask_wtf import FlaskForm
 from flask_babel import gettext as _
-from wtforms import (HiddenField, BooleanField, TextField,
-                     PasswordField, SubmitField,
-                     RadioField, DateField)
-from wtforms.validators import ValidationError, Required, Length, EqualTo, Email, AnyOf
+from wtforms import (
+    HiddenField,
+    BooleanField,
+    StringField,
+    PasswordField,
+    SubmitField,
+    RadioField,
+    DateField,
+)
+TextField = StringField
+from wtforms.validators import (
+    ValidationError,
+    DataRequired,
+    Length,
+    EqualTo,
+    Email,
+    AnyOf,
+)
+Required = DataRequired
 from wtforms_alchemy import PhoneNumberField
-from wtforms.fields.html5 import EmailField
+from wtforms.fields import EmailField
 
 from .models import User
 from .constants import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,

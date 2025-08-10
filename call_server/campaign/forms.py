@@ -2,15 +2,32 @@ import magic
 from flask_wtf import FlaskForm
 from flask_babel import gettext as _
 
-from wtforms import (HiddenField, SubmitField, TextField,
-                     SelectField, SelectMultipleField,
-                     BooleanField, RadioField,
-                     FileField, FieldList, FormField)
-from wtforms.ext.sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
+from wtforms import (
+    HiddenField,
+    SubmitField,
+    StringField,
+    SelectField,
+    SelectMultipleField,
+    BooleanField,
+    RadioField,
+    FileField,
+    FieldList,
+    FormField,
+)
+TextField = StringField
+from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 from wtforms_components import IntegerField, read_only
 from wtforms_alchemy import PhoneNumberField
 from wtforms.widgets import TextArea, Input
-from wtforms.validators import Required, Optional, AnyOf, NumberRange, ValidationError, Length
+from wtforms.validators import (
+    DataRequired,
+    Optional,
+    AnyOf,
+    NumberRange,
+    ValidationError,
+    Length,
+)
+Required = DataRequired
 from wtforms_alchemy.validators import Unique
 
 from .constants import (SEGMENT_BY_CHOICES, LOCATION_CHOICES, INCLUDE_SPECIAL_CHOCIES, TARGET_OFFICE_CHOICES, LANGUAGE_CHOICES,

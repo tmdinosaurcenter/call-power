@@ -2,7 +2,7 @@ import datetime
 
 from flask import (Blueprint, render_template, current_app, request,
                    flash, url_for, redirect, session, abort, jsonify)
-from flask.json import JSONEncoder
+import json
 from flask_login import login_required
 from flask_store.providers.temp import TemporaryStore
 
@@ -133,7 +133,7 @@ def form(country_code=None, campaign_type=None, campaign_id=None, campaign_langu
     for number in TwilioPhoneNumber.available_numbers().filter_by(call_in_allowed=True):
         if campaign.id != number.call_in_campaign.id:
             call_in_map[number.id] = number.call_in_campaign.name
-    form.phone_number_set.render_kw = { "data-call_in_map": JSONEncoder().encode(call_in_map) }
+    form.phone_number_set.render_kw = { "data-call_in_map": json.dumps(call_in_map) }
 
     # for fields with dynamic choices, set to empty here in view
     # will be updated in client

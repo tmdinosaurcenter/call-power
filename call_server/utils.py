@@ -11,11 +11,11 @@ import yaml.constructor
 from collections import OrderedDict
 from datetime import datetime
 
-from flask import Markup
+from markupsafe import Markup
 import sqlalchemy
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
-from werkzeug import FileStorage
+from werkzeug.datastructures import FileStorage
 
 
 # near copy of django's get_or_create, modified from http://stackoverflow.com/a/21146492/264790
